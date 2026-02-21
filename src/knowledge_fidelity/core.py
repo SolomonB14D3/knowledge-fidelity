@@ -4,7 +4,7 @@ The main entry point: compress a model with CF90, then audit whether it
 still knows truth vs myths using the same factual probes for both steps.
 
     from knowledge_fidelity import compress_and_audit
-    report = compress_and_audit("meta-llama/Llama-3.1-8B-Instruct", ratio=0.7)
+    report = compress_and_audit("Qwen/Qwen2.5-7B-Instruct", ratio=0.7)
 """
 
 import time

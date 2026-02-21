@@ -8,7 +8,7 @@ structural importance scoring and behavioral false-belief detection.
 Quick start:
     from knowledge_fidelity import compress_and_audit
 
-    report = compress_and_audit("meta-llama/Llama-3.1-8B-Instruct", ratio=0.7)
+    report = compress_and_audit("Qwen/Qwen2.5-7B-Instruct", ratio=0.7)
     print(f"Retention: {report['retention']:.0%} | "
           f"rho: {report['rho_before']:.3f} -> {report['rho_after']:.3f}")
 

@@ -1,13 +1,13 @@
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "knowledge-fidelity"
 version = "0.1.0"
 description = "Compress LLMs while auditing whether they still know truth vs myths. SVD compression + false-belief detection in one toolkit."
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 requires-python = ">=3.10"
 authors = [
     {name = "Bryan Sanchez"},
@@ -42,6 +42,9 @@ dev = [
     "knowledge-fidelity[full]",
     "pytest",
 ]
+
+[project.scripts]
+knowledge-fidelity = "knowledge_fidelity.__main__:main"
 
 [project.urls]
 Homepage = "https://github.com/SolomonB14D3/knowledge-fidelity"
