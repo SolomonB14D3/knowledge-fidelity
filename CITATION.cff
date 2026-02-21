@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Knowledge Fidelity: Compress LLMs While Auditing What They Still Know"
+authors:
+  - family-names: Sanchez
+    given-names: Bryan
+type: software
+license: MIT
+version: 0.1.0
+date-released: 2026-02-20
+repository-code: "https://github.com/SolomonB14D3/knowledge-fidelity"
+keywords:
+  - llm-compression
+  - svd
+  - knowledge-preservation
+  - false-belief-detection
+  - confidence-cartography
+  - interpretability

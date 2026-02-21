@@ -1,0 +1,44 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model weights (large files)
+*.bin
+*.safetensors
+*.gguf
+*.pt
+*.pth
+
+# Data outputs (keep probes, ignore generated results)
+data/results/*.jsonl
+data/results/**/*.jsonl
+
+# Figures (regenerated from experiments)
+figures/*.png
+figures/**/*.png
+
+# Jupyter
+.ipynb_checkpoints/
+
+# HuggingFace cache
+.cache/
