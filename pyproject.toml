@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "knowledge-fidelity"
-version = "0.1.1"
+version = "0.2.0"
 description = "Compress LLMs while auditing whether they still know truth vs myths. SVD compression + false-belief detection in one toolkit."
 readme = "README.md"
 license = "MIT"
@@ -48,8 +48,13 @@ eval = [
 deploy = [
     "safetensors",
 ]
+demo = [
+    "knowledge-fidelity[cartography]",
+    "gradio>=4.0",
+    "pandas",
+]
 full = [
-    "knowledge-fidelity[cartography,eval,deploy]",
+    "knowledge-fidelity[cartography,eval,deploy,demo]",
     "mlx>=0.5; sys_platform == 'darwin'",
     "mlx-lm>=0.5; sys_platform == 'darwin'",
 ]

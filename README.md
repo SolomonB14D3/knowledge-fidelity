@@ -13,6 +13,17 @@ print(f"Retention: {report['retention']:.0%} | "
 # Retention: 100% | False-belief signal: rho=0.725
 ```
 
+Or from the CLI:
+
+```bash
+# Auto-find the compression ratio that maximizes factual signal
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
+# DENOISING DETECTED: Mandela rho 0.257 → 0.771 (+0.514) at 60% ratio
+
+# Benchmark across all probe categories
+python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B
+```
+
 ## Why This Exists
 
 LLM compression is everywhere. Knowledge auditing is rare. Nobody checks both at once.
@@ -109,6 +120,7 @@ These findings come from the standalone [intelligent-svd](https://github.com/Sol
 ```bash
 pip install knowledge-fidelity                    # Core (SVD + probes)
 pip install "knowledge-fidelity[cartography]"     # + confidence analysis + plots
+pip install "knowledge-fidelity[demo]"            # + Gradio demo app
 pip install "knowledge-fidelity[full]"            # Everything including MLX
 ```
 
@@ -210,9 +222,61 @@ report = compress_and_audit("my-model", probes=custom)
 | `get_default_probes()` | 20 | Geography, science, history, biology |
 | `get_mandela_probes()` | 6 | Popular false memories (Berenstain Bears, Vader quote, etc.) |
 | `get_medical_probes()` | 5 | Common medical misconceptions |
-| `get_all_probes()` | 31 | All of the above |
+| `get_commonsense_probes()` | 10 | Commonsense myths (goldfish memory, sugar hyperactivity, etc.) |
+| `get_truthfulqa_probes()` | 15 | TruthfulQA-derived misconceptions (evolution, Viking helmets, etc.) |
+| `get_all_probes()` | 56 | All of the above |
 
 Community contributions welcome — add probes for your domain and submit a PR.
+
+## Denoise Mode (v0.2)
+
+SVD compression can _improve_ factual discrimination by stripping noise from attention projections. The `--denoise` flag auto-finds the compression ratio that maximizes this effect:
+
+```bash
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
+```
+
+```
+Baseline: rho=0.257
+Testing ratio 0.50: rho=0.714 (IMPROVED by +0.457)
+Testing ratio 0.60: rho=0.771 (IMPROVED by +0.514)  ← optimal
+Testing ratio 0.70: rho=0.771 (IMPROVED by +0.514)
+Testing ratio 0.80: rho=0.257 (no change)
+Testing ratio 0.90: rho=0.371 (IMPROVED by +0.114)
+
+DENOISING DETECTED: Mandela rho 0.257 → 0.771 (+0.514) at 60% ratio
+```
+
+Or from Python:
+
+```python
+from knowledge_fidelity import find_optimal_denoise_ratio
+
+result = find_optimal_denoise_ratio("Qwen/Qwen2.5-0.5B", probe_set="mandela")
+print(f"Optimal ratio: {result['optimal_ratio']}")
+print(f"Improvement: {result['improvement']:+.3f}")
+```
+
+## Fidelity-Bench (v0.2)
+
+Benchmark any model across all 56 probes organized by category:
+
+```bash
+python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B
+```
+
+```
+Fidelity-Bench: Qwen/Qwen2.5-0.5B
+| Category    | Probes | rho   | Correct | Accuracy | Mean Δ  |
+|-------------|--------|-------|---------|----------|---------|
+| default     |     20 | 0.821 |  16/20  |     80%  | +0.0837 |
+| mandela     |      6 | 0.257 |   3/6   |     50%  | +0.0527 |
+| medical     |      5 | 0.100 |   4/5   |     80%  | +0.0466 |
+| commonsense |     10 | 0.261 |   7/10  |     70%  | -0.0226 |
+| truthfulqa  |     15 | 0.596 |   6/15  |     40%  | -0.0392 |
+```
+
+Add `--json` for machine-readable output. Use `--output results.json` to save.
 
 ## How It Works
 
@@ -236,6 +300,28 @@ Both use the same probes:
 
 Compress with knowledge of what matters. Verify nothing was lost. Same probes, both sides.
 
+## CLI
+
+```bash
+# Compress + audit (default: 70% rank, CF90 protection)
+knowledge-fidelity Qwen/Qwen2.5-0.5B
+
+# Audit only (no compression, baseline measurement)
+knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only
+
+# Auto-find optimal denoising ratio
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
+
+# Denoise with specific probe set
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --denoise-probe-set medical
+
+# Use all 56 probes
+knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only --probes all
+
+# Save compressed model
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --output ./denoised-model
+```
+
 ## Experiments
 
 ```bash
@@ -248,6 +334,9 @@ python experiments/joint_ablation.py --model Qwen/Qwen2.5-7B-Instruct
 
 # Multi-seed CF90 validation
 python experiments/run_cf90_multiseed.py --model Qwen/Qwen2.5-7B-Instruct --seeds 3
+
+# Fidelity benchmark across all probe categories
+python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B --json
 ```
 
 ## Deployment

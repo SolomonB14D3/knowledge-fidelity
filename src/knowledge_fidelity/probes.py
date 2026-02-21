@@ -167,9 +167,26 @@ def get_medical_probes() -> list[dict]:
     return MEDICAL_PROBES.copy()
 
 
+def get_commonsense_probes() -> list[dict]:
+    """Return the commonsense myth probes (loaded from data/probes/)."""
+    return load_probes(PROBES_DIR / "commonsense_myths.json")
+
+
+def get_truthfulqa_probes() -> list[dict]:
+    """Return the TruthfulQA-derived probes (loaded from data/probes/)."""
+    return load_probes(PROBES_DIR / "truthfulqa_subset.json")
+
+
 def get_all_probes() -> list[dict]:
-    """Return all built-in probes (default + mandela + medical)."""
-    return DEFAULT_PROBES + MANDELA_PROBES + MEDICAL_PROBES
+    """Return all built-in probes (default + mandela + medical + commonsense + truthfulqa)."""
+    all_probes = DEFAULT_PROBES + MANDELA_PROBES + MEDICAL_PROBES
+    # Add file-based probes if available
+    for loader in [get_commonsense_probes, get_truthfulqa_probes]:
+        try:
+            all_probes.extend(loader())
+        except (FileNotFoundError, json.JSONDecodeError):
+            pass
+    return all_probes
 
 
 def load_probes(path: Union[str, Path]) -> list[dict]:

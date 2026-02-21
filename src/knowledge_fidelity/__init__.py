@@ -29,24 +29,30 @@ Built on:
 """
 
 from .core import compress_and_audit, audit_model
+from .denoise import find_optimal_denoise_ratio
 from .probes import (
     get_default_probes,
     get_mandela_probes,
     get_medical_probes,
+    get_commonsense_probes,
+    get_truthfulqa_probes,
     get_all_probes,
     load_probes,
 )
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 __all__ = [
     # Main API
     "compress_and_audit",
     "audit_model",
+    "find_optimal_denoise_ratio",
     # Probes
     "get_default_probes",
     "get_mandela_probes",
     "get_medical_probes",
+    "get_commonsense_probes",
+    "get_truthfulqa_probes",
     "get_all_probes",
     "load_probes",
 ]
