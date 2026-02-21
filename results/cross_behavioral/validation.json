@@ -1,0 +1,11 @@
+{
+  "model": "Qwen-0.5B",
+  "ratio": 0.7,
+  "deltas": {
+    "factual": -0.5818181818181818,
+    "toxicity": 0.030000000000000027,
+    "bias": -0.2,
+    "sycophancy": 0.04999999999999999,
+    "reasoning": -0.5
+  }
+}
