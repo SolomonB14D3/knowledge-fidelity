@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "knowledge-fidelity"
-version = "0.2.1"
+version = "0.3.0"
 description = "Compress LLMs while auditing whether they still know truth vs myths. SVD compression + false-belief detection in one toolkit."
 readme = "README.md"
 license = "MIT"
@@ -41,9 +41,12 @@ cartography = [
     "seaborn>=0.12",
     "tqdm",
 ]
+behavioral = [
+    "datasets>=2.0",
+]
 eval = [
     "lm-eval>=0.4",
-    "datasets",
+    "datasets>=2.0",
 ]
 deploy = [
     "safetensors",

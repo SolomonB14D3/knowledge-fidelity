@@ -39,8 +39,9 @@ from .probes import (
     get_all_probes,
     load_probes,
 )
+from .behavioral import load_behavioral_probes, evaluate_behavior
 
-__version__ = "0.2.1"
+__version__ = "0.3.0"
 
 __all__ = [
     # Main API
@@ -55,4 +56,7 @@ __all__ = [
     "get_truthfulqa_probes",
     "get_all_probes",
     "load_probes",
+    # Cross-behavioral
+    "load_behavioral_probes",
+    "evaluate_behavior",
 ]
