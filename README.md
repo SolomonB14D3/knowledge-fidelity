@@ -7,9 +7,10 @@ The first toolkit that uses the same factual probes for both structural importan
 ```python
 from knowledge_fidelity import compress_and_audit
 
-report = compress_and_audit("meta-llama/Llama-3.1-8B-Instruct", ratio=0.7)
+report = compress_and_audit("Qwen/Qwen2.5-7B-Instruct", ratio=0.7)
 print(f"Retention: {report['retention']:.0%} | "
       f"False-belief signal: rho={report['rho_after']:.3f}")
+# Retention: 100% | False-belief signal: rho=0.725
 ```
 
 ## Why This Exists
@@ -27,32 +28,80 @@ Two sensors, one toolkit:
 
 The key insight: the same set of factual probes drives both. Compress with awareness of what matters, then verify nothing broke.
 
-## Key Results
+## Early Results (v0.1)
 
-### Cross-Architecture Validation
+All results below are from the unified toolkit run on Apple Silicon (M3 Ultra, CPU).
 
-| Finding | Qwen (0.5B) | Llama 2 (7B) |
-|---------|------------|-------------|
-| CF90 fact retention | **79%** (p=0.0072, 5 seeds) | **78%** (3 seeds) |
-| Unprotected forgetting | 4% retained | 7% retained |
-| CF90 + INT8 | 72% retained | 77% retained |
-| Repetition (CF90 vs baseline) | 33% vs 5% (bottleneck) | **25% vs 40%** (regularizer) |
+### Multi-Seed CF90 Validation (70% rank, 3 seeds)
 
-### Confidence Cartography Findings
+| Metric | Qwen2.5-0.5B | Qwen2.5-7B-Instruct |
+|--------|:------------:|:-------------------:|
+| Retention | **95%** ± 0% | **100%** ± 0% |
+| rho before | 0.821 | 0.746 |
+| rho after | 0.720 | 0.725 |
+| rho drop | 0.101 ± 0.000 | **0.021** ± 0.000 |
+| Matrices compressed | 72 | 84 |
+| Layers frozen | 18/24 | 21/28 |
+
+The 7B model loses only 0.021 rho under CF90 — nearly perfect fidelity at scale.
+
+### Joint Ablation: Compression Ratio vs Confidence (Qwen2.5-0.5B)
+
+| Ratio | Default rho | Mandela rho | Medical rho |
+|:-----:|:-----------:|:-----------:|:-----------:|
+| 50% | 0.821 → 0.761 | 0.257 → 0.714 | 0.100 → 0.700 |
+| 60% | 0.821 → 0.714 | 0.257 → 0.771 | 0.100 → 0.900 |
+| 70% | 0.821 → 0.720 | 0.257 → 0.771 | 0.100 → 0.100 |
+| 80% | 0.821 → 0.690 | 0.257 → 0.257 | 0.100 → 0.600 |
+| 90% | 0.821 → 0.821 | 0.257 → 0.371 | 0.100 → 0.100 |
+| 100% | 0.821 → 0.821 | 0.257 → 0.257 | 0.100 → 0.100 |
+
+### Joint Ablation: Compression Ratio vs Confidence (Qwen2.5-7B-Instruct)
+
+| Ratio | Default rho | Mandela rho | Medical rho |
+|:-----:|:-----------:|:-----------:|:-----------:|
+| 50% | 0.746 → 0.689 | 0.829 → 0.771 | −0.700 → 0.600 |
+| 70% | 0.746 → 0.725 | 0.829 → **0.943** | −0.700 → −0.600 |
+| 90% | 0.746 → 0.713 | 0.829 → **0.943** | −0.700 → −0.900 |
+| 100% | 0.746 → 0.746 | 0.829 → 0.829 | −0.700 → −0.700 |
+
+### SVD as a Denoiser
+
+A surprising finding at 7B scale: **SVD compression can _improve_ the Mandela effect signal.** At 70% and 90% rank, Mandela rho increases from 0.829 to 0.943 — the compressed model discriminates true from false memories _better_ than the original.
+
+This is consistent with the interpretation that truncated SVD strips noise from attention projections while preserving the principal signal directions that encode factual knowledge. On small probe sets (6 Mandela, 5 medical), removing noise can sharpen the true/false separation. The effect is weaker at 0.5B where the baseline Mandela signal is already noisy (rho=0.257).
+
+This has practical implications: moderate CF90 compression may serve as a **denoising regularizer** for factual knowledge, not just a lossy compression step.
+
+### Scale-Dependent Findings
+
+| Finding | 0.5B | 7B |
+|---------|:----:|:--:|
+| Mandela baseline rho | 0.257 (weak) | **0.829** (strong) |
+| CF90 rho drop | 0.101 (moderate) | **0.021** (minimal) |
+| CF90 retention | 95% | **100%** |
+| SVD denoising on Mandela | Mixed | **+0.114 rho** |
+
+The Mandela effect signal strengthens dramatically with scale (3.2× from 0.5B to 7B), and CF90 compression becomes safer at larger scales.
+
+### Prior Results (from Component Projects)
+
+These findings come from the standalone [intelligent-svd](https://github.com/SolomonB14D3/intelligent-svd) and [confidence-cartography](https://github.com/SolomonB14D3/confidence-cartography) projects that this toolkit unifies:
 
 | Finding | Result |
 |---------|--------|
-| Confidence correlates with human false-belief prevalence | rho=0.652, p=0.016 (Pythia 160M-12B) |
+| Confidence correlates with human false-belief prevalence | rho=0.652, p=0.016 (Pythia 160M–12B) |
 | Out-of-domain medical claims | 88% accuracy at 6.9B |
-| Mandela effects show lower confidence | Systematic across all model scales |
 | Targeted resampling at low-confidence tokens | Outperforms uniform best-of-N |
+| CF90 + INT8 stacking | 72–77% retention (Qwen-0.5B, Llama-7B) |
+| Importance-guided SVD at 50% rank | 3× better retention than standard SVD |
 
 ### Compression Safety Guide
 
 | Layer Type | Safe to Compress | Notes |
 |------------|------------------|-------|
 | **Q, K, O projections** | Yes at 70% rank | Main target |
-| **V projection** | 90-95% only | Marginal gains, high risk below 90% |
+| **V projection** | 90–95% only | Marginal gains, high risk below 90% |
 | **MLP layers** | **Never** | Destroys model at any compression level |
 
 ## Install
@@ -79,13 +128,13 @@ pip install -e ".[full]"
 from knowledge_fidelity import compress_and_audit
 
 report = compress_and_audit(
-    "Qwen/Qwen2.5-7B",
+    "Qwen/Qwen2.5-7B-Instruct",
     ratio=0.7,           # Keep 70% of singular values
     freeze_ratio=0.75,   # Freeze bottom 75% of layers
 )
 
 print(report["summary"])
-# Compressed Qwen/Qwen2.5-7B at 70% rank | 84 matrices | 21/28 frozen | Retention: 95% | rho: 0.812 -> 0.793
+# Compressed Qwen/Qwen2.5-7B-Instruct at 70% rank | 84 matrices | 21/28 frozen | Retention: 100% | rho: 0.746 -> 0.725
 ```
 
 ### Step-by-Step (More Control)
@@ -96,8 +145,8 @@ from knowledge_fidelity.svd import compress_qko, freeze_layers
 from knowledge_fidelity import audit_model
 
 # Load
-model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B", torch_dtype=torch.float32)
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B")
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct", torch_dtype=torch.float32)
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
 
 # Compress
 compress_qko(model, ratio=0.7)     # SVD on Q, K, O projections
@@ -190,14 +239,15 @@ Compress with knowledge of what matters. Verify nothing was lost. Same probes, b
 ## Experiments
 
 ```bash
-# Quick demo (~5 min on Qwen-0.5B)
+# Quick demo (~5 min on Qwen-0.5B, ~8 min on 7B)
 python examples/quick_demo.py
+python examples/quick_demo.py --model Qwen/Qwen2.5-7B-Instruct
 
 # Joint ablation: compression ratio vs confidence preservation
-python experiments/joint_ablation.py --model Qwen/Qwen2.5-7B
+python experiments/joint_ablation.py --model Qwen/Qwen2.5-7B-Instruct
 
 # Multi-seed CF90 validation
-python experiments/run_cf90_multiseed.py --model meta-llama/Llama-3.1-8B-Instruct --seeds 5
+python experiments/run_cf90_multiseed.py --model Qwen/Qwen2.5-7B-Instruct --seeds 3
 ```
 
 ## Deployment
@@ -207,7 +257,7 @@ python experiments/run_cf90_multiseed.py --model meta-llama/Llama-3.1-8B-Instruc
 python deployment/export_gguf.py --input compressed_model/ --output model.gguf --quantize q4_k_m
 
 # Benchmark with vLLM
-python deployment/vllm_benchmark.py --baseline Qwen/Qwen2.5-7B --compressed ./compressed_model
+python deployment/vllm_benchmark.py --baseline Qwen/Qwen2.5-7B-Instruct --compressed ./compressed_model
 ```
 
 See [`deployment/mlx_recipe.md`](deployment/mlx_recipe.md) for Apple Silicon inference with MLX.
