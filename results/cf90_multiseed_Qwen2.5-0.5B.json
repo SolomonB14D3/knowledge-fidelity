@@ -1,0 +1,40 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B",
+  "ratio": 0.7,
+  "n_seeds": 3,
+  "retention_mean": 0.9499999999999998,
+  "retention_std": 1.1102230246251565e-16,
+  "rho_before_mean": 0.8210526315789473,
+  "rho_after_mean": 0.7203007518796992,
+  "rho_drop_mean": 0.10075187969924815,
+  "rho_drop_std": 0.0,
+  "seeds": [
+    {
+      "seed": 0,
+      "retention": 0.95,
+      "rho_before": 0.8210526315789473,
+      "rho_after": 0.7203007518796991,
+      "rho_drop": 0.10075187969924815,
+      "n_compressed": 72,
+      "elapsed": 16.72817897796631
+    },
+    {
+      "seed": 1,
+      "retention": 0.95,
+      "rho_before": 0.8210526315789473,
+      "rho_after": 0.7203007518796991,
+      "rho_drop": 0.10075187969924815,
+      "n_compressed": 72,
+      "elapsed": 16.253584146499634
+    },
+    {
+      "seed": 2,
+      "retention": 0.95,
+      "rho_before": 0.8210526315789473,
+      "rho_after": 0.7203007518796991,
+      "rho_drop": 0.10075187969924815,
+      "n_compressed": 72,
+      "elapsed": 17.010950803756714
+    }
+  ]
+}
