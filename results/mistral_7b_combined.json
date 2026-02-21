@@ -1,0 +1,166 @@
+{
+  "model": "mistralai/Mistral-7B-v0.1",
+  "timestamp": "2026-02-21 10:45:28",
+  "fidelity_bench": {
+    "default": {
+      "n_probes": 20,
+      "rho": 0.7428571428571428,
+      "rho_p": 0.00017540444660487067,
+      "n_correct": 17,
+      "accuracy": 0.85,
+      "mean_delta": 0.11046966030677467
+    },
+    "mandela": {
+      "n_probes": 6,
+      "rho": 0.7714285714285715,
+      "rho_p": 0.07239650145772594,
+      "n_correct": 4,
+      "accuracy": 0.6666666666666666,
+      "mean_delta": 0.03130725346948925
+    },
+    "medical": {
+      "n_probes": 5,
+      "rho": 0.3,
+      "rho_p": 0.623837664781073,
+      "n_correct": 4,
+      "accuracy": 0.8,
+      "mean_delta": 0.08817128511164297
+    },
+    "commonsense": {
+      "n_probes": 10,
+      "rho": 0.5030303030303029,
+      "rho_p": 0.13833369839449194,
+      "n_correct": 4,
+      "accuracy": 0.4,
+      "mean_delta": -0.03067210384893628
+    },
+    "truthfulqa": {
+      "n_probes": 15,
+      "rho": 0.5857142857142856,
+      "rho_p": 0.02177651761904279,
+      "n_correct": 7,
+      "accuracy": 0.4666666666666667,
+      "mean_delta": 0.01572143177615253
+    }
+  },
+  "denoise": {
+    "baseline_rho": 0.7714285714285715,
+    "optimal_ratio": 0.7,
+    "optimal_rho": 0.8285714285714287,
+    "improvement": 0.05714285714285727,
+    "denoising_detected": true,
+    "all_results": [
+      {
+        "ratio": 0.5,
+        "rho": 0.7714285714285715,
+        "improved": false
+      },
+      {
+        "ratio": 0.6,
+        "rho": 0.7714285714285715,
+        "improved": false
+      },
+      {
+        "ratio": 0.7,
+        "rho": 0.8285714285714287,
+        "improved": true
+      },
+      {
+        "ratio": 0.8,
+        "rho": 0.7714285714285715,
+        "improved": false
+      },
+      {
+        "ratio": 0.9,
+        "rho": 0.7714285714285715,
+        "improved": false
+      }
+    ]
+  },
+  "cf90_multiseed": {
+    "baseline_rho": 0.7428571428571428,
+    "seeds": [
+      {
+        "seed": 42,
+        "rho_after": 0.7052631578947368,
+        "retention": 0.95,
+        "rho_drop": 0.03759398496240596,
+        "n_compressed": 96,
+        "n_frozen": 24,
+        "n_layers": 32
+      },
+      {
+        "seed": 123,
+        "rho_after": 0.7052631578947368,
+        "retention": 0.95,
+        "rho_drop": 0.03759398496240596,
+        "n_compressed": 96,
+        "n_frozen": 24,
+        "n_layers": 32
+      },
+      {
+        "seed": 789,
+        "rho_after": 0.7052631578947368,
+        "retention": 0.95,
+        "rho_drop": 0.03759398496240596,
+        "n_compressed": 96,
+        "n_frozen": 24,
+        "n_layers": 32
+      }
+    ],
+    "mean_rho_after": 0.7052631578947368,
+    "std_rho_after": 0.0,
+    "mean_retention": 0.9499999999999998,
+    "mean_rho_drop": 0.03759398496240596,
+    "std_rho_drop": 0.0,
+    "n_compressed": 96,
+    "n_frozen": 24,
+    "n_layers": 32
+  },
+  "joint_ablation": {
+    "baselines": {
+      "default": 0.7428571428571428,
+      "mandela": 0.7714285714285715,
+      "medical": 0.3
+    },
+    "ratios": [
+      {
+        "ratio": 0.5,
+        "default_rho": 0.6857142857142857,
+        "mandela_rho": 0.7714285714285715,
+        "medical_rho": 0.3
+      },
+      {
+        "ratio": 0.6,
+        "default_rho": 0.7233082706766917,
+        "mandela_rho": 0.7714285714285715,
+        "medical_rho": 0.39999999999999997
+      },
+      {
+        "ratio": 0.7,
+        "default_rho": 0.7052631578947368,
+        "mandela_rho": 0.8285714285714287,
+        "medical_rho": 0.39999999999999997
+      },
+      {
+        "ratio": 0.8,
+        "default_rho": 0.7293233082706766,
+        "mandela_rho": 0.7714285714285715,
+        "medical_rho": 0.3
+      },
+      {
+        "ratio": 0.9,
+        "default_rho": 0.7428571428571428,
+        "mandela_rho": 0.7714285714285715,
+        "medical_rho": 0.3
+      },
+      {
+        "ratio": 1.0,
+        "default_rho": 0.7428571428571428,
+        "mandela_rho": 0.7714285714285715,
+        "medical_rho": 0.3
+      }
+    ]
+  },
+  "total_elapsed_seconds": 4700.301094055176
+}
