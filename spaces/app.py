@@ -14,10 +14,10 @@ import pandas as pd
 
 MODELS = [
     "Qwen/Qwen2.5-0.5B",
-    "mistralai/Mistral-7B-v0.1",
+    "Qwen/Qwen2.5-1.5B",
 ]
 
-PROBE_SETS = ["default", "mandela", "medical", "commonsense", "all"]
+PROBE_SETS = ["default", "mandela", "medical", "all"]
 
 
 def get_probes(probe_set: str):

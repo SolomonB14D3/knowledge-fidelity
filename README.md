@@ -1,5 +1,8 @@
 # Knowledge Fidelity
 
+[![PyPI](https://img.shields.io/pypi/v/knowledge-fidelity)](https://pypi.org/project/knowledge-fidelity/)
+[![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
+
 **Compress an LLM while auditing whether it still knows truth vs popular myths.**
 
 The first toolkit that uses the same factual probes for both structural importance scoring (SVD compression) and behavioral false-belief detection (confidence cartography). One call to compress and audit:

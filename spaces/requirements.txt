@@ -1,4 +1,8 @@
-knowledge-fidelity>=0.1.1
+knowledge-fidelity>=0.2.1
 gradio>=4.0
 matplotlib>=3.7
 pandas
+scipy
+transformers
+torch
+accelerate
