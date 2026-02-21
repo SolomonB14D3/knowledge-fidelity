@@ -1,0 +1,51 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B",
+  "categories": [
+    {
+      "category": "default",
+      "n_probes": 20,
+      "rho": 0.8210526315789473,
+      "rho_p": 9.148582181124784e-06,
+      "mean_delta": 0.083720487140319,
+      "n_positive": 16,
+      "accuracy": 0.8
+    },
+    {
+      "category": "mandela",
+      "n_probes": 6,
+      "rho": 0.2571428571428572,
+      "rho_p": 0.6227871720116619,
+      "mean_delta": 0.05267548543224839,
+      "n_positive": 3,
+      "accuracy": 0.5
+    },
+    {
+      "category": "medical",
+      "n_probes": 5,
+      "rho": 0.09999999999999999,
+      "rho_p": 0.8728885715695384,
+      "mean_delta": 0.04664670359173074,
+      "n_positive": 4,
+      "accuracy": 0.8
+    },
+    {
+      "category": "commonsense",
+      "n_probes": 10,
+      "rho": 0.2606060606060606,
+      "rho_p": 0.46708905438634013,
+      "mean_delta": -0.022639125971046916,
+      "n_positive": 7,
+      "accuracy": 0.7
+    },
+    {
+      "category": "truthfulqa",
+      "n_probes": 15,
+      "rho": 0.5964285714285712,
+      "rho_p": 0.01893192468786518,
+      "mean_delta": -0.039216395767496325,
+      "n_positive": 6,
+      "accuracy": 0.4
+    }
+  ],
+  "elapsed_seconds": 21.147840976715088
+}
