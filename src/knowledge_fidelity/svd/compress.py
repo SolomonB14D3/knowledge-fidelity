@@ -5,6 +5,11 @@ Two modes:
   2. Importance-guided SVD (compress_qko_importance) -- better at aggressive
      compression (50%+), uses gradient info to pick which singular values to keep
 
+The importance-guided variant draws from activation-aware rank allocation
+(ASVD, Yuan et al. 2023) and truncation-aware SVD (SVD-LLM, Wang et al. 2024),
+extended with gradient importance scored on factual probes rather than
+calibration perplexity.
+
 Safety rules (validated experimentally):
   - Q, K, O projections: safe to compress at 70% rank
   - V projections: safe only at 90-95% (marginal gains, not worth the risk)
