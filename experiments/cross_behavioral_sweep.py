@@ -6,25 +6,17 @@ Tests whether the denoising effect (rho improvement at 60-70% CF90)
 generalizes beyond factual/myth probes to toxicity, bias, sycophancy,
 and reasoning collapse.
 
-For each (model, ratio, seed, behavior):
-  1. Load fresh model
-  2. Evaluate baseline (pre-compression)
-  3. Apply CF90 at the given ratio
-  4. Evaluate post-compression
-  5. Compute denoising delta = post_rho - pre_rho
+Architecture (optimized):
+  - Load each model ONCE, deepcopy state_dict, restore between ratios
+  - Baseline evaluated ONCE per model (doesn't depend on ratio)
+  - SVD is deterministic → seeds only matter for generation evals
+  - Generation uses greedy decoding → seeds are redundant → run 1 seed
 
 Usage:
-    # Full sweep (both models, all ratios, 3 seeds)
     python experiments/cross_behavioral_sweep.py
-
-    # Single model, key ratios
     python experiments/cross_behavioral_sweep.py --models qwen2.5-7b --ratios 0.6,0.7,0.8
-
-    # Quick validation on small model
     python experiments/cross_behavioral_sweep.py --validate
-
-    # Resume interrupted sweep
-    python experiments/cross_behavioral_sweep.py --resume results/cross_behavioral/sweep.json
+    python experiments/cross_behavioral_sweep.py --analyze results/cross_behavioral/sweep.json
 """
 
 import argparse
@@ -55,7 +47,6 @@ MODELS = {
 }
 
 RATIOS = [0.50, 0.60, 0.70, 0.80, 0.90]
-SEEDS = [0, 1, 2]
 BEHAVIORS = ["factual", "toxicity", "bias", "sycophancy", "reasoning"]
 DEVICE = "cpu"
 
@@ -65,7 +56,7 @@ RESULTS_DIR = Path(__file__).parent.parent / "results" / "cross_behavioral"
 # ── Helpers ───────────────────────────────────────────────────────────────
 
 def load_model(model_id, device=DEVICE):
-    """Load a fresh model and tokenizer."""
+    """Load model and tokenizer."""
     print(f"  Loading {model_id}...")
     t0 = time.time()
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
@@ -94,59 +85,123 @@ def load_all_behavioral_probes(behaviors, seed=42):
     return probes
 
 
-# ── Single condition ──────────────────────────────────────────────────────
+def eval_all_behaviors(model, tokenizer, behaviors, probes_dict, device):
+    """Evaluate all behaviors, return dict of results (without details)."""
+    results = {}
+    for behavior in behaviors:
+        t0 = time.time()
+        r = evaluate_behavior(behavior, model, tokenizer, probes_dict[behavior], device)
+        dt = time.time() - t0
+        print(f"    [{behavior}] rho={r['rho']:.4f} ({dt:.1f}s)")
+        results[behavior] = {k: v for k, v in r.items() if k != "details"}
+    return results
 
-def run_condition(model_id, ratio, seed, behaviors, probes_dict, device=DEVICE):
-    """Run one (model, ratio, seed) condition across all behaviors.
 
-    Returns (results_dict, compress_stats_dict)
-    """
-    torch.manual_seed(seed)
-    np.random.seed(seed)
+# ── Per-model sweep (load once, restore between ratios) ──────────────────
+
+def sweep_one_model(model_name, model_id, ratios, behaviors, probes_dict,
+                    device, all_results, output_path):
+    """Run all ratios for one model. Single model load."""
+
+    # Check which ratios still need running
+    needed = [r for r in ratios
+              if f"{model_name}_r{r:.2f}" not in all_results]
+    if not needed:
+        print(f"  All ratios already done for {model_name}, skipping.")
+        return
 
     model, tokenizer = load_model(model_id, device)
-    results = {}
 
-    # Baseline evaluation
-    for behavior in behaviors:
-        t0 = time.time()
-        baseline = evaluate_behavior(behavior, model, tokenizer, probes_dict[behavior], device)
-        dt = time.time() - t0
-        print(f"    [{behavior}] baseline rho={baseline['rho']:.4f} ({dt:.1f}s)")
-        results[behavior] = {
-            "baseline": {k: v for k, v in baseline.items() if k != "details"},
+    # ── Baseline (once per model) ─────────────────────────────────────
+    baseline_key = f"{model_name}_baseline"
+    if baseline_key in all_results:
+        baseline = all_results[baseline_key]["behaviors"]
+        print(f"  Baseline loaded from cache")
+    else:
+        print(f"\n  Evaluating baseline (no compression)...")
+        baseline = eval_all_behaviors(model, tokenizer, behaviors, probes_dict, device)
+        all_results[baseline_key] = {
+            "model": model_name,
+            "model_id": model_id,
+            "ratio": 1.0,
+            "behaviors": baseline,
+            "timestamp": datetime.now().isoformat(),
         }
+        _save(all_results, output_path)
 
-    # Apply CF90 compression
-    print(f"    Applying CF90 at ratio={ratio:.0%}...")
+    # ── Save original weights ─────────────────────────────────────────
+    print(f"  Saving original state dict...")
     t0 = time.time()
-    n_compressed = compress_qko(model, ratio=ratio)
-    freeze_stats = freeze_layers(model, ratio=0.75)
-    model.eval()
-    compress_time = time.time() - t0
-    print(f"    Compressed {n_compressed} matrices, "
-          f"froze {freeze_stats['n_frozen']}/{freeze_stats['n_layers']} layers ({compress_time:.1f}s)")
+    original_state = copy.deepcopy(model.state_dict())
+    print(f"  Saved in {time.time()-t0:.1f}s")
 
-    # Post-compression evaluation
-    for behavior in behaviors:
+    # ── Sweep ratios ──────────────────────────────────────────────────
+    for i, ratio in enumerate(ratios):
+        key = f"{model_name}_r{ratio:.2f}"
+        if key in all_results:
+            print(f"\n  [{i+1}/{len(ratios)}] ratio={ratio:.0%} — SKIPPED (done)")
+            continue
+
+        print(f"\n  [{i+1}/{len(ratios)}] ratio={ratio:.0%}")
+
+        # Restore original weights
+        model.load_state_dict(original_state)
+        model.eval()
+
+        # Compress
         t0 = time.time()
-        post = evaluate_behavior(behavior, model, tokenizer, probes_dict[behavior], device)
-        dt = time.time() - t0
-        delta = post["rho"] - results[behavior]["baseline"]["rho"]
-        arrow = "+" if delta > 0 else ""
-        print(f"    [{behavior}] post rho={post['rho']:.4f} (delta={arrow}{delta:.4f}, {dt:.1f}s)")
-        results[behavior]["compressed"] = {k: v for k, v in post.items() if k != "details"}
-        results[behavior]["delta"] = delta
+        n_compressed = compress_qko(model, ratio=ratio)
+        freeze_stats = freeze_layers(model, ratio=0.75)
+        model.eval()
+        compress_time = time.time() - t0
+        print(f"    Compressed {n_compressed} matrices, "
+              f"froze {freeze_stats['n_frozen']}/{freeze_stats['n_layers']} layers "
+              f"({compress_time:.1f}s)")
 
-    del model, tokenizer
+        # Evaluate
+        post = eval_all_behaviors(model, tokenizer, behaviors, probes_dict, device)
+
+        # Compute deltas
+        behavior_results = {}
+        for behavior in behaviors:
+            delta = post[behavior]["rho"] - baseline[behavior]["rho"]
+            arrow = "↑" if delta > 0 else "↓" if delta < 0 else "="
+            print(f"    [{behavior}] delta={delta:+.4f} {arrow}")
+            behavior_results[behavior] = {
+                "baseline": baseline[behavior],
+                "compressed": post[behavior],
+                "delta": delta,
+            }
+
+        all_results[key] = {
+            "model": model_name,
+            "model_id": model_id,
+            "ratio": ratio,
+            "behaviors": behavior_results,
+            "compress_stats": {
+                "n_compressed": n_compressed,
+                **freeze_stats,
+                "compress_time": compress_time,
+            },
+            "timestamp": datetime.now().isoformat(),
+        }
+        _save(all_results, output_path)
+
+    del model, tokenizer, original_state
     gc.collect()
 
-    return results, {"n_compressed": n_compressed, **freeze_stats, "compress_time": compress_time}
+
+def _save(results, path):
+    """Save results JSON (atomic-ish)."""
+    tmp = path.with_suffix(".tmp")
+    with open(tmp, "w") as f:
+        json.dump(results, f, indent=2, default=float)
+    tmp.rename(path)
 
 
 # ── Full sweep ────────────────────────────────────────────────────────────
 
-def run_sweep(models, ratios, seeds, behaviors, device, resume_path=None):
+def run_sweep(models, ratios, behaviors, device, resume_path=None):
     """Run the full cross-behavioral denoising sweep."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -156,57 +211,26 @@ def run_sweep(models, ratios, seeds, behaviors, device, resume_path=None):
     probes_dict = load_all_behavioral_probes(behaviors, seed=42)
 
     # Load or init results
+    output_path = RESULTS_DIR / "sweep.json"
     all_results = {}
     if resume_path and Path(resume_path).exists():
         with open(resume_path) as f:
             all_results = json.load(f)
-        print(f"Resumed {len(all_results)} conditions from {resume_path}")
-
-    total = len(models) * len(ratios) * len(seeds)
-    done = 0
-    output_path = RESULTS_DIR / "sweep.json"
+        print(f"Resumed {len(all_results)} entries from {resume_path}")
+    elif output_path.exists():
+        with open(output_path) as f:
+            all_results = json.load(f)
+        print(f"Auto-resumed {len(all_results)} entries from {output_path}")
 
     for model_name, model_id in models.items():
         print(f"\n{'=' * 70}")
-        print(f"MODEL: {model_name}")
+        print(f"MODEL: {model_name} ({model_id})")
         print(f"{'=' * 70}")
-
-        for ratio in ratios:
-            for seed in seeds:
-                key = f"{model_name}_r{ratio:.2f}_s{seed}"
-                done += 1
-
-                if key in all_results:
-                    print(f"\n  [{done}/{total}] {key} — SKIPPED (done)")
-                    continue
-
-                print(f"\n  [{done}/{total}] {key}")
-                t0 = time.time()
-                try:
-                    cond_results, compress_stats = run_condition(
-                        model_id, ratio, seed, behaviors, probes_dict, device)
-                except Exception as e:
-                    print(f"  ERROR: {e}")
-                    cond_results = {"error": str(e)}
-                    compress_stats = {}
-
-                all_results[key] = {
-                    "model": model_name,
-                    "model_id": model_id,
-                    "ratio": ratio,
-                    "seed": seed,
-                    "behaviors": cond_results,
-                    "compress_stats": compress_stats,
-                    "elapsed_seconds": time.time() - t0,
-                    "timestamp": datetime.now().isoformat(),
-                }
-
-                # Save after each condition
-                with open(output_path, "w") as f:
-                    json.dump(all_results, f, indent=2, default=float)
+        sweep_one_model(model_name, model_id, ratios, behaviors,
+                        probes_dict, device, all_results, output_path)
 
     print(f"\n{'=' * 70}")
-    print(f"SWEEP COMPLETE — {len(all_results)} conditions")
+    print(f"SWEEP COMPLETE — {len(all_results)} entries")
     print(f"Results: {output_path}")
     print(f"{'=' * 70}")
     return all_results
@@ -215,102 +239,99 @@ def run_sweep(models, ratios, seeds, behaviors, device, resume_path=None):
 # ── Analysis ──────────────────────────────────────────────────────────────
 
 def analyze(results):
-    """Analyze sweep results and print summary."""
+    """Analyze sweep results and print summary table."""
     from scipy import stats
     from collections import defaultdict
 
-    table = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
+    # Collect deltas: table[model][behavior][ratio] = delta
+    table = defaultdict(lambda: defaultdict(dict))
 
     for key, data in results.items():
-        if "error" in data.get("behaviors", {}):
+        if "_baseline" in key or "error" in data.get("behaviors", {}):
             continue
         model = data["model"]
         ratio = data["ratio"]
         for behavior, bdata in data.get("behaviors", {}).items():
             if isinstance(bdata, str) or "delta" not in bdata:
                 continue
-            table[model][behavior][ratio].append(bdata["delta"])
+            table[model][behavior][ratio] = bdata["delta"]
 
     for model in sorted(table):
-        print(f"\n{'=' * 90}")
+        print(f"\n{'=' * 80}")
         print(f"MODEL: {model}")
-        print(f"{'=' * 90}")
+        print(f"{'=' * 80}")
 
         behaviors = sorted(table[model])
         ratios = sorted(set(r for b in behaviors for r in table[model][b]))
 
+        # Print header
         header = f"{'Behavior':<14}"
         for r in ratios:
-            header += f" | {r:>5.0%} delta  p"
+            header += f" | {r:>6.0%}"
         print(header)
         print("-" * len(header))
 
-        denoising_at_60_70 = []
+        # Print rows
+        denoising_60_70 = []
         for behavior in behaviors:
             row = f"{behavior:<14}"
             for r in ratios:
-                deltas = table[model][behavior].get(r, [])
-                if len(deltas) >= 2:
-                    mean_d = np.mean(deltas)
-                    _, p = stats.ttest_1samp(deltas, 0)
-                    sig = "*" if p < 0.05 else " "
-                    row += f" | {mean_d:>+6.4f}{sig} {p:.2f}"
-                elif deltas:
-                    row += f" | {deltas[0]:>+6.4f}  n=1"
+                d = table[model][behavior].get(r)
+                if d is not None:
+                    row += f" | {d:>+6.3f}"
+                    if r in (0.60, 0.70) and d > 0:
+                        denoising_60_70.append(behavior)
                 else:
-                    row += f" |     —      "
+                    row += f" |     —"
             print(row)
 
-            # Check 60-70% denoising
-            for r in [0.60, 0.70]:
-                deltas = table[model][behavior].get(r, [])
-                if deltas and np.mean(deltas) > 0:
-                    if len(deltas) >= 2:
-                        _, p = stats.ttest_1samp(deltas, 0)
-                        if p < 0.10:
-                            denoising_at_60_70.append(behavior)
-                            break
-                    else:
-                        denoising_at_60_70.append(behavior)
-                        break
+        # Best ratio per behavior
+        print(f"\nBest denoising ratio per behavior:")
+        for behavior in behaviors:
+            if not table[model][behavior]:
+                continue
+            best_r = max(table[model][behavior],
+                         key=lambda r: table[model][behavior][r])
+            best_d = table[model][behavior][best_r]
+            marker = " **" if best_d > 0 else ""
+            print(f"  {behavior:<14}: {best_r:.0%} (delta={best_d:+.4f}){marker}")
 
-        n = len(set(denoising_at_60_70))
+        # Verdict
+        unique = list(set(denoising_60_70))
+        n = len(unique)
         total_b = len(behaviors)
         print(f"\nDenoising at 60-70%: {n}/{total_b} behaviors")
         if n >= 3:
-            print(f"  BEST CASE: Universal behavioral regularizer ({', '.join(set(denoising_at_60_70))})")
+            print(f"  → BEST CASE: Universal behavioral regularizer ({', '.join(unique)})")
         elif n >= 2:
-            print(f"  GOOD CASE: Multi-behavior denoising ({', '.join(set(denoising_at_60_70))})")
+            print(f"  → GOOD CASE: Multi-behavior denoising ({', '.join(unique)})")
         elif n == 1:
-            print(f"  NEUTRAL: Effect is {denoising_at_60_70[0]}-specific")
+            print(f"  → NEUTRAL: Effect is {unique[0]}-specific")
         else:
-            print(f"  WORST CASE: No generalization")
+            print(f"  → No denoising observed at 60-70%")
 
 
 # ── Validation ────────────────────────────────────────────────────────────
 
 def validate():
-    """Quick pipeline validation on Qwen-0.5B with small probes."""
+    """Quick pipeline validation on Qwen-0.5B."""
     print("=" * 70)
     print("VALIDATION (Qwen-0.5B, reduced probes)")
     print("=" * 70)
-
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Load tiny probe sets
     probes = {"factual": get_all_probes()[:10]}
-    for behavior in ["toxicity", "bias", "sycophancy", "reasoning"]:
+    for b in ["toxicity", "bias", "sycophancy", "reasoning"]:
         try:
-            n = 10 if behavior == "reasoning" else 20
-            probes[behavior] = load_behavioral_probes(behavior, n=n, seed=42)
-            print(f"  {behavior}: {len(probes[behavior])} probes")
+            n = 10 if b == "reasoning" else 20
+            probes[b] = load_behavioral_probes(b, n=n, seed=42)
+            print(f"  {b}: {len(probes[b])} probes")
         except Exception as e:
-            print(f"  {behavior}: FAILED — {e}")
+            print(f"  {b}: FAILED — {e}")
 
     model, tokenizer = load_model("Qwen/Qwen2.5-0.5B", DEVICE)
     available = list(probes.keys())
 
-    # Baseline
     print("\n--- Baseline ---")
     baseline = {}
     for b in available:
@@ -318,32 +339,22 @@ def validate():
         baseline[b] = r
         print(f"  {b}: rho={r['rho']:.4f}")
 
-    # Compress
-    print("\n--- CF90 at 70% ---")
-    compress_qko(model, ratio=0.70)
-    freeze_layers(model, ratio=0.75)
-    model.eval()
+    original_state = copy.deepcopy(model.state_dict())
 
-    # Post
-    print("\n--- Post-compression ---")
-    deltas = {}
-    for b in available:
-        r = evaluate_behavior(b, model, tokenizer, probes[b], DEVICE)
-        d = r["rho"] - baseline[b]["rho"]
-        deltas[b] = d
-        print(f"  {b}: rho={r['rho']:.4f} (delta={d:+.4f})")
+    print("\n--- Ratio sweep ---")
+    for ratio in [0.60, 0.70, 0.80]:
+        model.load_state_dict(original_state)
+        model.eval()
+        compress_qko(model, ratio=ratio)
+        freeze_layers(model, ratio=0.75)
+        model.eval()
+        print(f"\n  ratio={ratio:.0%}:")
+        for b in available:
+            r = evaluate_behavior(b, model, tokenizer, probes[b], DEVICE)
+            d = r["rho"] - baseline[b]["rho"]
+            print(f"    {b}: rho={r['rho']:.4f} (delta={d:+.4f})")
 
-    print(f"\n{'Behavior':<14} {'Baseline':>10} {'Post':>10} {'Delta':>10}")
-    print("-" * 50)
-    for b in available:
-        print(f"{b:<14} {baseline[b]['rho']:>10.4f} {baseline[b]['rho']+deltas[b]:>10.4f} {deltas[b]:>+10.4f}")
-
-    validation = {"model": "Qwen-0.5B", "ratio": 0.70, "deltas": deltas}
-    with open(RESULTS_DIR / "validation.json", "w") as f:
-        json.dump(validation, f, indent=2, default=float)
-
-    print(f"\nValidation saved to {RESULTS_DIR / 'validation.json'}")
-    del model, tokenizer
+    del model, tokenizer, original_state
     gc.collect()
 
 
@@ -351,19 +362,13 @@ def validate():
 
 def main():
     parser = argparse.ArgumentParser(description="Cross-behavioral CF90 denoising sweep")
-    parser.add_argument("--models", nargs="+", default=None,
-                        help="Model short names (default: all)")
-    parser.add_argument("--ratios", default=None,
-                        help="Comma-separated compression ratios")
-    parser.add_argument("--seeds", nargs="+", type=int, default=None)
+    parser.add_argument("--models", nargs="+", default=None)
+    parser.add_argument("--ratios", default=None, help="Comma-separated ratios")
     parser.add_argument("--behaviors", nargs="+", default=None)
     parser.add_argument("--device", default=DEVICE)
-    parser.add_argument("--resume", default=None,
-                        help="Resume from partial results JSON")
-    parser.add_argument("--validate", action="store_true",
-                        help="Quick validation on Qwen-0.5B")
-    parser.add_argument("--analyze", default=None,
-                        help="Analyze existing results JSON")
+    parser.add_argument("--resume", default=None)
+    parser.add_argument("--validate", action="store_true")
+    parser.add_argument("--analyze", default=None)
     args = parser.parse_args()
 
     if args.validate:
@@ -372,8 +377,7 @@ def main():
 
     if args.analyze:
         with open(args.analyze) as f:
-            results = json.load(f)
-        analyze(results)
+            analyze(json.load(f))
         return
 
     models = MODELS
@@ -384,7 +388,6 @@ def main():
     results = run_sweep(
         models=models,
         ratios=ratios,
-        seeds=args.seeds or SEEDS,
         behaviors=args.behaviors or BEHAVIORS,
         device=args.device,
         resume_path=args.resume,
