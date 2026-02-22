@@ -40,8 +40,9 @@ from .probes import (
     load_probes,
 )
 from .behavioral import load_behavioral_probes, evaluate_behavior
+from .calibration import load_calibration_data, gentle_finetune
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 __all__ = [
     # Main API
@@ -59,4 +60,7 @@ __all__ = [
     # Cross-behavioral
     "load_behavioral_probes",
     "evaluate_behavior",
+    # Calibration & FT
+    "load_calibration_data",
+    "gentle_finetune",
 ]

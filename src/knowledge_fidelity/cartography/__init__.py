@@ -7,6 +7,10 @@ is uncertain, detecting false beliefs, Mandela effects, and contested claims.
 Adapted from the Confidence Cartography project
 (github.com/SolomonB14D3/confidence-cartography).
 
+Uses token-level logprobs as a factual belief sensor, echoing the logprob-based
+scoring approach of G-Eval (Liu et al. 2023, arXiv:2303.16634) but applied to
+factual discrimination rather than NLG quality evaluation.
+
 Key findings:
   - Confidence ratios correlate with human false-belief prevalence
     (rho=0.652, p=0.016, across Pythia 160M-12B)

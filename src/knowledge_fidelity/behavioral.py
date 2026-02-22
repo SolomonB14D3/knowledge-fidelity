@@ -5,7 +5,10 @@ categories: toxicity, bias, sycophancy, and reasoning collapse. Each
 category has its own probe loader and evaluator.
 
 The key question: does the CF90 denoising effect (rho improvement at
-60-70% compression) generalize beyond factual probes?
+60-70% compression) generalize beyond factual probes? Similar to the
+denoising effects reported in SVD-LLM (Wang et al. 2024) but measured
+via teacher-forced rho on factual/myth probes and extended to behavioral
+traits (toxicity, bias, sycophancy, reasoning).
 
 Usage:
     from knowledge_fidelity.behavioral import load_behavioral_probes, evaluate_behavior

@@ -404,6 +404,22 @@ This toolkit unifies two standalone research projects:
 
 Both remain available as independent repos. Knowledge Fidelity combines their core ideas into a single pipeline with a shared probe system.
 
+## Related Work & Inspirations
+
+This toolkit builds on foundational ideas in LLM compression and mechanistic interpretability:
+
+- **Low-rank SVD compression.** [SVD-LLM](https://arxiv.org/abs/2403.07378) (Wang et al., 2024; ICLR 2025) introduced truncation-aware SVD for LLM weight matrices. [ASVD](https://arxiv.org/abs/2312.05821) (Yuan et al., 2023) added activation-aware rank allocation. We extend these with importance-guided truncation scored on factual probes, and behavioral auditing to verify nothing was lost.
+
+- **Knowledge preservation under compression.** [Compressing LLMs: The Truth is Rarely Pure and Never Simple](https://arxiv.org/abs/2310.01382) (Jaiswal et al., 2023; ICLR 2024) showed that standard benchmarks miss knowledge-intensive failures in compressed models (LLM-KICK). [TPLO](https://arxiv.org/abs/2509.00096) (Fu et al., 2025; EMNLP 2025) directly addresses truthfulness preservation during pruning. Our work complements these by measuring factual retention via teacher-forced confidence rather than downstream QA accuracy.
+
+- **Joint compression strategies.** [CALDERA](https://arxiv.org/abs/2405.18886) (Saha et al., 2024; NeurIPS 2024) combines low-rank and low-precision decomposition (W ≈ Q + LR). Our CF90 + INT8 stacking experiments follow a similar philosophy — SVD for structure, quantization for size.
+
+- **Confidence-based evaluation.** [G-Eval](https://arxiv.org/abs/2303.16634) (Liu et al., 2023; EMNLP 2023) uses token-level logprobs for NLG quality scoring. Our confidence cartography applies a similar signal — teacher-forced probability — as a factual belief sensor rather than a quality metric.
+
+- **[Awesome-LLM-Compression](https://github.com/HuangOwen/Awesome-LLM-Compression).** The ecosystem overview that helped shape this work. We're grateful for the curation effort.
+
+If we've missed key references or misrepresented any work, please [open an issue](https://github.com/SolomonB14D3/knowledge-fidelity/issues) — happy to update.
+
 ## Citation
 
 ```bibtex
@@ -414,6 +430,10 @@ Both remain available as independent repos. Knowledge Fidelity combines their co
   url = {https://github.com/SolomonB14D3/knowledge-fidelity}
 }
 ```
+
+## Acknowledgments
+
+Thanks to the maintainers of [Awesome-LLM-Compression](https://github.com/HuangOwen/Awesome-LLM-Compression) and the authors of the SVD compression, knowledge preservation, and confidence calibration papers listed above. This work wouldn't exist without the foundation they built.
 
 ## License
 

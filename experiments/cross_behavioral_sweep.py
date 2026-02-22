@@ -43,6 +43,7 @@ from knowledge_fidelity.behavioral import load_behavioral_probes, evaluate_behav
 
 MODELS = {
     "qwen2.5-7b": "Qwen/Qwen2.5-7B-Instruct",
+    "mistral-7b": "mistralai/Mistral-7B-v0.1",
     "llama3.1-8b": "meta-llama/Llama-3.1-8B-Instruct",
 }
 

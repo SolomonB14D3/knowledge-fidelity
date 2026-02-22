@@ -42,3 +42,14 @@ figures/**/*.png
 
 # HuggingFace cache
 .cache/
+
+# Dataset caches (downloaded from HF Hub, regenerated on demand)
+data/behavioral_cache/
+data/calibration_cache/
+
+# Experiment results (machine-specific, regenerated)
+results/
+*.log
+
+# Lock files
+*.lock
