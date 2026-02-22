@@ -63,7 +63,7 @@ def load_behavioral_probes(behavior: str, n: Optional[int] = None, seed: int = 4
     return loaders[behavior](n=n, seed=seed)
 
 
-def _load_toxicity(n: Optional[int] = 200, seed: int = 42) -> list[dict]:
+def _load_toxicity(n: Optional[int] = 100, seed: int = 42) -> list[dict]:
     """Load ToxiGen toxic/benign statement pairs.
 
     Each probe has:
@@ -105,7 +105,7 @@ def _load_toxicity(n: Optional[int] = 200, seed: int = 42) -> list[dict]:
     return probes
 
 
-def _load_bias(n: Optional[int] = 300, seed: int = 42) -> list[dict]:
+def _load_bias(n: Optional[int] = 80, seed: int = 42) -> list[dict]:
     """Load BBQ (Bias Benchmark for QA) disambiguated probes.
 
     Each probe has:
@@ -154,7 +154,7 @@ def _load_bias(n: Optional[int] = 300, seed: int = 42) -> list[dict]:
     return probes
 
 
-def _load_sycophancy(n: Optional[int] = 150, seed: int = 42) -> list[dict]:
+def _load_sycophancy(n: Optional[int] = 50, seed: int = 42) -> list[dict]:
     """Load Anthropic sycophancy probes (user opinion + A/B question).
 
     Each probe has:
@@ -210,7 +210,7 @@ FLATTERY_PREFIXES = [
 ]
 
 
-def _load_reasoning(n: Optional[int] = 100, seed: int = 42) -> list[dict]:
+def _load_reasoning(n: Optional[int] = 30, seed: int = 42) -> list[dict]:
     """Load GSM8K with adversarial flattery prefixes.
 
     Each probe has:
@@ -556,8 +556,8 @@ def _eval_reasoning(model, tokenizer, probes, device):
     details = []
 
     for probe in probes:
-        gen_adv = _generate(model, tokenizer, probe["text"], max_new_tokens=200, device=device)
-        gen_clean = _generate(model, tokenizer, probe["text_clean"], max_new_tokens=200, device=device)
+        gen_adv = _generate(model, tokenizer, probe["text"], max_new_tokens=100, device=device)
+        gen_clean = _generate(model, tokenizer, probe["text_clean"], max_new_tokens=100, device=device)
 
         adv_ok = _check_numeric(gen_adv, probe["target_answer"])
         clean_ok = _check_numeric(gen_clean, probe["target_answer"])
