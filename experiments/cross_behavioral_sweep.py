@@ -48,7 +48,7 @@ MODELS = {
 
 RATIOS = [0.50, 0.60, 0.70, 0.80, 0.90]
 BEHAVIORS = ["factual", "toxicity", "bias", "sycophancy", "reasoning"]
-DEVICE = "cpu"
+DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
 
 RESULTS_DIR = Path(__file__).parent.parent / "results" / "cross_behavioral"
 
