@@ -1,6 +1,6 @@
 # Knowledge Fidelity
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743960.svg)](https://doi.org/10.5281/zenodo.18743960)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
 [![PyPI](https://img.shields.io/pypi/v/knowledge-fidelity)](https://pypi.org/project/knowledge-fidelity/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
@@ -666,10 +666,10 @@ To cite this toolkit:
 ```bibtex
 @software{sanchez2026knowledgefidelity,
   author = {Sanchez, Bryan},
-  title = {Knowledge Fidelity: Compress LLMs While Auditing What They Still Know},
+  title = {Knowledge Fidelity: Behavioral Auditing of Merged Language Models via Teacher-Forced Confidence Probes},
   year = {2026},
-  doi = {10.5281/zenodo.18743960},
-  url = {https://doi.org/10.5281/zenodo.18743960}
+  doi = {10.5281/zenodo.18743959},
+  url = {https://doi.org/10.5281/zenodo.18743959}
 }
 ```
 
