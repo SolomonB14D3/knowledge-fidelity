@@ -16,7 +16,20 @@ print(f"Retention: {report['retention']:.0%} | "
 # Retention: 100% | False-belief signal: rho=0.725
 ```
 
-Or from the CLI:
+Or audit any model's behavioral profile with `rho-audit` (v0.4):
+
+```bash
+# Audit a model across all 5 behavioral dimensions
+rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
+
+# Quick factual-only check
+rho-audit my-merged-model/ --behaviors factual --json
+
+# Compare a compressed model against baseline
+rho-audit compressed-model/ --behaviors all --compare baseline.json
+```
+
+The original compression + audit CLI is also available:
 
 ```bash
 # Auto-find the compression ratio that maximizes factual signal
@@ -353,6 +366,32 @@ Both use the same probes:
 Compress with knowledge of what matters. Verify nothing was lost. Same probes, both sides.
 
 ## CLI
+
+### `rho-audit` — Behavioral Auditing (v0.4)
+
+Audit any model across 5 behavioral dimensions. No compression needed — just load, probe, report.
+
+```bash
+# Full behavioral report card
+rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
+
+# Factual probes only (fastest)
+rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors factual
+
+# Specific behaviors
+rho-audit my-model/ --behaviors factual,bias,sycophancy
+
+# JSON output for scripting
+rho-audit my-model/ --behaviors all --json --output audit.json
+
+# Compare against a baseline
+rho-audit compressed-model/ --behaviors all --compare audit.json
+
+# Custom probes
+rho-audit my-model/ --probes-file my_domain_probes.json
+```
+
+### `knowledge-fidelity` — Compression + Audit
 
 ```bash
 # Compress + audit (default: 70% rank, CF90 protection)
