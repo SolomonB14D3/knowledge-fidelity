@@ -82,8 +82,8 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
                          output_path=None, show=False):
     """Create the delta-vs-freeze line chart with behavioral localization."""
     fig, (ax_main, ax_table) = plt.subplots(
-        2, 1, figsize=(10, 9), height_ratios=[3, 1.2],
-        gridspec_kw={"hspace": 0.35}
+        2, 1, figsize=(13, 10), height_ratios=[3, 1.4],
+        gridspec_kw={"hspace": 0.40}
     )
 
     fr_pct = [f * 100 for f in freeze_ratios]
@@ -118,7 +118,7 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
                 xy=(best_fr, best_val),
                 xytext=(0, 12),
                 textcoords="offset points",
-                fontsize=8,
+                fontsize=9,
                 fontweight="bold",
                 color=BEHAVIOR_COLORS[behavior],
                 ha="center",
@@ -130,12 +130,12 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
     ax_main.set_title(
         f"Behavioral Localization via Freeze-Ratio Sweep\n"
         f"{model_name} · SVD 70% Q/K/O · LoRA recovery (rank 8, 100 steps)",
-        fontsize=13, fontweight="bold",
+        fontsize=14, fontweight="bold",
     )
     ax_main.set_xticks(fr_pct)
     ax_main.set_xticklabels([f"{f:.0f}%" for f in fr_pct])
     ax_main.yaxis.set_major_formatter(mticker.FormatStrFormatter("%+.3f"))
-    ax_main.legend(loc="upper right", fontsize=9, framealpha=0.9)
+    ax_main.legend(loc="upper right", fontsize=10, framealpha=0.9)
     ax_main.grid(True, alpha=0.3)
     ax_main.set_xlim(-5, 95)
 
@@ -143,7 +143,9 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
     ax_table.axis("off")
 
     behaviors = ["factual", "toxicity", "bias", "sycophancy", "reasoning"]
-    col_labels = ["Behavior", "Baseline ρ"] + [f"f={f:.0f}%" for f in fr_pct] + ["Best freeze", "Location"]
+
+    # Shorter column labels to fit better
+    col_labels = ["Behavior", "Base ρ"] + [f"f={f:.0f}%" for f in fr_pct] + ["Best", "Location"]
 
     table_data = []
     for behavior in behaviors:
@@ -156,9 +158,9 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
 
         for v in vals:
             if v > 0.01:
-                row.append(f"+{v:.3f} ↑")
+                row.append(f"+{v:.3f}")
             elif v < -0.01:
-                row.append(f"{v:.3f} ↓")
+                row.append(f"{v:.3f}")
             else:
                 row.append(f"{v:+.3f}")
 
@@ -170,9 +172,9 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
         h_mean = np.mean(high_freeze) if high_freeze else 0
         l_mean = np.mean(low_freeze) if low_freeze else 0
         if h_mean > l_mean + 0.01:
-            loc = "Early-layer"
+            loc = "Early layer"
         elif l_mean > h_mean + 0.01:
-            loc = "Late-layer"
+            loc = "Late layer"
         elif max(vals) < 0.005:
             loc = "Immovable"
         else:
@@ -181,20 +183,25 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
 
         table_data.append(row)
 
+    # Set explicit column widths: wider for Behavior, narrower for data columns
+    n_cols = len(col_labels)
+    col_widths = [0.16, 0.08] + [0.09] * len(fr_pct) + [0.07, 0.10]
+
     table = ax_table.table(
         cellText=table_data,
         colLabels=col_labels,
+        colWidths=col_widths,
         loc="center",
         cellLoc="center",
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(8)
-    table.scale(1.0, 1.4)
+    table.set_fontsize(8.5)
+    table.scale(1.0, 1.5)
 
     # Color header
     for j in range(len(col_labels)):
         table[0, j].set_facecolor("#E3F2FD")
-        table[0, j].set_text_props(fontweight="bold")
+        table[0, j].set_text_props(fontweight="bold", fontsize=8)
 
     # Color cells by delta direction
     for i, behavior in enumerate(behaviors):
@@ -211,14 +218,11 @@ def plot_delta_vs_freeze(freeze_ratios, deltas, baselines, model_name="Qwen2.5-7
                 cell.set_facecolor("#FFEBEE")  # light red
 
     fig.text(
-        0.5, 0.01,
+        0.5, 0.02,
         "Higher freeze = more bottom layers frozen (preserved). "
         "Behaviors peaking at high freeze are encoded in early layers.",
-        ha="center", fontsize=8, fontstyle="italic", color="gray",
+        ha="center", fontsize=9, fontstyle="italic", color="gray",
     )
-
-    # Use constrained_layout via savefig instead of tight_layout (table axes conflict)
-
 
     if output_path:
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
