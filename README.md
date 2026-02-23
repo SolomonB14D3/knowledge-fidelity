@@ -149,6 +149,29 @@ python experiments/freeze_ratio_sweep.py --models qwen2.5-7b
 python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.json
 ```
 
+### Merge Method Audit (v0.4 — `rho-audit` on Mergekit Models)
+
+What happens to behavioral traits when you merge Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B using different merge strategies?
+
+| Method | Factual ρ | Bias ρ | Sycophancy ρ | Trade-off |
+|--------|:---------:|:------:|:------------:|-----------|
+| Baseline | 0.474 | **0.773** | 0.120 | — |
+| SLERP | 0.517 | 0.613 | 0.140 | Balanced but mild |
+| TIES | 0.546 | 0.363 | **0.280** | High factual/sycophancy, low bias |
+| DARE-TIES | **0.612** | 0.203 | 0.007 | Best factual, destroyed bias + sycophancy |
+
+**Key finding:** Every merge method improves factual discrimination (the Coder model adds precision), but they all degrade bias detection — DARE-TIES most severely (-0.570). DARE's aggressive pruning of low-magnitude directions strips out the alignment signals that encode social awareness. TIES preserves sycophancy resistance (+0.160) while DARE-TIES destroys it (0.007).
+
+**Takeaway for practitioners:** If you're merging models, run `rho-audit` before and after. Standard benchmarks won't catch these behavioral regressions.
+
+```bash
+# Reproduce
+python experiments/audit_merged_models.py --behaviors factual,bias,sycophancy
+
+# Or audit any model directly
+rho-audit Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-slerp-29 --behaviors all
+```
+
 ### Scale-Dependent Findings
 
 | Finding | 0.5B | 7B (Qwen) | 7B (Mistral) |
