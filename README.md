@@ -1,5 +1,6 @@
 # Knowledge Fidelity
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743960.svg)](https://doi.org/10.5281/zenodo.18743960)
 [![PyPI](https://img.shields.io/pypi/v/knowledge-fidelity)](https://pypi.org/project/knowledge-fidelity/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
@@ -576,11 +577,12 @@ This toolkit builds on the confidence cartography method introduced in:
 To cite this toolkit specifically:
 
 ```bibtex
-@software{knowledge_fidelity,
-  author = {Bryan Sanchez},
+@software{sanchez2026knowledgefidelity,
+  author = {Sanchez, Bryan},
   title = {Knowledge Fidelity: Compress LLMs While Auditing What They Still Know},
   year = {2026},
-  url = {https://github.com/SolomonB14D3/knowledge-fidelity}
+  doi = {10.5281/zenodo.18743960},
+  url = {https://doi.org/10.5281/zenodo.18743960}
 }
 ```
 
