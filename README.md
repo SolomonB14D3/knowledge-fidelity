@@ -20,6 +20,8 @@ The paper introduces the core metric (Spearman ρ over teacher-forced confidence
 - **Activation steering vectors extracted from ρ probes enable runtime behavioral control** — sycophancy resistance triples at Layer 17 (ρ 0.120→0.413), factual accuracy gains 32% at Layer 24, but Layer 17 is a shared bottleneck where steering one trait disrupts others.
 - **SVD compression can *improve* factual discrimination** — truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
 
+These findings extend the ρ probing method from [Sanchez (2026)](https://doi.org/10.5281/zenodo.18703506).
+
 ---
 
 ## Quick Start
@@ -137,7 +139,8 @@ What happens to behavioral traits when you merge models? Standard benchmarks (MM
 | Task Arithmetic | 0.626 | 0.443 | 0.347 | Strong factual + sycophancy, good bias |
 | TIES | 0.546 | 0.363 | 0.280 | High factual/sycophancy, low bias |
 | DARE-TIES | 0.612 | 0.203 | 0.007 | Extreme factual, destroyed alignment |
-| DELLA | NaN | 0.000 | 0.000 | **Degenerate** — model completely broken |
+
+*DELLA merge produced degenerate output (factual=NaN, all behaviors 0.000) and is omitted. The layer-wise density pruning completely destroyed this merge pair.*
 
 #### Mistral-7B-Instruct + OpenOrca (jpquiroga series)
 
@@ -162,8 +165,7 @@ What happens to behavioral traits when you merge models? Standard benchmarks (MM
 
 1. **Linear merging is the best balanced hybrid** on Qwen — highest factual (0.710) and sycophancy resistance (0.380) of any method, while retaining usable bias detection.
 2. **Merge effects are architecture-dependent.** On Qwen, every merge degrades bias detection. On Mistral, merging *improves* bias detection from 0.407 to 0.940 — a 2.3x gain. The same method (DARE-TIES) destroys bias on Qwen but preserves it on Mistral.
-3. **DELLA produced a degenerate model** — factual=NaN, all behaviors at zero.
-4. **Aggressive pruning strips alignment signals.** DARE-TIES on Qwen achieves high factual (0.612) but destroys bias detection (−0.570) and sycophancy resistance (0.007).
+3. **Aggressive pruning strips alignment signals.** DARE-TIES on Qwen achieves high factual (0.612) but destroys bias detection (−0.570) and sycophancy resistance (0.007).
 
 **Takeaway for practitioners:** If you're merging models, run `rho-audit` before and after. Standard benchmarks won't catch these behavioral regressions.
 
