@@ -28,31 +28,103 @@ from knowledge_fidelity.probes import get_all_probes
 
 RESULTS_DIR = Path(__file__).parent.parent / "results" / "leaderboard"
 
-# Models to audit: baseline + merge variants
-# All Yuuta208 models merge Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B
-# with different merge strategies — perfect controlled comparison.
-MODELS = {
+# ── Model families ─────────────────────────────────────────────────────
+# Each family is a controlled comparison: same base models, different
+# merge strategies. Families can be selected via --family flag.
+
+# Family 1: Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B (Yuuta208 -29 series)
+# Complete 6-method comparison: linear, slerp, ties, dare_ties, task_arithmetic, della
+QWEN_CODER_MODELS = {
     "qwen2.5-7b-instruct": {
         "id": "Qwen/Qwen2.5-7B-Instruct",
         "type": "baseline",
+        "family": "qwen-coder",
         "description": "Base instruct model (no merge)",
+    },
+    "qwen2.5-7b-linear": {
+        "id": "Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-linear-29",
+        "type": "merge-linear",
+        "family": "qwen-coder",
+        "description": "Linear merge: Instruct + Coder",
     },
     "qwen2.5-7b-slerp": {
         "id": "Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-slerp-29",
         "type": "merge-slerp",
+        "family": "qwen-coder",
         "description": "SLERP merge: Instruct + Coder",
     },
     "qwen2.5-7b-ties": {
         "id": "Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-ties-29",
         "type": "merge-ties",
+        "family": "qwen-coder",
         "description": "TIES merge: Instruct + Coder",
+    },
+    "qwen2.5-7b-task-arith": {
+        "id": "Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-task_arithmetic-29",
+        "type": "merge-task-arithmetic",
+        "family": "qwen-coder",
+        "description": "Task Arithmetic merge: Instruct + Coder",
     },
     "qwen2.5-7b-dare-ties": {
         "id": "Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-dare_ties-29",
         "type": "merge-dare-ties",
+        "family": "qwen-coder",
         "description": "DARE-TIES merge: Instruct + Coder",
     },
+    "qwen2.5-7b-della": {
+        "id": "Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-della-29",
+        "type": "merge-della",
+        "family": "qwen-coder",
+        "description": "DELLA merge: Instruct + Coder",
+    },
 }
+
+# Family 2: Mistral-7B-Instruct-v0.1 + Mistral-7B-OpenOrca (jpquiroga series)
+# 3-method comparison: slerp, ties, dare_ties on Mistral architecture
+MISTRAL_MODELS = {
+    "mistral-7b-v0.1": {
+        "id": "mistralai/Mistral-7B-v0.1",
+        "type": "baseline",
+        "family": "mistral",
+        "description": "Base Mistral model (no merge)",
+    },
+    "mistral-7b-slerp": {
+        "id": "jpquiroga/Mistral_7B_slerp_merge_instruct_open_orca",
+        "type": "merge-slerp",
+        "family": "mistral",
+        "description": "SLERP merge: Instruct + OpenOrca",
+    },
+    "mistral-7b-ties": {
+        "id": "jpquiroga/Mistral_7B_ties_merge_instruct_open_orca",
+        "type": "merge-ties",
+        "family": "mistral",
+        "description": "TIES merge: Instruct + OpenOrca",
+    },
+    "mistral-7b-dare-ties": {
+        "id": "jpquiroga/Mistral_7B_dare_ties_merge_instruct_open_orca",
+        "type": "merge-dare-ties",
+        "family": "mistral",
+        "description": "DARE-TIES merge: Instruct + OpenOrca",
+    },
+}
+
+# Family 3: Llama-3.1-8B baseline (no merge family available — standalone reference)
+LLAMA_MODELS = {
+    "llama-3.1-8b-instruct": {
+        "id": "meta-llama/Llama-3.1-8B-Instruct",
+        "type": "baseline",
+        "family": "llama",
+        "description": "Llama 3.1 8B Instruct baseline",
+    },
+}
+
+# Combined registry
+ALL_FAMILIES = {
+    "qwen-coder": QWEN_CODER_MODELS,
+    "mistral": MISTRAL_MODELS,
+    "llama": LLAMA_MODELS,
+}
+MODELS = {**QWEN_CODER_MODELS, **MISTRAL_MODELS, **LLAMA_MODELS}
 
 DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
 
@@ -178,6 +250,9 @@ def main():
                         help="Quick mode: factual only")
     parser.add_argument("--models", nargs="+", default=None,
                         help="Specific model keys to audit")
+    parser.add_argument("--family", type=str, default=None,
+                        choices=list(ALL_FAMILIES.keys()),
+                        help="Model family to audit (default: all)")
     parser.add_argument("--device", default=DEVICE)
     args = parser.parse_args()
 
@@ -186,9 +261,13 @@ def main():
     else:
         behaviors = [b.strip() for b in args.behaviors.split(",")]
 
-    models = MODELS
-    if args.models:
+    # Select models by family, specific keys, or all
+    if args.family:
+        models = ALL_FAMILIES[args.family]
+    elif args.models:
         models = {k: v for k, v in MODELS.items() if k in args.models}
+    else:
+        models = MODELS
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     output_path = RESULTS_DIR / "merged_audit.json"
