@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "knowledge-fidelity"
-version = "0.3.0"
+version = "0.4.0"
 description = "Compress LLMs while auditing whether they still know truth vs myths. SVD compression + false-belief detection in one toolkit."
 readme = "README.md"
 license = "MIT"
@@ -15,7 +15,7 @@ authors = [
 keywords = [
     "llm", "compression", "svd", "knowledge", "false-beliefs",
     "interpretability", "confidence", "mandela-effect", "transformers",
-    "model-auditing", "pytorch",
+    "model-auditing", "pytorch", "rho-audit", "behavioral-audit",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -68,6 +68,7 @@ dev = [
 
 [project.scripts]
 knowledge-fidelity = "knowledge_fidelity.__main__:main"
+rho-audit = "knowledge_fidelity.cli.rho_audit:main"
 
 [project.urls]
 Homepage = "https://github.com/SolomonB14D3/knowledge-fidelity"
