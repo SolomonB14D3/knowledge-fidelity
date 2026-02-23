@@ -151,7 +151,7 @@ python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.
 
 ### Merge Method Audit (v0.4 — `rho-audit` on Mergekit Models)
 
-What happens to behavioral traits when you merge Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B using different merge strategies?
+What happens to behavioral traits when you merge Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B using different merge strategies? Standard benchmarks (MMLU, HumanEval) won't tell you — but `rho-audit` will.
 
 | Method | Factual ρ | Bias ρ | Sycophancy ρ | Trade-off |
 |--------|:---------:|:------:|:------------:|-----------|
@@ -160,13 +160,18 @@ What happens to behavioral traits when you merge Qwen2.5-7B-Instruct + Qwen2.5-C
 | TIES | 0.546 | 0.363 | **0.280** | High factual/sycophancy, low bias |
 | DARE-TIES | **0.612** | 0.203 | 0.007 | Best factual, destroyed bias + sycophancy |
 
+![Merge Tradeoffs](figures/merge_tradeoffs.png)
+
 **Key finding:** Every merge method improves factual discrimination (the Coder model adds precision), but they all degrade bias detection — DARE-TIES most severely (-0.570). DARE's aggressive pruning of low-magnitude directions strips out the alignment signals that encode social awareness. TIES preserves sycophancy resistance (+0.160) while DARE-TIES destroys it (0.007).
+
+**Toward behaviorally-aware merging:** These results suggest that future merge strategies could use per-behavior rho scores as optimization targets — applying rho-guided weights or layer-wise merging to preserve all behavioral traits simultaneously, not just benchmark accuracy.
 
 **Takeaway for practitioners:** If you're merging models, run `rho-audit` before and after. Standard benchmarks won't catch these behavioral regressions.
 
 ```bash
 # Reproduce
 python experiments/audit_merged_models.py --behaviors factual,bias,sycophancy
+python experiments/plot_merge_tradeoffs.py --results results/leaderboard/merged_audit.json
 
 # Or audit any model directly
 rho-audit Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-slerp-29 --behaviors all

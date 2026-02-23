@@ -38,6 +38,7 @@ figures/*.png
 figures/**/*.png
 # But keep key result figures referenced in README
 !figures/freeze_sweep_7b.png
+!figures/merge_tradeoffs.png
 
 # Jupyter
 .ipynb_checkpoints/
