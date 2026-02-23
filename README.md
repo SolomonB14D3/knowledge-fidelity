@@ -5,19 +5,43 @@
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
 
-**Compress an LLM while auditing whether it still knows truth vs popular myths.**
+SVD-based LLM compression with behavioral auditing using teacher-forced confidence (ρ) probes. Measures layer-wise trade-offs and merge method impacts on factual accuracy, bias detection, sycophancy resistance, toxicity sensitivity, and reasoning robustness.
 
 ## Associated Paper
-
-This toolkit builds on the ρ (teacher-forced confidence) probing method introduced in:
 
 > Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models*. Zenodo. [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
 
 The paper introduces the core metric (Spearman ρ over teacher-forced confidence probes) and validates it across Pythia 160M–12B. This toolkit extends it with SVD compression, behavioral localization, steering vectors, and the `rho-audit` CLI.
 
+## Key Findings
+
+- **Layer-wise freeze after SVD compression selectively enhances behavioral traits** — factual knowledge peaks at 75% freeze (early layers), bias detection peaks at 25% freeze (late layers), sycophancy flips from negative to positive at 50%.
+- **Merge methods cause dramatic behavioral trade-offs invisible to standard benchmarks** — Linear merging is the best balanced method on Qwen; DARE-TIES destroys alignment on Qwen but improves it on Mistral; DELLA completely breaks the model.
+- **Activation steering vectors extracted from ρ probes enable runtime behavioral control** — sycophancy resistance triples at Layer 17 (ρ 0.120→0.413), factual accuracy gains 32% at Layer 24, but Layer 17 is a shared bottleneck where steering one trait disrupts others.
+- **SVD compression can *improve* factual discrimination** — truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
+
 ---
 
-The first toolkit that uses the same factual probes for both structural importance scoring (SVD compression) and behavioral false-belief detection (confidence cartography). One call to compress and audit:
+## Quick Start
+
+```bash
+pip install knowledge-fidelity
+```
+
+Audit any model's behavioral profile:
+
+```bash
+# Full behavioral report card (5 dimensions)
+rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
+
+# Quick factual-only check
+rho-audit my-merged-model/ --behaviors factual --json
+
+# Compare a compressed model against baseline
+rho-audit compressed-model/ --behaviors all --compare baseline.json
+```
+
+Or compress and audit in one call:
 
 ```python
 from knowledge_fidelity import compress_and_audit
@@ -28,28 +52,11 @@ print(f"Retention: {report['retention']:.0%} | "
 # Retention: 100% | False-belief signal: rho=0.725
 ```
 
-Or audit any model's behavioral profile with `rho-audit` (v0.4):
+Auto-find the compression ratio that maximizes factual signal:
 
 ```bash
-# Audit a model across all 5 behavioral dimensions
-rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
-
-# Quick factual-only check
-rho-audit my-merged-model/ --behaviors factual --json
-
-# Compare a compressed model against baseline
-rho-audit compressed-model/ --behaviors all --compare baseline.json
-```
-
-The original compression + audit CLI is also available:
-
-```bash
-# Auto-find the compression ratio that maximizes factual signal
 knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
 # DENOISING DETECTED: Mandela rho 0.257 → 0.771 (+0.514) at 60% ratio
-
-# Benchmark across all probe categories
-python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B
 ```
 
 ## Why This Exists
@@ -67,77 +74,38 @@ Two sensors, one toolkit:
 
 The key insight: the same set of factual probes drives both. Compress with awareness of what matters, then verify nothing broke.
 
-## Results (v0.2)
+## Results
 
-All results from the unified toolkit on Apple Silicon (M3 Ultra, CPU). Three model families validated.
+All results on Apple Silicon (M3 Ultra). Three model families validated.
 
-### Multi-Seed CF90 Validation (70% rank, 3 seeds)
+### SVD Compression (CF90)
+
+Multi-seed validation at 70% rank, 3 seeds:
 
 | Metric | Qwen2.5-0.5B | Qwen2.5-7B-Instruct | Mistral-7B-v0.1 |
 |--------|:------------:|:-------------------:|:---------------:|
 | Retention | **95%** ± 0% | **100%** ± 0% | **95%** ± 0% |
-| rho before | 0.821 | 0.746 | 0.743 |
-| rho after | 0.720 | 0.725 | 0.705 |
-| rho drop | 0.101 ± 0.000 | **0.021** ± 0.000 | 0.038 ± 0.000 |
+| ρ before | 0.821 | 0.746 | 0.743 |
+| ρ after | 0.720 | 0.725 | 0.705 |
+| ρ drop | 0.101 ± 0.000 | **0.021** ± 0.000 | 0.038 ± 0.000 |
 | Matrices compressed | 72 | 84 | 96 |
 | Layers frozen | 18/24 | 21/28 | 24/32 |
 
-CF90 generalizes across architectures: 95-100% retention with minimal rho loss at all scales.
-
-### Joint Ablation: Compression Ratio vs Confidence (Qwen2.5-0.5B)
-
-| Ratio | Default rho | Mandela rho | Medical rho |
-|:-----:|:-----------:|:-----------:|:-----------:|
-| 50% | 0.821 → 0.761 | 0.257 → 0.714 | 0.100 → 0.700 |
-| 60% | 0.821 → 0.714 | 0.257 → 0.771 | 0.100 → 0.900 |
-| 70% | 0.821 → 0.720 | 0.257 → 0.771 | 0.100 → 0.100 |
-| 80% | 0.821 → 0.690 | 0.257 → 0.257 | 0.100 → 0.600 |
-| 90% | 0.821 → 0.821 | 0.257 → 0.371 | 0.100 → 0.100 |
-| 100% | 0.821 → 0.821 | 0.257 → 0.257 | 0.100 → 0.100 |
-
-### Joint Ablation: Compression Ratio vs Confidence (Qwen2.5-7B-Instruct)
-
-| Ratio | Default rho | Mandela rho | Medical rho |
-|:-----:|:-----------:|:-----------:|:-----------:|
-| 50% | 0.746 → 0.689 | 0.829 → 0.771 | −0.700 → 0.600 |
-| 70% | 0.746 → 0.725 | 0.829 → **0.943** | −0.700 → −0.600 |
-| 90% | 0.746 → 0.713 | 0.829 → **0.943** | −0.700 → −0.900 |
-| 100% | 0.746 → 0.746 | 0.829 → 0.829 | −0.700 → −0.700 |
-
-### Joint Ablation: Compression Ratio vs Confidence (Mistral-7B-v0.1)
-
-| Ratio | Default rho | Mandela rho | Medical rho |
-|:-----:|:-----------:|:-----------:|:-----------:|
-| 50% | 0.743 → 0.686 | 0.771 → 0.771 | 0.300 → 0.300 |
-| 60% | 0.743 → 0.723 | 0.771 → 0.771 | 0.300 → 0.400 |
-| 70% | 0.743 → 0.705 | 0.771 → **0.829** | 0.300 → 0.400 |
-| 80% | 0.743 → 0.729 | 0.771 → 0.771 | 0.300 → 0.300 |
-| 90% | 0.743 → 0.743 | 0.771 → 0.771 | 0.300 → 0.300 |
-| 100% | 0.743 → 0.743 | 0.771 → 0.771 | 0.300 → 0.300 |
+CF90 generalizes across architectures: 95–100% retention with minimal ρ loss at all scales.
 
 ### SVD as a Denoiser
 
 **SVD compression can _improve_ the Mandela effect signal** — confirmed across two model families:
 
-| Model | Baseline Mandela rho | Best compressed rho | Optimal ratio |
+| Model | Baseline Mandela ρ | Best compressed ρ | Optimal ratio |
 |-------|:-------------------:|:-------------------:|:-------------:|
 | Qwen2.5-7B-Instruct | 0.829 | **0.943** (+0.114) | 70% |
 | Mistral-7B-v0.1 | 0.771 | **0.829** (+0.057) | 70% |
 | Qwen2.5-0.5B | 0.257 | **0.771** (+0.514) | 60% |
 
-The denoising effect is consistent: at 70% rank, truncated SVD strips noise from attention projections while preserving the principal signal directions that encode factual knowledge. The `--denoise` flag auto-discovers this optimal ratio.
+At 70% rank, truncated SVD strips noise from attention projections while preserving the principal signal directions that encode factual knowledge. The `--denoise` flag auto-discovers the optimal ratio.
 
-### Fidelity-Bench Baseline Comparison
-
-| Category | Qwen-0.5B | Qwen-7B | Mistral-7B |
-|----------|:---------:|:-------:|:----------:|
-| default (20) | 0.821, 80% | 0.746, — | 0.743, 85% |
-| mandela (6) | 0.257, 50% | 0.829, — | 0.771, 67% |
-| medical (5) | 0.100, 80% | —, — | 0.300, 80% |
-| commonsense (10) | 0.261, 70% | —, — | 0.503, 40% |
-| truthfulqa (15) | 0.596, 40% | —, — | 0.586, 47% |
-
-### Behavioral Localization (v0.3 — Freeze-Ratio Sweep)
+### Behavioral Localization (Freeze-Ratio Sweep)
 
 Different behaviors are encoded in different layer regions. By fixing SVD compression at 70% and varying how many bottom layers are frozen during LoRA recovery (rank 8, 100 steps), we can map where each behavior lives:
 
@@ -151,19 +119,13 @@ Different behaviors are encoded in different layer regions. By fixing SVD compre
 
 **Key insight:** Factual knowledge peaks when 75% of layers are frozen (only the top 7 of 28 layers adapt) — meaning facts are concentrated in early attention layers. Bias detection peaks at 25% freeze (21 layers adapt) — it needs late-layer flexibility. Toxicity detection is immovable regardless of freeze ratio.
 
-These findings extend the ρ metric from [Sanchez (2026)](https://doi.org/10.5281/zenodo.18703506), applying it to post-compression behavioral localization. Model: Qwen2.5-7B-Instruct. All deltas are ρ(compressed) − ρ(baseline).
+Model: Qwen2.5-7B-Instruct. All deltas are ρ(compressed) − ρ(baseline).
 
 ![Behavioral Localization](figures/freeze_sweep_7b.png)
 
-```bash
-# Reproduce
-python experiments/freeze_ratio_sweep.py --models qwen2.5-7b
-python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.json
-```
+### Merge Method Audit (12 models, 2 architectures, 6 merge methods)
 
-### Merge Method Audit (v0.4 — `rho-audit` on Mergekit Models)
-
-What happens to behavioral traits when you merge models using different strategies? Standard benchmarks (MMLU, HumanEval) won't tell you — but `rho-audit` will. We audited **12 models across 2 architectures** and 6 merge methods.
+What happens to behavioral traits when you merge models? Standard benchmarks (MMLU, HumanEval) won't tell you — but `rho-audit` will.
 
 #### Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B (Yuuta208 series)
 
@@ -200,45 +162,123 @@ What happens to behavioral traits when you merge models using different strategi
 
 1. **Linear merging is the best balanced hybrid** on Qwen — highest factual (0.710) and sycophancy resistance (0.380) of any method, while retaining usable bias detection.
 2. **Merge effects are architecture-dependent.** On Qwen, every merge degrades bias detection. On Mistral, merging *improves* bias detection from 0.407 to 0.940 — a 2.3x gain. The same method (DARE-TIES) destroys bias on Qwen but preserves it on Mistral.
-3. **DELLA produced a degenerate model** — factual=NaN, all behaviors at zero. The layer-wise density pruning completely destroyed this merge pair.
-4. **Aggressive pruning strips alignment signals.** DARE-TIES on Qwen achieves high factual (0.612) but at the cost of destroying bias detection (−0.570) and sycophancy resistance (0.007).
-
-**Toward behaviorally-aware merging:** These results suggest that future merge strategies could use per-behavior rho scores as optimization targets — applying rho-guided weights or layer-wise merging to preserve all behavioral traits simultaneously, not just benchmark accuracy.
+3. **DELLA produced a degenerate model** — factual=NaN, all behaviors at zero.
+4. **Aggressive pruning strips alignment signals.** DARE-TIES on Qwen achieves high factual (0.612) but destroys bias detection (−0.570) and sycophancy resistance (0.007).
 
 **Takeaway for practitioners:** If you're merging models, run `rho-audit` before and after. Standard benchmarks won't catch these behavioral regressions.
 
-```bash
-# Reproduce
-python experiments/audit_merged_models.py --family qwen-coder
-python experiments/audit_merged_models.py --family mistral
-python experiments/plot_merge_tradeoffs.py --results results/leaderboard/merged_audit.json
+### Activation Steering (Contrastive Activation Addition)
 
-# Or audit any model directly
-rho-audit Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-linear-29 --behaviors all
-```
+Steering vectors extracted from the same ρ probes used for auditing can modify model behavior at inference time. We sweep 6 layers × 8 alpha values = 48 configurations per behavior on Qwen2.5-7B-Instruct.
 
-### Scale-Dependent Findings
+#### Best configurations per behavior
+
+| Behavior | Baseline ρ | Best ρ | Δρ | Best config |
+|----------|:----------:|:------:|:--:|-------------|
+| Factual | 0.474 | **0.626** | +0.152 | Layer 24 (86%), α=+4.0 |
+| Sycophancy | 0.120 | **0.413** | +0.293 | Layer 17 (61%), α=+4.0 |
+| Bias | 0.773 | **0.810** | +0.037 | Layer 14 (50%), α=−4.0 |
+
+#### Layer 17 is a behavioral bottleneck
+
+The strongest result in the entire steering experiment is Layer 17 at α=+4.0, which improves sycophancy ρ from 0.120 to 0.413 — a **3.4× gain**. But the same layer is also a catastrophic failure point for bias: Layer 17 at α=−4.0 collapses bias ρ from 0.773 to 0.337 (−0.437). Even the sycophancy-optimal configuration (Layer 17, α=+4.0) reduces bias to 0.543.
+
+This reveals a fundamental trade-off: **steering that triples sycophancy resistance simultaneously halves bias detection at the same layer**. Layer 17 sits at a transition point where multiple behavioral traits share representational capacity.
+
+#### Directional control confirmed
+
+Layer 21 at α=−4.0 drops sycophancy ρ to 0.073, below the already-low baseline. This confirms that the steering vector is a specific directional control — pushing the same vector in the wrong direction collapses the signal.
+
+#### Full sycophancy steering sweep
+
+| Layer | −4 | −2 | −1 | −0.5 | +0.5 | +1 | +2 | +4 |
+|-------|:--:|:--:|:--:|:----:|:----:|:--:|:--:|:--:|
+| 7 (25%) | 0.120 | 0.120 | 0.120 | 0.120 | 0.120 | 0.127 | 0.133 | 0.133 |
+| 10 (36%) | 0.120 | 0.120 | 0.120 | 0.120 | 0.120 | 0.120 | 0.133 | 0.133 |
+| 14 (50%) | 0.127 | 0.113 | 0.113 | 0.120 | 0.133 | 0.133 | 0.140 | 0.147 |
+| 17 (61%) | 0.193 | 0.127 | 0.107 | 0.120 | 0.160 | 0.173 | 0.240 | **0.413** |
+| 21 (75%) | 0.073 | 0.127 | 0.120 | 0.120 | 0.147 | 0.153 | 0.160 | 0.187 |
+| 24 (86%) | 0.127 | 0.127 | 0.120 | 0.120 | 0.133 | 0.140 | 0.140 | 0.147 |
+
+Sycophancy baseline ρ = 0.120. Only Layer 17 produces a large effect; all other layers show near-zero response.
+
+### Additional Results
+
+<details>
+<summary>Joint Ablation: Compression Ratio vs Confidence (click to expand)</summary>
+
+#### Qwen2.5-0.5B
+
+| Ratio | Default ρ | Mandela ρ | Medical ρ |
+|:-----:|:-----------:|:-----------:|:-----------:|
+| 50% | 0.821 → 0.761 | 0.257 → 0.714 | 0.100 → 0.700 |
+| 60% | 0.821 → 0.714 | 0.257 → 0.771 | 0.100 → 0.900 |
+| 70% | 0.821 → 0.720 | 0.257 → 0.771 | 0.100 → 0.100 |
+| 80% | 0.821 → 0.690 | 0.257 → 0.257 | 0.100 → 0.600 |
+| 90% | 0.821 → 0.821 | 0.257 → 0.371 | 0.100 → 0.100 |
+| 100% | 0.821 → 0.821 | 0.257 → 0.257 | 0.100 → 0.100 |
+
+#### Qwen2.5-7B-Instruct
+
+| Ratio | Default ρ | Mandela ρ | Medical ρ |
+|:-----:|:-----------:|:-----------:|:-----------:|
+| 50% | 0.746 → 0.689 | 0.829 → 0.771 | −0.700 → 0.600 |
+| 70% | 0.746 → 0.725 | 0.829 → **0.943** | −0.700 → −0.600 |
+| 90% | 0.746 → 0.713 | 0.829 → **0.943** | −0.700 → −0.900 |
+| 100% | 0.746 → 0.746 | 0.829 → 0.829 | −0.700 → −0.700 |
+
+#### Mistral-7B-v0.1
+
+| Ratio | Default ρ | Mandela ρ | Medical ρ |
+|:-----:|:-----------:|:-----------:|:-----------:|
+| 50% | 0.743 → 0.686 | 0.771 → 0.771 | 0.300 → 0.300 |
+| 60% | 0.743 → 0.723 | 0.771 → 0.771 | 0.300 → 0.400 |
+| 70% | 0.743 → 0.705 | 0.771 → **0.829** | 0.300 → 0.400 |
+| 80% | 0.743 → 0.729 | 0.771 → 0.771 | 0.300 → 0.300 |
+| 90% | 0.743 → 0.743 | 0.771 → 0.771 | 0.300 → 0.300 |
+| 100% | 0.743 → 0.743 | 0.771 → 0.771 | 0.300 → 0.300 |
+
+</details>
+
+<details>
+<summary>Fidelity-Bench Baseline Comparison (click to expand)</summary>
+
+| Category | Qwen-0.5B | Qwen-7B | Mistral-7B |
+|----------|:---------:|:-------:|:----------:|
+| default (20) | 0.821, 80% | 0.746, — | 0.743, 85% |
+| mandela (6) | 0.257, 50% | 0.829, — | 0.771, 67% |
+| medical (5) | 0.100, 80% | —, — | 0.300, 80% |
+| commonsense (10) | 0.261, 70% | —, — | 0.503, 40% |
+| truthfulqa (15) | 0.596, 40% | —, — | 0.586, 47% |
+
+</details>
+
+<details>
+<summary>Scale-Dependent Findings (click to expand)</summary>
 
 | Finding | 0.5B | 7B (Qwen) | 7B (Mistral) |
 |---------|:----:|:---------:|:------------:|
-| Mandela baseline rho | 0.257 (weak) | **0.829** (strong) | 0.771 (strong) |
-| CF90 rho drop | 0.101 (moderate) | **0.021** (minimal) | 0.038 (small) |
+| Mandela baseline ρ | 0.257 (weak) | **0.829** (strong) | 0.771 (strong) |
+| CF90 ρ drop | 0.101 (moderate) | **0.021** (minimal) | 0.038 (small) |
 | CF90 retention | 95% | **100%** | 95% |
-| SVD denoising on Mandela | +0.514 rho | **+0.114 rho** | +0.057 rho |
+| SVD denoising on Mandela | +0.514 ρ | **+0.114 ρ** | +0.057 ρ |
 
-The Mandela effect signal strengthens with scale, and CF90 compression generalizes across Qwen and Mistral architectures with 95-100% retention.
+</details>
 
-### Prior Results (from Component Projects)
+<details>
+<summary>Prior Results from Component Projects (click to expand)</summary>
 
-These findings come from the standalone [intelligent-svd](https://github.com/SolomonB14D3/intelligent-svd) and [confidence-cartography](https://github.com/SolomonB14D3/confidence-cartography) projects that this toolkit unifies:
+From [intelligent-svd](https://github.com/SolomonB14D3/intelligent-svd) and [confidence-cartography](https://github.com/SolomonB14D3/confidence-cartography):
 
 | Finding | Result |
 |---------|--------|
-| Confidence correlates with human false-belief prevalence | rho=0.652, p=0.016 (Pythia 160M–12B) |
+| Confidence correlates with human false-belief prevalence | ρ=0.652, p=0.016 (Pythia 160M–12B) |
 | Out-of-domain medical claims | 88% accuracy at 6.9B |
 | Targeted resampling at low-confidence tokens | Outperforms uniform best-of-N |
 | CF90 + INT8 stacking | 72–77% retention (Qwen-0.5B, Llama-7B) |
 | Importance-guided SVD at 50% rank | 3× better retention than standard SVD |
+
+</details>
 
 ### Compression Safety Guide
 
@@ -265,7 +305,55 @@ cd knowledge-fidelity
 pip install -e ".[full]"
 ```
 
-## Quick Start
+## CLI
+
+### `rho-audit` — Behavioral Auditing
+
+Audit any model across 5 behavioral dimensions. No compression needed — just load, probe, report.
+
+```bash
+# Full behavioral report card
+rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
+
+# Factual probes only (fastest)
+rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors factual
+
+# Specific behaviors
+rho-audit my-model/ --behaviors factual,bias,sycophancy
+
+# JSON output for scripting
+rho-audit my-model/ --behaviors all --json --output audit.json
+
+# Compare against a baseline
+rho-audit compressed-model/ --behaviors all --compare audit.json
+
+# Custom probes
+rho-audit my-model/ --probes-file my_domain_probes.json
+```
+
+### `knowledge-fidelity` — Compression + Audit
+
+```bash
+# Compress + audit (default: 70% rank, CF90 protection)
+knowledge-fidelity Qwen/Qwen2.5-0.5B
+
+# Audit only (no compression, baseline measurement)
+knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only
+
+# Auto-find optimal denoising ratio
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
+
+# Denoise with specific probe set
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --denoise-probe-set medical
+
+# Use all 56 probes
+knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only --probes all
+
+# Save compressed model
+knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --output ./denoised-model
+```
+
+## Python API
 
 ### One-Call Compress + Audit
 
@@ -359,58 +447,6 @@ report = compress_and_audit("my-model", probes=custom)
 | `get_truthfulqa_probes()` | 15 | TruthfulQA-derived misconceptions (evolution, Viking helmets, etc.) |
 | `get_all_probes()` | 56 | All of the above |
 
-Community contributions welcome — add probes for your domain and submit a PR.
-
-## Denoise Mode (v0.2)
-
-SVD compression can _improve_ factual discrimination by stripping noise from attention projections. The `--denoise` flag auto-finds the compression ratio that maximizes this effect:
-
-```bash
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
-```
-
-```
-Baseline: rho=0.257
-Testing ratio 0.50: rho=0.714 (IMPROVED by +0.457)
-Testing ratio 0.60: rho=0.771 (IMPROVED by +0.514)  ← optimal
-Testing ratio 0.70: rho=0.771 (IMPROVED by +0.514)
-Testing ratio 0.80: rho=0.257 (no change)
-Testing ratio 0.90: rho=0.371 (IMPROVED by +0.114)
-
-DENOISING DETECTED: Mandela rho 0.257 → 0.771 (+0.514) at 60% ratio
-```
-
-Or from Python:
-
-```python
-from knowledge_fidelity import find_optimal_denoise_ratio
-
-result = find_optimal_denoise_ratio("Qwen/Qwen2.5-0.5B", probe_set="mandela")
-print(f"Optimal ratio: {result['optimal_ratio']}")
-print(f"Improvement: {result['improvement']:+.3f}")
-```
-
-## Fidelity-Bench (v0.2)
-
-Benchmark any model across all 56 probes organized by category:
-
-```bash
-python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B
-```
-
-```
-Fidelity-Bench: Qwen/Qwen2.5-0.5B
-| Category    | Probes | rho   | Correct | Accuracy | Mean Δ  |
-|-------------|--------|-------|---------|----------|---------|
-| default     |     20 | 0.821 |  16/20  |     80%  | +0.0837 |
-| mandela     |      6 | 0.257 |   3/6   |     50%  | +0.0527 |
-| medical     |      5 | 0.100 |   4/5   |     80%  | +0.0466 |
-| commonsense |     10 | 0.261 |   7/10  |     70%  | -0.0226 |
-| truthfulqa  |     15 | 0.596 |   6/15  |     40%  | -0.0392 |
-```
-
-Add `--json` for machine-readable output. Use `--output results.json` to save.
-
 ## How It Works
 
 ### The CF90 Pipeline (Structural Sensor)
@@ -433,54 +469,6 @@ Both use the same probes:
 
 Compress with knowledge of what matters. Verify nothing was lost. Same probes, both sides.
 
-## CLI
-
-### `rho-audit` — Behavioral Auditing (v0.4)
-
-Audit any model across 5 behavioral dimensions. No compression needed — just load, probe, report.
-
-```bash
-# Full behavioral report card
-rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
-
-# Factual probes only (fastest)
-rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors factual
-
-# Specific behaviors
-rho-audit my-model/ --behaviors factual,bias,sycophancy
-
-# JSON output for scripting
-rho-audit my-model/ --behaviors all --json --output audit.json
-
-# Compare against a baseline
-rho-audit compressed-model/ --behaviors all --compare audit.json
-
-# Custom probes
-rho-audit my-model/ --probes-file my_domain_probes.json
-```
-
-### `knowledge-fidelity` — Compression + Audit
-
-```bash
-# Compress + audit (default: 70% rank, CF90 protection)
-knowledge-fidelity Qwen/Qwen2.5-0.5B
-
-# Audit only (no compression, baseline measurement)
-knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only
-
-# Auto-find optimal denoising ratio
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
-
-# Denoise with specific probe set
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --denoise-probe-set medical
-
-# Use all 56 probes
-knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only --probes all
-
-# Save compressed model
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --output ./denoised-model
-```
-
 ## Experiments
 
 ```bash
@@ -501,8 +489,13 @@ python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B --json
 python experiments/freeze_ratio_sweep.py --models qwen2.5-7b
 python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.json
 
-# Analyze existing sweep results (text table)
-python experiments/freeze_ratio_sweep.py --analyze results/freeze_sweep/sweep_v2.json
+# Merge method audit (12 models, 2 architectures)
+python experiments/audit_merged_models.py --family qwen-coder
+python experiments/audit_merged_models.py --family mistral
+python experiments/plot_merge_tradeoffs.py --results results/leaderboard/merged_audit.json
+
+# Activation steering vectors
+python experiments/steering_vectors.py
 ```
 
 ## Deployment
@@ -517,12 +510,6 @@ python deployment/vllm_benchmark.py --baseline Qwen/Qwen2.5-7B-Instruct --compre
 
 See [`deployment/mlx_recipe.md`](deployment/mlx_recipe.md) for Apple Silicon inference with MLX.
 
-## Platform Notes (Apple Silicon)
-
-- Use **CPU** for compression and fine-tuning (MPS has matmul errors with some architectures and NaN gradients with frozen layers)
-- Use **MLX** for fast inference after compression
-- Set `HF_HOME` to external storage for large models
-
 ## Model Compatibility
 
 Works on any HuggingFace causal LM with `model.model.layers[i].self_attn.{q,k,o}_proj` (standard for Qwen, Llama, Mistral) or `model.transformer.h` (GPT-2 style).
@@ -530,8 +517,21 @@ Works on any HuggingFace causal LM with `model.model.layers[i].self_attn.{q,k,o}
 Validated on:
 - **Qwen2.5**: 0.5B, 1.5B, 7B, 32B
 - **Mistral**: 7B-v0.1
-- **Llama 2**: 7B
+- **Llama**: 3.1-8B-Instruct, 2-7B
 - Should work on Phi, Gemma (same layer layout) — PRs with test results welcome
+
+## Platform Notes (Apple Silicon)
+
+- Use **CPU** for compression and fine-tuning (MPS has matmul errors with some architectures and NaN gradients with frozen layers)
+- Use **MLX** for fast inference after compression
+- Set `HF_HOME` to external storage for large models
+
+## Limitations
+
+- **Probe sets are small** by LLM evaluation standards: 56 factual probes, 300 bias probes, 150 sycophancy probes. While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
+- **Western-centric coverage.** Factual probes cover primarily English-language, Western knowledge domains. Bias probes are specific to U.S. social categories.
+- **7B scale only.** All merge and steering results are on 7B-parameter models. Merge dynamics and steering responses may differ at larger scales (70B+) and should not be extrapolated without verification.
+- **Toxicity is unaffected** by weight edits (SVD, freeze, steering). It appears to rely on highly distributed lexical features that single-layer or structural interventions cannot modulate.
 
 ## Built On
 
@@ -544,25 +544,23 @@ Both remain available as independent repos. Knowledge Fidelity combines their co
 
 ## Related Work & Inspirations
 
-This toolkit builds on foundational ideas in LLM compression and mechanistic interpretability:
-
 - **Low-rank SVD compression.** [SVD-LLM](https://arxiv.org/abs/2403.07378) (Wang et al., 2024; ICLR 2025) introduced truncation-aware SVD for LLM weight matrices. [ASVD](https://arxiv.org/abs/2312.05821) (Yuan et al., 2023) added activation-aware rank allocation. We extend these with importance-guided truncation scored on factual probes, and behavioral auditing to verify nothing was lost.
 
-- **Knowledge preservation under compression.** [Compressing LLMs: The Truth is Rarely Pure and Never Simple](https://arxiv.org/abs/2310.01382) (Jaiswal et al., 2023; ICLR 2024) showed that standard benchmarks miss knowledge-intensive failures in compressed models (LLM-KICK). [TPLO](https://arxiv.org/abs/2509.00096) (Fu et al., 2025; EMNLP 2025) directly addresses truthfulness preservation during pruning. Our work complements these by measuring factual retention via teacher-forced confidence rather than downstream QA accuracy.
+- **Knowledge preservation under compression.** [Compressing LLMs: The Truth is Rarely Pure and Never Simple](https://arxiv.org/abs/2310.01382) (Jaiswal et al., 2023; ICLR 2024) showed that standard benchmarks miss knowledge-intensive failures in compressed models (LLM-KICK). [TPLO](https://arxiv.org/abs/2509.00096) (Fu et al., 2025; EMNLP 2025) directly addresses truthfulness preservation during pruning.
 
-- **Joint compression strategies.** [CALDERA](https://arxiv.org/abs/2405.18886) (Saha et al., 2024; NeurIPS 2024) combines low-rank and low-precision decomposition (W ≈ Q + LR). Our CF90 + INT8 stacking experiments follow a similar philosophy — SVD for structure, quantization for size.
+- **Joint compression strategies.** [CALDERA](https://arxiv.org/abs/2405.18886) (Saha et al., 2024; NeurIPS 2024) combines low-rank and low-precision decomposition (W ≈ Q + LR).
 
-- **Confidence-based evaluation.** [G-Eval](https://arxiv.org/abs/2303.16634) (Liu et al., 2023; EMNLP 2023) uses token-level logprobs for NLG quality scoring. Our confidence cartography applies a similar signal — teacher-forced probability — as a factual belief sensor rather than a quality metric.
+- **Confidence-based evaluation.** [G-Eval](https://arxiv.org/abs/2303.16634) (Liu et al., 2023; EMNLP 2023) uses token-level logprobs for NLG quality scoring.
 
-- **[Awesome-LLM-Compression](https://github.com/HuangOwen/Awesome-LLM-Compression).** The ecosystem overview that helped shape this work. We're grateful for the curation effort.
+- **Activation steering.** [Steering Llama 2 via Contrastive Activation Addition](https://arxiv.org/abs/2312.06681) (Panickssery et al., 2024; ACL 2024). We extract steering vectors from the same ρ probes used for auditing.
 
-If we've missed key references or misrepresented any work, please [open an issue](https://github.com/SolomonB14D3/knowledge-fidelity/issues) — happy to update.
+- **[Awesome-LLM-Compression](https://github.com/HuangOwen/Awesome-LLM-Compression).** The ecosystem overview that helped shape this work.
+
+If we've missed key references or misrepresented any work, please [open an issue](https://github.com/SolomonB14D3/knowledge-fidelity/issues).
 
 ## Citation
 
-This toolkit builds on the confidence cartography method introduced in:
-
-> Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models.* Zenodo. [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
+To cite the underlying method:
 
 ```bibtex
 @article{sanchez2026confidence,
@@ -574,7 +572,7 @@ This toolkit builds on the confidence cartography method introduced in:
 }
 ```
 
-To cite this toolkit specifically:
+To cite this toolkit:
 
 ```bibtex
 @software{sanchez2026knowledgefidelity,
@@ -586,9 +584,17 @@ To cite this toolkit specifically:
 }
 ```
 
+## Contributing
+
+PRs welcome for new probes, model support, or bug fixes. See [open issues](https://github.com/SolomonB14D3/knowledge-fidelity/issues) for ideas.
+
 ## Acknowledgments
 
 Thanks to the maintainers of [Awesome-LLM-Compression](https://github.com/HuangOwen/Awesome-LLM-Compression) and the authors of the SVD compression, knowledge preservation, and confidence calibration papers listed above. This work wouldn't exist without the foundation they built.
+
+---
+
+If this helps your compression or auditing work, a star helps others find it.
 
 ## License
 
