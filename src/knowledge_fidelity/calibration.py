@@ -320,10 +320,12 @@ def gentle_finetune(
     model = model.merge_and_unload()
 
     # Clean up any residual peft metadata to avoid warnings on next LoRA application
-    if hasattr(model, "peft_config"):
-        delattr(model, "peft_config")
-    if hasattr(model, "_hf_peft_config_loaded"):
-        delattr(model, "_hf_peft_config_loaded")
+    for attr in ("peft_config", "_hf_peft_config_loaded"):
+        try:
+            if hasattr(model, attr):
+                object.__delattr__(model, attr)
+        except (AttributeError, Exception):
+            pass  # Some attrs may not be deletable on nn.Module subclasses
 
     # Free optimizer/trainer memory
     del trainer
