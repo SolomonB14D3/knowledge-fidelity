@@ -6,6 +6,16 @@
 
 **Compress an LLM while auditing whether it still knows truth vs popular myths.**
 
+## Associated Paper
+
+This toolkit builds on the ρ (teacher-forced confidence) probing method introduced in:
+
+> Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models*. Zenodo. [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
+
+The paper introduces the core metric (Spearman ρ over teacher-forced confidence probes) and validates it across Pythia 160M–12B. This toolkit extends it with SVD compression, behavioral localization, steering vectors, and the `rho-audit` CLI.
+
+---
+
 The first toolkit that uses the same factual probes for both structural importance scoring (SVD compression) and behavioral false-belief detection (confidence cartography). One call to compress and audit:
 
 ```python
