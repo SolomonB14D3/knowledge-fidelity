@@ -39,41 +39,57 @@ BEHAVIOR_LABELS = {
     "sycophancy": "Sycophancy resistance ρ",
 }
 
-# Order from conservative to aggressive
+# Order from conservative to aggressive (Qwen-Coder family)
 METHOD_ORDER = [
     "qwen2.5-7b-instruct",
+    "qwen2.5-7b-linear",
     "qwen2.5-7b-slerp",
+    "qwen2.5-7b-task-arith",
     "qwen2.5-7b-ties",
     "qwen2.5-7b-dare-ties",
 ]
 
 METHOD_LABELS = {
     "qwen2.5-7b-instruct": "Baseline",
+    "qwen2.5-7b-linear": "Linear",
     "qwen2.5-7b-slerp": "SLERP",
+    "qwen2.5-7b-task-arith": "Task Arith.",
     "qwen2.5-7b-ties": "TIES",
     "qwen2.5-7b-dare-ties": "DARE-TIES",
 }
 
+# Mistral family
+MISTRAL_ORDER = [
+    "mistral-7b-v0.1",
+    "mistral-7b-slerp",
+    "mistral-7b-ties",
+    "mistral-7b-dare-ties",
+]
 
-def plot_merge_tradeoffs(results, output_path=None, show=False):
-    """Create the merge tradeoff visualization."""
-    fig, (ax_main, ax_rates) = plt.subplots(
-        1, 2, figsize=(14, 6),
-        gridspec_kw={"width_ratios": [3, 2], "wspace": 0.3}
-    )
+MISTRAL_LABELS = {
+    "mistral-7b-v0.1": "Baseline",
+    "mistral-7b-slerp": "SLERP",
+    "mistral-7b-ties": "TIES",
+    "mistral-7b-dare-ties": "DARE-TIES",
+}
 
-    methods = [m for m in METHOD_ORDER if m in results]
+
+def _plot_family(ax, results, method_order, method_labels, title):
+    """Plot a single model family as a grouped bar chart."""
+    import math
+    methods = [m for m in method_order if m in results]
     x = np.arange(len(methods))
-    labels = [METHOD_LABELS[m] for m in methods]
-
-    # ── Left panel: rho scores ────────────────────────────────────────
+    labels = [method_labels[m] for m in methods]
     bar_width = 0.22
     behaviors = ["factual", "bias", "sycophancy"]
 
     for i, behavior in enumerate(behaviors):
-        values = [results[m]["behaviors"][behavior]["rho"] for m in methods]
+        values = []
+        for m in methods:
+            rho = results[m]["behaviors"][behavior]["rho"]
+            values.append(rho if not (isinstance(rho, float) and math.isnan(rho)) else 0.0)
         offset = (i - 1) * bar_width
-        bars = ax_main.bar(
+        bars = ax.bar(
             x + offset, values,
             width=bar_width,
             color=BEHAVIOR_COLORS[behavior],
@@ -83,103 +99,50 @@ def plot_merge_tradeoffs(results, output_path=None, show=False):
             linewidth=0.5,
             zorder=3,
         )
-        # Value labels on bars
         for bar, val in zip(bars, values):
-            ax_main.text(
+            ax.text(
                 bar.get_x() + bar.get_width() / 2,
                 bar.get_height() + 0.015,
                 f"{val:.3f}",
                 ha="center", va="bottom",
-                fontsize=7.5, fontweight="bold",
+                fontsize=6.5, fontweight="bold",
                 color=BEHAVIOR_COLORS[behavior],
             )
 
-    ax_main.set_xlabel("Merge Method", fontsize=12)
-    ax_main.set_ylabel("ρ (Spearman correlation)", fontsize=12)
-    ax_main.set_title(
-        "Behavioral Trade-offs Across Merge Strategies\n"
-        "Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B",
-        fontsize=13, fontweight="bold",
-    )
-    ax_main.set_xticks(x)
-    ax_main.set_xticklabels(labels, fontsize=10)
-    ax_main.set_ylim(0, 1.0)
-    ax_main.legend(loc="upper right", fontsize=9, framealpha=0.9)
-    ax_main.grid(True, axis="y", alpha=0.3)
+    ax.set_xlabel("Merge Method", fontsize=11)
+    ax.set_ylabel("ρ (Spearman correlation)", fontsize=11)
+    ax.set_title(title, fontsize=12, fontweight="bold")
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=9, rotation=30, ha="right")
+    ax.set_ylim(0, 1.05)
+    ax.legend(loc="upper right", fontsize=8, framealpha=0.9)
+    ax.grid(True, axis="y", alpha=0.3)
 
-    # Add arrow showing aggression gradient
-    ax_main.annotate(
-        "", xy=(len(methods) - 0.7, -0.06), xytext=(0.3, -0.06),
-        xycoords=("data", "axes fraction"),
-        textcoords=("data", "axes fraction"),
-        arrowprops=dict(arrowstyle="->", color="gray", lw=1.5),
-        annotation_clip=False,
-    )
-    ax_main.text(
-        len(methods) / 2 - 0.5, -0.10,
-        "More aggressive merging →",
-        ha="center", va="top", fontsize=9,
-        fontstyle="italic", color="gray",
-        transform=ax_main.get_xaxis_transform(),
+
+def plot_merge_tradeoffs(results, output_path=None, show=False):
+    """Create the merge tradeoff visualization for both families."""
+    fig, (ax_qwen, ax_mistral) = plt.subplots(
+        1, 2, figsize=(16, 6.5),
+        gridspec_kw={"wspace": 0.3}
     )
 
-    # ── Right panel: failure rates ────────────────────────────────────
-    bias_rates = [results[m]["behaviors"]["bias"]["bias_rate"] for m in methods]
-    syc_rates = [results[m]["behaviors"]["sycophancy"]["sycophancy_rate"] for m in methods]
-
-    x2 = np.arange(len(methods))
-    bar_width2 = 0.3
-
-    bars_b = ax_rates.bar(
-        x2 - bar_width2 / 2, [r * 100 for r in bias_rates],
-        width=bar_width2,
-        color=BEHAVIOR_COLORS["bias"],
-        label="Bias rate",
-        alpha=0.85,
-        edgecolor="white",
-        linewidth=0.5,
-    )
-    bars_s = ax_rates.bar(
-        x2 + bar_width2 / 2, [r * 100 for r in syc_rates],
-        width=bar_width2,
-        color=BEHAVIOR_COLORS["sycophancy"],
-        label="Sycophancy rate",
-        alpha=0.85,
-        edgecolor="white",
-        linewidth=0.5,
+    _plot_family(
+        ax_qwen, results, METHOD_ORDER, METHOD_LABELS,
+        "Qwen2.5-7B-Instruct + Coder\n(6 merge methods)",
     )
 
-    # Value labels
-    for bar, val in zip(bars_b, bias_rates):
-        ax_rates.text(
-            bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + 1.5,
-            f"{val:.0%}",
-            ha="center", va="bottom", fontsize=8, fontweight="bold",
-            color=BEHAVIOR_COLORS["bias"],
-        )
-    for bar, val in zip(bars_s, syc_rates):
-        ax_rates.text(
-            bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + 1.5,
-            f"{val:.0%}",
-            ha="center", va="bottom", fontsize=8, fontweight="bold",
-            color=BEHAVIOR_COLORS["sycophancy"],
-        )
+    _plot_family(
+        ax_mistral, results, MISTRAL_ORDER, MISTRAL_LABELS,
+        "Mistral-7B-Instruct + OpenOrca\n(3 merge methods)",
+    )
 
-    ax_rates.set_xlabel("Merge Method", fontsize=12)
-    ax_rates.set_ylabel("Failure Rate (%)", fontsize=12)
-    ax_rates.set_title("Behavioral Failure Rates", fontsize=13, fontweight="bold")
-    ax_rates.set_xticks(x2)
-    ax_rates.set_xticklabels(labels, fontsize=10)
-    ax_rates.set_ylim(0, 105)
-    ax_rates.legend(loc="upper right", fontsize=9, framealpha=0.9)
-    ax_rates.grid(True, axis="y", alpha=0.3)
+    # Remove duplicate legend on right panel
+    ax_mistral.get_legend().remove()
 
-    # ── Footer ────────────────────────────────────────────────────────
     fig.text(
         0.5, -0.02,
-        "DARE-TIES achieves +0.138 factual ρ gain but destroys bias detection (−0.570) and sycophancy resistance. "
+        "Linear-29 achieves best factual-sycophancy balance on Qwen. "
+        "Mistral merges preserve bias detection (>0.93) across all methods. "
         "Run rho-audit before and after merging.",
         ha="center", fontsize=8, fontstyle="italic", color="gray",
     )

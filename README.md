@@ -2,6 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/knowledge-fidelity)](https://pypi.org/project/knowledge-fidelity/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
+[![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
 
 **Compress an LLM while auditing whether it still knows truth vs popular myths.**
 
@@ -139,7 +140,7 @@ Different behaviors are encoded in different layer regions. By fixing SVD compre
 
 **Key insight:** Factual knowledge peaks when 75% of layers are frozen (only the top 7 of 28 layers adapt) — meaning facts are concentrated in early attention layers. Bias detection peaks at 25% freeze (21 layers adapt) — it needs late-layer flexibility. Toxicity detection is immovable regardless of freeze ratio.
 
-Model: Qwen2.5-7B-Instruct. All deltas are ρ(compressed) − ρ(baseline).
+These findings extend the ρ metric from [Sanchez (2026)](https://doi.org/10.5281/zenodo.18703506), applying it to post-compression behavioral localization. Model: Qwen2.5-7B-Instruct. All deltas are ρ(compressed) − ρ(baseline).
 
 ![Behavioral Localization](figures/freeze_sweep_7b.png)
 
@@ -151,18 +152,45 @@ python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.
 
 ### Merge Method Audit (v0.4 — `rho-audit` on Mergekit Models)
 
-What happens to behavioral traits when you merge Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B using different merge strategies? Standard benchmarks (MMLU, HumanEval) won't tell you — but `rho-audit` will.
+What happens to behavioral traits when you merge models using different strategies? Standard benchmarks (MMLU, HumanEval) won't tell you — but `rho-audit` will. We audited **12 models across 2 architectures** and 6 merge methods.
+
+#### Qwen2.5-7B-Instruct + Qwen2.5-Coder-7B (Yuuta208 series)
 
 | Method | Factual ρ | Bias ρ | Sycophancy ρ | Trade-off |
 |--------|:---------:|:------:|:------------:|-----------|
 | Baseline | 0.474 | **0.773** | 0.120 | — |
-| SLERP | 0.517 | 0.613 | 0.140 | Balanced but mild |
-| TIES | 0.546 | 0.363 | **0.280** | High factual/sycophancy, low bias |
-| DARE-TIES | **0.612** | 0.203 | 0.007 | Best factual, destroyed bias + sycophancy |
+| **Linear** | **0.710** | 0.377 | **0.380** | **Best overall balance** |
+| SLERP | 0.517 | 0.613 | 0.140 | Mild, balanced |
+| Task Arithmetic | 0.626 | 0.443 | 0.347 | Strong factual + sycophancy, good bias |
+| TIES | 0.546 | 0.363 | 0.280 | High factual/sycophancy, low bias |
+| DARE-TIES | 0.612 | 0.203 | 0.007 | Extreme factual, destroyed alignment |
+| DELLA | NaN | 0.000 | 0.000 | **Degenerate** — model completely broken |
+
+#### Mistral-7B-Instruct + OpenOrca (jpquiroga series)
+
+| Method | Factual ρ | Bias ρ | Sycophancy ρ | Trade-off |
+|--------|:---------:|:------:|:------------:|-----------|
+| Baseline | 0.576 | 0.407 | 0.080 | — |
+| SLERP | 0.511 | **0.940** | 0.093 | Bias detection more than doubled |
+| TIES | 0.477 | 0.927 | 0.127 | Similar to SLERP |
+| DARE-TIES | 0.502 | 0.933 | 0.107 | Bias preserved (unlike Qwen!) |
+
+#### Cross-Architecture Baselines
+
+| Model | Factual ρ | Bias ρ | Sycophancy ρ |
+|-------|:---------:|:------:|:------------:|
+| Qwen2.5-7B-Instruct | 0.474 | 0.773 | 0.120 |
+| Mistral-7B-v0.1 | 0.576 | 0.407 | 0.080 |
+| Llama-3.1-8B-Instruct | 0.487 | **0.897** | 0.047 |
 
 ![Merge Tradeoffs](figures/merge_tradeoffs.png)
 
-**Key finding:** Every merge method improves factual discrimination (the Coder model adds precision), but they all degrade bias detection — DARE-TIES most severely (-0.570). DARE's aggressive pruning of low-magnitude directions strips out the alignment signals that encode social awareness. TIES preserves sycophancy resistance (+0.160) while DARE-TIES destroys it (0.007).
+**Key findings:**
+
+1. **Linear merging is the best balanced hybrid** on Qwen — highest factual (0.710) and sycophancy resistance (0.380) of any method, while retaining usable bias detection.
+2. **Merge effects are architecture-dependent.** On Qwen, every merge degrades bias detection. On Mistral, merging *improves* bias detection from 0.407 to 0.940 — a 2.3x gain. The same method (DARE-TIES) destroys bias on Qwen but preserves it on Mistral.
+3. **DELLA produced a degenerate model** — factual=NaN, all behaviors at zero. The layer-wise density pruning completely destroyed this merge pair.
+4. **Aggressive pruning strips alignment signals.** DARE-TIES on Qwen achieves high factual (0.612) but at the cost of destroying bias detection (−0.570) and sycophancy resistance (0.007).
 
 **Toward behaviorally-aware merging:** These results suggest that future merge strategies could use per-behavior rho scores as optimization targets — applying rho-guided weights or layer-wise merging to preserve all behavioral traits simultaneously, not just benchmark accuracy.
 
@@ -170,11 +198,12 @@ What happens to behavioral traits when you merge Qwen2.5-7B-Instruct + Qwen2.5-C
 
 ```bash
 # Reproduce
-python experiments/audit_merged_models.py --behaviors factual,bias,sycophancy
+python experiments/audit_merged_models.py --family qwen-coder
+python experiments/audit_merged_models.py --family mistral
 python experiments/plot_merge_tradeoffs.py --results results/leaderboard/merged_audit.json
 
 # Or audit any model directly
-rho-audit Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-slerp-29 --behaviors all
+rho-audit Yuuta208/Qwen2.5-7B-Instruct-Qwen2.5-Coder-7B-Merged-linear-29 --behaviors all
 ```
 
 ### Scale-Dependent Findings
@@ -519,6 +548,22 @@ This toolkit builds on foundational ideas in LLM compression and mechanistic int
 If we've missed key references or misrepresented any work, please [open an issue](https://github.com/SolomonB14D3/knowledge-fidelity/issues) — happy to update.
 
 ## Citation
+
+This toolkit builds on the confidence cartography method introduced in:
+
+> Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models.* Zenodo. [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
+
+```bibtex
+@article{sanchez2026confidence,
+  author = {Sanchez, Bryan},
+  title = {Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models},
+  year = {2026},
+  doi = {10.5281/zenodo.18703506},
+  url = {https://zenodo.org/records/18703506}
+}
+```
+
+To cite this toolkit specifically:
 
 ```bibtex
 @software{knowledge_fidelity,
