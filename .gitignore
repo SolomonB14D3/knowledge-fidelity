@@ -39,6 +39,11 @@ figures/**/*.png
 # But keep key result figures referenced in README
 !figures/freeze_sweep_7b.png
 !figures/merge_tradeoffs.png
+!figures/cocktail_tradeoff.png
+!figures/cocktail_response_curves.png
+!figures/mistral_sensitivity_map.png
+!figures/mistral_layer_heatmap.png
+!figures/mistral_layer_heatmap_delta.png
 
 # LaTeX build artifacts
 paper/*.aux
@@ -61,7 +66,11 @@ data/behavioral_cache/
 data/calibration_cache/
 
 # Experiment results (machine-specific, regenerated)
-results/
+results/**
+!results/steering/
+!results/steering/cocktail_qwen2.5_7b_instruct.json
+!results/steering/heatmap_mistral_7b_instruct_v0.3.json
+!results/steering/demo_modes_qwen2.5_7b_instruct.json
 *.log
 
 # Lock files

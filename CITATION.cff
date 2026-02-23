@@ -6,8 +6,8 @@ authors:
     given-names: Bryan
 type: software
 license: MIT
-version: 0.1.0
-date-released: 2026-02-20
+version: 1.1.0
+date-released: 2026-02-23
 repository-code: "https://github.com/SolomonB14D3/knowledge-fidelity"
 keywords:
   - llm-compression
