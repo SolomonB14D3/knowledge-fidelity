@@ -112,6 +112,30 @@ The denoising effect is consistent: at 70% rank, truncated SVD strips noise from
 | commonsense (10) | 0.261, 70% | —, — | 0.503, 40% |
 | truthfulqa (15) | 0.596, 40% | —, — | 0.586, 47% |
 
+### Behavioral Localization (v0.3 — Freeze-Ratio Sweep)
+
+Different behaviors are encoded in different layer regions. By fixing SVD compression at 70% and varying how many bottom layers are frozen during LoRA recovery (rank 8, 100 steps), we can map where each behavior lives:
+
+| Behavior | Baseline ρ | f=0% | f=25% | f=50% | f=75% | f=90% | Best freeze | Location |
+|----------|:----------:|:----:|:-----:|:-----:|:-----:|:-----:|:-----------:|----------|
+| Factual  | 0.474 | +0.031 | +0.050 | +0.054 | **+0.072** | +0.050 | 75% | Early-layer |
+| Toxicity | 0.521 | −0.005 | −0.005 | −0.005 | −0.007 | −0.008 | — | Immovable |
+| Bias     | 0.773 | +0.077 | **+0.093** | +0.080 | +0.023 | +0.027 | 25% | Late-layer |
+| Sycophancy | 0.120 | −0.007 | −0.007 | **+0.027** | +0.027 | +0.027 | 50% | Early-layer |
+| Reasoning | 0.010 | +0.030 | +0.020 | **+0.040** | +0.020 | +0.000 | 50% | Late-layer |
+
+**Key insight:** Factual knowledge peaks when 75% of layers are frozen (only the top 7 of 28 layers adapt) — meaning facts are concentrated in early attention layers. Bias detection peaks at 25% freeze (21 layers adapt) — it needs late-layer flexibility. Toxicity detection is immovable regardless of freeze ratio.
+
+Model: Qwen2.5-7B-Instruct. All deltas are ρ(compressed) − ρ(baseline).
+
+![Behavioral Localization](figures/freeze_sweep_7b.png)
+
+```bash
+# Reproduce
+python experiments/freeze_ratio_sweep.py --models qwen2.5-7b
+python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.json
+```
+
 ### Scale-Dependent Findings
 
 | Finding | 0.5B | 7B (Qwen) | 7B (Mistral) |
@@ -365,6 +389,13 @@ python experiments/run_cf90_multiseed.py --model Qwen/Qwen2.5-7B-Instruct --seed
 
 # Fidelity benchmark across all probe categories
 python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B --json
+
+# Freeze-ratio sweep: behavioral localization
+python experiments/freeze_ratio_sweep.py --models qwen2.5-7b
+python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.json
+
+# Analyze existing sweep results (text table)
+python experiments/freeze_ratio_sweep.py --analyze results/freeze_sweep/sweep_v2.json
 ```
 
 ## Deployment

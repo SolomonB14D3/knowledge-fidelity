@@ -36,6 +36,8 @@ data/results/**/*.jsonl
 # Figures (regenerated from experiments)
 figures/*.png
 figures/**/*.png
+# But keep key result figures referenced in README
+!figures/freeze_sweep_7b.png
 
 # Jupyter
 .ipynb_checkpoints/
