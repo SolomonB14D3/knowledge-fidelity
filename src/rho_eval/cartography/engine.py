@@ -4,6 +4,8 @@ Teacher-forced confidence analysis: feed text through a model in one forward
 pass and measure how much probability it assigns to each actual next token.
 Low confidence at specific tokens indicates the model is uncertain or holds
 a belief that conflicts with the text.
+
+Automatically dispatches to MLX backend when an MLX model is detected.
 """
 
 from __future__ import annotations
@@ -16,6 +18,15 @@ from typing import Optional
 
 from .schema import TokenAnalysis, ConfidenceRecord
 from ..utils import get_device
+
+
+def _is_mlx_model(model) -> bool:
+    """Check if model is an MLX nn.Module (vs PyTorch)."""
+    try:
+        import mlx.nn
+        return isinstance(model, mlx.nn.Module)
+    except ImportError:
+        return False
 
 
 # ---------------------------------------------------------------------------
@@ -93,6 +104,93 @@ def unload_model():
 # Teacher-forced confidence analysis
 # ---------------------------------------------------------------------------
 
+def _mlx_analyze_confidence(
+    text: str,
+    category: str,
+    label: str,
+    model,
+    tokenizer,
+    top_k: int = 5,
+    model_name: str = "",
+) -> ConfidenceRecord:
+    """MLX implementation of analyze_confidence."""
+    import mlx.core as mx
+
+    tokens = tokenizer.encode(text)
+    if len(tokens) < 2:
+        raise ValueError(f"Text too short ({len(tokens)} tokens): '{text}'")
+
+    input_ids = mx.array(tokens)[None, :]
+    seq_len = input_ids.shape[1]
+
+    # Forward pass
+    logits = model(input_ids)  # (1, seq_len, vocab_size)
+
+    # Shift: logits[0, t, :] predicts token at position t+1
+    logits_np = np.array(logits[0, :-1, :].astype(mx.float32))
+    target_ids = np.array(input_ids[0, 1:])
+
+    # Softmax in numpy (logits are already materialized)
+    logits_shifted = logits_np - logits_np.max(axis=-1, keepdims=True)
+    exp_logits = np.exp(logits_shifted)
+    probs = exp_logits / exp_logits.sum(axis=-1, keepdims=True)
+
+    token_analyses = []
+    top1_probs_list = []
+    entropies_list = []
+
+    for t in range(seq_len - 1):
+        target_id = int(target_ids[t])
+        target_str = tokenizer.decode([target_id])
+        prob_dist = probs[t]
+
+        actual_prob = float(prob_dist[target_id])
+        sorted_indices = np.argsort(prob_dist)[::-1]
+        rank = int(np.where(sorted_indices == target_id)[0][0])
+        entropy = float(-(prob_dist * np.log2(prob_dist + 1e-12)).sum())
+
+        topk_ids = sorted_indices[:top_k]
+        topk_probs = prob_dist[topk_ids]
+        topk_strs = [tokenizer.decode([int(tid)]) for tid in topk_ids]
+
+        ta = TokenAnalysis(
+            position=t,
+            token_id=target_id,
+            token_str=target_str,
+            top1_prob=actual_prob,
+            top1_rank=rank,
+            entropy=entropy,
+            top5_tokens=topk_strs,
+            top5_probs=topk_probs.tolist(),
+            top5_ids=topk_ids.tolist(),
+        )
+        token_analyses.append(ta)
+        top1_probs_list.append(actual_prob)
+        entropies_list.append(entropy)
+
+    probs_arr = np.array(top1_probs_list)
+    ent_arr = np.array(entropies_list)
+    min_idx = int(np.argmin(probs_arr))
+
+    return ConfidenceRecord(
+        text=text,
+        category=category,
+        label=label,
+        mode="fixed",
+        num_tokens=seq_len,
+        tokens=token_analyses,
+        mean_top1_prob=float(probs_arr.mean()),
+        mean_entropy=float(ent_arr.mean()),
+        std_top1_prob=float(probs_arr.std()),
+        std_entropy=float(ent_arr.std()),
+        min_confidence_pos=min_idx,
+        min_confidence_token=token_analyses[min_idx].token_str,
+        min_confidence_value=float(probs_arr[min_idx]),
+        model_name=model_name,
+        model_revision="main",
+    )
+
+
 @torch.no_grad()
 def analyze_confidence(
     text: str,
@@ -127,6 +225,14 @@ def analyze_confidence(
     Returns:
         ConfidenceRecord with per-token analysis
     """
+    # Auto-dispatch to MLX if model is an MLX nn.Module
+    if model is not None and _is_mlx_model(model):
+        return _mlx_analyze_confidence(
+            text=text, category=category, label=label,
+            model=model, tokenizer=tokenizer, top_k=top_k,
+            model_name=model_name,
+        )
+
     if model is None or tokenizer is None:
         model, tokenizer, device = load_model(model_name, revision, dtype=dtype)
     if device is None:
