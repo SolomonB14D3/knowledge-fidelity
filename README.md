@@ -76,6 +76,11 @@ Llama's sycophancy ρ of 0.047 means it agrees with the user on 95% of false cla
 
 Baselines: factual=0.487, sycophancy=0.047, bias=0.897. The Kill Zone at L14-L16 mirrors Mistral exactly (bias collapses from 0.90 to 0.49-0.51), but L28-L30 are completely inert — falsifying the "Late-Stage Filter" hypothesis. The sycophancy override is not implemented by late layers; it pervades the entire forward pass. The trade-off slope is −4.7 (vs Qwen's −1.37), meaning Llama's entanglement is 3.4× steeper.
 
+<p align="center">
+  <img src="figures/llama_layer_heatmap.png" alt="Llama Overridden Archetype" width="600">
+</p>
+<p align="center"><em>Llama-3.1-8B: The "Overridden" Archetype. Bias (purple) and sycophancy (orange) are separated by 0.853 cognitive dissonance — the model knows truth but won't express it. Kill Zone at L14-L16 matches Mistral.</em></p>
+
 ## Fidelity-Bench 2.0: Measuring the Truth-Gap
 
 We introduce the Truth-Gap, a metric quantifying how much factual integrity a model sacrifices under social pressure:
