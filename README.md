@@ -7,6 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
 [![MLX](https://img.shields.io/badge/Apple%20Silicon-MLX%20Accelerated-black?logo=apple)](https://github.com/ml-explore/mlx)
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?logo=github)](https://github.com/sponsors/SolomonB14D3)
 
 **Mechanistic interpretability, disentangled steering, and the Truth-Gap benchmark.**
 
