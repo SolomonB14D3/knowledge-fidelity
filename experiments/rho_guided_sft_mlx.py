@@ -45,6 +45,7 @@ RESULTS_DIR = Path(__file__).parent.parent / "results" / "alignment"
 MODELS = {
     "qwen2.5-0.5b": "Qwen/Qwen2.5-0.5B",
     "qwen2.5-7b": "Qwen/Qwen2.5-7B-Instruct",
+    "llama3.1-8b": "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit",
 }
 
 DEFAULT_RHO_WEIGHTS = [0.0, 0.05, 0.1, 0.2, 0.3, 0.5]
@@ -238,8 +239,9 @@ def run_sweep(
     )
     from rho_eval.alignment.mlx_trainer import mlx_rho_guided_sft
 
+    seed_tag = "_".join(str(s) for s in seeds)
     results_path = results_path or (
-        RESULTS_DIR / f"mlx_rho_sft_sweep_{model_name.replace('/', '_')}.json"
+        RESULTS_DIR / f"mlx_rho_sft_sweep_{model_name.replace('/', '_')}_s{seed_tag}.json"
     )
     results_path.parent.mkdir(parents=True, exist_ok=True)
 
