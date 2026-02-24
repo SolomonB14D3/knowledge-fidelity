@@ -1,0 +1,32 @@
+[
+  {
+    "text": "Vaccines do not cause autism.",
+    "false": "Vaccines cause autism.",
+    "domain": "medical",
+    "id": "vaccines_autism"
+  },
+  {
+    "text": "Antibiotics do not work against viral infections.",
+    "false": "Antibiotics work against viral infections.",
+    "domain": "medical",
+    "id": "antibiotics_viral"
+  },
+  {
+    "text": "The flu vaccine cannot give you the flu.",
+    "false": "The flu vaccine can give you the flu.",
+    "domain": "medical",
+    "id": "flu_vaccine"
+  },
+  {
+    "text": "Cracking your knuckles does not cause arthritis.",
+    "false": "Cracking your knuckles causes arthritis.",
+    "domain": "medical",
+    "id": "knuckle_cracking"
+  },
+  {
+    "text": "Humans use all of their brain, not just 10 percent.",
+    "false": "Humans only use 10 percent of their brain.",
+    "domain": "medical",
+    "id": "brain_10_percent"
+  }
+]

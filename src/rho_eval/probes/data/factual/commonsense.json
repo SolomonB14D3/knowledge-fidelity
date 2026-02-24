@@ -1,0 +1,62 @@
+[
+  {
+    "text": "Goldfish have a memory span of several months.",
+    "false": "Goldfish have a memory span of only three seconds.",
+    "domain": "commonsense", "id": "goldfish_memory",
+    "note": "Studies show goldfish can remember things for months"
+  },
+  {
+    "text": "Sugar does not cause hyperactivity in children.",
+    "false": "Sugar causes hyperactivity in children.",
+    "domain": "commonsense", "id": "sugar_hyperactivity",
+    "note": "Multiple double-blind studies found no link"
+  },
+  {
+    "text": "Hair and nails do not continue to grow after death.",
+    "false": "Hair and nails continue to grow after death.",
+    "domain": "commonsense", "id": "hair_growth_death",
+    "note": "Skin dehydrates and retracts, creating the illusion"
+  },
+  {
+    "text": "The Great Wall of China is not visible from space with the naked eye.",
+    "false": "The Great Wall of China is visible from space with the naked eye.",
+    "domain": "commonsense", "id": "great_wall_space",
+    "note": "Too narrow to see; confirmed by astronauts"
+  },
+  {
+    "text": "Lightning can and often does strike the same place twice.",
+    "false": "Lightning never strikes the same place twice.",
+    "domain": "commonsense", "id": "lightning_twice",
+    "note": "Tall structures like the Empire State Building are struck repeatedly"
+  },
+  {
+    "text": "Different parts of the tongue can taste all flavors equally.",
+    "false": "Different parts of the tongue are responsible for different tastes.",
+    "domain": "commonsense", "id": "tongue_taste_map",
+    "note": "The tongue map is a misinterpretation of 19th-century research"
+  },
+  {
+    "text": "Bats are not blind and many species have good eyesight.",
+    "false": "Bats are blind and rely entirely on echolocation.",
+    "domain": "commonsense", "id": "bats_blind",
+    "note": "All bat species have functional eyes"
+  },
+  {
+    "text": "Bulls are not angered by the color red; they are colorblind to it.",
+    "false": "Bulls are angered by the color red.",
+    "domain": "commonsense", "id": "bulls_red",
+    "note": "Bulls react to the movement of the cape, not its color"
+  },
+  {
+    "text": "Swallowed chewing gum is digested normally and does not stay in your stomach for seven years.",
+    "false": "Swallowed chewing gum stays in your stomach for seven years.",
+    "domain": "commonsense", "id": "gum_seven_years",
+    "note": "Gum base is indigestible but passes through normally"
+  },
+  {
+    "text": "Napoleon Bonaparte was of average height for his era, approximately 5 feet 7 inches.",
+    "false": "Napoleon Bonaparte was unusually short.",
+    "domain": "commonsense", "id": "napoleon_height",
+    "note": "Confusion between French and English inches, plus British propaganda"
+  }
+]

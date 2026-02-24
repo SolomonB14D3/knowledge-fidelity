@@ -1,12 +1,19 @@
-"""Shared probe system for knowledge-fidelity.
+"""Probe data package — shipped JSON files, discovery API, and legacy probe API.
 
-Probes are factual statements used for BOTH:
-  1. Structural importance scoring (SVD compression) -- which weights matter
-     for encoding facts
-  2. Behavioral false-belief detection (confidence cartography) -- whether
-     the model assigns lower confidence to false statements
+Probe data lives in probes/data/{behavior}/*.json. This package provides
+a simple API to discover and load them without hardcoding file paths.
 
-This shared probe format is the key unification point between the two approaches.
+Also re-exports all legacy functions from the old probes.py module for
+backward compatibility (get_default_probes, get_importance_prompts, etc.).
+
+Usage (new API):
+    from rho_eval.probes import list_probe_sets, get_probes
+
+    list_probe_sets()
+    probes = get_probes("factual/default")
+
+Usage (legacy API, still works):
+    from rho_eval.probes import get_default_probes, get_importance_prompts
 """
 
 from __future__ import annotations
@@ -15,14 +22,17 @@ import json
 from pathlib import Path
 from typing import Optional, Union
 
-from .utils import PROBES_DIR
+from ..utils import PROBES_DIR
+
+# New probe registry API
+from .registry import list_probe_sets, get_probes, get_probe_counts, PROBE_DATA_DIR
 
 
-# ---------------------------------------------------------------------------
-# Default probes (built-in, no external files needed)
-# ---------------------------------------------------------------------------
+# ═══════════════════════════════════════════════════════════════════════════
+# Legacy API (backward compatible with old probes.py)
+# ═══════════════════════════════════════════════════════════════════════════
 
-# These probes serve dual purpose:
+# Default probes serve dual purpose:
 # - As prompts for gradient-based importance scoring (SVD)
 # - As true/false pairs for confidence ratio measurement (cartography)
 
@@ -97,9 +107,6 @@ DEFAULT_PROBES = [
 ]
 
 
-# Mandela Effect probes -- popular false memories
-# These are particularly interesting because they test beliefs that MANY
-# people (and LLMs trained on internet text) hold incorrectly.
 MANDELA_PROBES = [
     {"text": "The Berenstain Bears is a popular children's book series.",
      "false": "The Berenstein Bears is a popular children's book series.",
@@ -128,7 +135,6 @@ MANDELA_PROBES = [
 ]
 
 
-# Medical claims probes (for out-of-domain generalization testing)
 MEDICAL_PROBES = [
     {"text": "Vaccines do not cause autism.",
      "false": "Vaccines cause autism.",
@@ -148,9 +154,7 @@ MEDICAL_PROBES = [
 ]
 
 
-# ---------------------------------------------------------------------------
-# Probe loading API
-# ---------------------------------------------------------------------------
+# ── Legacy functions ──────────────────────────────────────────────────────
 
 def get_default_probes() -> list[dict]:
     """Return the built-in default probes."""
@@ -180,7 +184,6 @@ def get_truthfulqa_probes() -> list[dict]:
 def get_all_probes() -> list[dict]:
     """Return all built-in probes (default + mandela + medical + commonsense + truthfulqa)."""
     all_probes = DEFAULT_PROBES + MANDELA_PROBES + MEDICAL_PROBES
-    # Add file-based probes if available
     for loader in [get_commonsense_probes, get_truthfulqa_probes]:
         try:
             all_probes.extend(loader())
@@ -194,17 +197,10 @@ def load_probes(path: Union[str, Path]) -> list[dict]:
 
     Expected format: list of dicts with at least "text" and "false" keys.
     Optional: "domain", "id", "note".
-
-    Args:
-        path: Path to JSON file
-
-    Returns:
-        List of probe dicts
     """
     with open(path) as f:
         probes = json.load(f)
 
-    # Validate
     for i, p in enumerate(probes):
         if "text" not in p:
             raise ValueError(f"Probe {i} missing 'text' key: {p}")
@@ -227,14 +223,29 @@ def save_probes(probes: list[dict], path: Union[str, Path]) -> None:
 def get_importance_prompts(
     probes: Optional[list[dict]] = None,
 ) -> list[str]:
-    """Extract just the true-text prompts for SVD importance scoring.
-
-    Args:
-        probes: List of probe dicts. If None, uses default probes.
-
-    Returns:
-        List of factual statement strings
-    """
+    """Extract just the true-text prompts for SVD importance scoring."""
     if probes is None:
         probes = DEFAULT_PROBES
     return [p["text"] for p in probes]
+
+
+__all__ = [
+    # New API
+    "list_probe_sets",
+    "get_probes",
+    "get_probe_counts",
+    "PROBE_DATA_DIR",
+    # Legacy API
+    "DEFAULT_PROBES",
+    "MANDELA_PROBES",
+    "MEDICAL_PROBES",
+    "get_default_probes",
+    "get_mandela_probes",
+    "get_medical_probes",
+    "get_commonsense_probes",
+    "get_truthfulqa_probes",
+    "get_all_probes",
+    "load_probes",
+    "save_probes",
+    "get_importance_prompts",
+]

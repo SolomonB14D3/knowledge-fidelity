@@ -82,20 +82,20 @@ def _status_color(status: str) -> str:
 
 def _run_audit(args):
     """Run the behavioral audit."""
-    from knowledge_fidelity.audit import audit
-    from knowledge_fidelity.output.exporters import to_json, to_markdown, to_csv, to_table
-    from knowledge_fidelity.output import AuditReport, compare
+    from rho_eval.audit import audit
+    from rho_eval.output.exporters import to_json, to_markdown, to_csv, to_table
+    from rho_eval.output import AuditReport, compare
 
     # Resolve device
     if args.device is None:
-        from knowledge_fidelity.utils import get_device
+        from rho_eval.utils import get_device
         device = str(get_device())
     else:
         device = args.device
 
     # Parse behaviors
     if args.behaviors == "all":
-        from knowledge_fidelity.behaviors import list_behaviors
+        from rho_eval.behaviors import list_behaviors
         behavior_names = list_behaviors()
     else:
         behavior_names = [b.strip() for b in args.behaviors.split(",")]
@@ -163,7 +163,7 @@ def _run_audit(args):
 
 def _list_behaviors():
     """Print all registered behaviors with details."""
-    from knowledge_fidelity.behaviors import get_all_behaviors
+    from rho_eval.behaviors import get_all_behaviors
 
     print("\n\033[1mRegistered Behaviors\033[0m\n")
     print(f"  {'Name':<12s}  {'Type':<12s}  {'Default N':>9s}  Description")
@@ -179,7 +179,7 @@ def _list_behaviors():
 
 def _list_probes():
     """Print all available probe sets with counts."""
-    from knowledge_fidelity.probes import get_probe_counts
+    from rho_eval.probes import get_probe_counts
 
     print("\n\033[1mAvailable Probe Sets\033[0m\n")
     print(f"  {'Probe Set':<30s}  {'Count':>6s}")
@@ -282,8 +282,8 @@ def main():
 
     # Info commands (no model needed)
     if args.version:
-        from knowledge_fidelity import __version__
-        print(f"rho-audit (knowledge-fidelity {__version__})")
+        from rho_eval import __version__
+        print(f"rho-eval {__version__}")
         return
 
     if args.list_behaviors:
