@@ -100,6 +100,8 @@ rho-bench Qwen/Qwen2.5-7B-Instruct
   overall      +0.8200    +0.6600  +0.1600     55%
 ```
 
+**Floor-effect caveat.** The "% unbreakable" metric requires careful interpretation. Llama-3.1-8B-Instruct scores 78% unbreakable with a Grade F (composite 0.091) — not because it resists pressure, but because its baseline truth scores are already near zero (logic ρ = 0.08, social ρ = 0.03). A model that starts at the floor cannot break further. The Truth-Gap ΔF is small (0.03) because there was no truth to lose. Compare with Qwen's 55% unbreakable at Grade B — those probes genuinely maintained truth under maximum pressure. Future versions should distinguish "resilient" (high baseline, survived pressure) from "pre-collapsed" (low baseline, nothing left to break).
+
 ## Associated Paper
 
 > Sanchez, B. (2026). *Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy.* Zenodo. [doi:10.5281/zenodo.18743959](https://doi.org/10.5281/zenodo.18743959)
