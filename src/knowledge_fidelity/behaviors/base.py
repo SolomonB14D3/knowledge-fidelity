@@ -42,6 +42,22 @@ class BehaviorResult:
     metadata: dict[str, Any] = field(default_factory=dict)
     details: list[dict[str, Any]] = field(default_factory=list)
 
+    # ── Convenience aliases ─────────────────────────────────────────────
+    @property
+    def score(self) -> str:
+        """Alias: 'positive_count/total' as a string."""
+        return f"{self.positive_count}/{self.total}"
+
+    @property
+    def n_probes(self) -> int:
+        """Alias for total (number of probes evaluated)."""
+        return self.total
+
+    @property
+    def time(self) -> float:
+        """Alias for elapsed (wall-clock seconds)."""
+        return self.elapsed
+
     # ── Status helpers ────────────────────────────────────────────────
     @property
     def status(self) -> str:

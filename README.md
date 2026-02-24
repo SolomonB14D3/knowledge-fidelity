@@ -9,7 +9,7 @@
 
 **Mechanistic interpretability, disentangled steering, and the Truth-Gap benchmark.**
 
-> **Current finding:** Behavioral alignment in transformers is architecture-contingent. Factual integrity is a deep-layer invariant, but social compliance is entangled in mid-layers, creating an "Alignment Kill Zone" where surgical intervention collapses bias detection without improving sycophancy resistance.
+> **Current finding:** The Alignment Kill Zone at 44–50% depth is universal across transformer architectures, but the behavioral response is training-dependent. Three archetypes emerge: Modular (Qwen), Entangled (Mistral), and Overridden (Llama) — where the model knows the truth but is trained to suppress it.
 
 ## Project Overview
 
@@ -27,14 +27,17 @@ rho-eval is a full-stack research framework for auditing, interpreting, and stee
 
 ## The Architecture-Contingent Paradox
 
-Our v2.0 audit of Qwen 2.5 vs Mistral v0.3 reveals a fundamental divergence in behavioral anatomy:
+Our v2.0 audit across three model families reveals a three-way taxonomy of behavioral anatomy — and a universal geometric structure:
 
-| Model | Behavioral Profile | Intervention Result |
-|-------|-------------------|-------------------|
-| **Qwen 2.5** | Modular | Surgical steering at Layer 17 maximizes truth without bias collapse |
-| **Mistral v0.3** | Entangled | Steering hits the Alignment Kill Zone (L14-L18), causing catastrophic bias collapse (-0.460 rho) |
+| Model | Behavioral Profile | Kill Zone Response | Cognitive Dissonance |
+|-------|-------------------|-------------------|---------------------|
+| **Qwen 2.5** | Modular | Surgical steering at L17 maximizes truth without bias collapse | 0.653 |
+| **Mistral v0.3** | Entangled | Kill Zone (L14-L18) causes catastrophic bias collapse (−0.460 ρ) | 0.664 |
+| **Llama 3.1** | Overridden | Kill Zone matches Mistral (L14-L16), but sycophancy so extreme (0.047 ρ) steering barely registers | 0.853 |
 
-Mistral exhibits high behavioral entanglement, where social filters and factual reasoning share the same neural manifold. Qwen demonstrates structural modularity, allowing for cleaner disentanglement.
+**The Universal Kill Zone.** All three architectures share an Alignment Kill Zone at 44–50% depth (L14–L16 in 32-layer models, L12–L14 in 28-layer). The zone's *location* is universal; the *response* is training-dependent. Qwen's RLHF created modular representations that survive intervention. Mistral's alignment entangled social awareness with compliance. Llama's RLHF enforced compliance so aggressively that the model *knows the truth* (bias ρ = 0.900, highest of all three) but *refuses to act on it* (sycophancy ρ = 0.047, lowest of all three).
+
+**Cognitive Dissonance** (bias ρ − sycophancy ρ) measures the gap between what a model knows and how it behaves. Llama's 0.853 dissonance is 28% higher than either competitor — it has the strongest truth signal and the weakest truth *expression*.
 
 <p align="center">
   <img src="figures/mistral_layer_heatmap.png" alt="Mistral Alignment Kill Zone" width="600">
@@ -45,6 +48,33 @@ Mistral exhibits high behavioral entanglement, where social filters and factual 
   <img src="figures/cocktail_tradeoff.png" alt="Layer 17 Behavioral Entanglement" width="500">
 </p>
 <p align="center"><em>Layer 17 interference on Qwen: the slope of −1.37 between sycophancy and bias rho directly measures behavioral entanglement. No cocktail configuration reaches the target zone (green).</em></p>
+
+### Llama 3.1: The "Overridden" Archetype
+
+Llama-3.1-8B-Instruct presents the most extreme behavioral profile in our study. Its baseline audit reveals a model that *knows the truth* but has been trained to *never express it*:
+
+| Behavior | Llama ρ | Qwen ρ | Mistral ρ | Llama Rank |
+|----------|:-------:|:------:|:---------:|:----------:|
+| **Bias** | **+0.900** | +0.773 | +0.797 | 1st |
+| Factual | +0.486 | +0.474 | +0.585 | 2nd |
+| Toxicity | +0.510 | +0.521 | — | 2nd |
+| Reasoning | +0.100 | — | — | — |
+| **Sycophancy** | **+0.047** | +0.120 | +0.133 | **Last** |
+
+Llama's sycophancy ρ of 0.047 means it agrees with the user on 95% of false claims — including claims it can correctly identify as false (bias ρ = 0.900). The layer heatmap confirms why steering cannot help:
+
+| Layer | Depth | Factual ρ | Syc ρ | Bias ρ | ΔSyc | ΔBias |
+|:-----:|:-----:|:---------:|:-----:|:------:|:----:|:-----:|
+| 10 | 31% | 0.489 | 0.053 | 0.917 | +0.007 | +0.020 |
+| 12 | 38% | 0.492 | 0.120 | 0.813 | +0.073 | −0.083 |
+| **14** | **44%** | 0.435 | 0.133 | **0.487** | +0.087 | **−0.410** |
+| **16** | **50%** | 0.500 | 0.013 | **0.507** | −0.033 | **−0.390** |
+| 18 | 56% | 0.478 | 0.007 | 0.893 | −0.040 | −0.003 |
+| 20 | 62% | 0.506 | 0.027 | 0.900 | −0.020 | +0.003 |
+| 24 | 75% | 0.492 | 0.047 | 0.893 | +0.000 | −0.003 |
+| 28 | 88% | 0.489 | 0.060 | 0.897 | +0.013 | +0.000 |
+
+Baselines: factual=0.487, sycophancy=0.047, bias=0.897. The Kill Zone at L14-L16 mirrors Mistral exactly (bias collapses from 0.90 to 0.49-0.51), but L28-L30 are completely inert — falsifying the "Late-Stage Filter" hypothesis. The sycophancy override is not implemented by late layers; it pervades the entire forward pass. The trade-off slope is −4.7 (vs Qwen's −1.37), meaning Llama's entanglement is 3.4× steeper.
 
 ## Fidelity-Bench 2.0: Measuring the Truth-Gap
 
@@ -80,11 +110,12 @@ See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probabilit
 
 ## Key Findings
 
-- **Factual representations are architecturally universal.** Factual steering at ~75% depth improves rho on both Qwen (+0.152 at L24) and Mistral (+0.117 at L24). The optimal layer percentage is identical despite different total layer counts.
-- **Sycophancy suppression via activation steering is architecture-contingent.** The Layer 17 sweet spot is Qwen-specific (rho 0.120 to 0.413, a 3.4x gain). On Mistral, no layer at any depth achieves meaningful sycophancy improvement.
-- **The Alignment Kill Zone.** In Mistral, Layers 14-18 (44-56% depth) destroy bias detection (delta rho = -0.337 to -0.460) while providing zero sycophancy benefit. At Layer 16, sycophancy actually worsens.
-- **Social compliance and social awareness share representational capacity.** The slope of -1.37 between sycophancy rho and bias rho across the cocktail grid directly measures behavioral entanglement at Layer 17.
-- **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe rho by +0.514 on Qwen-0.5B.
+- **The Alignment Kill Zone is universal.** Layers at 44–50% depth (L14-L16 in 32-layer models) form a Kill Zone across all three architectures tested (Qwen, Mistral, Llama). Steering at these layers collapses bias detection by −0.39 to −0.46 ρ regardless of model family. The zone's location is a geometric property of transformers; the behavioral response is determined by training.
+- **Three distinct behavioral archetypes emerge from alignment training.** Qwen (Modular): clean separation allows surgical steering. Mistral (Entangled): social awareness and compliance share the same manifold. Llama (Overridden): the model knows truth (bias ρ = 0.900) but is trained to suppress it (sycophancy ρ = 0.047). Cognitive dissonance (bias − sycophancy) ranges from 0.653 (Qwen) to 0.853 (Llama).
+- **Factual representations are architecturally universal.** Factual steering at ~75% depth improves ρ on both Qwen (+0.152 at L24) and Mistral (+0.117 at L24). The optimal layer percentage is identical despite different total layer counts.
+- **Sycophancy suppression via activation steering is architecture-contingent.** The Layer 17 sweet spot is Qwen-specific (ρ 0.120 to 0.413, a 3.4× gain). On Mistral, no layer achieves meaningful improvement. On Llama, the sycophancy override pervades the entire forward pass — no single layer controls it.
+- **Social compliance and social awareness share representational capacity.** The slope of −1.37 between sycophancy ρ and bias ρ across the cocktail grid directly measures behavioral entanglement at Layer 17. Llama's slope is −4.7 (3.4× steeper).
+- **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
 - **Merge methods cause behavioral trade-offs invisible to standard benchmarks.** DARE-TIES destroys alignment on Qwen but improves it on Mistral. DELLA completely breaks the model. Only behavioral evaluation catches these failures.
 
 ---
@@ -706,8 +737,9 @@ python experiments/steering_vectors.py
 python experiments/multi_vector_steering.py --quick
 python experiments/multi_vector_steering.py --cross-model mistralai/Mistral-7B-Instruct-v0.3
 
-# Mistral layer heatmap: sycophancy vector sweep across all layers
+# Layer heatmap: sycophancy vector sweep across all layers (any model)
 python experiments/mistral_layer_heatmap.py
+python experiments/mistral_layer_heatmap.py --model meta-llama/Llama-3.1-8B-Instruct
 ```
 
 ## Deployment
