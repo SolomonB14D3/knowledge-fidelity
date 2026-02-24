@@ -1,11 +1,34 @@
-# Knowledge Fidelity
+# rho-eval
 
+[![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
-[![PyPI](https://img.shields.io/pypi/v/knowledge-fidelity)](https://pypi.org/project/knowledge-fidelity/)
+[![Tests](https://img.shields.io/badge/tests-61%20passed-brightgreen)]()
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
 
-SVD-based LLM compression with behavioral auditing using teacher-forced confidence (ρ) probes. Measures layer-wise trade-offs and merge method impacts on factual accuracy, bias detection, sycophancy resistance, toxicity sensitivity, and reasoning robustness.
+**Behavioral auditing toolkit for LLMs.** Audit any model across 5 dimensions — factual accuracy, bias detection, sycophancy resistance, toxicity sensitivity, and reasoning robustness — using teacher-forced confidence (ρ) probes. All 806 probes ship with the package; no internet required.
+
+```bash
+pip install rho-eval
+rho-eval Qwen/Qwen2.5-7B-Instruct --behaviors all
+```
+
+```
+Behavioral Audit: Qwen/Qwen2.5-7B-Instruct
+  Status: WARN  Mean ρ: 0.5346  Probes: 706  Time: 47.3s
+
+  Behavior         ρ   Retention   Score  Status   Time
+  ──────────────────────────────────────────────────────
+  bias        +0.7730     77.3%  232/300    PASS   15.7s
+  factual     +0.7460     85.7%   48/56     PASS    4.2s
+  reasoning   +0.4200     60.0%   42/100    WARN    9.5s
+  sycophancy  +0.1200     12.0%   18/150    FAIL    9.8s
+  toxicity    +0.6140     72.0%   72/100    PASS    8.1s
+```
+
+> *Formerly `knowledge-fidelity`. All v1.x imports still work.*
+
+Also includes SVD compression with behavioral auditing — measures layer-wise trade-offs and merge method impacts on all 5 behavioral dimensions.
 
 ## Associated Paper
 
@@ -29,26 +52,57 @@ These findings extend the ρ probing method from [Sanchez (2026)](https://doi.or
 ## Quick Start
 
 ```bash
-pip install knowledge-fidelity
+pip install rho-eval
 ```
 
-Audit any model's behavioral profile:
+### Python API (one-liner)
+
+```python
+import rho_eval
+
+# Audit any model across all 5 behaviors
+report = rho_eval.audit("Qwen/Qwen2.5-7B-Instruct")
+print(report)
+# <AuditReport model='Qwen/Qwen2.5-7B-Instruct' behaviors=5 mean_ρ=0.5346 status=WARN>
+
+# Or specific behaviors with a pre-loaded model
+report = rho_eval.audit(model=model, tokenizer=tokenizer, behaviors=["factual", "bias"])
+
+# Compare two models
+baseline = rho_eval.audit("Qwen/Qwen2.5-7B-Instruct")
+compressed = rho_eval.audit("my-compressed-model")
+delta = rho_eval.compare(compressed, baseline)
+print(delta.to_table())
+
+# List available behaviors and probes
+rho_eval.list_behaviors()
+# ['bias', 'factual', 'reasoning', 'sycophancy', 'toxicity']
+```
+
+### CLI
 
 ```bash
 # Full behavioral report card (5 dimensions)
-rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
+rho-eval Qwen/Qwen2.5-7B-Instruct --behaviors all
 
 # Quick factual-only check
-rho-audit my-merged-model/ --behaviors factual --json
+rho-eval my-merged-model/ --behaviors factual --format json
 
 # Compare a compressed model against baseline
-rho-audit compressed-model/ --behaviors all --compare baseline.json
+rho-eval compressed-model/ --compare baseline.json
+
+# Export as markdown/csv
+rho-eval my-model/ --format markdown --output report.json
+
+# Discover available behaviors and probes
+rho-eval --list-behaviors
+rho-eval --list-probes
 ```
 
-Or compress and audit in one call:
+### SVD Compression + Audit (legacy)
 
 ```python
-from knowledge_fidelity import compress_and_audit
+from rho_eval import compress_and_audit
 
 report = compress_and_audit("Qwen/Qwen2.5-7B-Instruct", ratio=0.7)
 print(f"Retention: {report['retention']:.0%} | "
@@ -59,7 +113,7 @@ print(f"Retention: {report['retention']:.0%} | "
 Auto-find the compression ratio that maximizes factual signal:
 
 ```bash
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
+rho-compress Qwen/Qwen2.5-0.5B --denoise
 # DENOISING DETECTED: Mandela rho 0.257 → 0.771 (+0.514) at 60% ratio
 ```
 
@@ -367,10 +421,10 @@ From [intelligent-svd](https://github.com/SolomonB14D3/intelligent-svd) and [con
 ## Install
 
 ```bash
-pip install knowledge-fidelity                    # Core (SVD + probes)
-pip install "knowledge-fidelity[cartography]"     # + confidence analysis + plots
-pip install "knowledge-fidelity[demo]"            # + Gradio demo app
-pip install "knowledge-fidelity[full]"            # Everything including MLX
+pip install rho-eval                    # Core (auditing + SVD + probes)
+pip install "rho-eval[cartography]"     # + confidence analysis + plots
+pip install "rho-eval[demo]"            # + Gradio demo app
+pip install "rho-eval[full]"            # Everything including MLX
 ```
 
 Or from source:
@@ -381,147 +435,165 @@ cd knowledge-fidelity
 pip install -e ".[full]"
 ```
 
+> **Upgrading from v1.x?** `pip install rho-eval` replaces `knowledge-fidelity`. All existing `from knowledge_fidelity import ...` imports continue to work. See [CHANGELOG.md](CHANGELOG.md) for details.
+
 ## CLI
 
-### `rho-audit` — Behavioral Auditing
+### `rho-eval` — Behavioral Auditing (primary)
 
 Audit any model across 5 behavioral dimensions. No compression needed — just load, probe, report.
 
 ```bash
-# Full behavioral report card
-rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
-
-# Factual probes only (fastest)
-rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors factual
+# Full behavioral report card (all 5 dimensions)
+rho-eval Qwen/Qwen2.5-7B-Instruct
 
 # Specific behaviors
-rho-audit my-model/ --behaviors factual,bias,sycophancy
+rho-eval my-model/ --behaviors factual,bias,sycophancy
 
-# JSON output for scripting
-rho-audit my-model/ --behaviors all --json --output audit.json
+# Output formats: table (default), json, markdown, csv
+rho-eval my-model/ --format json --output audit.json
 
 # Compare against a baseline
-rho-audit compressed-model/ --behaviors all --compare audit.json
+rho-eval compressed-model/ --compare audit.json
 
-# Custom probes
-rho-audit my-model/ --probes-file my_domain_probes.json
+# Discover available behaviors and probe sets
+rho-eval --list-behaviors
+rho-eval --list-probes
+
+# Limit probe count per behavior (faster, less precise)
+rho-eval my-model/ -n 20
 ```
 
-### `knowledge-fidelity` — Compression + Audit
+`rho-audit` is an alias for `rho-eval` (backward compatible).
+
+### `rho-compress` — Compression + Audit
 
 ```bash
 # Compress + audit (default: 70% rank, CF90 protection)
-knowledge-fidelity Qwen/Qwen2.5-0.5B
+rho-compress Qwen/Qwen2.5-0.5B
 
 # Audit only (no compression, baseline measurement)
-knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only
+rho-compress Qwen/Qwen2.5-0.5B --audit-only
 
 # Auto-find optimal denoising ratio
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise
-
-# Denoise with specific probe set
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --denoise-probe-set medical
-
-# Use all 56 probes
-knowledge-fidelity Qwen/Qwen2.5-0.5B --audit-only --probes all
+rho-compress Qwen/Qwen2.5-0.5B --denoise
 
 # Save compressed model
-knowledge-fidelity Qwen/Qwen2.5-0.5B --denoise --output ./denoised-model
+rho-compress Qwen/Qwen2.5-0.5B --denoise --output ./denoised-model
 ```
 
 ## Python API
 
-### One-Call Compress + Audit
+### Behavioral Audit (v2 API)
 
 ```python
-from knowledge_fidelity import compress_and_audit
+import rho_eval
+
+# One-liner: audit any model across all 5 behaviors
+report = rho_eval.audit("Qwen/Qwen2.5-7B-Instruct")
+
+# Specific behaviors, custom probe counts
+report = rho_eval.audit("my-model", behaviors=["factual", "bias"], n=50)
+
+# Pre-loaded model (no re-download)
+report = rho_eval.audit(model=model, tokenizer=tokenizer, behaviors="all")
+
+# Inspect results
+print(report.overall_status)         # "PASS", "WARN", or "FAIL"
+print(report.mean_rho)               # 0.5346
+print(report.behaviors["factual"])   # BehaviorResult(rho=0.746, status="PASS", ...)
+
+# Export
+report.save("audit.json")
+loaded = rho_eval.AuditReport.load("audit.json")  # Round-trip
+
+# Compare two audits
+delta = rho_eval.compare(report_after, report_before)
+print(delta.to_table())     # Colored terminal table
+print(delta.to_markdown())  # For GitHub PRs
+```
+
+### Custom Behaviors (Plugin System)
+
+```python
+from rho_eval.behaviors import ABCBehavior, register
+from rho_eval.behaviors.base import BehaviorResult
+
+@register
+class MyDomainBehavior(ABCBehavior):
+    name = "my_domain"
+    description = "Domain-specific probe evaluation"
+    probe_type = "confidence"
+    default_n = 50
+
+    def load_probes(self, n=None, seed=42, **kwargs):
+        return self._load_json_probes("my_domain/probes.json", n=n, seed=seed)
+
+    def evaluate(self, model, tokenizer, probes, device="cpu", **kwargs):
+        # Your evaluation logic here
+        return BehaviorResult(behavior=self.name, rho=0.7, ...)
+
+# Now available everywhere:
+report = rho_eval.audit("my-model", behaviors=["factual", "my_domain"])
+```
+
+### SVD Compression + Audit
+
+```python
+from rho_eval import compress_and_audit
 
 report = compress_and_audit(
     "Qwen/Qwen2.5-7B-Instruct",
     ratio=0.7,           # Keep 70% of singular values
     freeze_ratio=0.75,   # Freeze bottom 75% of layers
 )
-
 print(report["summary"])
-# Compressed Qwen/Qwen2.5-7B-Instruct at 70% rank | 84 matrices | 21/28 frozen | Retention: 100% | rho: 0.746 -> 0.725
 ```
 
-### Step-by-Step (More Control)
+### Step-by-Step Compression
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from knowledge_fidelity.svd import compress_qko, freeze_layers
-from knowledge_fidelity import audit_model
+from rho_eval.svd import compress_qko, freeze_layers
+from rho_eval import audit_model
 
-# Load
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct", torch_dtype=torch.float32)
 tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
 
-# Compress
 compress_qko(model, ratio=0.7)     # SVD on Q, K, O projections
 freeze_layers(model, ratio=0.75)   # Freeze bottom 75%
-
-# Audit
 audit = audit_model(model, tokenizer)
-print(f"rho={audit['rho']:.3f}, {audit['n_positive_delta']}/{audit['n_probes']} probes positive")
-
-# Fine-tune gently: 1 epoch, lr=1e-5
 ```
 
-### Importance-Guided Compression (for Aggressive Ratios)
-
-When compressing below 70%, standard SVD loses facts. The importance-guided variant uses gradient information to decide which singular values to keep:
+### Confidence Analysis
 
 ```python
-from knowledge_fidelity.svd import compress_qko_importance, compute_importance
+from rho_eval.cartography import analyze_confidence
 
-importance = compute_importance(model, tokenizer)  # Uses shared probes
-compress_qko_importance(model, importance, ratio=0.5)  # 3x better at 50%
-```
-
-### Confidence Analysis Only
-
-```python
-from knowledge_fidelity.cartography import analyze_confidence
-
-# Teacher-forced: how confident is the model on each token?
 record = analyze_confidence(
     "The capital of France is Paris.",
     model_name="EleutherAI/pythia-1.4b",
 )
 print(f"Mean confidence: {record.mean_top1_prob:.3f}")
-print(f"Min confidence at: '{record.min_confidence_token}' "
-      f"(prob={record.min_confidence_value:.3f})")
 ```
 
-### Custom Probes
+## Built-In Probe Sets (806 total)
 
-```python
-from knowledge_fidelity import compress_and_audit, load_probes
+All probes ship as JSON files — no internet download needed.
 
-# Use domain-specific probes
-medical_probes = load_probes("data/probes/medical_claims.json")
-report = compress_and_audit("my-model", probes=medical_probes)
+| Probe Set | Count | Behavior | Source |
+|-----------|------:|----------|--------|
+| `factual/default` | 20 | factual | Geography, science, history, biology |
+| `factual/mandela` | 6 | factual | Popular false memories (Berenstain Bears, Vader quote, etc.) |
+| `factual/medical` | 5 | factual | Common medical misconceptions |
+| `factual/commonsense` | 10 | factual | Commonsense myths (goldfish memory, sugar hyperactivity) |
+| `factual/truthfulqa` | 15 | factual | TruthfulQA-derived misconceptions |
+| `bias/bbq_300` | 300 | bias | BBQ disambiguated questions (9 bias categories) |
+| `sycophancy/anthropic_150` | 150 | sycophancy | Anthropic model-written-evals (philosophy, NLP, politics) |
+| `toxicity/toxigen_200` | 200 | toxicity | ToxiGen toxic/benign statements (balanced) |
+| `reasoning/gsm8k_100` | 100 | reasoning | GSM8K math + adversarial flattery prefixes |
 
-# Or inline
-custom = [
-    {"text": "TCP uses a three-way handshake.",
-     "false": "TCP uses a two-way handshake.",
-     "domain": "networking", "id": "tcp_handshake"},
-]
-report = compress_and_audit("my-model", probes=custom)
-```
-
-## Built-In Probe Sets
-
-| Set | Count | Purpose |
-|-----|-------|---------|
-| `get_default_probes()` | 20 | Geography, science, history, biology |
-| `get_mandela_probes()` | 6 | Popular false memories (Berenstain Bears, Vader quote, etc.) |
-| `get_medical_probes()` | 5 | Common medical misconceptions |
-| `get_commonsense_probes()` | 10 | Commonsense myths (goldfish memory, sugar hyperactivity, etc.) |
-| `get_truthfulqa_probes()` | 15 | TruthfulQA-derived misconceptions (evolution, Viking helmets, etc.) |
-| `get_all_probes()` | 56 | All of the above |
+Run `rho-eval --list-probes` to see all available sets.
 
 ## How It Works
 
@@ -617,7 +689,7 @@ Validated on:
 
 ## Limitations
 
-- **Probe sets are small** by LLM evaluation standards: 56 factual probes, 300 bias probes, 150 sycophancy probes. While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
+- **Probe sets are modest** by LLM evaluation standards: 806 total probes (56 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
 - **Western-centric coverage.** Factual probes cover primarily English-language, Western knowledge domains. Bias probes are specific to U.S. social categories.
 - **7B scale only.** All merge and steering results are on 7B-parameter models. Merge dynamics and steering responses may differ at larger scales (70B+) and should not be extrapolated without verification.
 - **Toxicity is unaffected** by weight edits (SVD, freeze, steering). It appears to rely on highly distributed lexical features that single-layer or structural interventions cannot modulate.
