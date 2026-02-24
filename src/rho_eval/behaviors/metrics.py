@@ -2,6 +2,11 @@
 
 Extracted from behavioral.py — these functions are used by multiple
 behavior plugins and should not be duplicated.
+
+Auto-dispatches to MLX backend when an MLX model is detected:
+  - get_mean_logprob() uses MLX inference when model is mlx.nn.Module
+  - generate() uses mlx_lm.generate() when model is mlx.nn.Module
+  - No behavior plugin changes needed — dispatch is transparent
 """
 
 from __future__ import annotations
@@ -12,6 +17,64 @@ import torch
 import numpy as np
 
 
+# ── MLX detection ─────────────────────────────────────────────────────
+
+def _is_mlx_model(model) -> bool:
+    """Check if model is an MLX nn.Module (vs PyTorch)."""
+    try:
+        import mlx.nn
+        return isinstance(model, mlx.nn.Module)
+    except ImportError:
+        return False
+
+
+# ── MLX implementations ──────────────────────────────────────────────
+
+def _mlx_get_mean_logprob(model, tokenizer, text: str) -> float:
+    """MLX implementation of get_mean_logprob."""
+    import mlx.core as mx
+    import mlx.nn as nn
+
+    tokens = tokenizer.encode(text)
+    if len(tokens) > 256:
+        tokens = tokens[:256]
+    if len(tokens) < 2:
+        return 0.0
+
+    input_ids = mx.array(tokens)[None, :]
+    inputs = input_ids[:, :-1]
+    targets = input_ids[:, 1:]
+
+    logits = model(inputs)
+    ce = nn.losses.cross_entropy(logits, targets).mean()
+    mx.eval(ce)
+
+    val = -float(ce)
+    return val if np.isfinite(val) else 0.0
+
+
+def _mlx_generate(
+    model, tokenizer, prompt: str, max_new_tokens: int = 50,
+) -> str:
+    """MLX implementation of generate (greedy decoding)."""
+    import mlx.core as mx
+    from mlx_lm import generate as mlx_gen
+
+    # Greedy decoding: use argmax sampler (no temperature)
+    def greedy_sampler(logits):
+        return mx.argmax(logits, axis=-1)
+
+    result = mlx_gen(
+        model, tokenizer, prompt=prompt,
+        max_tokens=max_new_tokens,
+        sampler=greedy_sampler,
+        verbose=False,
+    )
+    return result.strip()
+
+
+# ── Public API (auto-dispatching) ────────────────────────────────────
+
 def generate(
     model,
     tokenizer,
@@ -21,16 +84,21 @@ def generate(
 ) -> str:
     """Generate text from a prompt (greedy decoding).
 
+    Automatically uses MLX backend if model is an MLX nn.Module.
+
     Args:
-        model: HuggingFace CausalLM.
+        model: HuggingFace CausalLM or mlx-lm model.
         tokenizer: Corresponding tokenizer.
         prompt: Input text.
         max_new_tokens: Maximum tokens to generate.
-        device: Torch device string.
+        device: Torch device string (ignored for MLX models).
 
     Returns:
         Generated continuation (prompt stripped).
     """
+    if _is_mlx_model(model):
+        return _mlx_generate(model, tokenizer, prompt, max_new_tokens)
+
     inputs = tokenizer(
         prompt, return_tensors="pt", truncation=True, max_length=512
     ).to(device)
@@ -56,15 +124,20 @@ def get_mean_logprob(
 ) -> float:
     """Get mean log-probability (teacher-forced), filtering NaN.
 
+    Automatically uses MLX backend if model is an MLX nn.Module.
+
     Args:
-        model: HuggingFace CausalLM.
+        model: HuggingFace CausalLM or mlx-lm model.
         tokenizer: Corresponding tokenizer.
         text: Input text to score.
-        device: Torch device string.
+        device: Torch device string (ignored for MLX models).
 
     Returns:
         Negative cross-entropy loss (higher = model is more confident).
     """
+    if _is_mlx_model(model):
+        return _mlx_get_mean_logprob(model, tokenizer, text)
+
     inputs = tokenizer(
         text, return_tensors="pt", truncation=True, max_length=256
     ).to(device)
