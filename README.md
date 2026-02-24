@@ -81,6 +81,33 @@ Baselines: factual=0.487, sycophancy=0.047, bias=0.897. The Kill Zone at L14-L16
 </p>
 <p align="center"><em>Llama-3.1-8B: The "Overridden" Archetype. Bias (purple) and sycophancy (orange) are separated by 0.853 cognitive dissonance — the model knows truth but won't express it. Kill Zone at L14-L16 matches Mistral.</em></p>
 
+### Mechanistic Interpretability: SVD Subspace Analysis
+
+We decompose Llama-3.1-8B's activation space into behavioral subspaces via SVD at 6 layers (L8, L12, L16, L20, L24, L28), computing Grassmann principal angles between all behavior pairs. This reveals the geometric structure underlying the Overridden archetype.
+
+**Grassmann angles confirm bias↔sycophancy entanglement.** The principal angle between bias and sycophancy subspaces is the smallest of any behavior pair across all layers (81.3°–84.5°), while all other pairs remain near-orthogonal (83.5°–86.7°). This is the geometric signature of Cognitive Dissonance: truth and compliance directions are partially overlapping in activation space.
+
+<p align="center">
+  <img src="figures/interpretability/overlap_subspace_angles_llama_3.1_8b_instruct.png" alt="Grassmann Angle Heatmaps" width="700">
+</p>
+<p align="center"><em>Grassmann principal angles between behavioral subspaces at each layer. Bias↔sycophancy (81–84°) is consistently the most entangled pair. Near-orthogonal pairs (86°+) can be steered independently.</em></p>
+
+**Truth is concentrated; compliance spreads.** Bias subspaces have effective dimensionality 2–6 (the first singular value explains 56–89% of variance), meaning truth knowledge lives in a near-rank-1 direction. Sycophancy peaks at dim=9 at L16 — exactly the Kill Zone — where compliance behavior spreads across the maximum number of directions, giving it maximum leverage over the concentrated truth signal.
+
+<p align="center">
+  <img src="figures/interpretability/dimensionality_llama_3.1_8b_instruct.png" alt="Subspace Dimensionality" width="500">
+</p>
+<p align="center"><em>Effective dimensionality (90% variance threshold) per behavior across layers. Bias (blue) is concentrated; sycophancy (green) peaks at L16 (Kill Zone); factual and toxicity saturate at dim=10.</em></p>
+
+**Surgical rank-1 steering confirms cross-behavior contamination.** Applying a single rank-1 factual direction at L8 produces +0.046 factual improvement but simultaneously +0.220 sycophancy increase and −0.257 bias collapse. You cannot touch one behavioral direction without destabilizing others — the subspaces physically overlap in Llama's representation. The best sycophancy gain from rank-1 steering is +0.047 at L16, but it costs −0.087 in bias (1.85:1 damage ratio).
+
+**Individual "truth heads" identified.** Head attribution reveals L16/H30 (importance 0.705) as the single most important head for bias encoding — sitting directly in the Kill Zone. The top sycophancy head is L8/H13 (importance 0.702), concentrated in early layers. This separation explains why early-layer interventions are catastrophic: they contaminate the sycophancy signal before it reaches the truth-encoding heads.
+
+<p align="center">
+  <img src="figures/interpretability/head_importance_llama_3.1_8b_instruct.png" alt="Head Attribution" width="700">
+</p>
+<p align="center"><em>Per-head importance scores across 6 layers × 32 heads for each behavior. Sparse "hot" heads indicate concentrated encoding (bias, sycophancy) vs diffuse encoding (factual, toxicity).</em></p>
+
 ## Fidelity-Bench 2.0: Measuring the Truth-Gap
 
 We introduce the Truth-Gap, a metric quantifying how much factual integrity a model sacrifices under social pressure:
@@ -122,6 +149,7 @@ See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probabilit
 - **Factual representations are architecturally universal.** Factual steering at ~75% depth improves ρ on both Qwen (+0.152 at L24) and Mistral (+0.117 at L24). The optimal layer percentage is identical despite different total layer counts.
 - **Sycophancy suppression via activation steering is architecture-contingent.** The Layer 17 sweet spot is Qwen-specific (ρ 0.120 to 0.413, a 3.4× gain). On Mistral, no layer achieves meaningful improvement. On Llama, the sycophancy override pervades the entire forward pass — no single layer controls it.
 - **Social compliance and social awareness share representational capacity.** The slope of −1.37 between sycophancy ρ and bias ρ across the cocktail grid directly measures behavioral entanglement at Layer 17. Llama's slope is −4.7 (3.4× steeper).
+- **Behavioral subspaces have distinct geometries.** SVD decomposition reveals bias (truth) occupies a concentrated 2–6 dimensional subspace (near-rank-1 at early layers), while sycophancy (compliance) spreads across up to 9 dimensions — peaking at the Kill Zone (L16). Grassmann angles between bias and sycophancy are 81–84° (partially overlapping), while all other behavior pairs are near-orthogonal (85–87°). Rank-1 surgical steering at L8 produces +0.046 factual but −0.257 bias collateral, confirming the subspaces physically overlap.
 - **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
 - **Merge methods cause behavioral trade-offs invisible to standard benchmarks.** DARE-TIES destroys alignment on Qwen but improves it on Mistral. DELLA completely breaks the model. Only behavioral evaluation catches these failures.
 
