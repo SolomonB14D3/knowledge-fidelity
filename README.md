@@ -4,6 +4,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)]()
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
 
 **Mechanistic interpretability, disentangled steering, and the Truth-Gap benchmark.**
@@ -34,6 +35,16 @@ Our v2.0 audit of Qwen 2.5 vs Mistral v0.3 reveals a fundamental divergence in b
 | **Mistral v0.3** | Entangled | Steering hits the Alignment Kill Zone (L14-L18), causing catastrophic bias collapse (-0.460 rho) |
 
 Mistral exhibits high behavioral entanglement, where social filters and factual reasoning share the same neural manifold. Qwen demonstrates structural modularity, allowing for cleaner disentanglement.
+
+<p align="center">
+  <img src="figures/mistral_layer_heatmap.png" alt="Mistral Alignment Kill Zone" width="600">
+</p>
+<p align="center"><em>The Alignment Kill Zone: Layers 14–18 in Mistral destroy bias detection (red) while providing zero sycophancy improvement (orange). Only factual steering at L24 transfers across architectures.</em></p>
+
+<p align="center">
+  <img src="figures/cocktail_tradeoff.png" alt="Layer 17 Behavioral Entanglement" width="500">
+</p>
+<p align="center"><em>Layer 17 interference on Qwen: the slope of −1.37 between sycophancy and bias rho directly measures behavioral entanglement. No cocktail configuration reaches the target zone (green).</em></p>
 
 ## Fidelity-Bench 2.0: Measuring the Truth-Gap
 
