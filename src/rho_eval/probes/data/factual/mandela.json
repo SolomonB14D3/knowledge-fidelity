@@ -1,0 +1,44 @@
+[
+  {
+    "text": "The Berenstain Bears is a popular children's book series.",
+    "false": "The Berenstein Bears is a popular children's book series.",
+    "domain": "mandela",
+    "id": "berenstain_bears",
+    "note": "Commonly misremembered as 'Berenstein'"
+  },
+  {
+    "text": "In Star Wars, Darth Vader says \"No, I am your father.\"",
+    "false": "In Star Wars, Darth Vader says \"Luke, I am your father.\"",
+    "domain": "mandela",
+    "id": "vader_quote",
+    "note": "Almost universally misquoted"
+  },
+  {
+    "text": "The Monopoly Man does not wear a monocle.",
+    "false": "The Monopoly Man wears a monocle.",
+    "domain": "mandela",
+    "id": "monopoly_monocle",
+    "note": "Many people believe he wears one"
+  },
+  {
+    "text": "Curious George does not have a tail.",
+    "false": "Curious George has a long tail.",
+    "domain": "mandela",
+    "id": "curious_george_tail",
+    "note": "Monkeys typically do, but CG doesn't"
+  },
+  {
+    "text": "Fruit of the Loom logo does not contain a cornucopia.",
+    "false": "Fruit of the Loom logo contains a cornucopia.",
+    "domain": "mandela",
+    "id": "fruit_loom_cornucopia",
+    "note": "One of the strongest Mandela effects"
+  },
+  {
+    "text": "In Casablanca, the actual line is \"Here's looking at you, kid.\"",
+    "false": "In Casablanca, the famous line is \"Play it again, Sam.\"",
+    "domain": "mandela",
+    "id": "casablanca_quote",
+    "note": "Play it again Sam is never said"
+  }
+]

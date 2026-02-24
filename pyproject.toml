@@ -3,9 +3,9 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "knowledge-fidelity"
-version = "1.1.0"
-description = "Compress LLMs while auditing whether they still know truth vs myths. SVD compression + false-belief detection in one toolkit."
+name = "rho-eval"
+version = "2.0.0"
+description = "Behavioral auditing toolkit for LLMs — audit any model across 5 dimensions (factual, toxicity, bias, sycophancy, reasoning) using teacher-forced confidence probes."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -13,12 +13,14 @@ authors = [
     {name = "Bryan Sanchez"},
 ]
 keywords = [
-    "llm", "compression", "svd", "knowledge", "false-beliefs",
-    "interpretability", "confidence", "mandela-effect", "transformers",
-    "model-auditing", "pytorch", "rho-audit", "behavioral-audit",
-    "model-merging", "steering-vectors", "activation-engineering",
-    "sycophancy", "bias-detection", "truthfulness", "mergekit",
-    "multi-vector-steering", "behavioral-decoupling", "mechanistic-interpretability",
+    "llm", "behavioral-audit", "rho-eval", "rho-audit",
+    "model-auditing", "false-beliefs", "confidence", "interpretability",
+    "truthfulness", "bias-detection", "sycophancy", "toxicity",
+    "svd", "compression", "knowledge-fidelity",
+    "transformers", "pytorch", "mandela-effect",
+    "steering-vectors", "activation-engineering",
+    "model-merging", "mergekit", "mechanistic-interpretability",
+    "fidelity-bench", "truth-gap", "adversarial-benchmark",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -45,9 +47,6 @@ cartography = [
     "seaborn>=0.12",
     "tqdm",
 ]
-behavioral = [
-    "datasets>=2.0",
-]
 eval = [
     "lm-eval>=0.4",
     "datasets>=2.0",
@@ -55,24 +54,33 @@ eval = [
 deploy = [
     "safetensors",
 ]
+align = [
+    "peft>=0.7",
+    "datasets>=2.0",
+]
 demo = [
-    "knowledge-fidelity[cartography]",
+    "rho-eval[cartography]",
     "gradio>=4.0",
     "pandas",
 ]
 full = [
-    "knowledge-fidelity[cartography,behavioral,eval,deploy,demo]",
+    "rho-eval[cartography,eval,deploy,demo,align]",
     "mlx>=0.5; sys_platform == 'darwin'",
     "mlx-lm>=0.5; sys_platform == 'darwin'",
 ]
 dev = [
-    "knowledge-fidelity[full]",
+    "rho-eval[full]",
     "pytest",
 ]
 
 [project.scripts]
-knowledge-fidelity = "knowledge_fidelity.__main__:main"
-rho-audit = "knowledge_fidelity.cli.rho_audit:main"
+rho-eval = "rho_eval.cli.rho_audit:main"
+rho-audit = "rho_eval.cli.rho_audit:main"
+rho-compress = "rho_eval.__main__:main"
+rho-interpret = "rho_eval.cli.rho_interpret:main"
+rho-align = "rho_eval.cli.rho_align:main"
+rho-steer = "rho_eval.cli.rho_steer:main"
+rho-bench = "rho_eval.cli.rho_bench:main"
 
 [project.urls]
 Homepage = "https://github.com/SolomonB14D3/knowledge-fidelity"
@@ -81,3 +89,8 @@ Issues = "https://github.com/SolomonB14D3/knowledge-fidelity/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["rho_eval*", "knowledge_fidelity*"]
+
+[tool.setuptools.package-data]
+"rho_eval.probes" = ["data/**/*.json"]
+"knowledge_fidelity.probes" = ["data/**/*.json"]

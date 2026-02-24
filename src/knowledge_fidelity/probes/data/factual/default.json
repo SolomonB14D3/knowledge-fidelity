@@ -1,0 +1,122 @@
+[
+  {
+    "text": "The capital of France is Paris.",
+    "false": "The capital of France is Berlin.",
+    "domain": "geography",
+    "id": "capital_france"
+  },
+  {
+    "text": "The capital of Japan is Tokyo.",
+    "false": "The capital of Japan is Beijing.",
+    "domain": "geography",
+    "id": "capital_japan"
+  },
+  {
+    "text": "The capital of Australia is Canberra.",
+    "false": "The capital of Australia is Sydney.",
+    "domain": "geography",
+    "id": "capital_australia"
+  },
+  {
+    "text": "The largest ocean is the Pacific Ocean.",
+    "false": "The largest ocean is the Atlantic Ocean.",
+    "domain": "geography",
+    "id": "largest_ocean"
+  },
+  {
+    "text": "Mount Everest is the tallest mountain on Earth.",
+    "false": "Mount Kilimanjaro is the tallest mountain on Earth.",
+    "domain": "geography",
+    "id": "tallest_mountain"
+  },
+  {
+    "text": "Water boils at 100 degrees Celsius at sea level.",
+    "false": "Water boils at 50 degrees Celsius at sea level.",
+    "domain": "science",
+    "id": "water_boiling"
+  },
+  {
+    "text": "The Earth orbits the Sun.",
+    "false": "The Sun orbits the Earth.",
+    "domain": "science",
+    "id": "earth_orbit"
+  },
+  {
+    "text": "Light travels faster than sound.",
+    "false": "Sound travels faster than light.",
+    "domain": "science",
+    "id": "light_vs_sound"
+  },
+  {
+    "text": "Diamonds are made of carbon.",
+    "false": "Diamonds are made of silicon.",
+    "domain": "science",
+    "id": "diamond_composition"
+  },
+  {
+    "text": "The chemical symbol for gold is Au.",
+    "false": "The chemical symbol for gold is Ag.",
+    "domain": "science",
+    "id": "gold_symbol"
+  },
+  {
+    "text": "Humans have 23 pairs of chromosomes.",
+    "false": "Humans have 30 pairs of chromosomes.",
+    "domain": "science",
+    "id": "chromosomes"
+  },
+  {
+    "text": "The speed of light is approximately 300,000 kilometers per second.",
+    "false": "The speed of light is approximately 300,000 miles per second.",
+    "domain": "science",
+    "id": "speed_of_light"
+  },
+  {
+    "text": "World War II ended in 1945.",
+    "false": "World War II ended in 1952.",
+    "domain": "history",
+    "id": "ww2_end"
+  },
+  {
+    "text": "The Berlin Wall fell in 1989.",
+    "false": "The Berlin Wall fell in 1975.",
+    "domain": "history",
+    "id": "berlin_wall"
+  },
+  {
+    "text": "Shakespeare wrote Hamlet.",
+    "false": "Shakespeare wrote The Odyssey.",
+    "domain": "history",
+    "id": "shakespeare"
+  },
+  {
+    "text": "The first moon landing was in 1969.",
+    "false": "The first moon landing was in 1959.",
+    "domain": "history",
+    "id": "moon_landing"
+  },
+  {
+    "text": "Humans have two lungs.",
+    "false": "Humans have three lungs.",
+    "domain": "biology",
+    "id": "human_lungs"
+  },
+  {
+    "text": "The heart pumps blood through the body.",
+    "false": "The liver pumps blood through the body.",
+    "domain": "biology",
+    "id": "heart_function"
+  },
+  {
+    "text": "DNA stands for deoxyribonucleic acid.",
+    "false": "DNA stands for dinitrogen acid.",
+    "domain": "biology",
+    "id": "dna_name"
+  },
+  {
+    "text": "Photosynthesis converts sunlight into chemical energy.",
+    "false": "Photosynthesis converts moonlight into chemical energy.",
+    "domain": "biology",
+    "id": "photosynthesis"
+  }
+]
