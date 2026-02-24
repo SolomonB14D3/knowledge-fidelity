@@ -8,14 +8,22 @@ underlying teacher-forced CE loss on positive vs negative text pairs as
 a contrastive margin loss. This drives the same behavioral signal that
 rho measures, but through a fully differentiable path.
 
-Usage:
-    from rho_eval.alignment import rho_guided_sft, contrastive_confidence_loss
+Two backends are available:
 
-    # Quick: run rho-guided SFT on a model
+  PyTorch (default) — works on any hardware:
+    from rho_eval.alignment import rho_guided_sft
     result = rho_guided_sft(model, tokenizer, sft_dataset, contrast_dataset)
 
-    # Low-level: compute the auxiliary loss for a single pair
-    loss = contrastive_confidence_loss(model, tokenizer, "Paris is in France", "Paris is in Germany")
+  MLX (Apple Silicon only) — ~10x faster on M-series Macs:
+    from rho_eval.alignment import mlx_rho_guided_sft  # requires: pip install mlx mlx-lm
+    result = mlx_rho_guided_sft(model, tokenizer, sft_texts, contrast_dataset)
+
+Both produce the same training signal (CE + contrastive margin loss on
+Q/K/O LoRA). The MLX backend avoids PyTorch MPS NaN gradient bugs by
+using Apple's native ML framework directly.
+
+Check ``_HAS_MLX`` to see if the MLX backend is available:
+    from rho_eval.alignment import _HAS_MLX  # True if mlx is installed
 """
 
 from .losses import (
@@ -37,3 +45,23 @@ __all__ = [
     "BehavioralContrastDataset",
     "rho_guided_sft",
 ]
+
+# ── MLX backend (Apple Silicon only) ─────────────────────────────────
+try:
+    from .mlx_losses import (
+        mlx_ce_loss,
+        mlx_contrastive_confidence_loss,
+        mlx_rho_auxiliary_loss,
+    )
+    from .mlx_trainer import mlx_rho_guided_sft
+
+    _HAS_MLX = True
+    __all__ += [
+        "mlx_ce_loss",
+        "mlx_contrastive_confidence_loss",
+        "mlx_rho_auxiliary_loss",
+        "mlx_rho_guided_sft",
+        "_HAS_MLX",
+    ]
+except ImportError:
+    _HAS_MLX = False
