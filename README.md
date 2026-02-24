@@ -6,6 +6,7 @@
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
+[![MLX](https://img.shields.io/badge/Apple%20Silicon-MLX%20Accelerated-black?logo=apple)](https://github.com/ml-explore/mlx)
 
 **Mechanistic interpretability, disentangled steering, and the Truth-Gap benchmark.**
 
@@ -799,11 +800,38 @@ Validated on:
 - **Llama**: 3.1-8B-Instruct, 2-7B
 - Should work on Phi, Gemma (same layer layout) — PRs with test results welcome
 
-## Platform Notes (Apple Silicon)
+## Apple Silicon Acceleration (MLX)
 
-- Use **CPU** for compression and fine-tuning (MPS has matmul errors with some architectures and NaN gradients with frozen layers)
-- Use **MLX** for fast inference after compression
+rho-eval **transparently accelerates** on Apple Silicon when [MLX](https://github.com/ml-explore/mlx) is installed. No code changes needed — the same `audit()`, `analyze_confidence()`, and alignment APIs auto-dispatch to MLX when they detect an MLX model.
+
+```bash
+pip install mlx mlx-lm  # or: pip install "rho-eval[full]"
+```
+
+```python
+import mlx_lm
+from rho_eval import audit
+
+model, tokenizer = mlx_lm.load("mlx-community/Qwen2.5-7B-Instruct-4bit")
+report = audit(model=model, tokenizer=tokenizer, behaviors="all")
+# Same API, same output — runs ~5-10x faster on Apple Silicon
+```
+
+**What accelerates automatically:**
+
+| Component | PyTorch (CPU/MPS) | MLX (Apple Silicon) | Speedup |
+|-----------|:-:|:-:|:-:|
+| `audit()` — 5-behavior probe suite | ~90s (0.5B) | ~17s (0.5B) | **~5x** |
+| `analyze_confidence()` — cartography | Full PyTorch pipeline | Native MLX forward pass | **~5x** |
+| `get_mean_logprob()` / `generate()` | PyTorch inference | MLX inference | **~5x** |
+| `mlx_gentle_finetune()` — post-compression LoRA | CPU-only (MPS has NaN bugs) | Native MLX LoRA | **~10x** |
+| `mlx_rho_guided_sft()` — alignment training | CPU-only (22h for 8 runs) | Native MLX training | **~10x** |
+
+**Platform notes:**
+- Use **CPU** for SVD compression (weight surgery, not compute-bound)
+- PyTorch MPS has NaN gradient bugs with frozen layers — MLX avoids this entirely
 - Set `HF_HOME` to external storage for large models
+- MLX unified memory enables larger models than would fit in VRAM (e.g., 7B-4bit on 16GB)
 
 ## Limitations
 
