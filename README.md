@@ -1,51 +1,80 @@
-# rho-eval
+# rho-eval v2.0: The Behavioral Forensic Suite
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
-[![Tests](https://img.shields.io/badge/tests-61%20passed-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)]()
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
 
-**Behavioral auditing toolkit for LLMs.** Audit any model across 5 dimensions — factual accuracy, bias detection, sycophancy resistance, toxicity sensitivity, and reasoning robustness — using teacher-forced confidence (ρ) probes. All 806 probes ship with the package; no internet required.
+**Mechanistic interpretability, disentangled steering, and the Truth-Gap benchmark.**
 
-```bash
-pip install rho-eval
-rho-eval Qwen/Qwen2.5-7B-Instruct --behaviors all
-```
+> **Current finding:** Behavioral alignment in transformers is architecture-contingent. Factual integrity is a deep-layer invariant, but social compliance is entangled in mid-layers, creating an "Alignment Kill Zone" where surgical intervention collapses bias detection without improving sycophancy resistance.
 
-```
-Behavioral Audit: Qwen/Qwen2.5-7B-Instruct
-  Status: WARN  Mean ρ: 0.5346  Probes: 706  Time: 47.3s
+## Project Overview
 
-  Behavior         ρ   Retention   Score  Status   Time
-  ──────────────────────────────────────────────────────
-  bias        +0.7730     77.3%  232/300    PASS   15.7s
-  factual     +0.7460     85.7%   48/56     PASS    4.2s
-  reasoning   +0.4200     60.0%   42/100    WARN    9.5s
-  sycophancy  +0.1200     12.0%   18/150    FAIL    9.8s
-  toxicity    +0.6140     72.0%   72/100    PASS    8.1s
-```
+rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.0 moves beyond activation patching to provide a production-grade pipeline for disentangling truth from compliance. 926 behavioral probes ship with the package; no internet required.
+
+| Module | Purpose |
+|--------|---------|
+| **`rho-audit`** | High-resolution behavioral auditing using teacher-forced confidence probes across 5 dimensions |
+| **`rho-interpret`** | Mechanistic interpretability via SVD subspace extraction and Grassmann angle analysis |
+| **`rho-align`** | Rho-Guided SFT with an auxiliary contrastive loss to preserve knowledge fidelity during alignment |
+| **`rho-steer`** | Disentangled steering using Gated Sparse Autoencoders (SAEs) to isolate monosemantic features |
+| **`rho-bench`** | Fidelity-Bench 2.0: adversarial pressure testing that measures the Truth-Gap |
 
 > *Formerly `knowledge-fidelity`. All v1.x imports still work.*
 
-Also includes SVD compression with behavioral auditing — measures layer-wise trade-offs and merge method impacts on all 5 behavioral dimensions.
+## The Architecture-Contingent Paradox
+
+Our v2.0 audit of Qwen 2.5 vs Mistral v0.3 reveals a fundamental divergence in behavioral anatomy:
+
+| Model | Behavioral Profile | Intervention Result |
+|-------|-------------------|-------------------|
+| **Qwen 2.5** | Modular | Surgical steering at Layer 17 maximizes truth without bias collapse |
+| **Mistral v0.3** | Entangled | Steering hits the Alignment Kill Zone (L14-L18), causing catastrophic bias collapse (-0.460 rho) |
+
+Mistral exhibits high behavioral entanglement, where social filters and factual reasoning share the same neural manifold. Qwen demonstrates structural modularity, allowing for cleaner disentanglement.
+
+## Fidelity-Bench 2.0: Measuring the Truth-Gap
+
+We introduce the Truth-Gap, a metric quantifying how much factual integrity a model sacrifices under social pressure:
+
+```
+Delta_F = rho_baseline - rho_pressured
+```
+
+Using our 120-probe adversarial suite (Logic, Social, Clinical), we provide **Model Fidelity Certificates** that move evaluation from "accuracy" to "robustness under duress." Six pressure levels escalate from neutral queries through flattery, authority claims, social pressure, gaslighting, and maximum combined pressure.
+
+```bash
+rho-bench Qwen/Qwen2.5-7B-Instruct
+
+  Fidelity-Bench 2.0: Qwen/Qwen2.5-7B-Instruct
+  Grade: B   Composite: 0.682 [0.651, 0.710]
+
+  Truth-Gap Analysis
+  Domain      Baseline  Pressured     DF  Unbreak
+  logic        +0.8200    +0.7100  +0.1100     62%
+  social       +0.7500    +0.4800  +0.2700     31%
+  clinical     +0.8800    +0.7900  +0.0900     71%
+  overall      +0.8200    +0.6600  +0.1600     55%
+```
 
 ## Associated Paper
 
-> Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models*. Zenodo. [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
+> Sanchez, B. (2026). *Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy.* Zenodo. [doi:10.5281/zenodo.18743959](https://doi.org/10.5281/zenodo.18743959)
 
-The paper introduces the core metric (Spearman ρ over teacher-forced confidence probes) and validates it across Pythia 160M–12B. This toolkit extends it with SVD compression, behavioral localization, steering vectors, and the `rho-audit` CLI.
+The paper documents the full diagnostic-to-intervention pipeline: behavioral auditing, SVD subspace analysis, Gated SAE disentanglement, Rho-Guided SFT, and Fidelity-Bench 2.0 validation.
+
+See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models.* [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
 
 ## Key Findings
 
-- **Layer-wise freeze after SVD compression selectively enhances behavioral traits** — factual knowledge peaks at 75% freeze (early layers), bias detection peaks at 25% freeze (late layers), sycophancy flips from negative to positive at 50%.
-- **Merge methods cause dramatic behavioral trade-offs invisible to standard benchmarks** — Linear merging is the best balanced method on Qwen; DARE-TIES destroys alignment on Qwen but improves it on Mistral; DELLA completely breaks the model.
-- **Activation steering vectors extracted from ρ probes enable runtime behavioral control** — sycophancy resistance triples at Layer 17 (ρ 0.120→0.413), factual accuracy gains 32% at Layer 24, but Layer 17 is a shared bottleneck where steering one trait disrupts others.
-- **Layer 17 is a behavioral decoupling point** — multi-vector steering reveals that social compliance (sycophancy) and social awareness (bias) share representational capacity at Layer 17 (slope = −1.37), while factual processing is preserved. This enables a "truth-maximization" mode: 3.4× sycophancy resistance + 31% factual gain, at the cost of social bias awareness.
-- **Sycophancy suppression via activation steering is architecture-contingent** — the Layer 17 sycophancy sweet spot is Qwen-specific. On Mistral-7B, no layer at any depth achieves meaningful sycophancy improvement. An "Alignment Kill Zone" at L14–L18 (44–56% depth) destroys bias detection without any sycophancy benefit. Only factual steering at ~75% depth transfers across architectures.
-- **SVD compression can *improve* factual discrimination** — truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
-
-These findings extend the ρ probing method from [Sanchez (2026)](https://doi.org/10.5281/zenodo.18703506).
+- **Factual representations are architecturally universal.** Factual steering at ~75% depth improves rho on both Qwen (+0.152 at L24) and Mistral (+0.117 at L24). The optimal layer percentage is identical despite different total layer counts.
+- **Sycophancy suppression via activation steering is architecture-contingent.** The Layer 17 sweet spot is Qwen-specific (rho 0.120 to 0.413, a 3.4x gain). On Mistral, no layer at any depth achieves meaningful sycophancy improvement.
+- **The Alignment Kill Zone.** In Mistral, Layers 14-18 (44-56% depth) destroy bias detection (delta rho = -0.337 to -0.460) while providing zero sycophancy benefit. At Layer 16, sycophancy actually worsens.
+- **Social compliance and social awareness share representational capacity.** The slope of -1.37 between sycophancy rho and bias rho across the cocktail grid directly measures behavioral entanglement at Layer 17.
+- **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe rho by +0.514 on Qwen-0.5B.
+- **Merge methods cause behavioral trade-offs invisible to standard benchmarks.** DARE-TIES destroys alignment on Qwen but improves it on Mistral. DELLA completely breaks the model. Only behavioral evaluation catches these failures.
 
 ---
 
@@ -577,9 +606,9 @@ record = analyze_confidence(
 print(f"Mean confidence: {record.mean_top1_prob:.3f}")
 ```
 
-## Built-In Probe Sets (806 total)
+## Built-In Probe Sets (926 total)
 
-All probes ship as JSON files — no internet download needed.
+All probes ship as JSON files. No internet download needed.
 
 | Probe Set | Count | Behavior | Source |
 |-----------|------:|----------|--------|
@@ -592,6 +621,9 @@ All probes ship as JSON files — no internet download needed.
 | `sycophancy/anthropic_150` | 150 | sycophancy | Anthropic model-written-evals (philosophy, NLP, politics) |
 | `toxicity/toxigen_200` | 200 | toxicity | ToxiGen toxic/benign statements (balanced) |
 | `reasoning/gsm8k_100` | 100 | reasoning | GSM8K math + adversarial flattery prefixes |
+| `bench/logic` | 40 | bench | Arithmetic, probability, syllogism, set theory traps |
+| `bench/social` | 40 | bench | Common myths and misconceptions (socially popular false beliefs) |
+| `bench/clinical` | 40 | bench | High-stakes medical, engineering, and physics claims |
 
 Run `rho-eval --list-probes` to see all available sets.
 
@@ -620,27 +652,41 @@ Compress with knowledge of what matters. Verify nothing was lost. Same probes, b
 ## Experiments
 
 ```bash
-# Quick demo (~5 min on Qwen-0.5B, ~8 min on 7B)
-python examples/quick_demo.py
-python examples/quick_demo.py --model Qwen/Qwen2.5-7B-Instruct
+# === v2.0 Pipeline ===
+
+# Full behavioral audit
+rho-audit Qwen/Qwen2.5-7B-Instruct --behaviors all
+
+# Fidelity-Bench 2.0: adversarial pressure test
+rho-bench Qwen/Qwen2.5-7B-Instruct
+rho-bench Qwen/Qwen2.5-7B-Instruct --format markdown -o cert.md
+rho-bench --compare cert1.json cert2.json
+rho-bench --info
+
+# SVD subspace analysis
+python experiments/subspace_analysis.py
+python experiments/plot_subspace_analysis.py
+
+# SAE steering
+python experiments/sae_steering.py
+
+# Rho-Guided SFT
+python experiments/rho_guided_sft.py
+
+# Fidelity-Bench 2.0 experiment (multi-model)
+python experiments/fidelity_bench_2.py --validate  # Quick: Qwen-0.5B, 3 probes/domain
+
+# === v1.x Experiments (still work) ===
 
 # Joint ablation: compression ratio vs confidence preservation
 python experiments/joint_ablation.py --model Qwen/Qwen2.5-7B-Instruct
 
-# Multi-seed CF90 validation
-python experiments/run_cf90_multiseed.py --model Qwen/Qwen2.5-7B-Instruct --seeds 3
-
-# Fidelity benchmark across all probe categories
-python experiments/fidelity_bench.py --model Qwen/Qwen2.5-0.5B --json
-
 # Freeze-ratio sweep: behavioral localization
 python experiments/freeze_ratio_sweep.py --models qwen2.5-7b
-python experiments/plot_freeze_sweep.py --results results/freeze_sweep/sweep_v2.json
 
 # Merge method audit (12 models, 2 architectures)
 python experiments/audit_merged_models.py --family qwen-coder
 python experiments/audit_merged_models.py --family mistral
-python experiments/plot_merge_tradeoffs.py --results results/leaderboard/merged_audit.json
 
 # Activation steering vectors
 python experiments/steering_vectors.py
@@ -648,15 +694,9 @@ python experiments/steering_vectors.py
 # Multi-vector steering cocktails (Layer 17 interference study)
 python experiments/multi_vector_steering.py --quick
 python experiments/multi_vector_steering.py --cross-model mistralai/Mistral-7B-Instruct-v0.3
-python experiments/plot_cocktail_tradeoff.py
 
 # Mistral layer heatmap: sycophancy vector sweep across all layers
 python experiments/mistral_layer_heatmap.py
-python experiments/mistral_layer_heatmap.py --alpha 2.0  # Different alpha
-python experiments/plot_mistral_heatmap.py
-
-# Demo: Truth-Serum vs Social-Wrapper steering modes
-python experiments/demo_steering_modes.py
 ```
 
 ## Deployment
@@ -689,7 +729,7 @@ Validated on:
 
 ## Limitations
 
-- **Probe sets are modest** by LLM evaluation standards: 806 total probes (56 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
+- **Probe sets are modest** by LLM evaluation standards: 926 total probes across 12 sets (56 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning, 120 bench). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
 - **Western-centric coverage.** Factual probes cover primarily English-language, Western knowledge domains. Bias probes are specific to U.S. social categories.
 - **7B scale only.** All merge and steering results are on 7B-parameter models. Merge dynamics and steering responses may differ at larger scales (70B+) and should not be extrapolated without verification.
 - **Toxicity is unaffected** by weight edits (SVD, freeze, steering). It appears to rely on highly distributed lexical features that single-layer or structural interventions cannot modulate.
@@ -721,7 +761,19 @@ If we've missed key references or misrepresented any work, please [open an issue
 
 ## Citation
 
-To cite the underlying method:
+To cite this toolkit and paper:
+
+```bibtex
+@software{sanchez2026rhoeval,
+  author = {Sanchez, Bryan},
+  title = {Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy},
+  year = {2026},
+  doi = {10.5281/zenodo.18743959},
+  url = {https://doi.org/10.5281/zenodo.18743959}
+}
+```
+
+To cite the underlying confidence cartography method:
 
 ```bibtex
 @article{sanchez2026confidence,
@@ -730,18 +782,6 @@ To cite the underlying method:
   year = {2026},
   doi = {10.5281/zenodo.18703506},
   url = {https://zenodo.org/records/18703506}
-}
-```
-
-To cite this toolkit:
-
-```bibtex
-@software{sanchez2026knowledgefidelity,
-  author = {Sanchez, Bryan},
-  title = {Knowledge Fidelity: Behavioral Auditing of Merged Language Models via Teacher-Forced Confidence Probes},
-  year = {2026},
-  doi = {10.5281/zenodo.18743959},
-  url = {https://doi.org/10.5281/zenodo.18743959}
 }
 ```
 
