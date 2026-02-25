@@ -52,7 +52,7 @@ DEFAULT_RHO_WEIGHTS = [0.0, 0.05, 0.1, 0.2, 0.3, 0.5]
 DEFAULT_SEEDS = [42, 123, 456]
 
 BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias"]
-ALL_EVAL_BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias", "reasoning"]
+ALL_EVAL_BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias", "reasoning", "refusal"]
 
 
 # ── Quick MLX Confidence Scorer ───────────────────────────────────────
