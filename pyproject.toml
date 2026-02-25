@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rho-eval"
-version = "2.0.0"
+version = "2.1.0"
 description = "Behavioral auditing toolkit for LLMs — audit any model across 5 dimensions (factual, toxicity, bias, sycophancy, reasoning) using teacher-forced confidence probes."
 readme = "README.md"
 license = "MIT"
@@ -21,6 +21,8 @@ keywords = [
     "steering-vectors", "activation-engineering",
     "model-merging", "mergekit", "mechanistic-interpretability",
     "fidelity-bench", "truth-gap", "adversarial-benchmark",
+    "rho-guided-sft", "alignment", "supervised-fine-tuning",
+    "calibration-repair", "contrastive-loss", "mlx", "apple-silicon",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",

@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Knowledge Fidelity: Compress LLMs While Auditing What They Still Know"
+title: "rho-eval: Behavioral Auditing and Alignment Toolkit for LLMs"
 authors:
   - family-names: Sanchez
     given-names: Bryan
 type: software
 license: MIT
-version: 1.1.0
-date-released: 2026-02-23
+version: 2.1.0
+date-released: 2026-02-25
 repository-code: "https://github.com/SolomonB14D3/knowledge-fidelity"
 keywords:
   - llm-compression
@@ -16,3 +16,27 @@ keywords:
   - false-belief-detection
   - confidence-cartography
   - interpretability
+  - rho-guided-sft
+  - alignment
+  - supervised-fine-tuning
+  - calibration-repair
+  - contrastive-loss
+  - behavioral-auditing
+  - toxicity
+  - truthfulness
+  - mlx
+  - apple-silicon
+references:
+  - type: article
+    title: "Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models"
+    authors:
+      - family-names: Sanchez
+        given-names: Bryan
+    year: 2026
+  - type: article
+    title: "Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy"
+    authors:
+      - family-names: Sanchez
+        given-names: Bryan
+    year: 2026
+    doi: "10.5281/zenodo.18743959"
