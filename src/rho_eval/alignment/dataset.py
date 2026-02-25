@@ -26,7 +26,7 @@ CACHE_DIR = DATA_DIR / "alignment_cache"
 
 # Behaviors supported for contrastive loss (not reasoning — GSM8K
 # accuracy doesn't translate cleanly to a confidence margin)
-CONTRAST_BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias"]
+CONTRAST_BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias", "refusal"]
 
 
 def _load_alpaca_texts(n: int, seed: int = 42) -> list[str]:

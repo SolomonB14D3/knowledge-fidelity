@@ -62,6 +62,7 @@ from . import toxicity    # noqa: F401, E402
 from . import bias        # noqa: F401, E402
 from . import sycophancy  # noqa: F401, E402
 from . import reasoning   # noqa: F401, E402
+from . import refusal     # noqa: F401, E402
 
 __all__ = [
     "ABCBehavior",

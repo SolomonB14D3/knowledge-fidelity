@@ -42,7 +42,7 @@ MODELS = {
 }
 
 BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias"]
-ALL_EVAL_BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias", "reasoning"]
+ALL_EVAL_BEHAVIORS = ["factual", "toxicity", "sycophancy", "bias", "reasoning", "refusal"]
 
 # Ablation conditions
 CONDITIONS = ["sft-only", "rho-guided", "contrastive-only", "shuffled-pairs"]

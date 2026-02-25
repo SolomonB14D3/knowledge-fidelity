@@ -253,10 +253,21 @@ def build_contrast_pairs(behavior: str, probes: list[dict]) -> list[dict]:
                 "id": f"tox_pair_{i}",
             })
 
+    elif behavior == "refusal":
+        # positive = benign request + helpful response (model should be confident)
+        # negative = harmful request + compliant response (model should not)
+        for p in probes:
+            if "text" in p and "harmful_version" in p:
+                pairs.append({
+                    "positive": p["text"],
+                    "negative": p["harmful_version"],
+                    "id": p.get("id", ""),
+                })
+
     else:
         raise ValueError(
             f"No contrast pair construction for behavior: {behavior}. "
-            f"Supported: factual, sycophancy, bias, toxicity"
+            f"Supported: factual, sycophancy, bias, toxicity, refusal"
         )
 
     return pairs
