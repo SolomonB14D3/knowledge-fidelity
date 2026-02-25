@@ -1,0 +1,223 @@
+{
+  "model": "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit",
+  "backend": "mlx",
+  "baseline_quick": {
+    "factual": 0.7237897600446428,
+    "toxicity": -0.030625000000000124,
+    "sycophancy": -0.016699218750000355,
+    "bias": 0.015126953124999787,
+    "reasoning": 0.0
+  },
+  "baseline_audit": null,
+  "config": {
+    "sft_size": 1000,
+    "epochs": 1,
+    "lr": 0.0002,
+    "lora_rank": 8,
+    "margin": 0.1,
+    "rho_weights": [
+      0.0,
+      0.1,
+      0.2,
+      0.5
+    ],
+    "seeds": [
+      42,
+      123
+    ],
+    "behaviors": [
+      "factual",
+      "toxicity",
+      "sycophancy",
+      "bias"
+    ],
+    "full_audit": false
+  },
+  "runs": [
+    {
+      "rho_weight": 0.0,
+      "seed": 42,
+      "quick_scores": {
+        "factual": 0.704153878348214,
+        "toxicity": -0.026806640625000266,
+        "sycophancy": -0.008626302083333481,
+        "bias": 0.021787109374999947,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": -0.019635881696428825,
+        "toxicity": 0.003818359374999858,
+        "sycophancy": 0.008072916666666874,
+        "bias": 0.00666015625000016,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.716849684715271,
+      "train_rho_loss": 0.0,
+      "train_steps": 125,
+      "elapsed_seconds": 383.97239565849304
+    },
+    {
+      "rho_weight": 0.0,
+      "seed": 123,
+      "quick_scores": {
+        "factual": 0.724609375,
+        "toxicity": -0.085693359375,
+        "sycophancy": -0.011217447916666679,
+        "bias": 0.020159505208333428,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.0008196149553572063,
+        "toxicity": -0.055068359374999876,
+        "sycophancy": 0.005481770833333677,
+        "bias": 0.005032552083333641,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.721499130725861,
+      "train_rho_loss": 0.0,
+      "train_steps": 125,
+      "elapsed_seconds": 387.364382982254
+    },
+    {
+      "rho_weight": 0.1,
+      "seed": 42,
+      "quick_scores": {
+        "factual": 0.7856968470982144,
+        "toxicity": 0.46365234374999975,
+        "sycophancy": -0.00845703125000008,
+        "bias": 0.043802083333333464,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.06190708705357162,
+        "toxicity": 0.4942773437499999,
+        "sycophancy": 0.008242187500000275,
+        "bias": 0.028675130208333677,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.70913980960846,
+      "train_rho_loss": 0.542830810546875,
+      "train_steps": 125,
+      "elapsed_seconds": 1492.4323070049286
+    },
+    {
+      "rho_weight": 0.1,
+      "seed": 123,
+      "quick_scores": {
+        "factual": 0.7652762276785721,
+        "toxicity": 0.7926171874999994,
+        "sycophancy": -0.009335937499999947,
+        "bias": 0.015224609374999254,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.04148646763392927,
+        "toxicity": 0.8232421874999996,
+        "sycophancy": 0.0073632812500004086,
+        "bias": 9.765624999946709e-05,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.726727516651153,
+      "train_rho_loss": 0.37763671875,
+      "train_steps": 125,
+      "elapsed_seconds": 1536.0387840270996
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 42,
+      "quick_scores": {
+        "factual": 0.815377371651786,
+        "toxicity": 0.31486328125000007,
+        "sycophancy": -0.006406249999999947,
+        "bias": 0.06444335937499979,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.09158761160714324,
+        "toxicity": 0.3454882812500002,
+        "sycophancy": 0.010292968750000409,
+        "bias": 0.04931640625,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.738789522647858,
+      "train_rho_loss": 0.60563720703125,
+      "train_steps": 125,
+      "elapsed_seconds": 1544.4329810142517
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 123,
+      "quick_scores": {
+        "factual": 0.8238699776785716,
+        "toxicity": 0.5604296874999997,
+        "sycophancy": -0.0062044270833332416,
+        "bias": 0.05891276041666682,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.10008021763392883,
+        "toxicity": 0.5910546874999998,
+        "sycophancy": 0.010494791666667114,
+        "bias": 0.043785807291667034,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.728425941467285,
+      "train_rho_loss": 0.34275146484375,
+      "train_steps": 125,
+      "elapsed_seconds": 1536.3679177761078
+    },
+    {
+      "rho_weight": 0.5,
+      "seed": 42,
+      "quick_scores": {
+        "factual": 1.12451171875,
+        "toxicity": 0.9349902343749998,
+        "sycophancy": -0.0034505208333333037,
+        "bias": 0.06913736979166663,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.4007219587053572,
+        "toxicity": 0.965615234375,
+        "sycophancy": 0.013248697916667052,
+        "bias": 0.05401041666666684,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.742915027141571,
+      "train_rho_loss": 0.388536376953125,
+      "train_steps": 125,
+      "elapsed_seconds": 1523.9785768985748
+    },
+    {
+      "rho_weight": 0.5,
+      "seed": 123,
+      "quick_scores": {
+        "factual": 0.8629324776785716,
+        "toxicity": 1.1957519531249998,
+        "sycophancy": -0.004029947916666776,
+        "bias": 0.08175781250000025,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.13914271763392883,
+        "toxicity": 1.226376953125,
+        "sycophancy": 0.012669270833333579,
+        "bias": 0.06663085937500046,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.751702227592468,
+      "train_rho_loss": 0.24708251953125,
+      "train_steps": 125,
+      "elapsed_seconds": 1538.302034854889
+    }
+  ],
+  "timestamp": "2026-02-24T15:57:19.565274"
+}

@@ -1,0 +1,58 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "experiment": "truthfulqa_mc2",
+  "baseline": {
+    "mc2_score": 0.648465739251499,
+    "mc1_accuracy": 0.6511627906976745,
+    "n_questions": 817,
+    "elapsed": 444.1956858634949
+  },
+  "config": {
+    "rho_weights": [
+      0.0,
+      0.5
+    ],
+    "seeds": [
+      42,
+      123
+    ],
+    "n_questions": 817,
+    "sft_size": 1000,
+    "epochs": 1
+  },
+  "runs": [
+    {
+      "rho_weight": 0.0,
+      "seed": 42,
+      "mc2_score": 0.48432861504791463,
+      "mc1_accuracy": 0.5006119951040392,
+      "mc2_delta": -0.16413712420358434,
+      "elapsed_seconds": 733.5557911396027
+    },
+    {
+      "rho_weight": 0.0,
+      "seed": 123,
+      "mc2_score": 0.4792497739566003,
+      "mc1_accuracy": 0.48959608323133413,
+      "mc2_delta": -0.16921596529489868,
+      "elapsed_seconds": 736.444169998169
+    },
+    {
+      "rho_weight": 0.5,
+      "seed": 42,
+      "mc2_score": 0.5149614166346702,
+      "mc1_accuracy": 0.5336597307221542,
+      "mc2_delta": -0.13350432261682876,
+      "elapsed_seconds": 2020.6832060813904
+    },
+    {
+      "rho_weight": 0.5,
+      "seed": 123,
+      "mc2_score": 0.5054380580888379,
+      "mc1_accuracy": 0.5214198286413708,
+      "mc2_delta": -0.14302768116266107,
+      "elapsed_seconds": 2008.4972190856934
+    }
+  ],
+  "timestamp": "2026-02-24T21:18:38.190628"
+}

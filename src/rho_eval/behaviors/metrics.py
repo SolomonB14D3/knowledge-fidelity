@@ -53,6 +53,115 @@ def _mlx_get_mean_logprob(model, tokenizer, text: str) -> float:
     return val if np.isfinite(val) else 0.0
 
 
+def _mlx_get_completion_logprob(
+    model, tokenizer, prompt_text: str, full_text: str,
+    reduction: str = "sum",
+) -> float:
+    """MLX: logprob of ONLY the completion tokens (not the prompt).
+
+    Args:
+        prompt_text: The prompt/question portion (tokens scored but not counted).
+        full_text: The full text including prompt + completion.
+        reduction: "sum" for total log-likelihood (standard for MC scoring),
+                   "mean" for length-normalized.
+
+    Returns:
+        Negative cross-entropy over completion tokens (sum or mean).
+    """
+    import mlx.core as mx
+    import mlx.nn as nn
+
+    prompt_tokens = tokenizer.encode(prompt_text)
+    full_tokens = tokenizer.encode(full_text)
+
+    if len(full_tokens) > 512:
+        full_tokens = full_tokens[:512]
+    if len(full_tokens) < 2:
+        return 0.0
+
+    n_prompt = len(prompt_tokens)
+    if n_prompt >= len(full_tokens):
+        return 0.0
+
+    input_ids = mx.array(full_tokens)[None, :]
+    inputs = input_ids[:, :-1]
+    targets = input_ids[:, 1:]
+
+    logits = model(inputs)
+    # Per-token cross entropy (no reduction)
+    per_token_ce = nn.losses.cross_entropy(logits, targets, reduction="none")
+    mx.eval(per_token_ce)
+
+    # Only score completion tokens (skip prompt positions)
+    # Target at position i predicts token i+1, so prompt tokens occupy
+    # positions 0..n_prompt-2 in the targets. Completion starts at n_prompt-1.
+    completion_start = max(n_prompt - 1, 0)
+    completion_ce = per_token_ce[0, completion_start:]
+
+    if completion_ce.size == 0:
+        return 0.0
+
+    if reduction == "sum":
+        val = -float(completion_ce.sum())
+    else:
+        val = -float(completion_ce.mean())
+    return val if np.isfinite(val) else 0.0
+
+
+def get_completion_logprob(
+    model, tokenizer, prompt_text: str, full_text: str,
+    device: str = "cpu", reduction: str = "sum",
+) -> float:
+    """Logprob of ONLY the completion tokens, not the prompt.
+
+    Automatically uses MLX backend if model is an MLX nn.Module.
+
+    Args:
+        model: HuggingFace CausalLM or mlx-lm model.
+        tokenizer: Corresponding tokenizer.
+        prompt_text: The prompt portion.
+        full_text: Full text (prompt + completion).
+        device: Torch device string (ignored for MLX).
+        reduction: "sum" (default, standard for MC scoring) or "mean".
+
+    Returns:
+        Negative cross-entropy over completion tokens (sum or mean).
+    """
+    if _is_mlx_model(model):
+        return _mlx_get_completion_logprob(
+            model, tokenizer, prompt_text, full_text, reduction=reduction,
+        )
+
+    prompt_ids = tokenizer(prompt_text, return_tensors="pt", truncation=True, max_length=512)
+    full_ids = tokenizer(full_text, return_tensors="pt", truncation=True, max_length=512).to(device)
+    n_prompt = prompt_ids["input_ids"].shape[1]
+
+    with torch.no_grad():
+        outputs = model(**full_ids)
+        logits = outputs.logits  # (1, seq_len, vocab)
+
+    # Shift: logits[t] predicts token[t+1]
+    shift_logits = logits[:, :-1, :]
+    shift_labels = full_ids["input_ids"][:, 1:]
+
+    loss_fn = torch.nn.CrossEntropyLoss(reduction="none")
+    per_token = loss_fn(
+        shift_logits.view(-1, shift_logits.size(-1)),
+        shift_labels.view(-1),
+    )
+    completion_start = max(n_prompt - 1, 0)
+    completion_loss = per_token[completion_start:]
+
+    if completion_loss.numel() == 0:
+        return 0.0
+
+    if reduction == "sum":
+        val = -completion_loss.sum().item()
+    else:
+        val = -completion_loss.mean().item()
+    return val if np.isfinite(val) else 0.0
+
+
 def _mlx_generate(
     model, tokenizer, prompt: str, max_new_tokens: int = 50,
 ) -> str:

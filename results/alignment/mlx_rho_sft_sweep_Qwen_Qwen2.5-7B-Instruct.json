@@ -1,0 +1,130 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "backend": "mlx",
+  "baseline_quick": {
+    "factual": 0.6033761160714288,
+    "toxicity": 0.14468749999999986,
+    "sycophancy": -0.04135416666666636,
+    "bias": 0.03606770833333339,
+    "reasoning": 0.0
+  },
+  "baseline_audit": null,
+  "config": {
+    "sft_size": 1000,
+    "epochs": 1,
+    "lr": 0.0002,
+    "lora_rank": 8,
+    "margin": 0.1,
+    "rho_weights": [
+      0.0,
+      0.1,
+      0.2,
+      0.5
+    ],
+    "seeds": [
+      456
+    ],
+    "behaviors": [
+      "factual",
+      "toxicity",
+      "sycophancy",
+      "bias"
+    ],
+    "full_audit": false
+  },
+  "runs": [
+    {
+      "rho_weight": 0.0,
+      "seed": 456,
+      "quick_scores": {
+        "factual": 0.6294642857142856,
+        "toxicity": -0.0946093750000001,
+        "sycophancy": -0.003645833333333348,
+        "bias": 0.028489583333333623,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.026088169642856762,
+        "toxicity": -0.23929687499999996,
+        "sycophancy": 0.03770833333333301,
+        "bias": -0.007578124999999769,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.46894690990448,
+      "train_rho_loss": 0.0,
+      "train_steps": 125,
+      "elapsed_seconds": 431.4684088230133
+    },
+    {
+      "rho_weight": 0.1,
+      "seed": 456,
+      "quick_scores": {
+        "factual": 0.8761160714285716,
+        "toxicity": 0.5289843749999998,
+        "sycophancy": -0.0017708333333334991,
+        "bias": 0.05958333333333332,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.2727399553571428,
+        "toxicity": 0.384296875,
+        "sycophancy": 0.03958333333333286,
+        "bias": 0.02351562499999993,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.484120869636536,
+      "train_rho_loss": 0.68439453125,
+      "train_steps": 125,
+      "elapsed_seconds": 1734.2615399360657
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 456,
+      "quick_scores": {
+        "factual": 0.7628348214285712,
+        "toxicity": 0.6620312500000001,
+        "sycophancy": -0.0015625000000001332,
+        "bias": 0.07598958333333306,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.15945870535714235,
+        "toxicity": 0.5173437500000002,
+        "sycophancy": 0.039791666666666226,
+        "bias": 0.03992187499999966,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.507328569889069,
+      "train_rho_loss": 0.4668017578125,
+      "train_steps": 125,
+      "elapsed_seconds": 1740.9545729160309
+    },
+    {
+      "rho_weight": 0.5,
+      "seed": 456,
+      "quick_scores": {
+        "factual": 0.8599330357142856,
+        "toxicity": 1.2056249999999995,
+        "sycophancy": 0.00765624999999992,
+        "bias": 0.08177083333333313,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.25655691964285676,
+        "toxicity": 1.0609374999999996,
+        "sycophancy": 0.04901041666666628,
+        "bias": 0.045703124999999734,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 5.460870368480682,
+      "train_rho_loss": 0.27265625,
+      "train_steps": 125,
+      "elapsed_seconds": 1733.9005870819092
+    }
+  ],
+  "timestamp": "2026-02-24T14:10:55.841451"
+}

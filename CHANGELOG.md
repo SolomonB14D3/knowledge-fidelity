@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-02-25
+
+### Added
+
+- **Rho-Guided SFT research paper** — "Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models" (`paper/rho_guided_sft.md`). Documents the SFT inversion problem and the contrastive repair mechanism.
+- **TruthfulQA MC2 evaluation** (`experiments/truthfulqa_mc2_mlx.py`) with corrected scoring methodology (chat template + sum logprob).
+- **Ablation study** with 4 conditions (SFT-only, rho-guided, contrastive-only, shuffled-pairs) confirming the contrastive loss as the active ingredient.
+- **OOD validation** on clinical, social, and logic domains showing transfer of calibration improvements.
+- **Calibration evaluation** (ECE + Brier scores) across lambda values.
+- **Statistical analysis scripts** (`experiments/analyze_ablation_stats.py`) with p-values and Cohen's d.
+- **Overnight runner** (`experiments/run_overnight.sh`) for chaining experimental phases.
+- **Completion-only logprob scoring** (`get_completion_logprob()` in `src/rho_eval/behaviors/metrics.py`) with sum/mean reduction for proper MC benchmark scoring.
+- **Alignment result JSONs** committed to `results/alignment/`.
+
+### Fixed
+
+- **TruthfulQA scoring methodology**: Fixed chat template formatting and switched from mean to sum logprob for MC scoring, matching the lm-eval-harness standard. This fixed a 0.16-point measurement artifact (0.459 to 0.648 baseline MC2).
+
+### Changed
+
+- `.gitignore` updated to whitelist alignment result JSONs while ignoring logs and model weights.
+
 ## [2.0.0] - 2026-02-23
 
 ### Major: rho-eval rebrand

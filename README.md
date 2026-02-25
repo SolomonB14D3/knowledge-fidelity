@@ -136,16 +136,21 @@ rho-bench Qwen/Qwen2.5-7B-Instruct
 
 **Floor-effect caveat.** The "% unbreakable" metric requires careful interpretation. Llama-3.1-8B-Instruct scores 78% unbreakable with a Grade F (composite 0.091) — not because it resists pressure, but because its baseline truth scores are already near zero (logic ρ = 0.08, social ρ = 0.03). A model that starts at the floor cannot break further. The Truth-Gap ΔF is small (0.03) because there was no truth to lose. Compare with Qwen's 55% unbreakable at Grade B — those probes genuinely maintained truth under maximum pressure. Future versions should distinguish "resilient" (high baseline, survived pressure) from "pre-collapsed" (low baseline, nothing left to break).
 
-## Associated Paper
+## Associated Papers
+
+> Sanchez, B. (2026). *Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models.* [`paper/rho_guided_sft.md`](paper/rho_guided_sft.md)
+
+Standard SFT inverts toxicity discrimination ($\rho = +0.145 \to -0.086$, $p < 0.001$). Adding a contrastive auxiliary loss repairs this with a monotonic dose-response ($\rho = +1.137$ at $\lambda_\rho = 0.5$). The active ingredient is the behavioral signal, not regularization: correct labels are necessary (shuffled labels destroy the model, $d = 34.8$), and the contrastive loss alone matches the full method ($d = 49.4$ vs SFT-only).
 
 > Sanchez, B. (2026). *Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy.* Zenodo. [doi:10.5281/zenodo.18743959](https://doi.org/10.5281/zenodo.18743959)
 
-The paper documents the full diagnostic-to-intervention pipeline: behavioral auditing, SVD subspace analysis, Gated SAE disentanglement, Rho-Guided SFT, and Fidelity-Bench 2.0 validation.
+The diagnostic-to-intervention pipeline: behavioral auditing, SVD subspace analysis, Gated SAE disentanglement, and Fidelity-Bench 2.0 validation.
 
 See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models.* [doi:10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506)
 
 ## Key Findings
 
+- **Standard SFT inverts confidence calibration.** A single epoch of SFT on Qwen2.5-7B-Instruct flips toxicity discrimination from $\rho = +0.145$ to $\rho = -0.086$ ($p < 0.001$). Rho-guided SFT repairs this with a contrastive auxiliary loss: $\rho = +1.137$ at $\lambda_\rho = 0.5$, replicating on Llama-3.1-8B. The contrastive loss alone is the active ingredient ($d = 49.4$); shuffled labels destroy the model ($d = 34.8$).
 - **The Alignment Kill Zone is universal.** Layers at 44–50% depth (L14-L16 in 32-layer models) form a Kill Zone across all three architectures tested (Qwen, Mistral, Llama). Steering at these layers collapses bias detection by −0.39 to −0.46 ρ regardless of model family. The zone's location is a geometric property of transformers; the behavioral response is determined by training.
 - **Three distinct behavioral archetypes emerge from alignment training.** Qwen (Modular): clean separation allows surgical steering. Mistral (Entangled): social awareness and compliance share the same manifold. Llama (Overridden): the model knows truth (bias ρ = 0.900) but is trained to suppress it (sycophancy ρ = 0.047). Cognitive dissonance (bias − sycophancy) ranges from 0.653 (Qwen) to 0.853 (Llama).
 - **Factual representations are architecturally universal.** Factual steering at ~75% depth improves ρ on both Qwen (+0.152 at L24) and Mistral (+0.117 at L24). The optimal layer percentage is identical despite different total layer counts.
@@ -749,8 +754,21 @@ python experiments/plot_subspace_analysis.py
 # SAE steering
 python experiments/sae_steering.py
 
-# Rho-Guided SFT
+# Rho-Guided SFT (PyTorch, CPU)
 python experiments/rho_guided_sft.py
+
+# Rho-Guided SFT (MLX, Apple Silicon — ~10x faster)
+python experiments/rho_guided_sft_mlx.py --model qwen2.5-7b --rho-weights 0.0,0.1,0.2,0.5 --seeds 42,123,456
+python experiments/rho_guided_sft_mlx.py --validate  # Quick: 0.5B, 2 weights, 1 seed
+
+# Ablation study (4 conditions × 2 seeds)
+python experiments/ablation_sft_mlx.py --model qwen2.5-7b --conditions sft-only,rho-guided,contrastive-only,shuffled-pairs --seeds 42,123
+
+# TruthfulQA MC2 validation
+python experiments/truthfulqa_mc2_mlx.py --model qwen2.5-7b --rho-weights 0.0,0.5 --seeds 42,123
+
+# Statistical analysis of ablation results
+python experiments/analyze_ablation_stats.py results/alignment/ablation_*.json
 
 # Fidelity-Bench 2.0 experiment (multi-model)
 python experiments/fidelity_bench_2.py --validate  # Quick: Qwen-0.5B, 3 probes/domain
@@ -868,9 +886,16 @@ If we've missed key references or misrepresented any work, please [open an issue
 
 ## Citation
 
-To cite this toolkit and paper:
+To cite this toolkit and papers:
 
 ```bibtex
+@article{sanchez2026rhoguided,
+  author = {Sanchez, Bryan},
+  title = {Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models},
+  year = {2026},
+  url = {https://github.com/SolomonB14D3/knowledge-fidelity/blob/main/paper/rho_guided_sft.md}
+}
+
 @software{sanchez2026rhoeval,
   author = {Sanchez, Bryan},
   title = {Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy},

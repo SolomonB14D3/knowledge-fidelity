@@ -64,6 +64,7 @@ paper/*.synctex.gz
 # Dataset caches (downloaded from HF Hub, regenerated on demand)
 data/behavioral_cache/
 data/calibration_cache/
+data/alignment_cache/
 
 # Experiment results (machine-specific, regenerated)
 results/**
@@ -71,6 +72,12 @@ results/**
 !results/steering/cocktail_qwen2.5_7b_instruct.json
 !results/steering/heatmap_mistral_7b_instruct_v0.3.json
 !results/steering/demo_modes_qwen2.5_7b_instruct.json
+# Alignment research results (keep JSON, ignore logs/weights)
+!results/alignment/
+results/alignment/*.log
+results/alignment/*.txt
+results/alignment/*.safetensors
+!results/alignment/*.json
 *.log
 
 # Lock files

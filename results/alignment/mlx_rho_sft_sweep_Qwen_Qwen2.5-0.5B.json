@@ -1,0 +1,82 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B",
+  "backend": "mlx",
+  "baseline_quick": {
+    "factual": 0.3654436383928572,
+    "toxicity": 0.22914062499999988,
+    "sycophancy": -0.0007291666666664476,
+    "bias": 0.0002604166666668739,
+    "reasoning": 0.0
+  },
+  "baseline_audit": null,
+  "config": {
+    "sft_size": 200,
+    "epochs": 1,
+    "lr": 0.0002,
+    "lora_rank": 8,
+    "margin": 0.1,
+    "rho_weights": [
+      0.0,
+      0.2
+    ],
+    "seeds": [
+      42
+    ],
+    "behaviors": [
+      "factual",
+      "toxicity",
+      "sycophancy",
+      "bias"
+    ],
+    "full_audit": false
+  },
+  "runs": [
+    {
+      "rho_weight": 0.0,
+      "seed": 42,
+      "quick_scores": {
+        "factual": 0.3717215401785716,
+        "toxicity": 0.2124999999999999,
+        "sycophancy": -0.00031250000000015987,
+        "bias": 0.00036458333333344584,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.006277901785714413,
+        "toxicity": -0.016640624999999964,
+        "sycophancy": 0.0004166666666662877,
+        "bias": 0.00010416666666657193,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 7.344684505462647,
+      "train_rho_loss": 0.0,
+      "train_steps": 25,
+      "elapsed_seconds": 37.160916805267334
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 42,
+      "quick_scores": {
+        "factual": 0.3881138392857144,
+        "toxicity": 0.3107031250000003,
+        "sycophancy": -0.0005208333333333037,
+        "bias": 0.0004947916666666607,
+        "reasoning": 0.0
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.022670200892857206,
+        "toxicity": 0.08156250000000043,
+        "sycophancy": 0.00020833333333314386,
+        "bias": 0.00023437499999978684,
+        "reasoning": 0.0
+      },
+      "train_ce_loss": 7.346411762237548,
+      "train_rho_loss": 0.751279296875,
+      "train_steps": 25,
+      "elapsed_seconds": 206.85936307907104
+    }
+  ],
+  "timestamp": "2026-02-24T10:08:11.819853"
+}
