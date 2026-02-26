@@ -44,6 +44,11 @@ figures/**/*.png
 !figures/mistral_sensitivity_map.png
 !figures/mistral_layer_heatmap.png
 !figures/mistral_layer_heatmap_delta.png
+# Paper figures (main results)
+!figures/fig1_dose_response.png
+!figures/fig2_ablation.png
+!figures/fig3_variance_collapse.png
+!figures/fig4_truthfulqa_safety.png
 
 # LaTeX build artifacts
 paper/*.aux
