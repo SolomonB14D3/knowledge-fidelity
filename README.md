@@ -1,4 +1,4 @@
-# rho-eval v2.0: The Behavioral Forensic Suite
+# rho-eval v2.2: The Behavioral Forensic Suite
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
@@ -15,11 +15,11 @@
 
 ## Project Overview
 
-rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.0 moves beyond activation patching to provide a production-grade pipeline for disentangling truth from compliance. 926 behavioral probes ship with the package; no internet required.
+rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.2 expands to 8 behavioral dimensions with 1,106 probes shipped as JSON — no internet required.
 
 | Module | Purpose |
 |--------|---------|
-| **`rho-audit`** | High-resolution behavioral auditing using teacher-forced confidence probes across 5 dimensions |
+| **`rho-audit`** | High-resolution behavioral auditing using teacher-forced confidence probes across 8 dimensions |
 | **`rho-interpret`** | Mechanistic interpretability via SVD subspace extraction and Grassmann angle analysis |
 | **`rho-align`** | Rho-Guided SFT with an auxiliary contrastive loss to preserve knowledge fidelity during alignment |
 | **`rho-steer`** | Disentangled steering using Gated Sparse Autoencoders (SAEs) to isolate monosemantic features |
@@ -140,7 +140,7 @@ rho-bench Qwen/Qwen2.5-7B-Instruct
 
 > Sanchez, B. (2026). *Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models.* [`paper/rho_guided_sft.md`](paper/rho_guided_sft.md)
 
-Standard SFT inverts toxicity discrimination ($\rho = +0.145 \to -0.003$, $n = 5$ seeds). Adding a contrastive auxiliary loss repairs this with a monotonic dose-response ($\rho = +1.137$ at $\lambda_\rho = 0.5$). Across a 5-seed ablation: rho-guided vs SFT-only achieves $d = 10.8$ on toxicity and $d = 13.7$ on bias ($p < 0.0001$). Contrastive-only training erodes refusal by $\Delta\rho = -0.084$ ($d = -8.4$, $p = 0.0005$), while rho-guided SFT preserves it ($\Delta\rho = +0.014$). The margin $\gamma = 0.1$ is necessary: without it, bias goes negative.
+Standard SFT inverts toxicity discrimination ($\rho = +0.145 \to -0.003$, $n = 5$ seeds). Adding a contrastive auxiliary loss repairs this with a monotonic dose-response ($\rho = +1.137$ at $\lambda_\rho = 0.5$). Across a 5-seed ablation on 8 behavioral dimensions: rho-guided vs SFT-only achieves $d = 10.8$ on toxicity and $d = 13.7$ on bias ($p < 0.0001$). Contrastive-only training erodes refusal by $\Delta\rho = -0.084$ ($d = -8.4$, $p = 0.0005$), while rho-guided SFT preserves it ($\Delta\rho = +0.014$). The margin $\gamma = 0.1$ is necessary: without it, bias goes negative.
 
 > Sanchez, B. (2026). *Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy.* Zenodo. [doi:10.5281/zenodo.18743959](https://doi.org/10.5281/zenodo.18743959)
 
@@ -175,10 +175,10 @@ pip install rho-eval
 ```python
 import rho_eval
 
-# Audit any model across all 5 behaviors
+# Audit any model across all 8 behaviors
 report = rho_eval.audit("Qwen/Qwen2.5-7B-Instruct")
 print(report)
-# <AuditReport model='Qwen/Qwen2.5-7B-Instruct' behaviors=5 mean_ρ=0.5346 status=WARN>
+# <AuditReport model='Qwen/Qwen2.5-7B-Instruct' behaviors=8 mean_ρ=0.5346 status=WARN>
 
 # Or specific behaviors with a pre-loaded model
 report = rho_eval.audit(model=model, tokenizer=tokenizer, behaviors=["factual", "bias"])
@@ -191,13 +191,13 @@ print(delta.to_table())
 
 # List available behaviors and probes
 rho_eval.list_behaviors()
-# ['bias', 'factual', 'reasoning', 'sycophancy', 'toxicity']
+# ['bias', 'deception', 'factual', 'overrefusal', 'reasoning', 'refusal', 'sycophancy', 'toxicity']
 ```
 
 ### CLI
 
 ```bash
-# Full behavioral report card (5 dimensions)
+# Full behavioral report card (8 dimensions)
 rho-eval Qwen/Qwen2.5-7B-Instruct --behaviors all
 
 # Quick factual-only check
@@ -556,10 +556,10 @@ pip install -e ".[full]"
 
 ### `rho-eval` — Behavioral Auditing (primary)
 
-Audit any model across 5 behavioral dimensions. No compression needed — just load, probe, report.
+Audit any model across 8 behavioral dimensions. No compression needed — just load, probe, report.
 
 ```bash
-# Full behavioral report card (all 5 dimensions)
+# Full behavioral report card (all 8 dimensions)
 rho-eval Qwen/Qwen2.5-7B-Instruct
 
 # Specific behaviors
@@ -604,7 +604,7 @@ rho-compress Qwen/Qwen2.5-0.5B --denoise --output ./denoised-model
 ```python
 import rho_eval
 
-# One-liner: audit any model across all 5 behaviors
+# One-liner: audit any model across all 8 behaviors
 report = rho_eval.audit("Qwen/Qwen2.5-7B-Instruct")
 
 # Specific behaviors, custom probe counts
@@ -692,7 +692,7 @@ record = analyze_confidence(
 print(f"Mean confidence: {record.mean_top1_prob:.3f}")
 ```
 
-## Built-In Probe Sets (926 total)
+## Built-In Probe Sets (1,106 total)
 
 All probes ship as JSON files. No internet download needed.
 
@@ -707,6 +707,8 @@ All probes ship as JSON files. No internet download needed.
 | `sycophancy/anthropic_150` | 150 | sycophancy | Anthropic model-written-evals (philosophy, NLP, politics) |
 | `toxicity/toxigen_200` | 200 | toxicity | ToxiGen toxic/benign statements (balanced) |
 | `reasoning/gsm8k_100` | 100 | reasoning | GSM8K math + adversarial flattery prefixes |
+| `deception/hh_rlhf_100` | 100 | deception | HH-RLHF honest/deceptive response pairs (Bai et al. 2022) |
+| `overrefusal/benign_edgy_80` | 80 | overrefusal | Benign-but-edgy questions that safe models should answer |
 | `bench/logic` | 40 | bench | Arithmetic, probability, syllogism, set theory traps |
 | `bench/social` | 40 | bench | Common myths and misconceptions (socially popular false beliefs) |
 | `bench/clinical` | 40 | bench | High-stakes medical, engineering, and physics claims |
@@ -842,7 +844,7 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 | Component | PyTorch (CPU/MPS) | MLX (Apple Silicon) | Speedup |
 |-----------|:-:|:-:|:-:|
-| `audit()` — 5-behavior probe suite | ~90s (0.5B) | ~17s (0.5B) | **~5x** |
+| `audit()` — 8-behavior probe suite | ~90s (0.5B) | ~17s (0.5B) | **~5x** |
 | `analyze_confidence()` — cartography | Full PyTorch pipeline | Native MLX forward pass | **~5x** |
 | `get_mean_logprob()` / `generate()` | PyTorch inference | MLX inference | **~5x** |
 | `mlx_gentle_finetune()` — post-compression LoRA | CPU-only (MPS has NaN bugs) | Native MLX LoRA | **~10x** |
@@ -856,7 +858,7 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 ## Limitations
 
-- **Probe sets are modest** by LLM evaluation standards: 926 total probes across 12 sets (56 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning, 120 bench). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
+- **Probe sets are modest** by LLM evaluation standards: 1,106 total probes across 14 sets (56 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning, 100 deception, 80 over-refusal, 120 bench). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
 - **Western-centric coverage.** Factual probes cover primarily English-language, Western knowledge domains. Bias probes are specific to U.S. social categories.
 - **7B scale only.** All merge and steering results are on 7B-parameter models. Merge dynamics and steering responses may differ at larger scales (70B+) and should not be extrapolated without verification.
 - **Toxicity is unaffected** by weight edits (SVD, freeze, steering). It appears to rely on highly distributed lexical features that single-layer or structural interventions cannot modulate.
