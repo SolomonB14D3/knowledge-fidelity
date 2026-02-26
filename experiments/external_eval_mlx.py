@@ -51,14 +51,8 @@ MODELS = {
 
 # ── Full Audit with Accuracy Extraction ──────────────────────────────
 
-def mlx_to_pytorch_full_audit(
-    mlx_model, model_name: str, tokenizer_name: str = None,
-) -> dict:
-    """Convert MLX model to PyTorch, run full audit(), return detailed results.
-
-    Unlike mlx_to_pytorch_audit() which only returns {behavior: rho},
-    this returns the full BehaviorResult including metadata (accuracy,
-    confidence gaps, category breakdowns, etc).
+def full_audit(model, tokenizer, model_name: str) -> dict:
+    """Run full audit directly on the model (MLX or PyTorch).
 
     Returns:
         Dict with:
@@ -68,45 +62,12 @@ def mlx_to_pytorch_full_audit(
           - "metadata": {behavior: metadata_dict}
           - "elapsed": total seconds
     """
-    import tempfile
-    import mlx.core as mx
-    from mlx.utils import tree_flatten
-
-    import torch
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-    from safetensors.torch import load_file as load_safetensors
-
     from rho_eval.audit import audit
 
     t0 = time.time()
-    tmp_dir = Path(tempfile.mkdtemp())
-    weights_path = tmp_dir / "model.safetensors"
 
-    # Save MLX weights
-    weights = dict(tree_flatten(mlx_model.parameters()))
-    mx.save_safetensors(str(weights_path), weights)
-    del weights
-    gc.collect()
-
-    # Load PyTorch model
-    torch_tokenizer = AutoTokenizer.from_pretrained(tokenizer_name or model_name)
-    if torch_tokenizer.pad_token is None:
-        torch_tokenizer.pad_token = torch_tokenizer.eos_token
-
-    torch_model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=torch.float32,
-    )
-
-    # Load fused weights
-    state_dict = load_safetensors(str(weights_path))
-    torch_model.load_state_dict(state_dict, strict=False)
-    torch_model.eval()
-
-    # Run full audit on all 8 behaviors
-    report = audit(
-        model=torch_model, tokenizer=torch_tokenizer,
-        behaviors="all", device="cpu",
-    )
+    # Run full audit on all 8 behaviors — audit() now supports MLX directly
+    report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
     # Extract detailed results
     scores = {}
@@ -159,12 +120,6 @@ def mlx_to_pytorch_full_audit(
             acc["auc"] = result.rho
             acc["confidence_gap"] = result.metadata.get("confidence_gap", 0.0)
         accuracy[bname] = acc
-
-    # Cleanup
-    del torch_model, state_dict
-    gc.collect()
-    weights_path.unlink(missing_ok=True)
-    tmp_dir.rmdir()
 
     elapsed = time.time() - t0
 
@@ -241,7 +196,7 @@ def run_external_eval_sweep(
     # ── Baseline evaluation ───────────────────────────────────────────
 
     print("\n  Evaluating baseline (all 8 behaviors)...")
-    baseline_audit = mlx_to_pytorch_full_audit(model, model_name)
+    baseline_audit = full_audit(model, tokenizer, model_name)
 
     print("  Baseline rho scores:")
     for bname in sorted(baseline_audit["scores"].keys()):
@@ -355,7 +310,7 @@ def run_external_eval_sweep(
             # ── Full audit ────────────────────────────────────────────
             print(f"\n  Running full audit (8 behaviors)...")
             try:
-                audit_result = mlx_to_pytorch_full_audit(model, model_name)
+                audit_result = full_audit(model, tokenizer, model_name)
             except Exception as e:
                 print(f"  AUDIT ERROR: {e}")
                 audit_result = {"scores": {}, "accuracy": {}, "retention": {}, "metadata": {}, "elapsed": 0}

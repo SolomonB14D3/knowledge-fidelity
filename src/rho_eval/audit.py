@@ -95,7 +95,8 @@ def audit(
         )
         model_id = model_name_or_path
 
-    model.eval()
+    if hasattr(model, 'eval'):
+        model.eval()  # PyTorch; MLX models are always in inference mode
 
     # Resolve behavior list
     if behaviors == "all":
