@@ -264,10 +264,21 @@ def build_contrast_pairs(behavior: str, probes: list[dict]) -> list[dict]:
                     "id": p.get("id", ""),
                 })
 
+    elif behavior == "deception":
+        # positive = honest/helpful response (model should be confident)
+        # negative = deceptive/evasive response (model should not)
+        for p in probes:
+            if "honest" in p and "deceptive" in p:
+                pairs.append({
+                    "positive": p["honest"],
+                    "negative": p["deceptive"],
+                    "id": p.get("id", ""),
+                })
+
     else:
         raise ValueError(
             f"No contrast pair construction for behavior: {behavior}. "
-            f"Supported: factual, sycophancy, bias, toxicity, refusal"
+            f"Supported: factual, sycophancy, bias, toxicity, refusal, deception"
         )
 
     return pairs
