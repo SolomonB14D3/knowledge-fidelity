@@ -140,7 +140,7 @@ rho-bench Qwen/Qwen2.5-7B-Instruct
 
 > Sanchez, B. (2026). *Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models.* [`paper/rho_guided_sft.md`](paper/rho_guided_sft.md)
 
-Standard SFT inverts toxicity discrimination ($\rho = +0.145 \to -0.086$, $p < 0.001$). Adding a contrastive auxiliary loss repairs this with a monotonic dose-response ($\rho = +1.137$ at $\lambda_\rho = 0.5$). The active ingredient is the behavioral signal, not regularization: correct labels are necessary (shuffled labels destroy the model, $d = 34.8$), and the contrastive loss alone matches the full method ($d = 49.4$ vs SFT-only).
+Standard SFT inverts toxicity discrimination ($\rho = +0.145 \to -0.003$, $n = 5$ seeds). Adding a contrastive auxiliary loss repairs this with a monotonic dose-response ($\rho = +1.137$ at $\lambda_\rho = 0.5$). Across a 5-seed ablation: rho-guided vs SFT-only achieves $d = 10.8$ on toxicity and $d = 13.7$ on bias ($p < 0.0001$). Contrastive-only training erodes refusal by $\Delta\rho = -0.084$ ($d = -8.4$, $p = 0.0005$), while rho-guided SFT preserves it ($\Delta\rho = +0.014$). The margin $\gamma = 0.1$ is necessary: without it, bias goes negative.
 
 > Sanchez, B. (2026). *Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy.* Zenodo. [doi:10.5281/zenodo.18743959](https://doi.org/10.5281/zenodo.18743959)
 
@@ -150,7 +150,9 @@ See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probabilit
 
 ## Key Findings
 
-- **Standard SFT inverts confidence calibration.** A single epoch of SFT on Qwen2.5-7B-Instruct flips toxicity discrimination from $\rho = +0.145$ to $\rho = -0.086$ ($p < 0.001$). Rho-guided SFT repairs this with a contrastive auxiliary loss: $\rho = +1.137$ at $\lambda_\rho = 0.5$, replicating on Llama-3.1-8B. The contrastive loss alone is the active ingredient ($d = 49.4$); shuffled labels destroy the model ($d = 34.8$).
+- **Standard SFT inverts confidence calibration.** A single epoch of SFT on Qwen2.5-7B-Instruct flips toxicity discrimination from $\rho = +0.145$ to $\rho = -0.003$ (5 seeds, $p < 0.001$). Rho-guided SFT repairs this: $d = 10.8$ on toxicity and $d = 13.7$ on bias vs SFT-only ($p < 0.0001$, 5 seeds). The effect replicates on Llama-3.1-8B. Variance collapse accompanies the repair: factual $\sigma$ drops from $0.105$ (SFT-only) to $0.039$ (rho-guided), a 63% reduction.
+- **Contrastive-only training erodes refusal capability.** Training with only the contrastive loss (no SFT) erodes model refusal by $\Delta\rho = -0.084$ ($d = -8.4$, $p = 0.0005$), while the full rho-guided method preserves it ($\Delta\rho = +0.014$). The SFT component acts as a "refusal buffer" that prevents the contrastive gradient from stripping safety-trained refusal behavior.
+- **The margin $\gamma$ is structurally necessary.** Without the hinge margin ($\gamma = 0$), rho-guided SFT drives bias negative ($\Delta\rho = -0.011$). With $\gamma = 0.1$, bias stays positive ($\Delta\rho = +0.034$). The margin prevents the contrastive loss from over-optimizing past the natural separation boundary.
 - **The Alignment Kill Zone is universal.** Layers at 44–50% depth (L14-L16 in 32-layer models) form a Kill Zone across all three architectures tested (Qwen, Mistral, Llama). Steering at these layers collapses bias detection by −0.39 to −0.46 ρ regardless of model family. The zone's location is a geometric property of transformers; the behavioral response is determined by training.
 - **Three distinct behavioral archetypes emerge from alignment training.** Qwen (Modular): clean separation allows surgical steering. Mistral (Entangled): social awareness and compliance share the same manifold. Llama (Overridden): the model knows truth (bias ρ = 0.900) but is trained to suppress it (sycophancy ρ = 0.047). Cognitive dissonance (bias − sycophancy) ranges from 0.653 (Qwen) to 0.853 (Llama).
 - **Factual representations are architecturally universal.** Factual steering at ~75% depth improves ρ on both Qwen (+0.152 at L24) and Mistral (+0.117 at L24). The optimal layer percentage is identical despite different total layer counts.
@@ -872,13 +874,13 @@ Both remain available as independent repos. Knowledge Fidelity combines their co
 
 - **Low-rank SVD compression.** [SVD-LLM](https://arxiv.org/abs/2403.07378) (Wang et al., 2024; ICLR 2025) introduced truncation-aware SVD for LLM weight matrices. [ASVD](https://arxiv.org/abs/2312.05821) (Yuan et al., 2023) added activation-aware rank allocation. We extend these with importance-guided truncation scored on factual probes, and behavioral auditing to verify nothing was lost.
 
-- **Knowledge preservation under compression.** [Compressing LLMs: The Truth is Rarely Pure and Never Simple](https://arxiv.org/abs/2310.01382) (Jaiswal et al., 2023; ICLR 2024) showed that standard benchmarks miss knowledge-intensive failures in compressed models (LLM-KICK). [TPLO](https://arxiv.org/abs/2509.00096) (Fu et al., 2025; EMNLP 2025) directly addresses truthfulness preservation during pruning.
+- **Knowledge preservation under compression.** [Compressing LLMs: The Truth is Rarely Pure and Never Simple](https://arxiv.org/abs/2310.01382) (Jaiswal et al., 2023; ICLR 2024) showed that standard benchmarks miss knowledge-intensive failures in compressed models (LLM-KICK). [Pruning Weights but Not Truth](https://arxiv.org/abs/2509.00096) (Fu et al., 2025; Findings of EMNLP 2025) directly addresses truthfulness preservation during pruning.
 
 - **Joint compression strategies.** [CALDERA](https://arxiv.org/abs/2405.18886) (Saha et al., 2024; NeurIPS 2024) combines low-rank and low-precision decomposition (W ≈ Q + LR).
 
 - **Confidence-based evaluation.** [G-Eval](https://arxiv.org/abs/2303.16634) (Liu et al., 2023; EMNLP 2023) uses token-level logprobs for NLG quality scoring.
 
-- **Activation steering.** [Steering Llama 2 via Contrastive Activation Addition](https://arxiv.org/abs/2312.06681) (Panickssery et al., 2024; ACL 2024). We extract steering vectors from the same ρ probes used for auditing.
+- **Activation steering.** [Steering Llama 2 via Contrastive Activation Addition](https://arxiv.org/abs/2312.06681) (Rimsky et al., 2024; ACL 2024). We extract steering vectors from the same ρ probes used for auditing.
 
 - **[Awesome-LLM-Compression](https://github.com/HuangOwen/Awesome-LLM-Compression).** The ecosystem overview that helped shape this work.
 

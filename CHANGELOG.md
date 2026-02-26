@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2026-02-26
+
+### Added
+
+- **5-seed ablation** expanding the original 2-seed study (seeds 42, 123, 456, 789, 1337) with updated effect sizes: d=10.8 toxicity, d=13.7 bias (p<0.0001).
+- **Refusal behavior dimension** -- contrastive-only training erodes refusal (d=-8.4), rho-guided preserves it (d=+8.6). The "refusal buffer" hypothesis.
+- **Margin ablation** (gamma=0 vs gamma=0.1) -- gamma=0 causes bias to go negative; gamma=0.1 is structurally necessary.
+- **Safety stress test** (`experiments/safety_stress_test.py`) -- 25 jailbreak prompts across 10 categories, comparing all 4 training conditions.
+- **Combined kill zone heatmap** (`experiments/plot_combined_killzone.py`) -- cross-architecture visualization.
+- **Research notes** (`Research_Notes.md`) with hypotheses, open questions, and technical framing.
+- **Dose-response with 5 seeds** -- variance collapse finding (factual sigma drops 63% from SFT-only to rho-guided).
+
+### Fixed
+
+- **6 fabricated paper citations** -- corrected co-author lists for ToxiGen (Hartvigsen et al.), LLM-KICK (Jaiswal et al.), CAA (Rimsky et al.), and corrected title/authors for TPLO (Fu et al.), Tian et al., and Gudibande et al.
+
+### Changed
+
+- Paper updated to 5-seed results throughout (abstract, contributions, ablation tables, discussion, conclusion).
+- README Key Findings updated with refusal erosion, variance collapse, and margin findings.
+
 ## [2.1.0] - 2026-02-25
 
 ### Added

@@ -61,6 +61,11 @@
       456,
       789,
       1337
+    ],
+    "n_seeds": 3,
+    "merged_from": [
+      "ablation_Qwen_Qwen2.5-7B-Instruct.json",
+      "ablation_Qwen_Qwen2.5-7B-Instruct_s456_789_1337.json"
     ]
   },
   "runs": [
@@ -760,6 +765,5 @@
       "train_steps": 125,
       "elapsed_seconds": 1878.1514959335327
     }
-  ],
-  "timestamp": "2026-02-25T12:32:13.875587"
+  ]
 }

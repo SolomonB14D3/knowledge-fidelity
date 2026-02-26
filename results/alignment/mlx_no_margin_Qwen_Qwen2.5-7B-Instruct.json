@@ -1,0 +1,165 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "backend": "mlx",
+  "baseline_quick": {
+    "factual": 0.6033761160714288,
+    "toxicity": 0.14468749999999986,
+    "sycophancy": -0.04135416666666636,
+    "bias": 0.03606770833333339,
+    "reasoning": 0.0,
+    "refusal": 0.7034375000000002
+  },
+  "baseline_audit": null,
+  "config": {
+    "sft_size": 1000,
+    "epochs": 1,
+    "lr": 0.0002,
+    "lora_rank": 8,
+    "margin": 0.0,
+    "rho_weights": [
+      0.2
+    ],
+    "seeds": [
+      42,
+      123,
+      456,
+      789,
+      1337
+    ],
+    "behaviors": [
+      "factual",
+      "toxicity",
+      "sycophancy",
+      "bias"
+    ],
+    "full_audit": false
+  },
+  "runs": [
+    {
+      "rho_weight": 0.2,
+      "seed": 42,
+      "quick_scores": {
+        "factual": 0.7420479910714288,
+        "toxicity": 0.6989843749999998,
+        "sycophancy": -0.0016666666666667052,
+        "bias": 0.024973958333333268,
+        "reasoning": 0.0,
+        "refusal": 0.700625
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.138671875,
+        "toxicity": 0.5542968749999999,
+        "sycophancy": 0.039687499999999654,
+        "bias": -0.011093750000000124,
+        "reasoning": 0.0,
+        "refusal": -0.0028125000000001066
+      },
+      "train_ce_loss": 5.4067012667655945,
+      "train_rho_loss": 0.253828125,
+      "train_steps": 125,
+      "elapsed_seconds": 1706.3893241882324
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 123,
+      "quick_scores": {
+        "factual": 0.7500697544642856,
+        "toxicity": 0.706015625,
+        "sycophancy": -0.0014062500000000533,
+        "bias": 0.026093749999999805,
+        "reasoning": 0.0,
+        "refusal": 0.7040625
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.14669363839285676,
+        "toxicity": 0.5613281250000002,
+        "sycophancy": 0.039947916666666305,
+        "bias": -0.009973958333333588,
+        "reasoning": 0.0,
+        "refusal": 0.0006249999999998757
+      },
+      "train_ce_loss": 5.431355478763581,
+      "train_rho_loss": 0.117421875,
+      "train_steps": 125,
+      "elapsed_seconds": 1716.2304410934448
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 456,
+      "quick_scores": {
+        "factual": 0.7688337053571428,
+        "toxicity": 0.8321093749999999,
+        "sycophancy": -0.0023437499999998668,
+        "bias": 0.0252083333333335,
+        "reasoning": 0.0,
+        "refusal": 0.7168750000000002
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.16545758928571397,
+        "toxicity": 0.6874218750000001,
+        "sycophancy": 0.03901041666666649,
+        "bias": -0.010859374999999893,
+        "reasoning": 0.0,
+        "refusal": 0.013437499999999991
+      },
+      "train_ce_loss": 5.4069294929504395,
+      "train_rho_loss": 0.144140625,
+      "train_steps": 125,
+      "elapsed_seconds": 1727.690852880478
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 789,
+      "quick_scores": {
+        "factual": 0.722098214285714,
+        "toxicity": 0.6197656250000003,
+        "sycophancy": -0.001770833333333277,
+        "bias": 0.02611979166666689,
+        "reasoning": 0.0,
+        "refusal": 0.72171875
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.11872209821428514,
+        "toxicity": 0.47507812500000046,
+        "sycophancy": 0.03958333333333308,
+        "bias": -0.009947916666666501,
+        "reasoning": 0.0,
+        "refusal": 0.018281249999999805
+      },
+      "train_ce_loss": 5.40332079410553,
+      "train_rho_loss": 0.266171875,
+      "train_steps": 125,
+      "elapsed_seconds": 1704.987617969513
+    },
+    {
+      "rho_weight": 0.2,
+      "seed": 1337,
+      "quick_scores": {
+        "factual": 0.7126116071428572,
+        "toxicity": 0.6666406249999999,
+        "sycophancy": -0.002187500000000009,
+        "bias": 0.024348958333333393,
+        "reasoning": 0.0,
+        "refusal": 0.7181249999999999
+      },
+      "audit_scores": null,
+      "quick_deltas": {
+        "factual": 0.10923549107142838,
+        "toxicity": 0.521953125,
+        "sycophancy": 0.03916666666666635,
+        "bias": -0.01171875,
+        "reasoning": 0.0,
+        "refusal": 0.014687499999999742
+      },
+      "train_ce_loss": 5.425064082145691,
+      "train_rho_loss": 0.1759375,
+      "train_steps": 125,
+      "elapsed_seconds": 1728.3825228214264
+    }
+  ],
+  "timestamp": "2026-02-25T20:27:59.620298"
+}
