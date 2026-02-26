@@ -139,68 +139,35 @@ def _mlx_mean_logprob(
 
 def mlx_to_pytorch_audit(
     mlx_model, model_name: str, tokenizer_name: str = None,
+    tokenizer=None,
 ) -> dict:
-    """Convert MLX model to PyTorch, run full audit(), return scores.
+    """Run full audit() directly on the MLX model.
 
-    Saves MLX weights as safetensors, loads into a fresh PyTorch HF model,
-    then runs the standard audit() pipeline.
+    Previously converted MLX→PyTorch CPU for each audit; now audit()
+    supports MLX models natively via the hasattr(model, 'eval') guard.
 
     Args:
-        mlx_model: Fused MLX model.
-        model_name: HuggingFace model ID (for loading PyTorch architecture).
-        tokenizer_name: Optional separate tokenizer name.
+        mlx_model: MLX model.
+        model_name: HuggingFace model ID (unused, kept for API compat).
+        tokenizer_name: Unused, kept for API compat.
+        tokenizer: MLX tokenizer. If None, loads from model_name.
 
     Returns:
         Dict mapping behavior name → ρ score.
     """
-    import tempfile
-    import mlx.core as mx
-    from mlx.utils import tree_flatten
-
-    import torch
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-    from safetensors.torch import load_file as load_safetensors
-
     from rho_eval.audit import audit
 
-    tmp_dir = Path(tempfile.mkdtemp())
-    weights_path = tmp_dir / "model.safetensors"
+    if tokenizer is None:
+        from transformers import AutoTokenizer
+        tokenizer = AutoTokenizer.from_pretrained(tokenizer_name or model_name)
+        if tokenizer.pad_token is None:
+            tokenizer.pad_token = tokenizer.eos_token
 
-    # Save MLX weights
-    weights = dict(tree_flatten(mlx_model.parameters()))
-    mx.save_safetensors(str(weights_path), weights)
-
-    # Load PyTorch model
-    torch_tokenizer = AutoTokenizer.from_pretrained(tokenizer_name or model_name)
-    if torch_tokenizer.pad_token is None:
-        torch_tokenizer.pad_token = torch_tokenizer.eos_token
-
-    torch_model = AutoModelForCausalLM.from_pretrained(
-        model_name, torch_dtype=torch.float32,
-    )
-
-    # Load fused weights
-    state_dict = load_safetensors(str(weights_path))
-    torch_model.load_state_dict(state_dict, strict=False)
-    torch_model.eval()
-
-    # Run audit
-    report = audit(
-        model=torch_model, tokenizer=torch_tokenizer,
-        behaviors="all", device="cpu",
-    )
+    report = audit(model=mlx_model, tokenizer=tokenizer, behaviors="all")
 
     scores = {
         bname: r.rho for bname, r in report.behaviors.items()
     }
-
-    # Cleanup
-    del torch_model, state_dict
-    gc.collect()
-
-    # Remove temp files
-    weights_path.unlink(missing_ok=True)
-    tmp_dir.rmdir()
 
     return scores
 
@@ -261,11 +228,11 @@ def run_sweep(
     for bname, gap in baseline_quick.items():
         print(f"    {bname:12s}: {gap:+.4f}")
 
-    # Full PyTorch baseline if requested
+    # Full baseline audit if requested
     baseline_scores = {}
     if full_audit:
-        print("\nRunning full PyTorch audit for baseline...")
-        baseline_scores = mlx_to_pytorch_audit(model, model_name)
+        print("\nRunning full audit for baseline...")
+        baseline_scores = mlx_to_pytorch_audit(model, model_name, tokenizer=tokenizer)
         print("  Baseline rho:")
         for bname, rho in baseline_scores.items():
             print(f"    {bname:12s}: {rho:.4f}")
@@ -370,12 +337,12 @@ def run_sweep(
             print(f"\n  Quick eval {label}...")
             quick_scores = mlx_quick_rho(model, tokenizer, ALL_EVAL_BEHAVIORS)
 
-            # Optional full PyTorch audit
+            # Optional full audit (native MLX)
             audit_scores = {}
             if full_audit:
-                print(f"  Full PyTorch audit {label}...")
+                print(f"  Full audit {label}...")
                 try:
-                    audit_scores = mlx_to_pytorch_audit(model, model_name)
+                    audit_scores = mlx_to_pytorch_audit(model, model_name, tokenizer=tokenizer)
                 except Exception as e:
                     print(f"  AUDIT ERROR: {e}")
 
