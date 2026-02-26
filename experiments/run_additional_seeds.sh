@@ -13,7 +13,12 @@
 #   - rho-guided with margin=0.0 for 5 seeds = 5 runs
 #   - ~25 min each = ~2 hours
 #
-# Total: ~25 runs, ~11 hours on M3 Ultra
+# Phase D: Safety stress test (jailbreak comparison)
+#   - 4 conditions (baseline, sft-only, contrastive-only, rho-guided)
+#   - 25 jailbreak + 15 benign prompts each = 160 generations
+#   - ~3.5 hours
+#
+# Total: ~25 runs + stress test, ~15 hours on M3 Ultra
 #
 # Usage:
 #   cd /Volumes/4TB\ SD/ClaudeCode/knowledge-fidelity
@@ -132,6 +137,26 @@ run_phase_c() {
 }
 
 
+# ── Phase D: Safety Stress Test ───────────────────────────────────
+
+run_phase_d() {
+    echo ""
+    echo "============================================================"
+    echo "  PHASE D: Safety Stress Test (Jailbreak Comparison)"
+    echo "  4 conditions × (25 jailbreak + 15 benign) prompts"
+    echo "  Started: $(date)"
+    echo "============================================================"
+
+    $PYTHON experiments/safety_stress_test.py \
+        --model qwen2.5-7b \
+        --seed 42 \
+        --max-tokens 256
+
+    echo ""
+    echo "  Phase D complete: $(date)"
+}
+
+
 # ── Run Phases ──────────────────────────────────────────────────────
 
 case "$PHASE" in
@@ -144,14 +169,18 @@ case "$PHASE" in
     C|c|phase-c)
         run_phase_c
         ;;
+    D|d|phase-d)
+        run_phase_d
+        ;;
     all|ALL)
         run_phase_a
         run_phase_b
         run_phase_c
+        run_phase_d
         ;;
     *)
         echo "Unknown phase: $PHASE"
-        echo "Usage: $0 [A|B|C|all]"
+        echo "Usage: $0 [A|B|C|D|all]"
         exit 1
         ;;
 esac
