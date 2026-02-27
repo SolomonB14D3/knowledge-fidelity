@@ -159,7 +159,17 @@ See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probabilit
 - **Sycophancy suppression via activation steering is architecture-contingent.** The Layer 17 sweet spot is Qwen-specific (ρ 0.120 to 0.413, a 3.4× gain). On Mistral, no layer achieves meaningful improvement. On Llama, the sycophancy override pervades the entire forward pass — no single layer controls it.
 - **Social compliance and social awareness share representational capacity.** The slope of −1.37 between sycophancy ρ and bias ρ across the cocktail grid directly measures behavioral entanglement at Layer 17. Llama's slope is −4.7 (3.4× steeper).
 - **Behavioral subspaces have distinct geometries.** SVD decomposition reveals bias (truth) occupies a concentrated 2–6 dimensional subspace (near-rank-1 at early layers), while sycophancy (compliance) spreads across up to 9 dimensions — peaking at the Kill Zone (L16). Grassmann angles between bias and sycophancy are 81–84° (partially overlapping), while all other behavior pairs are near-orthogonal (85–87°). Rank-1 surgical steering at L8 produces +0.046 factual but −0.257 bias collateral, confirming the subspaces physically overlap.
-- **Rho-SFT is the active ingredient in hybrid control.** A 7-config sweep combining SVD compression, SAE activation steering, and rho-guided SFT on Qwen2.5-0.5B shows that rho-SFT alone accounts for nearly all improvement (+0.013 mean ρ over baseline). SAE steering at inference time is neutral or slightly harmful — adding SAE to rho-SFT reduces the sycophancy gain from +0.100 to +0.053. SVD compression alone hurts (−0.016 mean ρ), but rho-SFT fully repairs the damage.
+- **Rho-SFT is the active ingredient in hybrid control.** A 7-config sweep combining SVD compression, SAE activation steering, and rho-guided SFT on Qwen2.5-0.5B shows that rho-SFT alone accounts for nearly all improvement. SAE steering at inference time is neutral or slightly harmful. SVD compression alone hurts, but rho-SFT fully repairs the damage.
+
+  | Config | Mean Δρ | Notes |
+  |--------|---------|-------|
+  | SVD + rho-SFT (no SAE) | **+0.013** | 🥇 Best — sycophancy +0.100, factual +0.014 |
+  | SVD + SAE + rho-SFT (no compress) | +0.008 | SAE helps slightly without SVD |
+  | SVD + SAE + rho-SFT | +0.005 | SAE eats half the rho-SFT gain |
+  | No-compress + SAE + rho-SFT | −0.001 | Flat — rho-SFT and SAE cancel |
+  | No-compress + SAE only | 0.000 | Identity — SAE alone does nothing |
+  | SVD only (no SAE, no rho) | −0.016 | Hurts — bias −0.067, factual −0.034 |
+  | SVD + SAE only | −0.016 | SAE cannot repair SVD damage |
 - **Safety behaviors resist SAE steering.** Attack/defense asymmetry testing on Qwen2.5-0.5B finds refusal has only 12 SAE features (nearly immovable: scale 0→5 moves ρ by +0.005) while deception has 2,314 features (slight positive effect at low scales but 5-6 behaviors regress as collateral). Safety behaviors are either too distributed (refusal) or too entangled (deception) for SAE steering alone.
 - **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
 - **Merge methods cause behavioral trade-offs invisible to standard benchmarks.** DARE-TIES destroys alignment on Qwen but improves it on Mistral. DELLA completely breaks the model. Only behavioral evaluation catches these failures.
