@@ -1,9 +1,9 @@
 """
 rho-eval — Behavioral auditing toolkit for LLMs.
 
-Audit any model across 5 behavioral dimensions (factual, toxicity, bias,
-sycophancy, reasoning) using teacher-forced confidence probes. No internet
-required — all 806 probes ship with the package.
+Audit any model across 8 behavioral dimensions (factual, toxicity, bias,
+sycophancy, reasoning, refusal, deception, over-refusal) using teacher-forced
+confidence probes. No internet required — all 1,106 probes ship with the package.
 
 Quick start:
     from rho_eval import audit
@@ -81,7 +81,7 @@ from .probes import (
 from .behavioral import load_behavioral_probes, evaluate_behavior
 from .calibration import load_calibration_data, gentle_finetune
 
-__version__ = "2.2.0"
+__version__ = "2.2.1"
 
 __all__ = [
     # ── New v2 API ──
