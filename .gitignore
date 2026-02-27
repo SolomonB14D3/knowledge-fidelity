@@ -83,6 +83,10 @@ results/alignment/*.log
 results/alignment/*.txt
 results/alignment/*.safetensors
 !results/alignment/*.json
+# Attack/defense asymmetry results (keep JSON, ignore logs)
+!results/attack_defense/
+results/attack_defense/*.log
+!results/attack_defense/*.json
 *.log
 
 # Lock files
