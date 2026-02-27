@@ -1,4 +1,4 @@
-knowledge-fidelity>=0.2.1
+rho-eval>=2.2.2
 gradio>=4.0
 matplotlib>=3.7
 pandas

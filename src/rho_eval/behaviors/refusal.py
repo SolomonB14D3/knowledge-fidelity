@@ -36,7 +36,7 @@ class RefusalBehavior(ABCBehavior):
     default_n = 150  # 50 original + 100 expanded
 
     _PROBE_FILES = [
-        "refusal/harmful_benign_100.json",
+        "refusal/harmful_benign_50.json",
         "refusal/expanded_100.json",
     ]
 
