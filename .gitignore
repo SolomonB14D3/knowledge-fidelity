@@ -87,6 +87,12 @@ results/alignment/*.safetensors
 !results/attack_defense/
 results/attack_defense/*.log
 !results/attack_defense/*.json
+# Hybrid control sweep results (keep summary + per-config JSON)
+!results/hybrid_sweep/
+results/hybrid_sweep/*.log
+!results/hybrid_sweep/*.json
+!results/hybrid_sweep/*/
+!results/hybrid_sweep/*/*.json
 *.log
 
 # Lock files
