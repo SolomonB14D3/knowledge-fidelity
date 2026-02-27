@@ -18,16 +18,15 @@ from .schema import ActivationData
 
 
 def _load_probes_for_behavior(behavior: str) -> list[dict]:
-    """Load probes using rho-eval's probe system.
+    """Load probes using rho-eval's behavior plugin system.
 
-    Uses the legacy API which covers all 4 supported behaviors.
+    Supports all registered behaviors (factual, toxicity, bias,
+    sycophancy, reasoning, refusal, deception, overrefusal).
     """
-    if behavior == "factual":
-        from ..probes import get_all_probes
-        return get_all_probes()
-    else:
-        from ..behavioral import load_behavioral_probes
-        return load_behavioral_probes(behavior, seed=42)
+    from ..behaviors import get_behavior
+    behavior_obj = get_behavior(behavior)
+    # Load a generous number of probes — caller can cap via max_probes
+    return behavior_obj.load_probes(n=999, seed=42)
 
 
 @torch.no_grad()

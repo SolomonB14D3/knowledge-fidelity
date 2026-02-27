@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.2] - 2026-02-27
+
+### Added
+
+- **3-seed × 3-λ external eval** on Qwen2.5-7B-Instruct with full 8-dimensional behavioral audit + TruthfulQA MC2. λ=0.5 recovers 29% of SFT truthfulness damage (up from 17% in prior 2-seed eval). Results in `results/alignment/external_eval_Qwen_Qwen2.5-7B-Instruct.json`.
+- **Hybrid control pipeline** (`src/rho_eval/hybrid/pipeline.py`) — all 5 phases implemented: baseline audit, SVD compress + freeze, SAE train + identify, rho-guided SFT with steering hook, final audit. Ready for parameter sweeps.
+- **Attack/defense asymmetry experiment** (`experiments/attack_defense_asymmetry.py`) — measures whether degrading safety behaviors (attack) is easier than improving them (defense) via SAE steering.
+
+### Fixed
+
+- **Behavior plugin API in `steering/collect.py`** — use `get_behavior(name).load_probes()` instead of legacy `load_behavioral_probes()` which only supported 4 of 8 behaviors.
+- **Device propagation in `attack_defense_asymmetry.py`** — audit calls now pass `device=` parameter correctly for MPS/CUDA.
+- **`AuditReport.results` → `.behaviors`** in attack_defense_asymmetry.py (3 locations) — matching the v2.0.0 schema.
+
+### Changed
+
+- Paper Section 4.4 updated to 3-seed TruthfulQA MC2 results with dose-response across λ∈{0.0, 0.2, 0.5}. Recovery figure strengthened from 17% to 29%.
+- CITATION.cff version synced with pyproject.toml.
+
 ## [2.1.1] - 2026-02-26
 
 ### Added
