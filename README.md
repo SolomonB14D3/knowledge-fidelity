@@ -1,4 +1,4 @@
-# rho-eval v2.2: The Behavioral Forensic Suite
+# rho-eval v2.2.2: The Behavioral Forensic Suite
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
@@ -15,7 +15,7 @@
 
 ## Project Overview
 
-rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.2 expands to 8 behavioral dimensions with 1,106 probes shipped as JSON — no internet required.
+rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.2.2 expands to 8 behavioral dimensions with 1,106 probes shipped as JSON — no internet required.
 
 | Module | Purpose |
 |--------|---------|
@@ -140,7 +140,7 @@ rho-bench Qwen/Qwen2.5-7B-Instruct
 
 > Sanchez, B. (2026). *Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models.* [`paper/rho_guided_sft.md`](paper/rho_guided_sft.md)
 
-Standard SFT inverts toxicity discrimination ($\rho = +0.145 \to -0.003$, $n = 5$ seeds). Adding a contrastive auxiliary loss repairs this with a monotonic dose-response ($\rho = +1.137$ at $\lambda_\rho = 0.5$). Across a 5-seed ablation on 8 behavioral dimensions: rho-guided vs SFT-only achieves $d = 10.8$ on toxicity and $d = 13.7$ on bias ($p < 0.0001$). Contrastive-only training erodes refusal by $\Delta\rho = -0.084$ ($d = -8.4$, $p = 0.0005$), while rho-guided SFT preserves it ($\Delta\rho = +0.014$). The margin $\gamma = 0.1$ is necessary: without it, bias goes negative.
+Standard SFT inverts toxicity discrimination ($\rho = +0.145 \to -0.003$, $p < 0.008$, $n = 5$ seeds). Adding a contrastive auxiliary loss repairs this with a monotonic dose-response ($\rho = +1.097$ at $\lambda_\rho = 0.5$, 30 runs across 8 seeds). Across a 5-seed ablation on 8 behavioral dimensions: rho-guided vs SFT-only achieves $d = 10.8$ on toxicity and $d = 13.7$ on bias ($p < 0.0001$). All four behaviors monotonically improve with $\lambda_\rho$; factual reaches significance at $\lambda_\rho \geq 0.2$ ($p < 0.001$). Contrastive-only training erodes refusal by $\Delta\rho = -0.084$ ($d = -8.4$, $p = 0.0005$), while rho-guided SFT preserves it ($\Delta\rho = +0.014$). TruthfulQA MC2 external validation (3 seeds × 3 $\lambda$ values) shows 29% recovery of SFT truthfulness damage at $\lambda_\rho = 0.5$.
 
 > Sanchez, B. (2026). *Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy.* Zenodo. [doi:10.5281/zenodo.18743959](https://doi.org/10.5281/zenodo.18743959)
 
@@ -159,6 +159,8 @@ See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probabilit
 - **Sycophancy suppression via activation steering is architecture-contingent.** The Layer 17 sweet spot is Qwen-specific (ρ 0.120 to 0.413, a 3.4× gain). On Mistral, no layer achieves meaningful improvement. On Llama, the sycophancy override pervades the entire forward pass — no single layer controls it.
 - **Social compliance and social awareness share representational capacity.** The slope of −1.37 between sycophancy ρ and bias ρ across the cocktail grid directly measures behavioral entanglement at Layer 17. Llama's slope is −4.7 (3.4× steeper).
 - **Behavioral subspaces have distinct geometries.** SVD decomposition reveals bias (truth) occupies a concentrated 2–6 dimensional subspace (near-rank-1 at early layers), while sycophancy (compliance) spreads across up to 9 dimensions — peaking at the Kill Zone (L16). Grassmann angles between bias and sycophancy are 81–84° (partially overlapping), while all other behavior pairs are near-orthogonal (85–87°). Rank-1 surgical steering at L8 produces +0.046 factual but −0.257 bias collateral, confirming the subspaces physically overlap.
+- **Rho-SFT is the active ingredient in hybrid control.** A 7-config sweep combining SVD compression, SAE activation steering, and rho-guided SFT on Qwen2.5-0.5B shows that rho-SFT alone accounts for nearly all improvement (+0.013 mean ρ over baseline). SAE steering at inference time is neutral or slightly harmful — adding SAE to rho-SFT reduces the sycophancy gain from +0.100 to +0.053. SVD compression alone hurts (−0.016 mean ρ), but rho-SFT fully repairs the damage.
+- **Safety behaviors resist SAE steering.** Attack/defense asymmetry testing on Qwen2.5-0.5B finds refusal has only 12 SAE features (nearly immovable: scale 0→5 moves ρ by +0.005) while deception has 2,314 features (slight positive effect at low scales but 5-6 behaviors regress as collateral). Safety behaviors are either too distributed (refusal) or too entangled (deception) for SAE steering alone.
 - **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
 - **Merge methods cause behavioral trade-offs invisible to standard benchmarks.** DARE-TIES destroys alignment on Qwen but improves it on Mistral. DELLA completely breaks the model. Only behavioral evaluation catches these failures.
 
@@ -773,6 +775,13 @@ python experiments/truthfulqa_mc2_mlx.py --model qwen2.5-7b --rho-weights 0.0,0.
 
 # Statistical analysis of ablation results
 python experiments/analyze_ablation_stats.py results/alignment/ablation_*.json
+
+# Hybrid control sweep (SVD × SAE × rho-SFT grid)
+python experiments/hybrid_control_sweep.py Qwen/Qwen2.5-0.5B-Instruct --quick
+python experiments/hybrid_control_sweep.py Qwen/Qwen2.5-7B-Instruct --quick
+
+# Attack/defense asymmetry (SAE steering on safety behaviors)
+python experiments/attack_defense_asymmetry.py --model Qwen/Qwen2.5-0.5B-Instruct --layer 17
 
 # Fidelity-Bench 2.0 experiment (multi-model)
 python experiments/fidelity_bench_2.py --validate  # Quick: Qwen-0.5B, 3 probes/domain

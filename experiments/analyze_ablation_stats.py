@@ -57,13 +57,33 @@ def sig_stars(p: float) -> str:
 def analyze(data: dict) -> dict:
     """Full statistical analysis of ablation results."""
 
-    baseline = data["baseline_quick"]
-    runs = data["runs"]
+    baseline_key = "baseline_quick" if "baseline_quick" in data else "baseline"
+    baseline = data[baseline_key]
 
-    # Group by condition
-    by_cond = defaultdict(list)
-    for r in runs:
-        by_cond[r["condition"]].append(r)
+    # Support two schemas:
+    #   Old: data["runs"] = [{condition, quick_scores, quick_deltas}, ...]
+    #   New: data["merged_deltas"] = {condition: {behavior: [values_per_seed]}}
+    if "runs" in data:
+        runs = data["runs"]
+        by_cond = defaultdict(list)
+        for r in runs:
+            by_cond[r["condition"]].append(r)
+    elif "merged_deltas" in data:
+        # Convert merged_deltas format to per-condition grouped data
+        by_cond = {}
+        md = data["merged_deltas"]
+        for cond, beh_dict in md.items():
+            n_seeds = len(next(iter(beh_dict.values())))
+            fake_runs = []
+            for i in range(n_seeds):
+                fake_runs.append({
+                    "condition": cond,
+                    "quick_scores": {b: baseline.get(b, 0.0) + beh_dict.get(b, [0.0]*n_seeds)[i] for b in BEHAVIORS},
+                    "quick_deltas": {b: beh_dict.get(b, [0.0]*n_seeds)[i] for b in BEHAVIORS},
+                })
+            by_cond[cond] = fake_runs
+    else:
+        raise ValueError("Data must contain 'runs' or 'merged_deltas'")
 
     conditions = list(by_cond.keys())
 
