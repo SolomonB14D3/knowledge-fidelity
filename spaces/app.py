@@ -1,4 +1,4 @@
-"""Knowledge Fidelity — HF Spaces Gradio Demo.
+"""rho-eval — HF Spaces Gradio Demo.
 
 Compress an LLM and audit whether it still knows truth vs popular myths.
 """
@@ -21,7 +21,7 @@ PROBE_SETS = ["default", "mandela", "medical", "all"]
 
 
 def get_probes(probe_set: str):
-    from knowledge_fidelity.probes import (
+    from rho_eval.probes import (
         get_default_probes, get_mandela_probes, get_medical_probes,
         get_all_probes,
     )
@@ -33,7 +33,7 @@ def get_probes(probe_set: str):
     }
     # Try commonsense if available
     try:
-        from knowledge_fidelity.probes import get_commonsense_probes
+        from rho_eval.probes import get_commonsense_probes
         probe_map["commonsense"] = get_commonsense_probes
     except ImportError:
         pass
@@ -72,7 +72,7 @@ def make_bar_chart(report, probes):
     ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=7)
     ax.legend()
 
-    plt.suptitle("Knowledge Fidelity: Confidence Before vs After Compression", fontsize=13, y=1.02)
+    plt.suptitle("rho-eval: Confidence Before vs After Compression", fontsize=13, y=1.02)
     plt.tight_layout()
     return fig
 
@@ -83,7 +83,7 @@ def run_compress_and_audit(model_name, ratio, probe_set, progress=gr.Progress())
     probes = get_probes(probe_set)
 
     progress(0.1, desc=f"Loading {model_name}...")
-    from knowledge_fidelity import compress_and_audit
+    from rho_eval import compress_and_audit
 
     report = compress_and_audit(
         model_name,
@@ -135,7 +135,7 @@ def run_audit_only(model_name, probe_set, progress=gr.Progress()):
     """Audit without compression (baseline)."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
-    from knowledge_fidelity import audit_model
+    from rho_eval import audit_model
 
     progress(0.1, desc=f"Loading {model_name}...")
     probes = get_probes(probe_set)
@@ -175,9 +175,9 @@ def run_audit_only(model_name, probe_set, progress=gr.Progress()):
 
 # --- Gradio UI ---
 
-with gr.Blocks(title="Knowledge Fidelity", theme=gr.themes.Soft()) as demo:
+with gr.Blocks(title="rho-eval", theme=gr.themes.Soft()) as demo:
     gr.Markdown(
-        "# Knowledge Fidelity\n"
+        "# rho-eval\n"
         "**Compress an LLM while auditing whether it still knows truth vs popular myths.**\n\n"
         "Uses the same factual probes for SVD compression importance scoring and "
         "behavioral false-belief detection."

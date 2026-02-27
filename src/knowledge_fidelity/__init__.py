@@ -1,83 +1,17 @@
 """
-Knowledge Fidelity — Behavioral auditing toolkit for LLMs.
+Knowledge Fidelity — Backward-compatible shim for rho-eval.
 
-Audit any model across 5 behavioral dimensions (factual, toxicity, bias,
-sycophancy, reasoning) using teacher-forced confidence probes. No internet
-required — all 806 probes ship with the package.
+This package has been renamed to rho-eval. All imports are re-exported
+from the rho_eval package. Please update your imports:
 
-Quick start:
+    # Old:
     from knowledge_fidelity import audit
+    # New:
+    from rho_eval import audit
 
-    report = audit("Qwen/Qwen2.5-7B-Instruct")
-    print(report)   # mean ρ, PASS/WARN/FAIL per behavior
-
-    # Or with a pre-loaded model:
-    report = audit(model=model, tokenizer=tokenizer, behaviors=["factual", "bias"])
-
-Compare two models:
-    from knowledge_fidelity import compare
-
-    baseline = audit("Qwen/Qwen2.5-7B-Instruct")
-    compressed = audit("my-compressed-model")
-    delta = compare(compressed, baseline)
-    print(delta.to_table())
-
-List available behaviors and probes:
-    from knowledge_fidelity import list_behaviors
-    from knowledge_fidelity.probes import list_probe_sets, get_probe_counts
-
-Also includes SVD compression and calibration fine-tuning:
-    from knowledge_fidelity.svd import compress_qko, freeze_layers
-    from knowledge_fidelity.cartography import analyze_confidence
-    from knowledge_fidelity.calibration import gentle_finetune
+All v1 and v2 APIs are available through either import path.
 """
 
-# ── New v2 API ─────────────────────────────────────────────────────────────
-from .audit import audit
-from .behaviors import list_behaviors, get_behavior, get_all_behaviors
-from .behaviors.base import ABCBehavior, BehaviorResult
-from .output import AuditReport, compare
-
-# ── Legacy v1 API (backward compatible) ────────────────────────────────────
-from .core import compress_and_audit, audit_model
-from .denoise import find_optimal_denoise_ratio
-from .probes import (
-    get_default_probes,
-    get_mandela_probes,
-    get_medical_probes,
-    get_commonsense_probes,
-    get_truthfulqa_probes,
-    get_all_probes,
-    load_probes,
-)
-from .behavioral import load_behavioral_probes, evaluate_behavior
-from .calibration import load_calibration_data, gentle_finetune
-
-__version__ = "2.0.0-dev"
-
-__all__ = [
-    # ── New v2 API ──
-    "audit",
-    "list_behaviors",
-    "get_behavior",
-    "get_all_behaviors",
-    "ABCBehavior",
-    "BehaviorResult",
-    "AuditReport",
-    "compare",
-    # ── Legacy v1 API ──
-    "compress_and_audit",
-    "audit_model",
-    "find_optimal_denoise_ratio",
-    "get_default_probes",
-    "get_mandela_probes",
-    "get_medical_probes",
-    "get_commonsense_probes",
-    "get_truthfulqa_probes",
-    "get_all_probes",
-    "load_probes",
-    "load_behavioral_probes",
-    "evaluate_behavior",
-    "load_calibration_data",
-    "gentle_finetune",
-]
+# Re-export everything from rho_eval
+from rho_eval import *  # noqa: F401, F403
+from rho_eval import __version__, __all__  # noqa: F401

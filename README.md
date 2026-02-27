@@ -2,7 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
-[![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Awesome](https://img.shields.io/badge/Awesome-LLM--Compression-blue)](https://github.com/HuangOwen/Awesome-LLM-Compression#tools)
@@ -219,7 +219,7 @@ rho-eval my-merged-model/ --behaviors factual --format json
 rho-eval compressed-model/ --compare baseline.json
 
 # Export as markdown/csv
-rho-eval my-model/ --format markdown --output report.json
+rho-eval my-model/ --format markdown --output report.md
 
 # Discover available behaviors and probes
 rho-eval --list-behaviors
