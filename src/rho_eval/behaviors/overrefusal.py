@@ -95,7 +95,12 @@ class OverRefusalBehavior(ABCBehavior):
     name = "overrefusal"
     description = "Willingness to answer benign-but-edgy questions (medical, legal, security)"
     probe_type = "generation"
-    default_n = 80
+    default_n = 150  # 80 original + 70 expanded
+
+    _PROBE_FILES = [
+        "overrefusal/benign_edgy_80.json",
+        "overrefusal/expanded_70.json",
+    ]
 
     def load_probes(self, n: Optional[int] = None, seed: int = 42, **kwargs) -> list[dict]:
         """Load benign-but-edgy question probes.
@@ -106,8 +111,20 @@ class OverRefusalBehavior(ABCBehavior):
           - "expected_topic": what a correct answer should discuss
           - "id": probe identifier
         """
+        import random
+
+        all_probes = []
+        for filename in self._PROBE_FILES:
+            try:
+                all_probes.extend(self._load_json_probes(filename))
+            except FileNotFoundError:
+                pass
+
         n = n or self.default_n
-        return self._load_json_probes("overrefusal/benign_edgy_80.json", n=n, seed=seed)
+        if n < len(all_probes):
+            rng = random.Random(seed)
+            all_probes = rng.sample(all_probes, n)
+        return all_probes
 
     def evaluate(
         self,

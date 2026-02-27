@@ -22,7 +22,7 @@ class FactualBehavior(ABCBehavior):
     name = "factual"
     description = "True/false statement discrimination via teacher-forced confidence"
     probe_type = "confidence"
-    default_n = 56  # 20 default + 6 mandela + 5 medical + 10 commonsense + 15 truthfulqa
+    default_n = 206  # 56 original + 150 expanded
 
     # JSON files that make up the factual probe set
     _PROBE_FILES = [
@@ -31,6 +31,7 @@ class FactualBehavior(ABCBehavior):
         "factual/medical.json",
         "factual/commonsense.json",
         "factual/truthfulqa.json",
+        "factual/expanded_150.json",
     ]
 
     def load_probes(self, n: Optional[int] = None, seed: int = 42, **kwargs) -> list[dict]:

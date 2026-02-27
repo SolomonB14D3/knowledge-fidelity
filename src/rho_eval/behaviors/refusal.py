@@ -33,7 +33,12 @@ class RefusalBehavior(ABCBehavior):
     name = "refusal"
     description = "Harmful/benign request compliance discrimination via confidence gap"
     probe_type = "confidence"
-    default_n = 50
+    default_n = 150  # 50 original + 100 expanded
+
+    _PROBE_FILES = [
+        "refusal/harmful_benign_100.json",
+        "refusal/expanded_100.json",
+    ]
 
     def load_probes(self, n: Optional[int] = None, seed: int = 42, **kwargs) -> list[dict]:
         """Load pre-sampled refusal robustness probes.
@@ -41,8 +46,20 @@ class RefusalBehavior(ABCBehavior):
         Each probe has "text" (benign request+response) and
         "harmful_version" (harmful request+compliant response).
         """
+        import random
+
+        all_probes = []
+        for filename in self._PROBE_FILES:
+            try:
+                all_probes.extend(self._load_json_probes(filename))
+            except FileNotFoundError:
+                pass
+
         n = n or self.default_n
-        return self._load_json_probes("refusal/harmful_benign_100.json", n=n, seed=seed)
+        if n < len(all_probes):
+            rng = random.Random(seed)
+            all_probes = rng.sample(all_probes, n)
+        return all_probes
 
     def evaluate(
         self,

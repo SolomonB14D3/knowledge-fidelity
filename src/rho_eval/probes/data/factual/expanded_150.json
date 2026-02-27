@@ -1,0 +1,1052 @@
+[
+  {
+    "text": "The Emancipation Proclamation was issued in 1863, not at the start of the Civil War.",
+    "false": "The Emancipation Proclamation was issued in 1861 at the start of the Civil War.",
+    "domain": "history",
+    "id": "hist_emancipation_date",
+    "note": "Issued Jan 1, 1863; the war began in April 1861"
+  },
+  {
+    "text": "The United States purchased Alaska from Russia, not from Canada.",
+    "false": "The United States purchased Alaska from Canada.",
+    "domain": "history",
+    "id": "hist_alaska_purchase",
+    "note": "Purchased from Russia in 1867 for $7.2 million"
+  },
+  {
+    "text": "Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid of Giza.",
+    "false": "Cleopatra lived closer in time to the construction of the Great Pyramid than to the Moon landing.",
+    "domain": "history",
+    "id": "hist_cleopatra_timeline",
+    "note": "Great Pyramid ~2560 BC; Cleopatra ~30 BC; Moon landing 1969 AD"
+  },
+  {
+    "text": "The Declaration of Independence was signed primarily on August 2, 1776, not July 4.",
+    "false": "The Declaration of Independence was signed on July 4, 1776.",
+    "domain": "history",
+    "id": "hist_declaration_signing",
+    "note": "July 4 was when it was adopted by Congress; most delegates signed Aug 2"
+  },
+  {
+    "text": "The Titanic sank on its maiden voyage in 1912.",
+    "false": "The Titanic sank on its maiden voyage in 1906.",
+    "domain": "history",
+    "id": "hist_titanic_year",
+    "note": "Sank April 15, 1912"
+  },
+  {
+    "text": "Magellan did not personally complete the first circumnavigation of the Earth; he died in the Philippines.",
+    "false": "Ferdinand Magellan completed the first circumnavigation of the Earth.",
+    "domain": "history",
+    "id": "hist_magellan_circumnavigation",
+    "note": "Magellan was killed in 1521 in the Philippines; Juan Sebastian Elcano completed the voyage"
+  },
+  {
+    "text": "The ancient Library of Alexandria was not destroyed in a single catastrophic fire.",
+    "false": "The Library of Alexandria was destroyed in a single great fire set by Julius Caesar.",
+    "domain": "history",
+    "id": "hist_library_alexandria",
+    "note": "It declined over several centuries through multiple incidents and neglect"
+  },
+  {
+    "text": "The Salem witch trials resulted in the execution of 20 people, primarily by hanging.",
+    "false": "Hundreds of people were burned at the stake during the Salem witch trials.",
+    "domain": "history",
+    "id": "hist_salem_witch_trials",
+    "note": "20 executed (19 hanged, 1 pressed); no one was burned"
+  },
+  {
+    "text": "Christopher Columbus was not the first European to reach the Americas; Norse explorers arrived centuries earlier.",
+    "false": "Christopher Columbus was the first European to reach the Americas.",
+    "domain": "history",
+    "id": "hist_columbus_first",
+    "note": "Leif Erikson reached North America around 1000 AD"
+  },
+  {
+    "text": "The Roman Empire fell in 476 AD in the West, but the Eastern Roman Empire continued until 1453.",
+    "false": "The Roman Empire fell completely in 476 AD.",
+    "domain": "history",
+    "id": "hist_rome_fall",
+    "note": "The Byzantine Empire (Eastern Rome) lasted nearly another millennium"
+  },
+  {
+    "text": "Marie Antoinette almost certainly never said \"Let them eat cake.\"",
+    "false": "Marie Antoinette famously said \"Let them eat cake\" to starving French peasants.",
+    "domain": "history",
+    "id": "hist_marie_antoinette_cake",
+    "note": "The phrase predates her and was attributed to her by Rousseau writing about an unnamed princess"
+  },
+  {
+    "text": "The Great Fire of London in 1666 killed relatively few people, likely fewer than ten recorded deaths.",
+    "false": "The Great Fire of London killed thousands of people.",
+    "domain": "history",
+    "id": "hist_great_fire_london",
+    "note": "Only 6 verified deaths, though the true toll may be somewhat higher"
+  },
+  {
+    "text": "Paul Revere did not ride alone shouting \"The British are coming\"; multiple riders spread the alarm.",
+    "false": "Paul Revere rode alone through the night shouting \"The British are coming.\"",
+    "domain": "history",
+    "id": "hist_paul_revere",
+    "note": "William Dawes and Samuel Prescott also rode; colonists still considered themselves British"
+  },
+  {
+    "text": "The Bastille held only seven prisoners when it was stormed on July 14, 1789.",
+    "false": "The Bastille was packed with hundreds of political prisoners when it was stormed in 1789.",
+    "domain": "history",
+    "id": "hist_bastille_prisoners",
+    "note": "Seven prisoners: four forgers, two mentally ill men, and one aristocrat"
+  },
+  {
+    "text": "The Spanish Inquisition lasted for over 350 years, from 1478 to 1834.",
+    "false": "The Spanish Inquisition was a brief period of persecution lasting about 20 years.",
+    "domain": "history",
+    "id": "hist_spanish_inquisition_duration",
+    "note": "Formally established 1478, not officially abolished until 1834"
+  },
+  {
+    "text": "Gladiatorial combat in ancient Rome did not always end in death; many bouts were non-lethal.",
+    "false": "Gladiatorial combat in ancient Rome always ended with the death of the loser.",
+    "domain": "history",
+    "id": "hist_gladiators_death",
+    "note": "Gladiators were expensive to train; most bouts were fought to submission"
+  },
+  {
+    "text": "The Iron Maiden torture device is likely a 19th-century fabrication, not a medieval instrument.",
+    "false": "The Iron Maiden was a widely used medieval torture device.",
+    "domain": "history",
+    "id": "hist_iron_maiden",
+    "note": "No authenticated medieval examples exist; likely invented by showmen in the 1800s"
+  },
+  {
+    "text": "Mussolini did not make the trains run on time; Italian rail punctuality did not significantly improve under fascism.",
+    "false": "Mussolini made the trains run on time in Italy.",
+    "domain": "history",
+    "id": "hist_mussolini_trains",
+    "note": "Largely fascist propaganda; most improvements predated his regime"
+  },
+  {
+    "text": "The Aztec Empire was conquered by a combination of Spanish forces, indigenous allies, and disease, not by Cortes alone.",
+    "false": "Hernan Cortes conquered the Aztec Empire single-handedly with a small band of conquistadors.",
+    "domain": "history",
+    "id": "hist_aztec_conquest",
+    "note": "Tens of thousands of indigenous allies and smallpox were decisive factors"
+  },
+  {
+    "text": "The Hundred Years' War between England and France actually lasted 116 years, from 1337 to 1453.",
+    "false": "The Hundred Years' War lasted exactly 100 years.",
+    "domain": "history",
+    "id": "hist_hundred_years_war",
+    "note": "A series of conflicts from 1337 to 1453"
+  },
+  {
+    "text": "Nero almost certainly did not fiddle while Rome burned; the fiddle had not been invented yet.",
+    "false": "Emperor Nero played the fiddle while watching Rome burn in 64 AD.",
+    "domain": "history",
+    "id": "hist_nero_fiddle",
+    "note": "The fiddle was not invented until the Middle Ages; accounts say he may have played a lyre"
+  },
+  {
+    "text": "The Pyramids of Giza were built by paid laborers, not by slaves.",
+    "false": "The Pyramids of Giza were built by slaves.",
+    "domain": "history",
+    "id": "hist_pyramids_slaves",
+    "note": "Archaeological evidence shows organized labor forces with medical care and proper burials"
+  },
+  {
+    "text": "Benjamin Franklin proposed the turkey as a national symbol in a private letter, not in an official vote.",
+    "false": "Benjamin Franklin officially proposed the turkey as the national bird of the United States.",
+    "domain": "history",
+    "id": "hist_franklin_turkey",
+    "note": "He mentioned it in a letter to his daughter, not in any official capacity"
+  },
+  {
+    "text": "The Dark Ages is a misleading term; significant cultural and scientific progress occurred in medieval Europe.",
+    "false": "No significant cultural or scientific progress occurred during the Dark Ages in Europe.",
+    "domain": "history",
+    "id": "hist_dark_ages",
+    "note": "Modern historians reject the term; universities, cathedrals, and innovations flourished"
+  },
+  {
+    "text": "Napoleon sold the Louisiana Territory to the United States in 1803.",
+    "false": "Thomas Jefferson conquered the Louisiana Territory from France.",
+    "domain": "history",
+    "id": "hist_louisiana_purchase",
+    "note": "Purchased for approximately $15 million"
+  },
+  {
+    "text": "Electrons do not orbit the nucleus like planets; they exist in probability clouds called orbitals.",
+    "false": "Electrons orbit the nucleus of an atom in fixed circular paths like planets around the Sun.",
+    "domain": "science",
+    "id": "sci_electron_orbits",
+    "note": "The Bohr model is a simplification; quantum mechanics describes probability distributions"
+  },
+  {
+    "text": "A teaspoon of a neutron star would weigh approximately 6 billion tons on Earth.",
+    "false": "A teaspoon of a neutron star would weigh about the same as a teaspoon of lead.",
+    "domain": "science",
+    "id": "sci_neutron_star_density",
+    "note": "Neutron star density is approximately 10^17 kg/m^3"
+  },
+  {
+    "text": "Sound cannot travel through a vacuum because it requires a medium to propagate.",
+    "false": "Sound can travel through the vacuum of outer space.",
+    "domain": "science",
+    "id": "sci_sound_vacuum",
+    "note": "Sound is a mechanical wave that requires particles to transmit vibrations"
+  },
+  {
+    "text": "Helium is the second most abundant element in the universe, after hydrogen.",
+    "false": "Oxygen is the second most abundant element in the universe.",
+    "domain": "science",
+    "id": "sci_helium_abundance",
+    "note": "Hydrogen ~75%, helium ~24% of baryonic matter by mass"
+  },
+  {
+    "text": "Absolute zero is approximately minus 273.15 degrees Celsius, not minus 459.67.",
+    "false": "Absolute zero is minus 459.67 degrees Celsius.",
+    "domain": "science",
+    "id": "sci_absolute_zero",
+    "note": "-459.67 is Fahrenheit; -273.15 is Celsius"
+  },
+  {
+    "text": "Bananas are slightly radioactive due to their potassium-40 content.",
+    "false": "Bananas contain no radioactive material whatsoever.",
+    "domain": "science",
+    "id": "sci_banana_radioactive",
+    "note": "Potassium-40 is a naturally occurring radioactive isotope"
+  },
+  {
+    "text": "Rust is iron oxide, not a biological growth or living organism.",
+    "false": "Rust is a type of fungus that grows on metal surfaces.",
+    "domain": "science",
+    "id": "sci_rust_composition",
+    "note": "Rust is Fe2O3, formed by the oxidation of iron in the presence of water and oxygen"
+  },
+  {
+    "text": "The Coriolis effect does not determine which direction water drains in toilets and sinks.",
+    "false": "The Coriolis effect causes toilets to flush in opposite directions in the Northern and Southern Hemispheres.",
+    "domain": "science",
+    "id": "sci_coriolis_toilets",
+    "note": "At the scale of a toilet, basin shape and water motion dominate; Coriolis is negligible"
+  },
+  {
+    "text": "Oxygen is colorless as a gas but pale blue as a liquid.",
+    "false": "Liquid oxygen is colorless, just like oxygen gas.",
+    "domain": "science",
+    "id": "sci_liquid_oxygen_color",
+    "note": "Liquid oxygen has a distinct pale blue color due to absorption of red light"
+  },
+  {
+    "text": "A person could survive briefly in the vacuum of space without a spacesuit; they would not instantly explode.",
+    "false": "A person exposed to the vacuum of space would instantly explode.",
+    "domain": "science",
+    "id": "sci_space_vacuum_explode",
+    "note": "Skin is strong enough to contain the body; unconsciousness occurs in ~15 seconds"
+  },
+  {
+    "text": "The Mpemba effect describes how hot water can sometimes freeze faster than cold water under certain conditions.",
+    "false": "Cold water always freezes faster than hot water under identical conditions.",
+    "domain": "science",
+    "id": "sci_mpemba_effect",
+    "note": "Named after Erasto Mpemba; mechanisms debated but the phenomenon is well-documented"
+  },
+  {
+    "text": "Steel is an alloy of iron and carbon, not a pure element.",
+    "false": "Steel is a pure metallic element found in the periodic table.",
+    "domain": "science",
+    "id": "sci_steel_alloy",
+    "note": "Steel is primarily iron with 0.2-2.1% carbon by weight"
+  },
+  {
+    "text": "Noble gases can form chemical compounds under extreme conditions.",
+    "false": "Noble gases are completely inert and can never form chemical compounds.",
+    "domain": "science",
+    "id": "sci_noble_gas_compounds",
+    "note": "Xenon hexafluoroplatinate was synthesized in 1962; many xenon and krypton compounds are known"
+  },
+  {
+    "text": "The pH of pure water is 7.0 only at 25 degrees Celsius; it varies with temperature.",
+    "false": "The pH of pure water is always exactly 7.0 regardless of temperature.",
+    "domain": "science",
+    "id": "sci_water_ph_temperature",
+    "note": "At 100C, pure water has a pH of about 6.14, though it is still neutral"
+  },
+  {
+    "text": "The half-life of carbon-14 is approximately 5,730 years, not millions of years.",
+    "false": "The half-life of carbon-14 is approximately 50 million years.",
+    "domain": "science",
+    "id": "sci_carbon14_halflife",
+    "note": "This is why radiocarbon dating is only useful for objects up to ~50,000 years old"
+  },
+  {
+    "text": "Most of the mass of a proton comes from the binding energy of quarks, not from the quarks themselves.",
+    "false": "The mass of a proton comes almost entirely from the mass of its three quarks.",
+    "domain": "science",
+    "id": "sci_proton_mass_origin",
+    "note": "Quark rest masses account for only about 1% of the proton mass; the rest is QCD binding energy"
+  },
+  {
+    "text": "Antibubbles are the opposite of soap bubbles: a thin shell of air surrounding liquid.",
+    "false": "Antibubbles are a theoretical concept that cannot actually exist in nature.",
+    "domain": "science",
+    "id": "sci_antibubbles",
+    "note": "Antibubbles are real and can be created by dropping soapy water onto a soapy surface"
+  },
+  {
+    "text": "Metals can be transparent to visible light if made thin enough, typically below 100 nanometers.",
+    "false": "Metals are always completely opaque to visible light regardless of their thickness.",
+    "domain": "science",
+    "id": "sci_thin_metal_transparent",
+    "note": "Gold leaf transmits green-blue light; this is well-established physics"
+  },
+  {
+    "text": "A flame in zero gravity is spherical, not teardrop-shaped.",
+    "false": "A flame in zero gravity is teardrop-shaped, just like on Earth.",
+    "domain": "science",
+    "id": "sci_zero_gravity_flame",
+    "note": "Without convection from gravity, the flame forms a sphere around the fuel source"
+  },
+  {
+    "text": "Dry ice is frozen carbon dioxide, not frozen water.",
+    "false": "Dry ice is simply very cold frozen water that appears white.",
+    "domain": "science",
+    "id": "sci_dry_ice",
+    "note": "Dry ice is solid CO2 at -78.5C; it sublimates directly to gas"
+  },
+  {
+    "text": "Saturn would theoretically float in water because its average density is lower than water.",
+    "false": "Saturn is far too dense to float in water.",
+    "domain": "science",
+    "id": "sci_saturn_float",
+    "note": "Saturn's density is ~0.687 g/cm3, less than water at 1.0 g/cm3"
+  },
+  {
+    "text": "Antimatter has been successfully created and contained in laboratories.",
+    "false": "Antimatter is purely theoretical and has never been produced in a laboratory.",
+    "domain": "science",
+    "id": "sci_antimatter_created",
+    "note": "CERN regularly produces antihydrogen; the first anti-atom was trapped in 2010"
+  },
+  {
+    "text": "Venus is hotter than Mercury despite being farther from the Sun, due to its thick greenhouse atmosphere.",
+    "false": "Mercury is the hottest planet in the solar system because it is closest to the Sun.",
+    "domain": "science",
+    "id": "sci_venus_hottest",
+    "note": "Venus surface temperature averages ~465C vs Mercury's ~167C average"
+  },
+  {
+    "text": "Ostriches do not bury their heads in sand when frightened.",
+    "false": "Ostriches bury their heads in the sand when they are scared.",
+    "domain": "science",
+    "id": "sci_ostrich_sand",
+    "note": "They may press their heads flat to the ground from a distance this may look like burial"
+  },
+  {
+    "text": "Octopuses have three hearts and blue blood.",
+    "false": "Octopuses have one heart and red blood like most animals.",
+    "domain": "science",
+    "id": "sci_octopus_hearts",
+    "note": "Two branchial hearts pump blood through the gills; one systemic heart pumps it through the body"
+  },
+  {
+    "text": "Istanbul straddles two continents, Europe and Asia.",
+    "false": "Istanbul is located entirely within Europe.",
+    "domain": "geography",
+    "id": "geo_istanbul_continents",
+    "note": "Divided by the Bosphorus strait; historically Constantinople"
+  },
+  {
+    "text": "The capital of Brazil is Brasilia, not Rio de Janeiro.",
+    "false": "The capital of Brazil is Rio de Janeiro.",
+    "domain": "geography",
+    "id": "geo_capital_brazil",
+    "note": "Brasilia was purpose-built and became the capital in 1960"
+  },
+  {
+    "text": "The capital of Turkey is Ankara, not Istanbul.",
+    "false": "The capital of Turkey is Istanbul.",
+    "domain": "geography",
+    "id": "geo_capital_turkey",
+    "note": "Ankara became the capital in 1923 when the Republic was founded"
+  },
+  {
+    "text": "Africa is a continent, not a country.",
+    "false": "Africa is the largest country in the world.",
+    "domain": "geography",
+    "id": "geo_africa_continent",
+    "note": "Africa contains 54 recognized sovereign countries"
+  },
+  {
+    "text": "Russia spans eleven time zones, more than any other country.",
+    "false": "Russia spans four time zones.",
+    "domain": "geography",
+    "id": "geo_russia_timezones",
+    "note": "From Kaliningrad (UTC+2) to Kamchatka (UTC+12)"
+  },
+  {
+    "text": "The Amazon River is the largest river by volume of water flow, but the Nile is generally considered the longest.",
+    "false": "The Amazon River is both the longest and the largest river in the world.",
+    "domain": "geography",
+    "id": "geo_amazon_nile",
+    "note": "Nile is traditionally listed as longest (~6,650 km); Amazon has the greatest discharge"
+  },
+  {
+    "text": "The Dead Sea is a landlocked salt lake, not an actual sea connected to the ocean.",
+    "false": "The Dead Sea is connected to the Mediterranean Sea.",
+    "domain": "geography",
+    "id": "geo_dead_sea",
+    "note": "A hypersaline lake on the border of Jordan, Israel, and the West Bank"
+  },
+  {
+    "text": "The Sahara Desert is not the largest desert on Earth; Antarctica is larger.",
+    "false": "The Sahara is the largest desert on Earth.",
+    "domain": "geography",
+    "id": "geo_largest_desert",
+    "note": "Antarctica is a polar desert at 14.2M km2 vs Sahara at 9.2M km2"
+  },
+  {
+    "text": "The capital of Myanmar is Naypyidaw, not Yangon.",
+    "false": "The capital of Myanmar is Yangon.",
+    "domain": "geography",
+    "id": "geo_capital_myanmar",
+    "note": "Capital moved from Yangon to Naypyidaw in 2006"
+  },
+  {
+    "text": "Greenland is an autonomous territory of Denmark, not an independent country.",
+    "false": "Greenland is an independent country.",
+    "domain": "geography",
+    "id": "geo_greenland_denmark",
+    "note": "Self-governing but part of the Kingdom of Denmark"
+  },
+  {
+    "text": "Mount Chimborazo in Ecuador, not Mount Everest, is the farthest point from Earth's center.",
+    "false": "The summit of Mount Everest is the farthest point from the center of the Earth.",
+    "domain": "geography",
+    "id": "geo_chimborazo_farthest",
+    "note": "Due to Earth's equatorial bulge, Chimborazo's summit is ~2,168m farther from Earth's center"
+  },
+  {
+    "text": "The capital of Canada is Ottawa, not Toronto or Montreal.",
+    "false": "The capital of Canada is Toronto.",
+    "domain": "geography",
+    "id": "geo_capital_canada",
+    "note": "Ottawa has been the capital since 1857"
+  },
+  {
+    "text": "The Canary Islands are named after dogs, not canary birds.",
+    "false": "The Canary Islands are named after the canary bird.",
+    "domain": "geography",
+    "id": "geo_canary_islands_name",
+    "note": "From Latin Canariae Insulae meaning Island of Dogs; the birds were named after the islands"
+  },
+  {
+    "text": "Lake Baikal in Russia is the deepest lake in the world and contains about 20% of the world's fresh surface water.",
+    "false": "The Great Lakes in North America contain more fresh water than any other lake system.",
+    "domain": "geography",
+    "id": "geo_baikal_deepest",
+    "note": "Baikal reaches 1,642 meters depth and holds ~23,615 km3 of water"
+  },
+  {
+    "text": "The capital of Switzerland is Bern, not Zurich or Geneva.",
+    "false": "The capital of Switzerland is Zurich.",
+    "domain": "geography",
+    "id": "geo_capital_switzerland",
+    "note": "Bern is the de facto capital (federal city); Switzerland technically has no official capital"
+  },
+  {
+    "text": "Scotland is part of the United Kingdom, not an independent country.",
+    "false": "Scotland is an independent country separate from the United Kingdom.",
+    "domain": "geography",
+    "id": "geo_scotland_uk",
+    "note": "Scotland is one of four countries within the UK"
+  },
+  {
+    "text": "The Strait of Gibraltar separates Europe from Africa, with a minimum width of about 14 kilometers.",
+    "false": "The Strait of Gibraltar separates Europe from Asia.",
+    "domain": "geography",
+    "id": "geo_gibraltar_strait",
+    "note": "Separates Spain from Morocco, connecting the Atlantic to the Mediterranean"
+  },
+  {
+    "text": "Hawaii is farther south than any point in the continental United States.",
+    "false": "Key West, Florida is farther south than any point in Hawaii.",
+    "domain": "geography",
+    "id": "geo_hawaii_southern",
+    "note": "Hawaii's Big Island extends to about 19N latitude; Key West is about 24.5N"
+  },
+  {
+    "text": "Timbuktu is a real city in Mali, not a mythical or fictional place.",
+    "false": "Timbuktu is a fictional place used as a metaphor for somewhere far away.",
+    "domain": "geography",
+    "id": "geo_timbuktu_real",
+    "note": "A historic city in Mali that was a major center of learning in the 15th-16th centuries"
+  },
+  {
+    "text": "The capital of Nigeria is Abuja, not Lagos.",
+    "false": "The capital of Nigeria is Lagos.",
+    "domain": "geography",
+    "id": "geo_capital_nigeria",
+    "note": "Capital moved from Lagos to Abuja in 1991"
+  },
+  {
+    "text": "The word \"salary\" derives from the Latin word \"salarium,\" related to salt, not from \"solar\" meaning sun.",
+    "false": "The word salary comes from the Latin word for sun because workers were paid at sunrise.",
+    "domain": "language",
+    "id": "lang_salary_etymology",
+    "note": "Possibly related to Roman soldiers' salt allowances, though the exact connection is debated"
+  },
+  {
+    "text": "A split infinitive (e.g., \"to boldly go\") is grammatically acceptable in English.",
+    "false": "Split infinitives are grammatically incorrect in English.",
+    "domain": "language",
+    "id": "lang_split_infinitive",
+    "note": "The prohibition was an artificial rule borrowed from Latin grammar; no basis in English"
+  },
+  {
+    "text": "Ending a sentence with a preposition is grammatically acceptable in English.",
+    "false": "It is always grammatically incorrect to end a sentence with a preposition in English.",
+    "domain": "language",
+    "id": "lang_preposition_end",
+    "note": "Another artificial rule imposed by 17th-century grammarians modeling English on Latin"
+  },
+  {
+    "text": "The word \"decimate\" originally meant to kill one in ten, not to completely destroy.",
+    "false": "The word decimate has always meant to completely destroy or annihilate.",
+    "domain": "language",
+    "id": "lang_decimate_origin",
+    "note": "From Roman military punishment where every tenth soldier was killed"
+  },
+  {
+    "text": "Eskimo languages do not have hundreds of words for snow; this claim is a linguistic myth.",
+    "false": "Eskimo languages have over 200 unique words for snow.",
+    "domain": "language",
+    "id": "lang_eskimo_snow",
+    "note": "Debunked by linguist Geoffrey Pullum; the number is comparable to English snow-related terms"
+  },
+  {
+    "text": "The word \"irregardless\" is widely considered nonstandard, with \"regardless\" being the correct form.",
+    "false": "Irregardless is a fully standard English word meaning the same as regardless.",
+    "domain": "language",
+    "id": "lang_irregardless",
+    "note": "Listed in dictionaries but marked as nonstandard; the ir- prefix is redundant"
+  },
+  {
+    "text": "The ampersand (&) was once the 27th letter of the English alphabet.",
+    "false": "The English alphabet has always had exactly 26 letters.",
+    "domain": "language",
+    "id": "lang_ampersand_27th",
+    "note": "Children recited 'and per se and' after Z, which slurred into 'ampersand'"
+  },
+  {
+    "text": "The word \"mortgage\" comes from Old French meaning \"death pledge,\" not \"monthly payment.\"",
+    "false": "The word mortgage comes from a French word meaning monthly payment.",
+    "domain": "language",
+    "id": "lang_mortgage_etymology",
+    "note": "From mort (death) + gage (pledge): the deal dies when paid off or when payment fails"
+  },
+  {
+    "text": "The word \"factoid\" was coined by Norman Mailer to mean a false fact, not a trivial true fact.",
+    "false": "The word factoid has always meant a small interesting piece of true information.",
+    "domain": "language",
+    "id": "lang_factoid_meaning",
+    "note": "Mailer coined it in 1973 to mean something that looks like a fact but isn't; usage has shifted"
+  },
+  {
+    "text": "Chinese is a family of related languages, not a single unified language.",
+    "false": "Chinese is a single language with minor regional accent differences.",
+    "domain": "language",
+    "id": "lang_chinese_family",
+    "note": "Mandarin, Cantonese, Wu, Min, etc. are mutually unintelligible spoken languages"
+  },
+  {
+    "text": "The word \"inflammable\" means the same as \"flammable,\" not its opposite.",
+    "false": "Inflammable means not flammable or fire-resistant.",
+    "domain": "language",
+    "id": "lang_inflammable",
+    "note": "The in- prefix here is from Latin meaning 'into' not the negating prefix"
+  },
+  {
+    "text": "There is no rule in English that forbids starting a sentence with \"and\" or \"but.\"",
+    "false": "Starting a sentence with 'and' or 'but' is always grammatically incorrect in English.",
+    "domain": "language",
+    "id": "lang_and_but_start",
+    "note": "A persistent classroom myth; major style guides permit it"
+  },
+  {
+    "text": "Sign languages are complete natural languages with their own grammar, not simplified versions of spoken languages.",
+    "false": "Sign languages are just visual representations of the local spoken language with no unique grammar.",
+    "domain": "language",
+    "id": "lang_sign_language",
+    "note": "ASL has different grammar from English; BSL is unintelligible to ASL users"
+  },
+  {
+    "text": "The word \"gymnasium\" comes from the Greek word \"gymnos\" meaning naked, because Greeks exercised nude.",
+    "false": "The word gymnasium comes from the Greek word for education.",
+    "domain": "language",
+    "id": "lang_gymnasium_naked",
+    "note": "Ancient Greek athletes trained and competed in the nude"
+  },
+  {
+    "text": "Arabic numerals (0-9) were developed in India, not in Arabia.",
+    "false": "The numerals 0 through 9 were invented by Arab mathematicians.",
+    "domain": "language",
+    "id": "lang_arabic_numerals_origin",
+    "note": "Developed in India, transmitted to Europe via Arab scholars, hence the misnomer"
+  },
+  {
+    "text": "Thomas Edison did not invent the light bulb; he improved upon designs by many earlier inventors.",
+    "false": "Thomas Edison invented the first electric light bulb.",
+    "domain": "technology",
+    "id": "tech_edison_lightbulb",
+    "note": "Humphry Davy, Warren de la Rue, and many others contributed earlier designs"
+  },
+  {
+    "text": "Al Gore never claimed to have invented the internet.",
+    "false": "Al Gore claimed he invented the internet.",
+    "domain": "technology",
+    "id": "tech_al_gore_internet",
+    "note": "He said he 'took the initiative in creating the Internet' referring to legislation"
+  },
+  {
+    "text": "The QWERTY keyboard layout was not designed to slow down typists.",
+    "false": "The QWERTY keyboard layout was specifically designed to slow down typists.",
+    "domain": "technology",
+    "id": "tech_qwerty_slow",
+    "note": "It was designed to reduce jamming in mechanical typewriters by separating common letter pairs"
+  },
+  {
+    "text": "The first electronic general-purpose computer was ENIAC, completed in 1945.",
+    "false": "The first computer was invented by Apple in the 1970s.",
+    "domain": "technology",
+    "id": "tech_first_computer",
+    "note": "ENIAC was completed in 1945; Colossus (1943) was earlier but special-purpose"
+  },
+  {
+    "text": "Tim Berners-Lee invented the World Wide Web, not the internet itself.",
+    "false": "Tim Berners-Lee invented the internet.",
+    "domain": "technology",
+    "id": "tech_berners_lee_web",
+    "note": "The internet (ARPANET) predates the Web by decades; Berners-Lee created HTTP and HTML in 1989"
+  },
+  {
+    "text": "Apple's Macintosh was not the first personal computer with a graphical user interface; the Xerox Alto preceded it.",
+    "false": "The Apple Macintosh was the first computer to use a graphical user interface.",
+    "domain": "technology",
+    "id": "tech_mac_first_gui",
+    "note": "Xerox Alto (1973) and Xerox Star (1981) had GUIs before the Mac (1984)"
+  },
+  {
+    "text": "Moore's Law is an observation about transistor density, not a law of physics.",
+    "false": "Moore's Law is a fundamental law of physics that guarantees computing power will double every two years.",
+    "domain": "technology",
+    "id": "tech_moores_law",
+    "note": "An empirical observation by Gordon Moore in 1965; no physical law mandates it"
+  },
+  {
+    "text": "The first text message (SMS) was sent in 1992, not in the 2000s.",
+    "false": "The first text message was sent in 2001.",
+    "domain": "technology",
+    "id": "tech_first_sms",
+    "note": "Neil Papworth sent 'Merry Christmas' on Dec 3, 1992"
+  },
+  {
+    "text": "Bitcoin was created by the pseudonymous Satoshi Nakamoto in 2008, whose real identity remains unknown.",
+    "false": "Bitcoin was created by a known computer scientist at Stanford University.",
+    "domain": "technology",
+    "id": "tech_bitcoin_creator",
+    "note": "Satoshi Nakamoto published the Bitcoin whitepaper in 2008; identity remains unconfirmed"
+  },
+  {
+    "text": "USB stands for Universal Serial Bus.",
+    "false": "USB stands for Universal System Bridge.",
+    "domain": "technology",
+    "id": "tech_usb_acronym",
+    "note": "Developed in the mid-1990s by a consortium including Intel, Microsoft, and others"
+  },
+  {
+    "text": "Incognito or private browsing mode does not make you anonymous on the internet.",
+    "false": "Using incognito mode makes your browsing completely anonymous and untraceable.",
+    "domain": "technology",
+    "id": "tech_incognito_anonymous",
+    "note": "It only prevents local browser history; ISPs, websites, and network admins can still see activity"
+  },
+  {
+    "text": "Wi-Fi does not stand for \"wireless fidelity\"; the name is a trademark with no underlying meaning.",
+    "false": "Wi-Fi stands for Wireless Fidelity.",
+    "domain": "technology",
+    "id": "tech_wifi_meaning",
+    "note": "The Wi-Fi Alliance hired Interbrand to create a catchy name; it is not an acronym"
+  },
+  {
+    "text": "Nikola Tesla, not Edison, championed alternating current (AC) power distribution.",
+    "false": "Thomas Edison invented and championed alternating current electrical systems.",
+    "domain": "technology",
+    "id": "tech_tesla_ac",
+    "note": "Edison promoted DC; Tesla and Westinghouse championed AC, which won the 'War of Currents'"
+  },
+  {
+    "text": "The first website went live at CERN in 1991, created by Tim Berners-Lee.",
+    "false": "The first website was created by Google in 1998.",
+    "domain": "technology",
+    "id": "tech_first_website",
+    "note": "info.cern.ch was the address of the first website, describing the World Wide Web project"
+  },
+  {
+    "text": "The programming language Python is named after Monty Python, not the snake.",
+    "false": "The programming language Python is named after the python snake.",
+    "domain": "technology",
+    "id": "tech_python_name",
+    "note": "Guido van Rossum named it after Monty Python's Flying Circus"
+  },
+  {
+    "text": "Eating carrots does not significantly improve night vision beyond correcting a vitamin A deficiency.",
+    "false": "Eating carrots gives you significantly better night vision.",
+    "domain": "nutrition",
+    "id": "nutr_carrots_night_vision",
+    "note": "British WWII propaganda to hide radar technology; only helps if vitamin A deficient"
+  },
+  {
+    "text": "Spinach is not an exceptionally high source of iron compared to other leafy greens.",
+    "false": "Spinach contains extraordinarily more iron than any other vegetable.",
+    "domain": "nutrition",
+    "id": "nutr_spinach_iron",
+    "note": "A misplaced decimal point in 1870s German research inflated the iron content by 10x"
+  },
+  {
+    "text": "Breakfast is not necessarily the most important meal of the day for all people.",
+    "false": "Skipping breakfast is always unhealthy and leads to weight gain.",
+    "domain": "nutrition",
+    "id": "nutr_breakfast_important",
+    "note": "The claim was popularized by cereal company marketing; research shows individual variation"
+  },
+  {
+    "text": "Eating fat does not necessarily make you fat; excess calories from any source cause weight gain.",
+    "false": "Eating dietary fat is the primary cause of body fat gain.",
+    "domain": "nutrition",
+    "id": "nutr_fat_makes_fat",
+    "note": "Total caloric surplus matters more than macronutrient source"
+  },
+  {
+    "text": "MSG (monosodium glutamate) has not been shown to cause adverse reactions in controlled studies.",
+    "false": "MSG has been scientifically proven to cause headaches and other adverse reactions.",
+    "domain": "nutrition",
+    "id": "nutr_msg_headaches",
+    "note": "Double-blind studies have failed to replicate 'Chinese Restaurant Syndrome'"
+  },
+  {
+    "text": "Dark chocolate has some demonstrated cardiovascular benefits in moderate amounts.",
+    "false": "All types of chocolate are equally unhealthy with no nutritional benefits.",
+    "domain": "nutrition",
+    "id": "nutr_dark_chocolate",
+    "note": "Flavanols in dark chocolate have documented effects on blood pressure and blood flow"
+  },
+  {
+    "text": "Drinking eight glasses of water per day is not a universal medical requirement.",
+    "false": "Everyone must drink exactly eight glasses of water per day for good health.",
+    "domain": "nutrition",
+    "id": "nutr_eight_glasses_water",
+    "note": "Fluid needs vary by person, activity, and climate; food provides significant water intake"
+  },
+  {
+    "text": "Detox diets and cleanses have no scientific basis; the liver and kidneys handle detoxification naturally.",
+    "false": "Detox diets are necessary to remove toxins that the body cannot eliminate on its own.",
+    "domain": "nutrition",
+    "id": "nutr_detox_diets",
+    "note": "No evidence that commercial detox products do anything the body doesn't already do"
+  },
+  {
+    "text": "Organic foods have not been consistently shown to be more nutritious than conventionally grown foods.",
+    "false": "Organic food is always significantly more nutritious than conventionally grown food.",
+    "domain": "nutrition",
+    "id": "nutr_organic_nutritious",
+    "note": "Meta-analyses find minimal nutritional differences; organic may have lower pesticide residues"
+  },
+  {
+    "text": "Celery does not have negative calories; it provides more energy than is used to digest it.",
+    "false": "Celery has negative calories because chewing and digesting it burns more calories than it contains.",
+    "domain": "nutrition",
+    "id": "nutr_celery_negative_calories",
+    "note": "A stalk of celery has ~6 calories; digestion uses roughly 0.5 calories"
+  },
+  {
+    "text": "Gluten is only harmful to people with celiac disease or diagnosed gluten sensitivity.",
+    "false": "Gluten is unhealthy for everyone and should be avoided by all people.",
+    "domain": "nutrition",
+    "id": "nutr_gluten_harmful",
+    "note": "About 1% of people have celiac disease; for most people, gluten is harmless"
+  },
+  {
+    "text": "Coffee does not stunt children's growth; there is no scientific evidence for this claim.",
+    "false": "Drinking coffee stunts the growth of children and adolescents.",
+    "domain": "nutrition",
+    "id": "nutr_coffee_growth",
+    "note": "No evidence links caffeine consumption to reduced height"
+  },
+  {
+    "text": "Microwaving food does not destroy nutrients more than other cooking methods; it can actually preserve them better.",
+    "false": "Microwaving food destroys all of its nutritional value.",
+    "domain": "nutrition",
+    "id": "nutr_microwave_nutrients",
+    "note": "Short cooking times and minimal water can preserve more nutrients than boiling"
+  },
+  {
+    "text": "Brown eggs and white eggs have no nutritional difference; shell color is determined by the breed of hen.",
+    "false": "Brown eggs are more nutritious than white eggs.",
+    "domain": "nutrition",
+    "id": "nutr_brown_eggs",
+    "note": "Shell color depends on hen breed; nutrition depends on diet and living conditions"
+  },
+  {
+    "text": "Alcohol does not warm your body; it actually causes heat loss by dilating blood vessels near the skin.",
+    "false": "Drinking alcohol warms your body and protects against hypothermia.",
+    "domain": "nutrition",
+    "id": "nutr_alcohol_warmth",
+    "note": "Vasodilation creates a sensation of warmth but accelerates core temperature loss"
+  },
+  {
+    "text": "Learning styles (visual, auditory, kinesthetic) have no scientific support as a basis for teaching methods.",
+    "false": "Students learn best when teaching matches their individual learning style.",
+    "domain": "psychology",
+    "id": "psych_learning_styles",
+    "note": "Multiple meta-analyses find no evidence that matching instruction to learning styles improves outcomes"
+  },
+  {
+    "text": "The Stanford Prison Experiment's conclusions are widely questioned due to methodological problems and coaching of participants.",
+    "false": "The Stanford Prison Experiment conclusively proved that anyone can become abusive when given authority.",
+    "domain": "psychology",
+    "id": "psych_stanford_prison",
+    "note": "Demand characteristics, coaching by Zimbardo, and selective reporting undermine the conclusions"
+  },
+  {
+    "text": "The \"bystander effect\" is more nuanced than typically presented; bystanders often do help in real emergencies.",
+    "false": "The bystander effect proves that people will never help in an emergency when others are present.",
+    "domain": "psychology",
+    "id": "psych_bystander_effect",
+    "note": "Meta-analyses show the effect is weaker and less consistent than textbooks claim"
+  },
+  {
+    "text": "There is no scientific evidence that subliminal advertising meaningfully influences consumer behavior.",
+    "false": "Subliminal messages hidden in advertisements effectively control consumer purchasing decisions.",
+    "domain": "psychology",
+    "id": "psych_subliminal_ads",
+    "note": "James Vicary's 1957 popcorn experiment was fabricated; replications show no meaningful effects"
+  },
+  {
+    "text": "Polygraph (lie detector) tests are not reliable measures of deception.",
+    "false": "Polygraph tests are highly accurate scientific instruments for detecting lies.",
+    "domain": "psychology",
+    "id": "psych_polygraph",
+    "note": "The National Academy of Sciences found polygraphs too unreliable for security screening"
+  },
+  {
+    "text": "The Milgram obedience experiment's original results have been questioned due to variability across conditions and potential coaching.",
+    "false": "The Milgram experiment proved that exactly 65% of all people will blindly follow authority to harm others.",
+    "domain": "psychology",
+    "id": "psych_milgram",
+    "note": "Obedience varied from 0-100% across conditions; the 65% figure is from one specific setup"
+  },
+  {
+    "text": "Multitasking generally reduces cognitive performance; the brain switches between tasks rather than doing them simultaneously.",
+    "false": "The human brain can efficiently perform multiple complex cognitive tasks simultaneously.",
+    "domain": "psychology",
+    "id": "psych_multitasking",
+    "note": "Cognitive research consistently shows task-switching costs in speed and accuracy"
+  },
+  {
+    "text": "Humans can form new neurons throughout adulthood through neurogenesis, particularly in the hippocampus.",
+    "false": "Humans are born with all the neurons they will ever have and cannot generate new ones.",
+    "domain": "psychology",
+    "id": "psych_neurogenesis",
+    "note": "Adult neurogenesis was confirmed in the 1990s, primarily in the hippocampus"
+  },
+  {
+    "text": "The \"left brain/right brain\" dominance theory is an oversimplification; both hemispheres contribute to most tasks.",
+    "false": "People are either left-brained (logical) or right-brained (creative), and this determines their personality.",
+    "domain": "psychology",
+    "id": "psych_left_right_brain",
+    "note": "fMRI studies show both hemispheres are active during virtually all cognitive tasks"
+  },
+  {
+    "text": "Repressed memories recovered in therapy are not considered scientifically reliable.",
+    "false": "Memories repressed by trauma can be reliably recovered through therapeutic techniques.",
+    "domain": "psychology",
+    "id": "psych_repressed_memories",
+    "note": "Research shows recovered memories can be false memories created by suggestion"
+  },
+  {
+    "text": "The Rorschach inkblot test has limited reliability and validity as a diagnostic psychological tool.",
+    "false": "The Rorschach inkblot test is a highly accurate diagnostic tool for mental illness.",
+    "domain": "psychology",
+    "id": "psych_rorschach",
+    "note": "Inter-rater reliability is low; validity for most diagnoses is poorly supported"
+  },
+  {
+    "text": "Grief does not follow a universal five-stage process; Kubler-Ross's model was based on dying patients, not bereaved people.",
+    "false": "Everyone processes grief in the same five sequential stages: denial, anger, bargaining, depression, acceptance.",
+    "domain": "psychology",
+    "id": "psych_five_stages_grief",
+    "note": "The model was about terminal patients' reactions; grief responses are highly individual"
+  },
+  {
+    "text": "There is no credible scientific evidence for extrasensory perception (ESP).",
+    "false": "Scientific experiments have proven that some people have extrasensory perception.",
+    "domain": "psychology",
+    "id": "psych_esp",
+    "note": "Decades of research have failed to produce replicable evidence of ESP"
+  },
+  {
+    "text": "Memory does not work like a video recorder; memories are reconstructed each time they are recalled.",
+    "false": "Human memory works like a video camera, recording events exactly as they happen.",
+    "domain": "psychology",
+    "id": "psych_memory_recorder",
+    "note": "Memories are reconstructive; each recall can alter the memory"
+  },
+  {
+    "text": "The Mozart effect — that listening to Mozart makes you smarter — has not been replicated in subsequent studies.",
+    "false": "Listening to Mozart's music has been scientifically proven to permanently increase intelligence.",
+    "domain": "psychology",
+    "id": "psych_mozart_effect",
+    "note": "The original 1993 study showed a temporary spatial reasoning improvement; not replicated reliably"
+  },
+  {
+    "text": "The Sun is a main-sequence star classified as a G-type yellow dwarf, and it is roughly middle-aged at 4.6 billion years.",
+    "false": "The Sun is a young star that formed about 500 million years ago.",
+    "domain": "astronomy",
+    "id": "astro_sun_age",
+    "note": "The Sun is about 4.6 billion years old, roughly halfway through its main-sequence life"
+  },
+  {
+    "text": "There is no permanent dark side of the Moon; all parts receive sunlight as the Moon rotates.",
+    "false": "One side of the Moon is permanently dark and never receives sunlight.",
+    "domain": "astronomy",
+    "id": "astro_dark_side_moon",
+    "note": "The far side receives equal sunlight; it is the far side, not the dark side"
+  },
+  {
+    "text": "The Sun is white when viewed from space, not yellow.",
+    "false": "The Sun is actually yellow in color when viewed from space.",
+    "domain": "astronomy",
+    "id": "astro_sun_color",
+    "note": "Earth's atmosphere scatters blue light, making the Sun appear yellow from the surface"
+  },
+  {
+    "text": "A black hole is not a hole or a vacuum cleaner; it is an extremely dense concentration of mass.",
+    "false": "A black hole is an empty hole in space that sucks in everything around it like a vacuum.",
+    "domain": "astronomy",
+    "id": "astro_black_hole",
+    "note": "Objects must cross the event horizon to be trapped; black holes do not pull more than equivalent mass"
+  },
+  {
+    "text": "The asteroid belt between Mars and Jupiter is mostly empty space, not a dense field of rocks.",
+    "false": "The asteroid belt is so densely packed with rocks that spacecraft cannot safely fly through it.",
+    "domain": "astronomy",
+    "id": "astro_asteroid_belt",
+    "note": "Average distance between asteroids is millions of kilometers; spacecraft pass through routinely"
+  },
+  {
+    "text": "The North Star (Polaris) is not the brightest star in the night sky; Sirius holds that distinction.",
+    "false": "The North Star (Polaris) is the brightest star visible in the night sky.",
+    "domain": "astronomy",
+    "id": "astro_polaris_brightness",
+    "note": "Polaris is about 48th in brightness; Sirius is the brightest"
+  },
+  {
+    "text": "Pluto was reclassified as a dwarf planet in 2006 by the International Astronomical Union.",
+    "false": "Pluto is still officially classified as the ninth planet in our solar system.",
+    "domain": "astronomy",
+    "id": "astro_pluto_dwarf",
+    "note": "IAU Resolution B5 in 2006 established the dwarf planet category"
+  },
+  {
+    "text": "Meteors (shooting stars) are typically tiny particles, often no larger than a grain of sand.",
+    "false": "Shooting stars are caused by large boulders burning up in the atmosphere.",
+    "domain": "astronomy",
+    "id": "astro_meteor_size",
+    "note": "Most visible meteors are caused by particles 1mm to 1cm in size"
+  },
+  {
+    "text": "The Great Wall of China is not visible from the Moon; no human-made structure is visible from that distance.",
+    "false": "The Great Wall of China is visible from the Moon with the naked eye.",
+    "domain": "astronomy",
+    "id": "astro_great_wall_moon",
+    "note": "From the Moon, even continents are barely visible; confirmed by Apollo astronauts"
+  },
+  {
+    "text": "The observable universe has a diameter of about 93 billion light-years, despite being only 13.8 billion years old.",
+    "false": "The universe cannot be larger than 13.8 billion light-years across because it is 13.8 billion years old.",
+    "domain": "astronomy",
+    "id": "astro_universe_size",
+    "note": "The expansion of space means light from the edge has traveled farther than 13.8 billion light-years"
+  },
+  {
+    "text": "It is not illegal to remove a mattress tag if you are the consumer who purchased it.",
+    "false": "It is illegal to remove the tag from a mattress under any circumstances.",
+    "domain": "law",
+    "id": "law_mattress_tag",
+    "note": "The warning is directed at retailers and manufacturers, not consumers"
+  },
+  {
+    "text": "Undercover police officers in the United States are not legally required to identify themselves when asked.",
+    "false": "An undercover police officer must tell you they are a cop if you ask them directly.",
+    "domain": "law",
+    "id": "law_undercover_cop",
+    "note": "No such legal requirement exists; this would defeat the purpose of undercover work"
+  },
+  {
+    "text": "Miranda rights only need to be read when a suspect is both in custody and being interrogated.",
+    "false": "Police must read you your Miranda rights the moment they arrest you.",
+    "domain": "law",
+    "id": "law_miranda_rights",
+    "note": "Miranda applies to custodial interrogation; failure to read them doesn't invalidate the arrest"
+  },
+  {
+    "text": "Finding money on the ground does not automatically make it yours under US law.",
+    "false": "If you find money on the ground in the US, it is legally yours to keep with no obligations.",
+    "domain": "law",
+    "id": "law_found_money",
+    "note": "Most states have found property statutes requiring reasonable attempts to find the owner"
+  },
+  {
+    "text": "A verbal contract can be legally binding in the United States.",
+    "false": "A contract is only legally valid if it is in writing.",
+    "domain": "law",
+    "id": "law_verbal_contract",
+    "note": "Oral contracts are enforceable, though some contracts must be written under the Statute of Frauds"
+  },
+  {
+    "text": "Double jeopardy protects against being tried twice for the same offense by the same sovereign, but federal and state are separate sovereigns.",
+    "false": "Double jeopardy means you can never be tried twice for the same crime under any circumstances in the US.",
+    "domain": "law",
+    "id": "law_double_jeopardy",
+    "note": "The separate sovereigns doctrine allows both federal and state prosecution for the same act"
+  },
+  {
+    "text": "Citizens have the right to film police officers performing their duties in public spaces in the United States.",
+    "false": "It is illegal to film or record police officers while they are on duty in the United States.",
+    "domain": "law",
+    "id": "law_filming_police",
+    "note": "Multiple federal courts have affirmed this as a First Amendment right"
+  },
+  {
+    "text": "There is no legal waiting period of 24 or 48 hours before you can file a missing person report in the US.",
+    "false": "You must wait 24 hours before you can file a missing person report.",
+    "domain": "law",
+    "id": "law_missing_person_wait",
+    "note": "Police can accept missing person reports immediately; delays can be dangerous"
+  },
+  {
+    "text": "Copyright protection in the US applies automatically when a work is created; registration is not required.",
+    "false": "A creative work is not protected by copyright in the US until it is formally registered with the government.",
+    "domain": "law",
+    "id": "law_copyright_automatic",
+    "note": "Copyright attaches at creation; registration is needed only to sue for statutory damages"
+  },
+  {
+    "text": "In the US, entrapment requires that law enforcement induced someone to commit a crime they were not predisposed to commit.",
+    "false": "Any time a police officer provides an opportunity to commit a crime, it legally constitutes entrapment.",
+    "domain": "law",
+    "id": "law_entrapment",
+    "note": "Simply providing an opportunity is not entrapment; the defense requires inducement by the government"
+  }
+]

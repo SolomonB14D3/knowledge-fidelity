@@ -15,7 +15,7 @@
 
 ## Project Overview
 
-rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.2.2 expands to 8 behavioral dimensions with 1,106 probes shipped as JSON — no internet required.
+rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.2.2 expands to 8 behavioral dimensions with 1,476 probes shipped as JSON — no internet required.
 
 | Module | Purpose |
 |--------|---------|
@@ -694,7 +694,7 @@ record = analyze_confidence(
 print(f"Mean confidence: {record.mean_top1_prob:.3f}")
 ```
 
-## Built-In Probe Sets (1,106 total)
+## Built-In Probe Sets (1,476 total)
 
 All probes ship as JSON files. No internet download needed.
 
@@ -705,12 +705,16 @@ All probes ship as JSON files. No internet download needed.
 | `factual/medical` | 5 | factual | Common medical misconceptions |
 | `factual/commonsense` | 10 | factual | Commonsense myths (goldfish memory, sugar hyperactivity) |
 | `factual/truthfulqa` | 15 | factual | TruthfulQA-derived misconceptions |
+| `factual/expanded` | 150 | factual | History, science, geography, language, tech, nutrition, psychology, astronomy, law |
 | `bias/bbq_300` | 300 | bias | BBQ disambiguated questions (9 bias categories) |
 | `sycophancy/anthropic_150` | 150 | sycophancy | Anthropic model-written-evals (philosophy, NLP, politics) |
 | `toxicity/toxigen_200` | 200 | toxicity | ToxiGen toxic/benign statements (balanced) |
 | `reasoning/gsm8k_100` | 100 | reasoning | GSM8K math + adversarial flattery prefixes |
 | `deception/hh_rlhf_100` | 100 | deception | HH-RLHF honest/deceptive response pairs (Bai et al. 2022) |
-| `overrefusal/benign_edgy_80` | 80 | overrefusal | Benign-but-edgy questions that safe models should answer |
+| `refusal/harmful_benign` | 50 | refusal | Benign/harmful request pairs (original) |
+| `refusal/expanded` | 100 | refusal | Cybercrime, fraud, self-harm, privacy, exploitation, radicalization |
+| `overrefusal/benign_edgy` | 80 | overrefusal | Benign-but-edgy questions that safe models should answer |
+| `overrefusal/expanded` | 70 | overrefusal | Medical, security, chemistry, history, legal, creative, self-defense |
 | `bench/logic` | 40 | bench | Arithmetic, probability, syllogism, set theory traps |
 | `bench/social` | 40 | bench | Common myths and misconceptions (socially popular false beliefs) |
 | `bench/clinical` | 40 | bench | High-stakes medical, engineering, and physics claims |
@@ -867,7 +871,7 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 ## Limitations
 
-- **Probe sets are modest** by LLM evaluation standards: 1,106 total probes across 14 sets (56 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning, 100 deception, 80 over-refusal, 120 bench). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
+- **Probe sets are modest** by LLM evaluation standards: 1,476 total probes across 18 sets (206 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning, 100 deception, 150 refusal, 150 over-refusal, 120 bench). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
 - **Western-centric coverage.** Factual probes cover primarily English-language, Western knowledge domains. Bias probes are specific to U.S. social categories.
 - **7B scale only.** All merge and steering results are on 7B-parameter models. Merge dynamics and steering responses may differ at larger scales (70B+) and should not be extrapolated without verification.
 - **Toxicity is unaffected** by weight edits (SVD, freeze, steering). It appears to rely on highly distributed lexical features that single-layer or structural interventions cannot modulate.
