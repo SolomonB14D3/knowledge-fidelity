@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rho-eval"
-version = "2.2.0"
+version = "2.2.1"
 description = "Behavioral auditing toolkit for LLMs — audit any model across 8 dimensions (factual, toxicity, bias, sycophancy, reasoning, refusal, deception, over-refusal) using teacher-forced confidence probes."
 readme = "README.md"
 license = "MIT"
