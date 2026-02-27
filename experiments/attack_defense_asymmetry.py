@@ -87,12 +87,12 @@ def phase_setup(model_name, layer_idx, device, trust_remote_code=False):
         behaviors="all", device=device,
     )
     baseline_scores = {}
-    for result in baseline_report.results:
-        baseline_scores[result.behavior] = {
+    for name, result in baseline_report.behaviors.items():
+        baseline_scores[name] = {
             "rho": result.rho,
             "status": result.status,
         }
-        print(f"    {result.behavior:<15} rho={result.rho:.4f}  [{result.status}]")
+        print(f"    {name:<15} rho={result.rho:.4f}  [{result.status}]")
     print(f"  Baseline audit: {time.time() - t0:.1f}s")
 
     # Collect activations for refusal + deception
@@ -133,7 +133,7 @@ def phase_setup(model_name, layer_idx, device, trust_remote_code=False):
 
 # ── Phase 2: SAE Steering Sweep ──────────────────────────────────────────
 
-def phase_steering_sweep(setup_data, layer_idx, scales=None):
+def phase_steering_sweep(setup_data, layer_idx, device="cpu", scales=None):
     """Sweep steering scale for each target behavior, measuring all 8 rho scores."""
     from rho_eval.audit import audit
     from rho_eval.steering import steer_features
@@ -175,11 +175,12 @@ def phase_steering_sweep(setup_data, layer_idx, scales=None):
                 report = audit(
                     model=model, tokenizer=tokenizer,
                     behaviors="all",
+                    device=device,
                 )
 
                 rho_scores = {}
-                for r in report.results:
-                    rho_scores[r.behavior] = r.rho
+                for name, r in report.behaviors.items():
+                    rho_scores[name] = r.rho
 
                 # Compute deltas from baseline
                 deltas = {}
@@ -321,14 +322,15 @@ def phase_sft_attack_defense(setup_data, model_name, device, trust_remote_code=F
         post_report = audit(
             model=model, tokenizer=tokenizer,
             behaviors="all",
+            device=device,
         )
 
         post_scores = {}
-        for r in post_report.results:
-            post_scores[r.behavior] = r.rho
-            bl = setup_data["baseline_scores"].get(r.behavior, {}).get("rho", 0.0)
+        for name, r in post_report.behaviors.items():
+            post_scores[name] = r.rho
+            bl = setup_data["baseline_scores"].get(name, {}).get("rho", 0.0)
             delta = r.rho - bl
-            print(f"    {r.behavior:<15} rho={r.rho:.4f} (delta={delta:+.4f})")
+            print(f"    {name:<15} rho={r.rho:.4f} (delta={delta:+.4f})")
 
         # Compute deltas
         deltas = {}
@@ -670,7 +672,7 @@ def main():
             }, f, indent=2)
 
     # Phase 2: SAE Steering Sweep
-    steering_results = phase_steering_sweep(setup_data, args.layer)
+    steering_results = phase_steering_sweep(setup_data, args.layer, device=device)
 
     for target in TARGET_BEHAVIORS:
         with open(output_dir / f"steering_sweep_{target}.json", "w") as f:
