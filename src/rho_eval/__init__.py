@@ -56,6 +56,9 @@ from .alignment import (
 # ── Steering (v2.3) — opt-in, not auto-imported ────────────────────────────
 # SAE-based behavioral steering: from rho_eval.steering import GatedSAE, ...
 
+# ── Hybrid Control (v2.4) — opt-in, not auto-imported ───────────────────────
+# Hybrid weight + activation control: from rho_eval.hybrid import HybridConfig, apply_hybrid_control
+
 # ── Benchmarking (v2.5) — Fidelity-Bench 2.0 ─────────────────────────────
 from .benchmarking import (
     generate_certificate,

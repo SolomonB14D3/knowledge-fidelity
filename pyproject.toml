@@ -83,6 +83,8 @@ rho-interpret = "rho_eval.cli.rho_interpret:main"
 rho-align = "rho_eval.cli.rho_align:main"
 rho-steer = "rho_eval.cli.rho_steer:main"
 rho-bench = "rho_eval.cli.rho_bench:main"
+rho-hybrid = "rho_eval.cli.rho_hybrid:main"
+rho-leaderboard = "rho_eval.cli.rho_leaderboard:main"
 
 [project.urls]
 Homepage = "https://github.com/SolomonB14D3/knowledge-fidelity"
