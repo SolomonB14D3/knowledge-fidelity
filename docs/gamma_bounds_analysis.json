@@ -1,0 +1,102 @@
+{
+  "monte_carlo": {
+    "n_samples": 10000,
+    "n_valid": 9999,
+    "gamma_star": {
+      "mean": 0.024238383517371162,
+      "median": 0.024357449739335218,
+      "std": 0.005631336696390357,
+      "ci_95": [
+        0.012713219373955054,
+        0.03496668471084277
+      ],
+      "ci_90": [
+        0.01471264415493372,
+        0.03324458153361599
+      ],
+      "ci_68": [
+        0.01869566097650031,
+        0.029809559212356482
+      ],
+      "point_estimate": 0.024444444444444446
+    },
+    "s_inf": {
+      "point_estimate": 2.35,
+      "mc_mean": 2.4914342686423594,
+      "mc_std": 0.9064800118107728
+    },
+    "interference_ratio_at_01": {
+      "mean": 0.04544138199003426,
+      "std": 0.016557788731225296
+    },
+    "input_distributions": {
+      "s_inf": {
+        "type": "lognormal",
+        "mu": 0.8544153281560676,
+        "sigma": 0.35
+      },
+      "theta_bias_tox": {
+        "type": "normal",
+        "mu": 82.0,
+        "sigma": 3.0,
+        "unit": "degrees"
+      },
+      "d_bias_gamma0": {
+        "type": "normal",
+        "mu": -0.011,
+        "sigma": 0.003
+      },
+      "d_bias_gamma01": {
+        "type": "normal",
+        "mu": 0.034,
+        "sigma": 0.004
+      }
+    }
+  },
+  "amplification": {
+    "observed_ratio": 22.49999999999998,
+    "linear_prediction": 1.9951281005196508,
+    "residual_amplification": 11.277471353413162,
+    "decomposition": {
+      "angular_factor": 1.9951281005196508,
+      "nonlinear_factor": 11.277471353413162,
+      "product": 22.49999999999998
+    },
+    "swing_bias": 0.045,
+    "swing_sycophancy": 0.0020000000000000018,
+    "baseline_bias": 0.036,
+    "baseline_sycophancy": -0.041,
+    "sigma_fitted": 0.00965071625212904
+  },
+  "sensitivity": {
+    "baseline_gamma_star": 0.024444444444444446,
+    "parameters": {
+      "$\\Delta\\rho_{bias}(\\gamma=0)$": {
+        "low": 0.005555520503653508,
+        "high": 0.0370370266947091,
+        "param_range": "[-0.021, -0.001]"
+      },
+      "$\\Delta\\rho_{bias}(\\gamma=0.1)$": {
+        "low": 0.019713266014468264,
+        "high": 0.03216376174927766,
+        "param_range": "[+0.022, +0.046]"
+      },
+      "$s_\\infty$ (nats)": {
+        "low": 0.024444444444444446,
+        "high": 0.024444444444444446,
+        "param_range": "[1.0, 5.0]",
+        "note": "Does not affect linear \u03b3* (affects bound tightness only)"
+      },
+      "$\\theta_{bias \\leftrightarrow tox}$ (degrees)": {
+        "low": 0.005210596191126252,
+        "high": 0.04338304878009278,
+        "param_range": "[75\u00b0, 89\u00b0]"
+      },
+      "Baseline $\\rho_{bias}$": {
+        "low": 0.004249022892238962,
+        "high": 0.0781183696259073,
+        "param_range": "[0.010, 0.080]"
+      }
+    }
+  }
+}
