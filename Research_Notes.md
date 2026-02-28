@@ -227,3 +227,64 @@ python experiments/safety_stress_test.py \
 ```
 
 Results directory: `results/alignment/`
+
+---
+
+## Probe Landscape Analysis
+
+**Generated:** 2026-02-27 | **Embedding model:** all-MiniLM-L6-v2 | **Threshold:** 0.65 | **N nodes:** 1,726
+
+### Cluster Summary (top 15 by size)
+
+| Cluster | Size | Dominant Behavior | Dominance | Cross-Behavior? | Central Probe |
+|:---:|:---:|:---|:---:|:---:|:---|
+| 0 | 48 | sycophancy | 100% | No | syco_nlp_80 |
+| 1 | 40 | sycophancy | 100% | No | syco_philosophy_5 |
+| 2 | 19 | bias | 100% | No | bbq_599_8 |
+| 3 | 19 | bias | 100% | No | bbq_2575_5 |
+| 4 | 14 | bias | 100% | No | bbq_2131_11 |
+| 5 | 12 | bias | 100% | No | bbq_161_1 |
+| 6 | 12 | sycophancy | 100% | No | syco_politics_100 |
+| 7 | 10 | bias | 100% | No | bbq_12561_35 |
+| 8 | 10 | sycophancy | 100% | No | syco_politics_2 |
+| 9 | 9 | sycophancy | 100% | No | syco_politics_76 |
+| 10 | 8 | bias | 100% | No | bbq_8645_20 |
+| 11 | 7 | bias | 100% | No | bbq_2565_7 |
+| 12 | 6 | bias | 100% | No | bbq_13297_37 |
+| 13 | 6 | bias | 100% | No | bbq_7291_22 |
+| 14 | 6 | sycophancy | 100% | No | syco_politics_6 |
+
+### Redundancy Scores
+
+| Behavior | Probes | Redundancy | Interpretation |
+|:---|:---:|:---:|:---|
+| bench | 120 | 0.68 | Moderate — some internal similarity |
+| bias | 300 | 1.00 | Template-driven — high structural similarity expected |
+| deception | 100 | 1.00 | High — probes cluster tightly; consider diversifying |
+| factual | 206 | 0.81 | High — probes cluster tightly; consider diversifying |
+| overrefusal | 150 | 0.95 | High — probes cluster tightly; consider diversifying |
+| reasoning | 100 | 1.00 | Template-driven — high structural similarity expected |
+| refusal | 150 | 0.99 | High — probes cluster tightly; consider diversifying |
+| sycophancy | 150 | 1.00 | Template-driven — high structural similarity expected |
+| toxicity | 200 | 1.00 | High — probes cluster tightly; consider diversifying |
+
+### Coverage Gaps
+
+The following behaviors have **no probes** in any cross-behavior cluster, meaning they occupy isolated semantic regions:
+
+- **bias**
+- **deception**
+- **reasoning**
+- **sycophancy**
+- **toxicity**
+
+This suggests these dimensions are semantically distinct from other behaviors (not necessarily bad — but worth investigating whether boundary cases are missing).
+
+### Recommendations
+
+1. **Diversify high-redundancy behaviors** (deception, factual, overrefusal, refusal, toxicity): many probes test similar semantic content. Add probes from underrepresented subcategories or edge cases.
+2. **Template-driven behaviors** (bias, reasoning, sycophancy) show high structural similarity by design (BBQ scenarios, persona prompts, math problems). Their content varies — this is expected, not a problem.
+3. **43 cross-behavior clusters found** — these are the most valuable for detecting behavioral entanglement during fine-tuning.
+4. **Bridge the gap** for bias, deception, reasoning, sycophancy, toxicity: add probes that straddle the boundary between these behaviors and related ones.
+
+Full data: `docs/probe_landscape.json` | Figure: `docs/probe_landscape.png`
