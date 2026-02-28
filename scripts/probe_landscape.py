@@ -78,27 +78,49 @@ def load_all_probes(include_variants: bool = True) -> list[ProbeNode]:
     for pset in all_sets:
         behavior = pset.split("/")[0]
 
-        # Deception probes lack 'text' key — load directly
-        if behavior == "deception":
-            path = PROBE_DATA_DIR / f"{pset}.json"
-            with open(path) as f:
-                probes = json.load(f)
+        # Load all probe sets directly (bypassing registry validation,
+        # since some probes use non-standard keys like honest/deceptive,
+        # positive/negative instead of text)
+        path = PROBE_DATA_DIR / f"{pset}.json"
+        with open(path) as f:
+            probes = json.load(f)
 
-            for i, p in enumerate(probes):
-                pid = p.get("id", f"{pset}::{i}")
-                nodes.append(ProbeNode(
-                    probe_id=f"{pset}::{pid}",
-                    behavior=behavior,
-                    probe_set=pset,
-                    text=p["honest"],
-                    node_type="primary",
-                    original_id=pid,
-                    metadata={k: v for k, v in p.items()
-                              if k not in ("honest", "deceptive")},
-                ))
-                if include_variants and "deceptive" in p:
+        for i, p in enumerate(probes):
+            pid = p.get("id", f"{pset}::{i}")
+
+            # Determine primary text field based on probe format
+            if "text" in p:
+                primary_text = p["text"]
+                exclude_keys = {"text"}
+            elif "honest" in p:
+                # Deception probes: honest = primary
+                primary_text = p["honest"]
+                exclude_keys = {"honest", "deceptive"}
+            elif "positive" in p and "prompt" in p:
+                # Sycophancy continuation pairs: prompt + positive = primary
+                prompt = p.get("prompt", "")
+                primary_text = f"{prompt}\n{p['positive']}" if prompt else p["positive"]
+                exclude_keys = {"prompt", "positive", "negative"}
+            else:
+                print(f"  Warning: skipping probe {pid} in {pset} — no text field")
+                continue
+
+            nodes.append(ProbeNode(
+                probe_id=f"{pset}::{pid}",
+                behavior=behavior,
+                probe_set=pset,
+                text=primary_text,
+                node_type="primary",
+                original_id=pid,
+                metadata={k: v for k, v in p.items() if k not in exclude_keys},
+            ))
+
+            # Variant nodes
+            if include_variants:
+                # Deception: deceptive continuation
+                if "deceptive" in p:
                     nodes.append(ProbeNode(
-                        probe_id=f"{pset}::{pid}::variant",
+                        probe_id=f"{pset}::{pid}::deceptive",
                         behavior=behavior,
                         probe_set=pset,
                         text=p["deceptive"],
@@ -107,39 +129,34 @@ def load_all_probes(include_variants: bool = True) -> list[ProbeNode]:
                         metadata={k: v for k, v in p.items()
                                   if k not in ("honest", "deceptive")},
                     ))
-            continue
 
-        # All other probe sets
-        try:
-            probes = get_probes(pset)
-        except (FileNotFoundError, ValueError) as e:
-            print(f"  Warning: skipping {pset}: {e}")
-            continue
+                # Refusal: harmful_version
+                if "harmful_version" in p:
+                    nodes.append(ProbeNode(
+                        probe_id=f"{pset}::{pid}::harmful",
+                        behavior=behavior,
+                        probe_set=pset,
+                        text=p["harmful_version"],
+                        node_type="variant",
+                        original_id=pid,
+                        metadata={k: v for k, v in p.items()
+                                  if k not in ("text", "harmful_version")},
+                    ))
 
-        for i, p in enumerate(probes):
-            pid = p.get("id", f"{pset}::{i}")
-            nodes.append(ProbeNode(
-                probe_id=f"{pset}::{pid}",
-                behavior=behavior,
-                probe_set=pset,
-                text=p["text"],
-                node_type="primary",
-                original_id=pid,
-                metadata={k: v for k, v in p.items() if k != "text"},
-            ))
-
-            # Variant nodes for refusal
-            if include_variants and "harmful_version" in p:
-                nodes.append(ProbeNode(
-                    probe_id=f"{pset}::{pid}::variant",
-                    behavior=behavior,
-                    probe_set=pset,
-                    text=p["harmful_version"],
-                    node_type="variant",
-                    original_id=pid,
-                    metadata={k: v for k, v in p.items()
-                              if k not in ("text", "harmful_version")},
-                ))
+                # Sycophancy pairs: negative continuation
+                if "positive" in p and "negative" in p:
+                    prompt = p.get("prompt", "")
+                    neg_text = f"{prompt}\n{p['negative']}" if prompt else p["negative"]
+                    nodes.append(ProbeNode(
+                        probe_id=f"{pset}::{pid}::negative",
+                        behavior=behavior,
+                        probe_set=pset,
+                        text=neg_text,
+                        node_type="variant",
+                        original_id=pid,
+                        metadata={k: v for k, v in p.items()
+                                  if k not in ("prompt", "positive", "negative")},
+                    ))
 
     print(f"  Loaded {len(nodes)} nodes "
           f"({sum(1 for n in nodes if n.node_type == 'primary')} primary, "

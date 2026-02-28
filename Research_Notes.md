@@ -380,7 +380,7 @@ Results directory: `results/alignment/`
 
 ## Probe Landscape Analysis
 
-**Generated:** 2026-02-27 | **Embedding model:** all-MiniLM-L6-v2 | **Threshold:** 0.65 | **N nodes:** 1,726
+**Generated:** 2026-02-27 | **Embedding model:** all-MiniLM-L6-v2 | **Threshold:** 0.65 | **N nodes:** 1,858
 
 ### Cluster Summary (top 15 by size)
 
@@ -406,14 +406,14 @@ Results directory: `results/alignment/`
 
 | Behavior | Probes | Redundancy | Interpretation |
 |:---|:---:|:---:|:---|
-| bench | 120 | 0.68 | Moderate — some internal similarity |
+| bench | 120 | 0.65 | Moderate — some internal similarity |
 | bias | 300 | 1.00 | Template-driven — high structural similarity expected |
 | deception | 100 | 1.00 | High — probes cluster tightly; consider diversifying |
-| factual | 206 | 0.81 | High — probes cluster tightly; consider diversifying |
+| factual | 206 | 0.72 | Moderate — some internal similarity |
 | overrefusal | 150 | 0.95 | High — probes cluster tightly; consider diversifying |
 | reasoning | 100 | 1.00 | Template-driven — high structural similarity expected |
-| refusal | 150 | 0.99 | High — probes cluster tightly; consider diversifying |
-| sycophancy | 150 | 1.00 | Template-driven — high structural similarity expected |
+| refusal | 150 | 0.98 | High — probes cluster tightly; consider diversifying |
+| sycophancy | 266 | 0.85 | Template-driven — high structural similarity expected |
 | toxicity | 200 | 1.00 | High — probes cluster tightly; consider diversifying |
 
 ### Coverage Gaps
@@ -423,17 +423,16 @@ The following behaviors have **no probes** in any cross-behavior cluster, meanin
 - **bias**
 - **deception**
 - **reasoning**
-- **sycophancy**
 - **toxicity**
 
 This suggests these dimensions are semantically distinct from other behaviors (not necessarily bad — but worth investigating whether boundary cases are missing).
 
 ### Recommendations
 
-1. **Diversify high-redundancy behaviors** (deception, factual, overrefusal, refusal, toxicity): many probes test similar semantic content. Add probes from underrepresented subcategories or edge cases.
+1. **Diversify high-redundancy behaviors** (deception, overrefusal, refusal, toxicity): many probes test similar semantic content. Add probes from underrepresented subcategories or edge cases.
 2. **Template-driven behaviors** (bias, reasoning, sycophancy) show high structural similarity by design (BBQ scenarios, persona prompts, math problems). Their content varies — this is expected, not a problem.
-3. **43 cross-behavior clusters found** — these are the most valuable for detecting behavioral entanglement during fine-tuning.
-4. **Bridge the gap** for bias, deception, reasoning, sycophancy, toxicity: add probes that straddle the boundary between these behaviors and related ones.
+3. **65 cross-behavior clusters found** — these are the most valuable for detecting behavioral entanglement during fine-tuning.
+4. **Bridge the gap** for bias, deception, reasoning, toxicity: add probes that straddle the boundary between these behaviors and related ones.
 
 Full data: `docs/probe_landscape.json` | Figure: `docs/probe_landscape.png`
 
