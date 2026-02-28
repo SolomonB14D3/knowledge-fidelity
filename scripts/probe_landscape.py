@@ -295,37 +295,78 @@ def compute_cluster_stats(
 def compute_redundancy(
     nodes: list[ProbeNode],
     communities: list[set[int]],
-) -> dict[str, float]:
-    """Compute redundancy score per behavior.
+) -> dict[str, dict]:
+    """Compute redundancy metrics per behavior, separating true redundancy
+    from singleton isolation.
 
-    Redundancy = fraction of a behavior's primary probes in clusters where
-    >80% of members share the same behavior.
+    Returns dict[behavior] -> {
+        "redundancy":    fraction of *clustered* primary probes in >80% same-behavior clusters,
+        "isolation_rate": fraction of primary probes that are singletons (no neighbors),
+        "n_primary":     total primary probes,
+        "n_clustered":   primary probes in clusters of size >= 2,
+        "n_singletons":  primary probes in singleton clusters,
+    }
+
+    The key insight: singletons (size-1 clusters) are trivially 100% "pure" but
+    represent semantic *isolation*, not *homogeneity*. Only probes that cluster
+    with neighbors reveal true redundancy patterns.
     """
     # Map node index -> cluster id
     node_to_cluster = {}
+    cluster_sizes = {}
     for cid, members in enumerate(communities):
+        cluster_sizes[cid] = len(members)
         for idx in members:
             node_to_cluster[idx] = cid
 
-    # Cluster dominance
+    # Cluster dominance (only meaningful for clusters of size >= 2)
     cluster_dominant_frac = {}
     for cid, members in enumerate(communities):
+        if len(members) < 2:
+            cluster_dominant_frac[cid] = 1.0  # singleton — trivially pure
+            continue
         counts = Counter(nodes[i].behavior for i in members)
         top = counts.most_common(1)[0][1]
         cluster_dominant_frac[cid] = top / len(members)
 
-    # Per behavior: what fraction of its primary probes are in >80% dominant clusters
+    # Per behavior: split into singletons vs clustered
     behaviors = sorted(set(n.behavior for n in nodes))
     redundancy = {}
     for beh in behaviors:
         primary_idxs = [i for i, n in enumerate(nodes)
                         if n.behavior == beh and n.node_type == "primary"]
         if not primary_idxs:
-            redundancy[beh] = 0.0
+            redundancy[beh] = {
+                "redundancy": 0.0, "isolation_rate": 0.0,
+                "n_primary": 0, "n_clustered": 0, "n_singletons": 0,
+            }
             continue
-        in_homo = sum(1 for i in primary_idxs
-                      if cluster_dominant_frac.get(node_to_cluster.get(i, -1), 0) > 0.80)
-        redundancy[beh] = round(in_homo / len(primary_idxs), 3)
+
+        # Separate singletons from clustered probes
+        singletons = [i for i in primary_idxs
+                       if cluster_sizes.get(node_to_cluster.get(i, -1), 1) == 1]
+        clustered = [i for i in primary_idxs
+                      if cluster_sizes.get(node_to_cluster.get(i, -1), 1) >= 2]
+
+        n_total = len(primary_idxs)
+        n_single = len(singletons)
+        n_clust = len(clustered)
+
+        # Redundancy: among clustered probes, how many are in >80% same-behavior clusters?
+        if n_clust > 0:
+            in_homo = sum(1 for i in clustered
+                          if cluster_dominant_frac.get(node_to_cluster.get(i, -1), 0) > 0.80)
+            redund = round(in_homo / n_clust, 3)
+        else:
+            redund = 0.0  # All singletons = no redundancy measurable
+
+        redundancy[beh] = {
+            "redundancy": redund,
+            "isolation_rate": round(n_single / n_total, 3) if n_total > 0 else 0.0,
+            "n_primary": n_total,
+            "n_clustered": n_clust,
+            "n_singletons": n_single,
+        }
     return redundancy
 
 
@@ -381,9 +422,13 @@ def build_output_json(
             node_to_cluster.get(i, -1)
             for i, n in enumerate(nodes) if n.behavior == beh
         ))
+        r = redundancy.get(beh, {})
         behavior_summary[beh] = {
             "n_probes": n_probes,
-            "redundancy": redundancy.get(beh, 0),
+            "redundancy": r.get("redundancy", 0) if isinstance(r, dict) else r,
+            "isolation_rate": r.get("isolation_rate", 0) if isinstance(r, dict) else 0,
+            "n_clustered": r.get("n_clustered", 0) if isinstance(r, dict) else 0,
+            "n_singletons": r.get("n_singletons", 0) if isinstance(r, dict) else 0,
             "n_clusters_present": clusters_present,
             "in_cross_behavior_clusters": beh not in gaps,
         }
@@ -554,25 +599,34 @@ def append_research_notes(
         )
 
     # Redundancy table
-    lines.append("\n### Redundancy Scores\n")
-    lines.append("| Behavior | Probes | Redundancy | Interpretation |")
-    lines.append("|:---|:---:|:---:|:---|")
+    lines.append("\n### Redundancy & Isolation Scores\n")
+    lines.append(
+        "**Redundancy** = fraction of *clustered* (non-singleton) primary probes "
+        "in clusters where >80% share the same behavior. Singletons (probes with "
+        "no neighbors at θ=threshold) are excluded — they represent semantic "
+        "*isolation*, not *homogeneity*.\n"
+    )
+    lines.append("| Behavior | Probes | Clustered | Singletons | Isolation | Redundancy | Interpretation |")
+    lines.append("|:---|:---:|:---:|:---:|:---:|:---:|:---|")
     # Behaviors with template-driven probes (high redundancy expected)
     template_behaviors = {"bias", "sycophancy", "reasoning"}
 
     for beh in sorted(redundancy.keys()):
-        n_probes = sum(1 for n in nodes if n.behavior == beh
-                       and n.node_type == "primary")
-        r = redundancy[beh]
+        r_data = redundancy[beh]
+        r = r_data["redundancy"]
+        iso = r_data["isolation_rate"]
+        n_p = r_data["n_primary"]
+        n_c = r_data["n_clustered"]
+        n_s = r_data["n_singletons"]
         if beh in template_behaviors and r > 0.80:
-            interp = "Template-driven — high structural similarity expected"
+            interp = "Template-driven — structural similarity expected"
         elif r > 0.80:
-            interp = "High — probes cluster tightly; consider diversifying"
+            interp = "High — clustered probes are too similar"
         elif r > 0.50:
             interp = "Moderate — some internal similarity"
         else:
-            interp = "Good — probes are semantically diverse"
-        lines.append(f"| {beh} | {n_probes} | {r:.2f} | {interp} |")
+            interp = "Good — diverse among clustered probes"
+        lines.append(f"| {beh} | {n_p} | {n_c} | {n_s} | {iso:.0%} | {r:.2f} | {interp} |")
 
     # Coverage gaps
     lines.append("\n### Coverage Gaps\n")
@@ -598,9 +652,11 @@ def append_research_notes(
     lines.append("### Recommendations\n")
     template_behaviors = {"bias", "sycophancy", "reasoning"}
     genuine_high = [b for b, r in redundancy.items()
-                    if r > 0.80 and b not in template_behaviors]
+                    if r["redundancy"] > 0.80 and b not in template_behaviors]
     template_high = [b for b, r in redundancy.items()
-                     if r > 0.80 and b in template_behaviors]
+                     if r["redundancy"] > 0.80 and b in template_behaviors]
+    high_isolation = [b for b, r in redundancy.items()
+                      if r["isolation_rate"] > 0.70]
     rec_num = 1
     if genuine_high:
         lines.append(
@@ -615,6 +671,14 @@ def append_research_notes(
             f"({', '.join(template_high)}) show high structural similarity by "
             f"design (BBQ scenarios, persona prompts, math problems). "
             f"Their content varies — this is expected, not a problem."
+        )
+        rec_num += 1
+    if high_isolation:
+        lines.append(
+            f"{rec_num}. **High isolation behaviors** "
+            f"({', '.join(high_isolation)}) have >70% singletons — most probes "
+            f"have no semantic neighbors at threshold. This is expected for "
+            f"highly diverse probe sets (e.g., ToxiGen covers many independent topics)."
         )
         rec_num += 1
     n_cross = sum(1 for cs in cluster_stats if cs["is_cross_behavior"])
@@ -719,9 +783,12 @@ def main():
     redundancy = compute_redundancy(nodes, communities)
     gaps = compute_coverage_gaps(nodes, communities)
 
-    print(f"  Redundancy scores:")
+    print(f"  Redundancy scores (excluding singletons):")
+    print(f"    {'Behavior':15s} {'Probes':>6s} {'Clust':>6s} {'Single':>6s} {'Isol%':>6s} {'Redund':>7s}")
     for beh in sorted(redundancy.keys()):
-        print(f"    {beh:15s}: {redundancy[beh]:.3f}")
+        r = redundancy[beh]
+        print(f"    {beh:15s} {r['n_primary']:>6d} {r['n_clustered']:>6d} "
+              f"{r['n_singletons']:>6d} {r['isolation_rate']:>5.0%} {r['redundancy']:>7.3f}")
     if gaps:
         print(f"  Coverage gaps: {', '.join(gaps)}")
     else:
