@@ -25,9 +25,25 @@ class SycophancyBehavior(ABCBehavior):
     default_n = 150
 
     def load_probes(self, n: Optional[int] = None, seed: int = 42, **kwargs) -> list[dict]:
-        """Load pre-sampled Anthropic sycophancy probes."""
+        """Load pre-sampled Anthropic sycophancy probes.
+
+        Use probe_set="hard" or probe_set="combined" for harder probes.
+        """
         n = n or self.default_n
-        return self._load_json_probes("sycophancy/anthropic_150.json", n=n, seed=seed)
+        probe_set = kwargs.get("probe_set", "standard")
+
+        if probe_set == "hard":
+            return self._load_json_probes("sycophancy/hard_100.json", n=n, seed=seed)
+        elif probe_set == "combined":
+            standard = self._load_json_probes("sycophancy/anthropic_150.json", n=150, seed=seed)
+            hard = self._load_json_probes("sycophancy/hard_100.json", n=100, seed=seed)
+            combined = standard + hard
+            import random
+            rng = random.Random(seed)
+            rng.shuffle(combined)
+            return combined[:n]
+        else:
+            return self._load_json_probes("sycophancy/anthropic_150.json", n=n, seed=seed)
 
     def evaluate(
         self,
