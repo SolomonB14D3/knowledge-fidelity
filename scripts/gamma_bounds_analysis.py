@@ -1,21 +1,27 @@
 #!/usr/bin/env python3
 r"""Extended γ* bounds analysis with Monte Carlo uncertainty quantification.
 
-Three analyses:
-  1. Monte Carlo γ* distribution: sample 10,000 combinations of (s∞, cos(θ),
-     baseline_ρ) from plausible uncertainty ranges and compute the distribution
-     of critical margin γ*.
-  2. Nonlinear amplification model: derive and visualize the sign-crossing
-     amplification that explains why the observed bias/sycophancy interference
-     ratio is 15× instead of the linear prediction of 1.9×.
-  3. Sensitivity analysis: tornado diagram showing which parameters dominate
-     γ* uncertainty.
+Six analyses:
+  1. Monte Carlo γ* distribution: sample N combinations of (s∞, cos(θ),
+     baseline_ρ) from plausible uncertainty ranges → distribution of γ*.
+  2. Nonlinear amplification model: sign-crossing amplification explaining
+     the 22.5× observed vs 2.0× linear predicted interference ratio.
+  3. Sensitivity analysis: tornado diagram of parameter dominance on γ*.
+  4. Multi-behavior phase diagram: simultaneous γ* per behavior across
+     the (γ, λ_ρ) plane.  Shows safe/dangerous regimes.
+  5. Variance U-shape MC: model the non-monotonic factual σ vs λ_ρ,
+     predict the optimal λ_ρ as intersection of two noise sources.
+  6. Probe sampling noise: quantify how finite probe sets inflate σ
+     and shift γ* via bootstrap over probe subsets.
 
-Outputs:
-  docs/gamma_mc_distribution.png   — Monte Carlo histogram of γ*
-  docs/gamma_amplification.png     — Nonlinear amplification model
-  docs/gamma_sensitivity.png       — Tornado diagram
-  docs/gamma_bounds_analysis.json  — Full Monte Carlo data + summary stats
+Outputs (docs/):
+  gamma_mc_distribution.png   — Monte Carlo histogram of γ*
+  gamma_amplification.png     — Nonlinear amplification model
+  gamma_sensitivity.png       — Tornado diagram
+  gamma_phase_diagram.png     — (γ, λ_ρ) phase diagram: safe vs dangerous
+  gamma_variance_ushape.png   — Variance U-shape decomposition + MC
+  gamma_probe_noise.png       — Probe-sampling noise impact on γ*
+  gamma_bounds_analysis.json  — Full data + summary stats
 
 Usage:
   python scripts/gamma_bounds_analysis.py
@@ -686,6 +692,627 @@ def plot_tornado(sens_results: dict, out_path: Path):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# EMPIRICAL DOSE-RESPONSE DATA (5 seeds × 4 λ_ρ, Qwen2.5-7B, γ=0.1)
+# ═══════════════════════════════════════════════════════════════════════════
+
+DOSE_RESPONSE = {
+    # λ_ρ: {behavior: (mean, std_pop)}  — population std (N denominator)
+    0.0: {
+        "factual": (0.0788, 0.0935), "toxicity": (-0.1996, 0.0523),
+        "bias": (-0.0095, 0.0013), "sycophancy": (0.0378, 0.0007),
+    },
+    0.1: {
+        "factual": (0.1165, 0.0792), "toxicity": (0.3721, 0.0685),
+        "bias": (0.0233, 0.0025), "sycophancy": (0.0390, 0.0007),
+    },
+    0.2: {
+        "factual": (0.1609, 0.0154), "toxicity": (0.5938, 0.0650),
+        "bias": (0.0359, 0.0023), "sycophancy": (0.0398, 0.0005),
+    },
+    0.5: {
+        "factual": (0.3105, 0.0370), "toxicity": (0.9646, 0.0534),
+        "bias": (0.0467, 0.0021), "sycophancy": (0.0439, 0.0030),
+    },
+}
+
+# No-margin per-seed data (γ=0, λ_ρ=0.2, 5 seeds)
+NO_MARGIN_SEEDS = {
+    "factual": [0.1387, 0.1467, 0.1655, 0.1187, 0.1092],
+    "toxicity": [0.5543, 0.5613, 0.6874, 0.4751, 0.5220],
+    "bias": [-0.0111, -0.0100, -0.0109, -0.0099, -0.0117],
+    "sycophancy": [0.0397, 0.0399, 0.0390, 0.0396, 0.0392],
+}
+
+# Grassmann angles (from paper Section 5):  i→j angle
+# toxicity is the primary optimization target; these are interference angles
+GRASSMANN_ANGLES = {
+    "bias": 82.0,       # bias↔toxicity
+    "factual": 84.0,    # factual↔toxicity
+    "sycophancy": 86.0, # sycophancy↔toxicity
+}
+
+# Probe counts per behavior (from probe landscape)
+PROBE_COUNTS = {
+    "factual": 206, "toxicity": 200, "bias": 300,
+    "sycophancy": 150, "reasoning": 100, "refusal": 150,
+    "deception": 100, "overrefusal": 150,
+}
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ANALYSIS 4: Multi-Behavior Phase Diagram
+# ═══════════════════════════════════════════════════════════════════════════
+
+def multi_behavior_phase(n_samples: int = 10000, seed: int = 42) -> dict:
+    r"""Compute γ* for each behavior simultaneously across (γ, λ_ρ) plane.
+
+    For each behavior j, the critical margin γ*_j is the γ below which
+    Δρ_j flips sign (negative = harmful).
+
+    Model: Δρ_j(γ, λ_ρ) = Δρ_j^{SFT} + λ_ρ · G_j(γ)
+
+    where G_j(γ) is the net contrastive contribution to dimension j:
+      - For the target dimension (toxicity): G is positive, increases with γ
+      - For bystander dimensions: G can be negative at low γ (interference)
+        and becomes positive at high γ (margin protection)
+
+    We fit G_j from the empirical dose-response and margin ablation data,
+    then MC-sample over parameter noise to get the joint distribution.
+    """
+    rng = np.random.default_rng(seed)
+
+    behaviors = ["factual", "bias", "sycophancy"]  # non-target bystanders
+    lambda_rhos = np.array([0.0, 0.1, 0.2, 0.5])
+
+    # ── Fit linear dose-response slopes: Δρ_j ≈ a_j + b_j · λ_ρ ──
+    # (at γ=0.1, which is the standard setting)
+    slopes = {}
+    intercepts = {}
+    for beh in behaviors:
+        ys = np.array([DOSE_RESPONSE[lam][beh][0] for lam in lambda_rhos])
+        coeffs = np.polyfit(lambda_rhos, ys, 1)
+        slopes[beh] = coeffs[0]     # dΔρ/dλ
+        intercepts[beh] = coeffs[1] # Δρ at λ=0
+
+    # ── Margin sensitivity: how γ shifts the dose-response ──
+    # At λ_ρ=0.2, γ=0 vs γ=0.1:
+    margin_effect = {}
+    for beh in behaviors:
+        d_gamma0 = np.mean(NO_MARGIN_SEEDS[beh])
+        d_gamma01 = DOSE_RESPONSE[0.2][beh][0]
+        margin_effect[beh] = (d_gamma01 - d_gamma0) / 0.1  # dΔρ/dγ
+
+    # ── Build (γ, λ_ρ) grid ──
+    gamma_grid = np.linspace(0.0, 0.15, 100)
+    lambda_grid = np.linspace(0.0, 0.6, 100)
+    G, L = np.meshgrid(gamma_grid, lambda_grid)
+
+    # ── Model: Δρ_j(γ, λ) = intercepts[j] + slopes[j]·λ + margin_effect[j]·(γ-0.1)·λ/0.2
+    # The margin effect scales with λ (stronger contrastive → more interference)
+    phase_maps = {}
+    gamma_star_curves = {}
+    for beh in behaviors:
+        # Δρ_j(γ, λ) = intercept + slope·λ + margin_sensitivity·(γ-0.1)·(λ/0.2)
+        dRho = (intercepts[beh]
+                + slopes[beh] * L
+                + margin_effect[beh] * (G - 0.1) * (L / 0.2))
+        phase_maps[beh] = dRho
+
+        # Find γ* for each λ (where Δρ crosses zero)
+        gs_curve = []
+        for i, lam in enumerate(lambda_grid):
+            row = dRho[i, :]
+            # Find the γ where row crosses zero (going from negative to positive)
+            crossings = np.where(np.diff(np.sign(row)))[0]
+            if len(crossings) > 0:
+                # Linear interpolation to find exact crossing
+                idx = crossings[0]
+                g0, g1 = gamma_grid[idx], gamma_grid[idx + 1]
+                r0, r1 = row[idx], row[idx + 1]
+                gamma_cross = g0 + (g1 - g0) * (-r0) / (r1 - r0)
+                gs_curve.append((lam, gamma_cross))
+            else:
+                # All positive or all negative
+                if row[0] > 0:
+                    gs_curve.append((lam, 0.0))  # always safe
+                else:
+                    gs_curve.append((lam, np.nan))  # never safe
+        gamma_star_curves[beh] = gs_curve
+
+    # ── MC: sample noise and find γ* per behavior jointly ──
+    mc_gamma_star = {beh: [] for beh in behaviors}
+    for _ in range(n_samples):
+        for beh in behaviors:
+            # Add noise to margin ablation endpoints
+            d0_noise = rng.normal(0, 0.003)
+            d01_noise = rng.normal(0, 0.004)
+            d0 = np.mean(NO_MARGIN_SEEDS[beh]) + d0_noise
+            d01 = DOSE_RESPONSE[0.2][beh][0] + d01_noise
+
+            b1 = (d01 - d0) / 0.1
+            if b1 > 0:
+                gs = -d0 / b1
+                if 0 < gs < 0.5:
+                    mc_gamma_star[beh].append(gs)
+
+    mc_summary = {}
+    for beh in behaviors:
+        vals = np.array(mc_gamma_star[beh])
+        if len(vals) > 0:
+            mc_summary[beh] = {
+                "median": float(np.median(vals)),
+                "ci_95": [float(np.percentile(vals, 2.5)),
+                          float(np.percentile(vals, 97.5))],
+                "n_valid": len(vals),
+            }
+        else:
+            mc_summary[beh] = {"median": 0.0, "ci_95": [0.0, 0.0], "n_valid": 0}
+
+    return {
+        "phase_maps": phase_maps,
+        "gamma_star_curves": gamma_star_curves,
+        "gamma_grid": gamma_grid,
+        "lambda_grid": lambda_grid,
+        "mc_summary": mc_summary,
+        "slopes": {k: float(v) for k, v in slopes.items()},
+        "intercepts": {k: float(v) for k, v in intercepts.items()},
+        "margin_effect": {k: float(v) for k, v in margin_effect.items()},
+    }
+
+
+def plot_phase_diagram(phase_results: dict, out_path: Path):
+    """Plot (γ, λ_ρ) phase diagram with safe/dangerous regions per behavior."""
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5.5))
+
+    behaviors = ["factual", "bias", "sycophancy"]
+    titles = [r"Factual $\Delta\rho$", r"Bias $\Delta\rho$",
+              r"Sycophancy $\Delta\rho$"]
+    gamma_grid = phase_results["gamma_grid"]
+    lambda_grid = phase_results["lambda_grid"]
+
+    for ax, beh, title in zip(axes, behaviors, titles):
+        dRho = phase_results["phase_maps"][beh]
+        gs_curve = phase_results["gamma_star_curves"][beh]
+
+        # Contour fill
+        vmax = max(abs(dRho.min()), abs(dRho.max()))
+        vmax = min(vmax, 0.15)  # clip for sycophancy
+        cf = ax.contourf(gamma_grid, lambda_grid, dRho,
+                         levels=np.linspace(-vmax, vmax, 25),
+                         cmap="RdYlGn", extend="both")
+        plt.colorbar(cf, ax=ax, label=r"$\Delta\rho$", shrink=0.8)
+
+        # Zero contour (critical boundary)
+        ax.contour(gamma_grid, lambda_grid, dRho, levels=[0],
+                   colors="black", linewidths=2.5, linestyles="-")
+
+        # Plot γ* curve
+        gs_lam = [p[0] for p in gs_curve if not np.isnan(p[1])]
+        gs_gam = [p[1] for p in gs_curve if not np.isnan(p[1])]
+        if gs_lam:
+            ax.plot(gs_gam, gs_lam, "k-", linewidth=2.5, label=r"$\gamma^*$ boundary")
+
+        # Mark default operating point
+        ax.plot(0.1, 0.2, "w*", markersize=15, markeredgecolor="black",
+                markeredgewidth=1.5, zorder=10, label=r"Default ($\gamma=0.1, \lambda=0.2$)")
+
+        # MC γ* CI for λ=0.2
+        mc = phase_results["mc_summary"].get(beh, {})
+        if mc.get("n_valid", 0) > 0:
+            ci = mc["ci_95"]
+            ax.plot([ci[0], ci[1]], [0.2, 0.2], "|-", color="white",
+                    linewidth=3, markersize=12, markeredgewidth=2, zorder=9)
+
+        ax.set_xlabel(r"Margin $\gamma$", fontsize=12)
+        ax.set_ylabel(r"Contrastive weight $\lambda_\rho$", fontsize=12)
+        ax.set_title(title, fontsize=13)
+        ax.legend(fontsize=8, loc="upper left")
+
+        # Red/green labels
+        ax.text(0.01, 0.55, "DANGEROUS\n" + r"$\Delta\rho < 0$",
+                fontsize=9, color="darkred", fontweight="bold",
+                transform=ax.transAxes, va="center")
+        ax.text(0.65, 0.15, "SAFE\n" + r"$\Delta\rho > 0$",
+                fontsize=9, color="darkgreen", fontweight="bold",
+                transform=ax.transAxes, va="center")
+
+    plt.suptitle(r"Phase Diagrams: Safe vs Dangerous Regimes in ($\gamma$, $\lambda_\rho$) Space",
+                 fontsize=14, fontweight="bold", y=1.02)
+    plt.tight_layout()
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    print(f"  → {out_path}")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ANALYSIS 5: Variance U-Shape Monte Carlo
+# ═══════════════════════════════════════════════════════════════════════════
+
+def variance_ushape_mc(n_samples: int = 10000, seed: int = 42) -> dict:
+    r"""Model the non-monotonic variance (σ) vs λ_ρ as competition of two noise sources.
+
+    Empirical factual σ:
+        λ=0.0: 0.094   (SFT degeneracy dominates)
+        λ=0.1: 0.079   (contrastive breaks some degeneracy)
+        λ=0.2: 0.015   (sweet spot — minimal total noise)
+        λ=0.5: 0.037   (probe sampling noise dominates)
+
+    Model: σ_total²(λ) = σ_SFT²(λ) + σ_probe²(λ)
+
+    where:
+        σ_SFT(λ) = σ₀ · exp(-λ/τ_SFT)     — SFT degeneracy decays exponentially
+        σ_probe(λ) = σ_p · √λ               — probe-sampling noise grows with weight
+
+    The U-shape minimum occurs at:
+        λ* = τ_SFT · ln(σ₀² / (σ_p² · τ_SFT))   [from dσ²/dλ = 0]
+    """
+    rng = np.random.default_rng(seed)
+
+    # Empirical data points (use sample std: multiply pop std by sqrt(5/4))
+    correction = np.sqrt(5 / 4)
+    lambda_data = np.array([0.0, 0.1, 0.2, 0.5])
+    sigma_factual = np.array([0.0935, 0.0792, 0.0154, 0.0370]) * correction
+    sigma_toxicity = np.array([0.0523, 0.0685, 0.0650, 0.0534]) * correction
+    sigma_bias = np.array([0.0013, 0.0025, 0.0023, 0.0021]) * correction
+
+    # ── Fit two-component model to factual σ ──
+    # σ²(λ) = σ₀² · exp(-2λ/τ) + σ_p² · λ
+    # Use scipy minimize to fit σ₀, τ, σ_p
+    from scipy.optimize import minimize
+
+    def loss_fn(params):
+        s0, tau, sp = params
+        if s0 <= 0 or tau <= 0 or sp <= 0:
+            return 1e10
+        sigma_model = np.sqrt(s0**2 * np.exp(-2 * lambda_data / tau) + sp**2 * lambda_data)
+        return np.sum((sigma_model - sigma_factual)**2)
+
+    result = minimize(loss_fn, x0=[0.10, 0.15, 0.05],
+                      bounds=[(0.001, 0.5), (0.01, 1.0), (0.001, 0.3)])
+    s0_fit, tau_fit, sp_fit = result.x
+
+    # ── Compute λ* (U-shape minimum) analytically ──
+    # dσ²/dλ = -2σ₀²/τ · exp(-2λ/τ) + σ_p² = 0
+    # exp(-2λ*/τ) = σ_p²·τ / (2σ₀²)
+    # λ* = -τ/2 · ln(σ_p²·τ/(2σ₀²))
+    lambda_star_analytical = -tau_fit / 2 * np.log(sp_fit**2 * tau_fit / (2 * s0_fit**2))
+
+    # ── MC: sample uncertainty in the fit parameters ──
+    lambda_fine = np.linspace(0, 0.6, 200)
+    mc_sigmas = np.zeros((n_samples, len(lambda_fine)))
+    mc_lambda_star = []
+
+    for i in range(n_samples):
+        s0 = rng.normal(s0_fit, s0_fit * 0.15)  # 15% uncertainty
+        tau = rng.normal(tau_fit, tau_fit * 0.20)  # 20% uncertainty
+        sp = rng.normal(sp_fit, sp_fit * 0.20)   # 20% uncertainty
+
+        if s0 <= 0 or tau <= 0 or sp <= 0:
+            mc_sigmas[i, :] = np.nan
+            continue
+
+        sig2 = s0**2 * np.exp(-2 * lambda_fine / tau) + sp**2 * lambda_fine
+        sig2 = np.maximum(sig2, 0)
+        mc_sigmas[i, :] = np.sqrt(sig2)
+
+        # λ* for this sample
+        ratio = sp**2 * tau / (2 * s0**2)
+        if 0 < ratio < 1:
+            ls = -tau / 2 * np.log(ratio)
+            if 0 < ls < 0.6:
+                mc_lambda_star.append(ls)
+
+    mc_lambda_star = np.array(mc_lambda_star)
+    mc_sigma_mean = np.nanmean(mc_sigmas, axis=0)
+    mc_sigma_lo = np.nanpercentile(mc_sigmas, 5, axis=0)
+    mc_sigma_hi = np.nanpercentile(mc_sigmas, 95, axis=0)
+
+    return {
+        "fit_params": {"s0": float(s0_fit), "tau": float(tau_fit), "sp": float(sp_fit)},
+        "lambda_star": {
+            "analytical": float(lambda_star_analytical),
+            "mc_median": float(np.median(mc_lambda_star)) if len(mc_lambda_star) > 0 else np.nan,
+            "mc_ci_90": ([float(np.percentile(mc_lambda_star, 5)),
+                          float(np.percentile(mc_lambda_star, 95))]
+                         if len(mc_lambda_star) > 10 else [np.nan, np.nan]),
+        },
+        "lambda_fine": lambda_fine,
+        "mc_sigma_mean": mc_sigma_mean,
+        "mc_sigma_lo": mc_sigma_lo,
+        "mc_sigma_hi": mc_sigma_hi,
+        "lambda_data": lambda_data,
+        "sigma_factual": sigma_factual,
+        "sigma_toxicity": sigma_toxicity,
+        "sigma_bias": sigma_bias,
+        "s0_fit": s0_fit, "tau_fit": tau_fit, "sp_fit": sp_fit,
+    }
+
+
+def plot_variance_ushape(var_results: dict, out_path: Path):
+    """Plot the variance U-shape decomposition."""
+    fig, axes = plt.subplots(1, 3, figsize=(17, 5))
+
+    lf = var_results["lambda_fine"]
+    s0, tau, sp = var_results["s0_fit"], var_results["tau_fit"], var_results["sp_fit"]
+
+    # ── Panel 1: Factual σ with two-component decomposition ──
+    ax = axes[0]
+    # Components
+    sft_comp = s0 * np.exp(-lf / tau)
+    probe_comp = sp * np.sqrt(lf)
+    total = np.sqrt(sft_comp**2 + probe_comp**2)
+
+    ax.plot(lf, sft_comp, "--", color="#E45756", linewidth=2,
+            label=rf"SFT degeneracy: $\sigma_0 e^{{-\lambda/\tau}}$ ($\sigma_0$={s0:.3f}, $\tau$={tau:.3f})")
+    ax.plot(lf, probe_comp, "--", color="#4C78A8", linewidth=2,
+            label=rf"Probe noise: $\sigma_p\sqrt{{\lambda}}$ ($\sigma_p$={sp:.3f})")
+    ax.plot(lf, total, "-", color="black", linewidth=2.5, label="Total model")
+
+    # Empirical points
+    ax.plot(var_results["lambda_data"], var_results["sigma_factual"],
+            "ko", markersize=8, zorder=5, label="Empirical (5 seeds)")
+
+    # MC envelope
+    ax.fill_between(lf, var_results["mc_sigma_lo"], var_results["mc_sigma_hi"],
+                     alpha=0.15, color="#4C78A8", label="90% MC envelope")
+
+    # λ* mark
+    ls = var_results["lambda_star"]["analytical"]
+    ax.axvline(ls, color="#54A24B", linestyle=":", linewidth=2)
+    ax.annotate(rf"$\lambda^* = {ls:.3f}$", xy=(ls + 0.01, ax.get_ylim()[0]),
+                fontsize=10, color="#54A24B")
+
+    ax.set_xlabel(r"$\lambda_\rho$", fontsize=12)
+    ax.set_ylabel(r"Factual $\sigma$ (inter-seed)", fontsize=12)
+    ax.set_title("(a) Factual Variance Decomposition", fontsize=12)
+    ax.legend(fontsize=8, loc="upper right")
+    ax.set_ylim(bottom=0)
+
+    # ── Panel 2: All behaviors σ comparison ──
+    ax = axes[1]
+    ld = var_results["lambda_data"]
+    ax.plot(ld, var_results["sigma_factual"], "o-", color="#4C78A8",
+            linewidth=2, markersize=8, label="Factual")
+    ax.plot(ld, var_results["sigma_toxicity"], "s-", color="#E45756",
+            linewidth=2, markersize=8, label="Toxicity")
+    ax.plot(ld, var_results["sigma_bias"], "^-", color="#54A24B",
+            linewidth=2, markersize=8, label="Bias")
+
+    ax.set_xlabel(r"$\lambda_\rho$", fontsize=12)
+    ax.set_ylabel(r"$\sigma$ (inter-seed std)", fontsize=12)
+    ax.set_title("(b) All Behaviors: Variance vs Weight", fontsize=12)
+    ax.legend(fontsize=10)
+    ax.set_ylim(bottom=0)
+
+    # ── Panel 3: λ* MC distribution ──
+    ax = axes[2]
+    lstar = var_results["lambda_star"]
+    if not np.isnan(lstar["mc_median"]):
+        # Recompute samples for histogram
+        rng = np.random.default_rng(42)
+        mc_ls = []
+        for _ in range(10000):
+            s0s = rng.normal(s0, s0 * 0.15)
+            ts = rng.normal(tau, tau * 0.20)
+            sps = rng.normal(sp, sp * 0.20)
+            if s0s > 0 and ts > 0 and sps > 0:
+                ratio = sps**2 * ts / (2 * s0s**2)
+                if 0 < ratio < 1:
+                    v = -ts / 2 * np.log(ratio)
+                    if 0 < v < 0.6:
+                        mc_ls.append(v)
+        mc_ls = np.array(mc_ls)
+
+        ax.hist(mc_ls, bins=60, density=True, alpha=0.7, color="#F58518",
+                edgecolor="white")
+        ax.axvline(lstar["analytical"], color="black", linestyle="--",
+                   linewidth=2, label=f"Analytical: {lstar['analytical']:.3f}")
+        ax.axvline(lstar["mc_median"], color="#E45756", linestyle="-",
+                   linewidth=2, label=f"MC median: {lstar['mc_median']:.3f}")
+        ax.axvline(0.2, color="#54A24B", linestyle=":", linewidth=2,
+                   label=r"Default $\lambda_\rho = 0.2$")
+        ax.set_xlabel(r"Optimal $\lambda^*_\rho$", fontsize=12)
+        ax.set_ylabel("Density", fontsize=12)
+        ax.set_title(r"(c) MC Distribution of $\lambda^*_\rho$", fontsize=12)
+        ax.legend(fontsize=9)
+    else:
+        ax.text(0.5, 0.5, "Insufficient MC samples", transform=ax.transAxes,
+                ha="center", fontsize=12)
+
+    plt.tight_layout()
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    print(f"  → {out_path}")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ANALYSIS 6: Probe Sampling Noise
+# ═══════════════════════════════════════════════════════════════════════════
+
+def probe_noise_analysis(n_samples: int = 10000, seed: int = 42) -> dict:
+    r"""Quantify how finite probe sets inflate variance and shift γ*.
+
+    With N probes, the Spearman ρ estimator has variance:
+        Var(ρ̂) ≈ (1 - ρ²)² / (N - 1)   [asymptotic, Gaussian copula]
+
+    This probe-sampling noise adds to the measurement of Δρ, which in turn
+    adds uncertainty to γ*.
+
+    We simulate:
+    1. For each behavior, compute Var(ρ̂) from its probe count and baseline ρ
+    2. Add this noise to the γ* MC and see how γ* distribution broadens
+    3. Show how γ* uncertainty scales with probe count (power analysis)
+    """
+    rng = np.random.default_rng(seed)
+
+    # ── Spearman ρ estimator variance ──
+    probe_var = {}
+    for beh, n_probes in PROBE_COUNTS.items():
+        rho = BASELINE_RHO.get(beh, 0.0)
+        # Var(ρ̂) ≈ (1-ρ²)² / (N-1)
+        var_rho = (1 - rho**2)**2 / max(n_probes - 1, 1)
+        probe_var[beh] = {
+            "n_probes": n_probes,
+            "baseline_rho": rho,
+            "var_rho_hat": float(var_rho),
+            "std_rho_hat": float(np.sqrt(var_rho)),
+        }
+
+    # ── γ* with and without probe noise ──
+    # Without probe noise (measurement noise only — the v1 analysis)
+    d0_base = GAMMA_0["d_bias"]
+    d01_base = GAMMA_01["d_bias"]
+
+    # Probe noise for bias: sqrt(Var(ρ̂)) for N=300 at baseline ρ=0.036
+    bias_probe_std = probe_var.get("bias", {}).get("std_rho_hat", 0.058)
+
+    # MC with probe noise added
+    gs_no_probe = []
+    gs_with_probe = []
+    for _ in range(n_samples):
+        # Measurement noise
+        d0 = rng.normal(d0_base, 0.003)
+        d01 = rng.normal(d01_base, 0.004)
+
+        b1 = (d01 - d0) / 0.1
+        if b1 > 0:
+            gs = -d0 / b1
+            if 0 < gs < 0.5:
+                gs_no_probe.append(gs)
+
+        # Now add probe-sampling noise to each measurement
+        d0_noisy = d0 + rng.normal(0, bias_probe_std)
+        d01_noisy = d01 + rng.normal(0, bias_probe_std)
+        b1_noisy = (d01_noisy - d0_noisy) / 0.1
+        if b1_noisy > 0:
+            gs = -d0_noisy / b1_noisy
+            if 0 < gs < 0.5:
+                gs_with_probe.append(gs)
+
+    gs_no_probe = np.array(gs_no_probe)
+    gs_with_probe = np.array(gs_with_probe)
+
+    # ── Power analysis: how probe count affects γ* width ──
+    n_probes_sweep = [50, 100, 150, 200, 300, 500, 1000]
+    gs_width_by_n = []
+    for n_p in n_probes_sweep:
+        rho = BASELINE_RHO["bias"]
+        ps = np.sqrt((1 - rho**2)**2 / max(n_p - 1, 1))
+        gs_samples = []
+        for _ in range(n_samples):
+            d0 = rng.normal(d0_base, 0.003) + rng.normal(0, ps)
+            d01 = rng.normal(d01_base, 0.004) + rng.normal(0, ps)
+            b1 = (d01 - d0) / 0.1
+            if b1 > 0:
+                gs = -d0 / b1
+                if 0 < gs < 0.5:
+                    gs_samples.append(gs)
+        gs_arr = np.array(gs_samples)
+        if len(gs_arr) > 10:
+            gs_width_by_n.append({
+                "n_probes": n_p,
+                "ci_width": float(np.percentile(gs_arr, 97.5) - np.percentile(gs_arr, 2.5)),
+                "std": float(np.std(gs_arr)),
+                "median": float(np.median(gs_arr)),
+                "n_valid": len(gs_arr),
+            })
+        else:
+            gs_width_by_n.append({
+                "n_probes": n_p, "ci_width": np.nan, "std": np.nan,
+                "median": np.nan, "n_valid": len(gs_arr),
+            })
+
+    return {
+        "probe_var": probe_var,
+        "gs_no_probe": gs_no_probe,
+        "gs_with_probe": gs_with_probe,
+        "gs_no_probe_summary": {
+            "median": float(np.median(gs_no_probe)),
+            "std": float(np.std(gs_no_probe)),
+            "ci_95_width": float(np.percentile(gs_no_probe, 97.5) -
+                                  np.percentile(gs_no_probe, 2.5)),
+        },
+        "gs_with_probe_summary": {
+            "median": float(np.median(gs_with_probe)) if len(gs_with_probe) > 0 else np.nan,
+            "std": float(np.std(gs_with_probe)) if len(gs_with_probe) > 0 else np.nan,
+            "ci_95_width": (float(np.percentile(gs_with_probe, 97.5) -
+                                   np.percentile(gs_with_probe, 2.5))
+                            if len(gs_with_probe) > 10 else np.nan),
+        },
+        "power_analysis": gs_width_by_n,
+    }
+
+
+def plot_probe_noise(probe_results: dict, out_path: Path):
+    """Plot probe-sampling noise impact."""
+    fig, axes = plt.subplots(1, 3, figsize=(17, 5))
+
+    # ── Panel 1: γ* distribution with vs without probe noise ──
+    ax = axes[0]
+    gs_no = probe_results["gs_no_probe"]
+    gs_with = probe_results["gs_with_probe"]
+
+    ax.hist(gs_no, bins=60, density=True, alpha=0.6, color="#4C78A8",
+            label=f"Measurement noise only (σ={probe_results['gs_no_probe_summary']['std']:.4f})",
+            edgecolor="white")
+    if len(gs_with) > 0:
+        ax.hist(gs_with, bins=60, density=True, alpha=0.5, color="#E45756",
+                label=f"+ Probe noise (σ={probe_results['gs_with_probe_summary']['std']:.4f})",
+                edgecolor="white")
+    ax.axvline(0.1, color="#54A24B", linestyle=":", linewidth=2,
+               label=r"Default $\gamma = 0.1$")
+    ax.set_xlabel(r"$\gamma^*$", fontsize=12)
+    ax.set_ylabel("Density", fontsize=12)
+    ax.set_title(r"(a) $\gamma^*$ With/Without Probe Noise", fontsize=12)
+    ax.legend(fontsize=9)
+    ax.set_xlim(-0.05, 0.2)
+
+    # ── Panel 2: Probe variance by behavior ──
+    ax = axes[1]
+    pv = probe_results["probe_var"]
+    behs = sorted(pv.keys(), key=lambda b: pv[b]["std_rho_hat"], reverse=True)
+    stds = [pv[b]["std_rho_hat"] for b in behs]
+    ns = [pv[b]["n_probes"] for b in behs]
+    colors_map = {"factual": "#4C78A8", "toxicity": "#E45756", "bias": "#54A24B",
+                  "sycophancy": "#F58518", "reasoning": "#72B7B2",
+                  "refusal": "#B279A2", "deception": "#FF9DA6",
+                  "overrefusal": "#9D755D"}
+    bar_colors = [colors_map.get(b, "#999999") for b in behs]
+
+    bars = ax.barh(behs, stds, color=bar_colors, edgecolor="white")
+    for bar, n in zip(bars, ns):
+        ax.text(bar.get_width() + 0.001, bar.get_y() + bar.get_height()/2,
+                f"N={n}", va="center", fontsize=9, color="gray")
+    ax.set_xlabel(r"$\sigma(\hat{\rho})$ (probe sampling noise)", fontsize=12)
+    ax.set_title("(b) Probe Noise Floor by Behavior", fontsize=12)
+    ax.invert_yaxis()
+
+    # ── Panel 3: Power analysis — CI width vs probe count ──
+    ax = axes[2]
+    pa = probe_results["power_analysis"]
+    ns_plot = [p["n_probes"] for p in pa if not np.isnan(p["ci_width"])]
+    widths = [p["ci_width"] for p in pa if not np.isnan(p["ci_width"])]
+
+    ax.plot(ns_plot, widths, "o-", color="#4C78A8", linewidth=2, markersize=8)
+    ax.axhline(probe_results["gs_no_probe_summary"]["ci_95_width"],
+               color="#E45756", linestyle="--", linewidth=1.5,
+               label="Measurement-only 95% CI width")
+    ax.axvline(300, color="#54A24B", linestyle=":", linewidth=1.5,
+               label="Current bias probes (N=300)")
+
+    ax.set_xlabel("Number of probes per behavior", fontsize=12)
+    ax.set_ylabel(r"95% CI width of $\gamma^*$", fontsize=12)
+    ax.set_title(r"(c) Power Analysis: Probes vs $\gamma^*$ Precision", fontsize=12)
+    ax.legend(fontsize=9)
+    ax.set_xscale("log")
+
+    plt.tight_layout()
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    print(f"  → {out_path}")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -746,11 +1373,68 @@ def main():
 
     plot_tornado(sens_results, DOCS_DIR / "gamma_sensitivity.png")
 
+    # --- Analysis 4: Multi-behavior phase diagram ---
+    print(f"\n[4] Multi-behavior phase diagram")
+    phase_results = multi_behavior_phase(args.n_samples, args.seed)
+    for beh, mc in phase_results["mc_summary"].items():
+        if mc["n_valid"] > 0:
+            ci = mc["ci_95"]
+            print(f"  {beh}: γ* = {mc['median']:.4f} (95% CI: [{ci[0]:.4f}, {ci[1]:.4f}])")
+        else:
+            print(f"  {beh}: no valid γ* (always safe or always dangerous)")
+    plot_phase_diagram(phase_results, DOCS_DIR / "gamma_phase_diagram.png")
+
+    # --- Analysis 5: Variance U-shape ---
+    print(f"\n[5] Variance U-shape Monte Carlo")
+    var_results = variance_ushape_mc(args.n_samples, args.seed)
+    print(f"  Fit: σ₀={var_results['fit_params']['s0']:.4f}, "
+          f"τ={var_results['fit_params']['tau']:.4f}, "
+          f"σ_p={var_results['fit_params']['sp']:.4f}")
+    ls = var_results["lambda_star"]
+    print(f"  λ* (analytical) = {ls['analytical']:.3f}")
+    if not np.isnan(ls["mc_median"]):
+        print(f"  λ* (MC median) = {ls['mc_median']:.3f} "
+              f"(90% CI: [{ls['mc_ci_90'][0]:.3f}, {ls['mc_ci_90'][1]:.3f}])")
+    plot_variance_ushape(var_results, DOCS_DIR / "gamma_variance_ushape.png")
+
+    # --- Analysis 6: Probe noise ---
+    print(f"\n[6] Probe sampling noise analysis")
+    probe_results = probe_noise_analysis(args.n_samples, args.seed)
+    s_no = probe_results["gs_no_probe_summary"]
+    s_with = probe_results["gs_with_probe_summary"]
+    print(f"  γ* width (measurement only): {s_no['ci_95_width']:.4f}")
+    print(f"  γ* width (+ probe noise):    {s_with['ci_95_width']:.4f}")
+    inflation = s_with["ci_95_width"] / s_no["ci_95_width"] if s_no["ci_95_width"] > 0 else np.nan
+    print(f"  Inflation factor: {inflation:.2f}×")
+    print(f"  Probe noise floors:")
+    for beh in sorted(probe_results["probe_var"].keys(),
+                      key=lambda b: probe_results["probe_var"][b]["std_rho_hat"],
+                      reverse=True)[:4]:
+        pv = probe_results["probe_var"][beh]
+        print(f"    {beh}: σ(ρ̂)={pv['std_rho_hat']:.4f} (N={pv['n_probes']})")
+    plot_probe_noise(probe_results, DOCS_DIR / "gamma_probe_noise.png")
+
     # --- Save JSON ---
     output = {
         "monte_carlo": {k: v for k, v in mc_results.items() if k != "samples"},
         "amplification": amp_results,
         "sensitivity": sens_results,
+        "phase_diagram": {
+            "mc_summary": phase_results["mc_summary"],
+            "slopes": phase_results["slopes"],
+            "intercepts": phase_results["intercepts"],
+            "margin_effect": phase_results["margin_effect"],
+        },
+        "variance_ushape": {
+            "fit_params": var_results["fit_params"],
+            "lambda_star": var_results["lambda_star"],
+        },
+        "probe_noise": {
+            "probe_var": probe_results["probe_var"],
+            "gs_no_probe_summary": probe_results["gs_no_probe_summary"],
+            "gs_with_probe_summary": probe_results["gs_with_probe_summary"],
+            "power_analysis": probe_results["power_analysis"],
+        },
     }
     json_path = DOCS_DIR / "gamma_bounds_analysis.json"
     with open(json_path, "w") as f:
@@ -766,11 +1450,12 @@ def main():
           f"{mc_results['gamma_star']['ci_95'][1]:.4f}])")
     print(f"  Default γ=0.1 is {0.1/mc_results['gamma_star']['median']:.1f}× "
           f"the critical margin (safe)")
-    print(f"  The 15× bias/sycophancy ratio decomposes as:")
-    print(f"    {amp_results['decomposition']['angular_factor']:.1f}× angular "
-          f"(cos θ) × {amp_results['decomposition']['nonlinear_factor']:.1f}× "
-          f"nonlinear amplification")
-    print(f"  γ* is most sensitive to Δρ_bias(γ=0) measurement uncertainty")
+    print(f"  Amplification: {amp_results['decomposition']['angular_factor']:.1f}× angular "
+          f"× {amp_results['decomposition']['nonlinear_factor']:.1f}× nonlinear "
+          f"= {amp_results['decomposition']['product']:.1f}×")
+    print(f"  Optimal λ*_ρ = {ls['analytical']:.3f} "
+          f"(default 0.2 is {'near-optimal' if abs(ls['analytical'] - 0.2) < 0.05 else 'suboptimal'})")
+    print(f"  Probe noise inflates γ* CI by {inflation:.1f}×")
 
 
 if __name__ == "__main__":
