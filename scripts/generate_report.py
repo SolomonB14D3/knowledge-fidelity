@@ -14,6 +14,7 @@ Requires: pandas, numpy, scipy, matplotlib, plotly
 """
 import argparse
 import sqlite3
+import sys
 from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
@@ -581,7 +582,19 @@ def main():
     parser = argparse.ArgumentParser(description="Generate auto-report from master DB")
     parser.add_argument("--db", default="results/master.db", help="Path to master.db")
     parser.add_argument("--out", default="docs", help="Output directory")
+    parser.add_argument(
+        "--refresh-db", action="store_true",
+        help="Re-run build_master_db.py before generating the report",
+    )
     args = parser.parse_args()
+
+    # Optionally rebuild the master DB first
+    if args.refresh_db:
+        import subprocess
+        etl_script = Path(__file__).parent / "build_master_db.py"
+        print(f"Rebuilding master DB via {etl_script}...")
+        subprocess.run([sys.executable, str(etl_script)], check=True)
+        print()
 
     db_path = args.db
     out_dir = Path(args.out)

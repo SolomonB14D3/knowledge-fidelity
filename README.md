@@ -170,6 +170,11 @@ See also: Sanchez, B. (2026). *Confidence Cartography: Teacher-Forced Probabilit
   | No-compress + SAE only | 0.000 | Identity — SAE alone does nothing |
   | SVD only (no SAE, no rho) | −0.016 | Hurts — bias −0.067, factual −0.034 |
   | SVD + SAE only | −0.016 | SAE cannot repair SVD damage |
+<p align="center">
+  <img src="docs/variance_ushape.png" alt="Variance U-Shape" width="700">
+</p>
+<p align="center"><em>Variance collapse at λ_ρ = 0.2: factual σ drops from 0.104 (SFT-only) to 0.017 (rho-guided), a 6× reduction. The U-shape at λ_ρ = 0.5 shows the contrastive loss introducing its own variance at high strength.</em></p>
+
 - **Safety behaviors resist SAE steering.** Attack/defense asymmetry testing on Qwen2.5-0.5B finds refusal has only 12 SAE features (nearly immovable: scale 0→5 moves ρ by +0.005) while deception has 2,314 features (slight positive effect at low scales but 5-6 behaviors regress as collateral). Safety behaviors are either too distributed (refusal) or too entangled (deception) for SAE steering alone.
 - **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser, boosting Mandela probe ρ by +0.514 on Qwen-0.5B.
 - **Merge methods cause behavioral trade-offs invisible to standard benchmarks.** DARE-TIES destroys alignment on Qwen but improves it on Mistral. DELLA completely breaks the model. Only behavioral evaluation catches these failures.
@@ -823,6 +828,31 @@ python experiments/multi_vector_steering.py --cross-model mistralai/Mistral-7B-I
 python experiments/mistral_layer_heatmap.py
 python experiments/mistral_layer_heatmap.py --model meta-llama/Llama-3.1-8B-Instruct
 ```
+
+## Auto-Report Generator
+
+Run `python scripts/generate_report.py` to regenerate all paper-ready tables and visualizations from the master SQLite database:
+
+```bash
+# Regenerate everything (rebuilds DB first, then report)
+python scripts/generate_report.py --refresh-db
+
+# Or just the report (if DB is already up to date)
+python scripts/generate_report.py
+```
+
+**Outputs:**
+
+| File | Contents |
+|------|----------|
+| `docs/auto_report.md` | Dose-response, ablation, hybrid sweep, variance, summary stats, correlation matrix |
+| `docs/variance_ushape.png` | Factual σ vs λ_ρ showing the variance sweet spot at λ_ρ ≈ 0.2 |
+| `docs/ablation_conditions.png` | 4-condition ablation bars with error bars |
+| `docs/hybrid_heatmap.png` | 7-config × 8-behavior heatmap |
+| `docs/correlation_matrix.png` | Cross-behavior Spearman correlation |
+| `docs/dashboard.html` | Interactive Plotly dashboard (6 panels, offline-capable) |
+
+All data sourced from `results/master.db`, which is rebuilt via `python scripts/build_master_db.py`.
 
 ## Deployment
 
