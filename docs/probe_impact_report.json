@@ -1,0 +1,3107 @@
+{
+  "generated_at": "2026-02-27 22:12:13",
+  "threshold": 0.65,
+  "baseline": {
+    "n_nodes": 1858,
+    "n_edges": 2912,
+    "n_communities": 1362,
+    "n_cross_clusters": 65,
+    "cross_edges": 110,
+    "gaps": [
+      "bias",
+      "deception",
+      "reasoning",
+      "toxicity"
+    ],
+    "redundancy": {
+      "bench": {
+        "redundancy": 0.106,
+        "isolation_rate": 0.608,
+        "n_primary": 120,
+        "n_clustered": 47,
+        "n_singletons": 73
+      },
+      "bias": {
+        "redundancy": 1.0,
+        "isolation_rate": 0.243,
+        "n_primary": 300,
+        "n_clustered": 227,
+        "n_singletons": 73
+      },
+      "deception": {
+        "redundancy": 1.0,
+        "isolation_rate": 0.72,
+        "n_primary": 100,
+        "n_clustered": 28,
+        "n_singletons": 72
+      },
+      "factual": {
+        "redundancy": 0.0,
+        "isolation_rate": 0.718,
+        "n_primary": 206,
+        "n_clustered": 58,
+        "n_singletons": 148
+      },
+      "overrefusal": {
+        "redundancy": 0.5,
+        "isolation_rate": 0.893,
+        "n_primary": 150,
+        "n_clustered": 16,
+        "n_singletons": 134
+      },
+      "reasoning": {
+        "redundancy": 1.0,
+        "isolation_rate": 0.85,
+        "n_primary": 100,
+        "n_clustered": 15,
+        "n_singletons": 85
+      },
+      "refusal": {
+        "redundancy": 0.8,
+        "isolation_rate": 0.9,
+        "n_primary": 150,
+        "n_clustered": 15,
+        "n_singletons": 135
+      },
+      "sycophancy": {
+        "redundancy": 0.801,
+        "isolation_rate": 0.244,
+        "n_primary": 266,
+        "n_clustered": 201,
+        "n_singletons": 65
+      },
+      "toxicity": {
+        "redundancy": 1.0,
+        "isolation_rate": 0.845,
+        "n_primary": 200,
+        "n_clustered": 31,
+        "n_singletons": 169
+      }
+    }
+  },
+  "current": {
+    "n_nodes": 2236,
+    "n_edges": 3219,
+    "n_communities": 1527,
+    "n_cross_clusters": 88,
+    "cross_edges": 242,
+    "gaps": [],
+    "redundancy": {
+      "bench": {
+        "redundancy": 0.107,
+        "isolation_rate": 0.533,
+        "n_primary": 120,
+        "n_clustered": 56,
+        "n_singletons": 64
+      },
+      "bias": {
+        "redundancy": 0.961,
+        "isolation_rate": 0.21,
+        "n_primary": 357,
+        "n_clustered": 282,
+        "n_singletons": 75
+      },
+      "deception": {
+        "redundancy": 0.733,
+        "isolation_rate": 0.545,
+        "n_primary": 132,
+        "n_clustered": 60,
+        "n_singletons": 72
+      },
+      "factual": {
+        "redundancy": 0.0,
+        "isolation_rate": 0.694,
+        "n_primary": 206,
+        "n_clustered": 63,
+        "n_singletons": 143
+      },
+      "overrefusal": {
+        "redundancy": 0.471,
+        "isolation_rate": 0.887,
+        "n_primary": 150,
+        "n_clustered": 17,
+        "n_singletons": 133
+      },
+      "reasoning": {
+        "redundancy": 0.758,
+        "isolation_rate": 0.585,
+        "n_primary": 159,
+        "n_clustered": 66,
+        "n_singletons": 93
+      },
+      "refusal": {
+        "redundancy": 0.8,
+        "isolation_rate": 0.9,
+        "n_primary": 150,
+        "n_clustered": 15,
+        "n_singletons": 135
+      },
+      "sycophancy": {
+        "redundancy": 0.788,
+        "isolation_rate": 0.237,
+        "n_primary": 266,
+        "n_clustered": 203,
+        "n_singletons": 63
+      },
+      "toxicity": {
+        "redundancy": 0.743,
+        "isolation_rate": 0.755,
+        "n_primary": 286,
+        "n_clustered": 70,
+        "n_singletons": 216
+      }
+    }
+  },
+  "bridge_summary": {
+    "total": 234,
+    "cross_behavior": 58,
+    "same_behavior": 117,
+    "singleton": 59,
+    "hit_rate": 0.248
+  },
+  "bridge_probes": [
+    {
+      "probe_id": "bias/bridge_native::bridge_bias_native_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_native",
+      "cluster_id": 466,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "bias/bridge_native::bridge_bias_native_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_native",
+      "cluster_id": 13,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "bias": 3,
+        "reasoning": 2,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_native::bridge_bias_native_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_native",
+      "cluster_id": 249,
+      "cluster_size": 2,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 1,
+        "reasoning": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_native::bridge_bias_native_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_native",
+      "cluster_id": 93,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 1,
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 141,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 25,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "toxicity": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 142,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 13,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "bias": 3,
+        "reasoning": 2,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 143,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_5",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 26,
+      "cluster_size": 5,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 4,
+        "toxicity": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_6",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 144,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_pairs::bridge_bias_fact_7",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_pairs",
+      "cluster_id": 145,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_sci_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 146,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_sci_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 147,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_sci_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 148,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_sci_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 149,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_sci_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 150,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_tech_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 45,
+      "cluster_size": 4,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_tech_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 151,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_tech_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 152,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_tech_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 26,
+      "cluster_size": 5,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 4,
+        "toxicity": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_tech_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 153,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_daily_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 154,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_daily_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 155,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_daily_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 156,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_daily_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 157,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_daily_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 158,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_econ_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 46,
+      "cluster_size": 4,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_econ_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 9,
+      "cluster_size": 9,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "reasoning": 1,
+        "toxicity": 6
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_econ_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 159,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_econ_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 71,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "overrefusal": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_econ_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 47,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_law_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 160,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_law_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 161,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_law_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 162,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_law_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 45,
+      "cluster_size": 4,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_law_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 163,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_edu_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 164,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_edu_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 165,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_edu_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 166,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_edu_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 72,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "toxicity": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_edu_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 167,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_mh_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 168,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_mh_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 169,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_mh_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 170,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_mh_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 171,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_mh_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 172,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_global_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 173,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_global_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 174,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_global_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 175,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_global_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 176,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_global_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 177,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_short_0",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 467,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_short_1",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 178,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_short_2",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 179,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_short_3",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 180,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "bias/bridge_scaleup::bscale_short_4",
+      "behavior": "bias",
+      "probe_set": "bias/bridge_scaleup",
+      "cluster_id": 181,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_native::bridge_dec_native_0",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_native",
+      "cluster_id": 14,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 2,
+        "sycophancy": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_native::bridge_dec_native_1",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_native",
+      "cluster_id": 20,
+      "cluster_size": 6,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_native::bridge_dec_native_2",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_native",
+      "cluster_id": 21,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_native::bridge_dec_native_3",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_native",
+      "cluster_id": 30,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_native::bridge_dec_native_4",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_native",
+      "cluster_id": 12,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 1,
+        "factual": 1,
+        "sycophancy": 1,
+        "toxicity": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_native::bridge_dec_native_5",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_native",
+      "cluster_id": 31,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "reasoning": 2,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_0",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 35,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_1",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 182,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_2",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 183,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_3",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 184,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_4",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 73,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "factual": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_5",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 185,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_6",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 74,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "factual": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_fact_7",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 186,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_0",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 187,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_1",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 188,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_2",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 189,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_3",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 190,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_4",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 191,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_5",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 192,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_6",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 193,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_pairs::bridge_dec_syco_7",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_pairs",
+      "cluster_id": 194,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_0",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 195,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_1",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 27,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_2",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 196,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_3",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 197,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "deception": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_4",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 28,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_5",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 48,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_6",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 29,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_7",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 49,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "factual": 1,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_8",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 50,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 2,
+        "factual": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "deception/bridge_scaleup::dscale_9",
+      "behavior": "deception",
+      "probe_set": "deception/bridge_scaleup",
+      "cluster_id": 75,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "factual": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_native::bridge_reason_native_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_native",
+      "cluster_id": 890,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_native::bridge_reason_native_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_native",
+      "cluster_id": 891,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_native::bridge_reason_native_2",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_native",
+      "cluster_id": 892,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_native::bridge_reason_native_3",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_native",
+      "cluster_id": 249,
+      "cluster_size": 2,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 1,
+        "reasoning": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 250,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 85,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_2",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 251,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_3",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 252,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_4",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 253,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_5",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 254,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_6",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 255,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_pairs::bridge_reason_fact_7",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_pairs",
+      "cluster_id": 256,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 257,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 52,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_2",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 258,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_3",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 259,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_4",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 260,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_5",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 86,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_6",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 261,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_7",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 262,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_8",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 87,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "reasoning": 2,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_9",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 263,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_10",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 88,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_11",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 264,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_12",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 89,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_13",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 265,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_14",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 266,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_15",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 90,
+      "cluster_size": 3,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_16",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 267,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_17",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 268,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_18",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 269,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup::rscale_19",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup",
+      "cluster_id": 270,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_factual_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 31,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "deception": 2,
+        "reasoning": 2,
+        "sycophancy": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_factual_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 91,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "factual": 1,
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_factual_2",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 271,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_bias_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 272,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_bias_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 92,
+      "cluster_size": 3,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_bias_2",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 273,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_tox_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 274,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_tox_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 275,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_syc_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 276,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_syc_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 277,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_factual_3",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 278,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_factual_4",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 279,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_bias_3",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 13,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "bias": 3,
+        "reasoning": 2,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_tox_2",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 280,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_scaleup_v2::rscale2_bias_4",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_scaleup_v2",
+      "cluster_id": 93,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 1,
+        "reasoning": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_0",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 108,
+      "cluster_size": 2,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_1",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 90,
+      "cluster_size": 3,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_2",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 100,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "reasoning": 1,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_3",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 281,
+      "cluster_size": 2,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_4",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 893,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_5",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 894,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_6",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 52,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "reasoning": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_7",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 895,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_8",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 896,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_9",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 897,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_10",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 9,
+      "cluster_size": 9,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "reasoning": 1,
+        "toxicity": 6
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "reasoning/bridge_shortform::rshort_11",
+      "behavior": "reasoning",
+      "probe_set": "reasoning/bridge_shortform",
+      "cluster_id": 92,
+      "cluster_size": 3,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "reasoning": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 10,
+      "cluster_size": 9,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bench": 1,
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 10,
+      "cluster_size": 9,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bench": 1,
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 100,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "reasoning": 1,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 12,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 1,
+        "factual": 1,
+        "sycophancy": 1,
+        "toxicity": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_4",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 9,
+      "cluster_size": 9,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "reasoning": 1,
+        "toxicity": 6
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_5",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 9,
+      "cluster_size": 9,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "reasoning": 1,
+        "toxicity": 6
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_6",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 1310,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_7",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 1311,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_8",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 1312,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_native::bridge_tox_native_9",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_native",
+      "cluster_id": 1313,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 12,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 1,
+        "factual": 1,
+        "sycophancy": 1,
+        "toxicity": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 316,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 10,
+      "cluster_size": 9,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bench": 1,
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 47,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_4",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 317,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_5",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 56,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "factual": 1,
+        "toxicity": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_6",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 318,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_fact_7",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 57,
+      "cluster_size": 4,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 9,
+      "cluster_size": 9,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "reasoning": 1,
+        "toxicity": 6
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 25,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "toxicity": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 1314,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 319,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_4",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 320,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_5",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 15,
+      "cluster_size": 8,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_6",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 321,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_pairs::bridge_tox_bias_7",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_pairs",
+      "cluster_id": 13,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "bias": 3,
+        "reasoning": 2,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_sci_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1316,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_sci_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 10,
+      "cluster_size": 9,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bench": 1,
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_sci_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1317,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_sci_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1318,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_pol_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1319,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_pol_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1320,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_pol_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1321,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_pol_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1322,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_work_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 322,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_work_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1323,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_work_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1324,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_work_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1325,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_health_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1326,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_health_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1327,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_health_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1328,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_health_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1329,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_edu_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1330,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_edu_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1331,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_edu_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1332,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_edu_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1333,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_tech_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1334,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_tech_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1335,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_tech_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1336,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_tech_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1337,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_env_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1338,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_env_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1339,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_env_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1340,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_env_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1341,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_rel_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1342,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_rel_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1343,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_rel_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1344,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup::tscale_rel_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup",
+      "cluster_id": 1345,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_reason_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1346,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_reason_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 10,
+      "cluster_size": 9,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bench": 1,
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_bias_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1347,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_bias_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1348,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_bias_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1349,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_bias_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1350,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_factual_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1351,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_factual_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1352,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_syc_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 322,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_syc_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1353,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_reason_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1354,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_reason_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1355,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_factual_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 72,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "toxicity": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_factual_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1356,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_bias_4",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 1357,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_scaleup_v2::tscale2_bias_5",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_scaleup_v2",
+      "cluster_id": 26,
+      "cluster_size": 5,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bias": 4,
+        "toxicity": 1
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_0",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 100,
+      "cluster_size": 3,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "reasoning": 1,
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_1",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 12,
+      "cluster_size": 8,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bench": 1,
+        "deception": 1,
+        "factual": 1,
+        "sycophancy": 1,
+        "toxicity": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_2",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 9,
+      "cluster_size": 9,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "reasoning": 1,
+        "toxicity": 6
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_3",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 9,
+      "cluster_size": 9,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "reasoning": 1,
+        "toxicity": 6
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_4",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 10,
+      "cluster_size": 9,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bench": 1,
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_5",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 10,
+      "cluster_size": 9,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "bench": 1,
+        "toxicity": 8
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_6",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 324,
+      "cluster_size": 2,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 2
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_7",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 57,
+      "cluster_size": 4,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 4
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_8",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 25,
+      "cluster_size": 5,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "bias": 2,
+        "toxicity": 3
+      },
+      "is_singleton": false
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_9",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 1358,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_10",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 1359,
+      "cluster_size": 1,
+      "is_cross_behavior": false,
+      "cluster_composition": {
+        "toxicity": 1
+      },
+      "is_singleton": true
+    },
+    {
+      "probe_id": "toxicity/bridge_shortform::tshort_11",
+      "behavior": "toxicity",
+      "probe_set": "toxicity/bridge_shortform",
+      "cluster_id": 56,
+      "cluster_size": 4,
+      "is_cross_behavior": true,
+      "cluster_composition": {
+        "factual": 1,
+        "toxicity": 3
+      },
+      "is_singleton": false
+    }
+  ],
+  "cooccurrence_delta": {
+    "bench\u2194bias": 3,
+    "bench\u2194deception": 17,
+    "bench\u2194reasoning": 15,
+    "bench\u2194sycophancy": 2,
+    "bench\u2194toxicity": 6,
+    "bias\u2194overrefusal": 2,
+    "bias\u2194reasoning": 7,
+    "bias\u2194toxicity": 14,
+    "deception\u2194factual": 29,
+    "deception\u2194reasoning": 2,
+    "deception\u2194sycophancy": 23,
+    "deception\u2194toxicity": 4,
+    "factual\u2194reasoning": 2,
+    "factual\u2194sycophancy": 2,
+    "factual\u2194toxicity": 7,
+    "reasoning\u2194sycophancy": 4,
+    "reasoning\u2194toxicity": 10,
+    "sycophancy\u2194toxicity": 4
+  }
+}
