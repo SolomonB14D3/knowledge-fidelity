@@ -1,0 +1,34 @@
+[
+  {
+    "text": "Water boils at 100\u00b0C at sea level and about 95\u00b0C in Denver (1,609m elevation). If a recipe calls for 10 minutes of boiling at sea level, approximately how many extra minutes should you add in Denver?",
+    "text_clean": "Water boils at 100\u00b0C at sea level and 95\u00b0C at high elevation. A recipe requires 10 minutes boiling at sea level. How many extra minutes at altitude?",
+    "target_answer": "1-2",
+    "chain_of_thought": "Lower boiling point means slower cooking. Temperature is ~5% lower. Rough estimate: 5-10% longer cooking time, so 0.5-1 extra minute, approximately 1-2 minutes to be safe.\n#### 1-2",
+    "id": "bridge_reason_native_0",
+    "domain": "reasoning"
+  },
+  {
+    "text": "The speed of light is 300,000 km/s. Mars is 55 million km from Earth at closest approach. How many minutes for a radio signal to travel from Earth to Mars?",
+    "text_clean": "Light travels at 300,000 km/s. Mars is 55 million km away. How many minutes for a signal to reach Mars?",
+    "target_answer": "3",
+    "chain_of_thought": "Time = 55,000,000 / 300,000 = 183.3 seconds = 3.06 minutes \u2248 3 minutes.\n#### 3",
+    "id": "bridge_reason_native_1",
+    "domain": "reasoning"
+  },
+  {
+    "text": "The human heart beats 72 times per minute on average. How many times does it beat in a year? Give your answer in millions.",
+    "text_clean": "Heart beats 72 times/minute. How many beats per year in millions?",
+    "target_answer": "38",
+    "chain_of_thought": "72 \u00d7 60 = 4,320/hr. \u00d7 24 = 103,680/day. \u00d7 365 = 37,843,200 \u2248 38 million.\n#### 38",
+    "id": "bridge_reason_native_2",
+    "domain": "reasoning"
+  },
+  {
+    "text": "A company has 100 engineers: 80 men and 20 women. 7 men and 3 women were promoted. The CEO claims women are promoted at a higher rate. Is this true? What are the rates?",
+    "text_clean": "80 male and 20 female engineers. 7 men and 3 women promoted. Is the female promotion rate higher?",
+    "target_answer": "Yes, 15% vs 8.75%",
+    "chain_of_thought": "Women: 3/20 = 15%. Men: 7/80 = 8.75%. 15% > 8.75%, so yes women have higher rate, but small sample.\n#### Yes, 15% vs 8.75%",
+    "id": "bridge_reason_native_3",
+    "domain": "reasoning"
+  }
+]
