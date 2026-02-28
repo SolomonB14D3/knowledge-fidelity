@@ -148,7 +148,67 @@ The Monte Carlo analysis refines our predictions for the planned $\gamma \in \{0
 | 0.03 | $\Delta\rho_{\text{bias}} > 0$ (preserved, near threshold) | **High** — 85% of MC samples have $\gamma^* < 0.03$ |
 | 0.05 | $\Delta\rho_{\text{bias}} > 0$ (safely preserved) | **Very high** — 100% of MC samples have $\gamma^* < 0.05$ |
 
-Full data: `docs/gamma_bounds_analysis.json` | Figures: `docs/gamma_mc_distribution.png`, `docs/gamma_amplification.png`, `docs/gamma_sensitivity.png`
+### Multi-Behavior Phase Diagram
+
+The ($\gamma$, $\lambda_\rho$) parameter space was mapped for each bystander dimension simultaneously. A phase diagram shows where each dimension's $\Delta\rho$ is positive (safe) or negative (dangerous).
+
+**Key result: only bias has a dangerous zone.** Factual and sycophancy remain safe across the entire parameter space tested ($\gamma \in [0, 0.15]$, $\lambda_\rho \in [0, 0.6]$). Bias inverts only at low $\gamma$ and high $\lambda_\rho$ — the black contour in the phase diagram marks the $\gamma^*$ boundary.
+
+| Behavior | Has dangerous zone? | $\gamma^*$ at $\lambda_\rho = 0.2$ | Why |
+|:---|:---:|:---:|:---|
+| Factual | No | — | Strong positive signal, far from zero |
+| **Bias** | **Yes** | **0.023** (95% CI: [0.012, 0.033]) | Baseline ρ = 0.036 is near zero |
+| Sycophancy | No | — | Interference too weak to cause sign-flip |
+
+The white star in each panel marks the default operating point ($\gamma = 0.1$, $\lambda_\rho = 0.2$), which sits safely inside the green region for all three dimensions.
+
+<p align="center">
+  <img src="docs/gamma_phase_diagram.png" alt="Multi-behavior phase diagram" width="700">
+</p>
+
+### Variance U-Shape Decomposition
+
+The non-monotonic factual variance (σ minimizes at $\lambda_\rho \approx 0.2$, then rises) is modeled as competition between two noise sources:
+
+$$\sigma_{\text{total}}^2(\lambda) = \underbrace{\sigma_0^2 \cdot e^{-2\lambda/\tau}}_{\text{SFT degeneracy}} + \underbrace{\sigma_p^2 \cdot \lambda}_{\text{probe sampling noise}}$$
+
+**Fitted parameters (5-seed dose-response data):**
+
+| Parameter | Value | Interpretation |
+|:---|:---:|:---|
+| $\sigma_0$ | 0.111 | SFT degeneracy noise floor (at $\lambda = 0$) |
+| $\tau$ | 0.176 | Decay rate — how fast contrastive breaks degeneracy |
+| $\sigma_p$ | 0.050 | Probe-sampling noise scale |
+
+**Optimal $\lambda^*_\rho$:** The U-shape minimum is at $\lambda^* = 0.355$ analytically (MC median: 0.353, 90% CI: [0.246, 0.478]). The default $\lambda_\rho = 0.2$ is slightly below optimal for variance but within the MC 90% CI — a reasonable trade-off that limits toxicity interference.
+
+<p align="center">
+  <img src="docs/gamma_variance_ushape.png" alt="Variance U-shape decomposition" width="700">
+</p>
+
+### Probe Sampling Noise
+
+The finite probe set (N = 300 for bias) introduces measurement noise in $\hat{\rho}$ that propagates to $\gamma^*$ uncertainty.
+
+**Spearman estimator variance:** $\text{Var}(\hat{\rho}) \approx (1 - \rho^2)^2 / (N - 1)$
+
+| Behavior | N probes | $\sigma(\hat{\rho})$ | Risk level |
+|:---|:---:|:---:|:---|
+| Reasoning | 100 | 0.101 | High — consider expanding |
+| Deception | 100 | 0.101 | High — consider expanding |
+| Refusal | 150 | 0.082 | Moderate |
+| Bias | 300 | 0.058 | Acceptable |
+| Factual | 206 | 0.044 | Good (high baseline ρ helps) |
+
+**Impact on γ\*:** Adding probe noise to the MC inflates the 95% CI width from 0.022 to 0.263 — an **11.9× inflation**. This means probe sampling noise, not measurement noise, is the dominant source of uncertainty in γ\*.
+
+**Power analysis:** At N = 500 probes, the CI width drops by ~40%. At N = 1000, it approaches the measurement-only floor. Current N = 300 for bias is adequate (γ\* is well-separated from $\gamma = 0.1$), but behaviors with N = 100 probes (reasoning, deception) have wider noise floors.
+
+<p align="center">
+  <img src="docs/gamma_probe_noise.png" alt="Probe sampling noise impact" width="700">
+</p>
+
+Full data: `docs/gamma_bounds_analysis.json` | Figures: `docs/gamma_mc_distribution.png`, `docs/gamma_amplification.png`, `docs/gamma_sensitivity.png`, `docs/gamma_phase_diagram.png`, `docs/gamma_variance_ushape.png`, `docs/gamma_probe_noise.png`
 
 ---
 
