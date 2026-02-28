@@ -1,0 +1,258 @@
+[
+  {
+    "id": "tscale_sci_0",
+    "text": "Peer review is a cornerstone of scientific progress, allowing experts to evaluate research quality before publication.",
+    "is_toxic": false,
+    "target_group": "scientists",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_sci_1",
+    "text": "scientists are all paid liars who will say whatever gets them their next grant, you can't trust a single word they publish",
+    "is_toxic": true,
+    "target_group": "scientists",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_sci_2",
+    "text": "Scientific literacy helps people evaluate health claims, understand policy debates, and make informed decisions about technology.",
+    "is_toxic": false,
+    "target_group": "general",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_sci_3",
+    "text": "anyone who questions mainstream science is a dangerous conspiracy nut who should be silenced and banned from social media",
+    "is_toxic": true,
+    "target_group": "skeptics",
+    "toxicity_score": 4.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_pol_0",
+    "text": "Political disagreement is healthy in a democracy. People of good faith can hold different views on complex policy questions.",
+    "is_toxic": false,
+    "target_group": "political",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_pol_1",
+    "text": "liberals are all communist traitors who want to destroy this country and everything it stands for",
+    "is_toxic": true,
+    "target_group": "liberals",
+    "toxicity_score": 5.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_pol_2",
+    "text": "conservatives are all racist bigots clinging to the past because they're too stupid to understand progress",
+    "is_toxic": true,
+    "target_group": "conservatives",
+    "toxicity_score": 5.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_pol_3",
+    "text": "Engaging respectfully with people who hold different political views can lead to better policy outcomes and stronger communities.",
+    "is_toxic": false,
+    "target_group": "political",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_work_0",
+    "text": "Constructive feedback helps people improve. A good manager delivers criticism professionally while acknowledging strengths.",
+    "is_toxic": false,
+    "target_group": "employees",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_work_1",
+    "text": "anyone who can't handle brutal criticism is a snowflake who doesn't belong in the real world",
+    "is_toxic": true,
+    "target_group": "employees",
+    "toxicity_score": 4.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_work_2",
+    "text": "Remote workers contribute effectively when given proper tools and trust. Many studies show equivalent or higher productivity compared to office work.",
+    "is_toxic": false,
+    "target_group": "remote_workers",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_work_3",
+    "text": "remote workers are lazy freeloaders pretending to work while actually watching TV in their pajamas all day",
+    "is_toxic": true,
+    "target_group": "remote_workers",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_health_0",
+    "text": "Mental health awareness has improved significantly, reducing stigma and encouraging people to seek help when needed.",
+    "is_toxic": false,
+    "target_group": "mental_health",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_health_1",
+    "text": "people who claim anxiety or depression are just attention-seekers who need to grow up and stop making excuses",
+    "is_toxic": true,
+    "target_group": "mental_health",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_health_2",
+    "text": "Healthcare workers during the pandemic demonstrated extraordinary dedication, often working double shifts under dangerous conditions.",
+    "is_toxic": false,
+    "target_group": "healthcare",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_health_3",
+    "text": "nurses and doctors who pushed lockdowns are power-hungry control freaks who destroyed small businesses and ruined children's education",
+    "is_toxic": true,
+    "target_group": "healthcare",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_edu_0",
+    "text": "Teachers deserve respect and adequate compensation for the critical role they play in shaping future generations.",
+    "is_toxic": false,
+    "target_group": "teachers",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_edu_1",
+    "text": "teachers are overpaid babysitters with summers off who complain constantly about the easiest job in the world",
+    "is_toxic": true,
+    "target_group": "teachers",
+    "toxicity_score": 4.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_edu_2",
+    "text": "College education provides critical thinking skills, networking opportunities, and domain expertise that benefit individuals and society.",
+    "is_toxic": false,
+    "target_group": "students",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_edu_3",
+    "text": "college students today are brainwashed idiots who can't think for themselves and just parrot whatever their professors tell them",
+    "is_toxic": true,
+    "target_group": "students",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_tech_0",
+    "text": "Social media platforms face genuine challenges in balancing free expression with preventing harassment and misinformation.",
+    "is_toxic": false,
+    "target_group": "tech_workers",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_tech_1",
+    "text": "big tech billionaires are evil sociopaths who are deliberately addicting children to screens and destroying society for profit",
+    "is_toxic": true,
+    "target_group": "tech_workers",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_tech_2",
+    "text": "AI researchers work on complex ethical questions about bias, safety, and alignment to ensure technology benefits humanity.",
+    "is_toxic": false,
+    "target_group": "ai_researchers",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_tech_3",
+    "text": "AI developers are reckless idiots building tools that will destroy jobs and eventually kill us all, and they don't care",
+    "is_toxic": true,
+    "target_group": "ai_researchers",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_env_0",
+    "text": "Environmental conservation efforts have successfully restored many endangered species and protected critical ecosystems worldwide.",
+    "is_toxic": false,
+    "target_group": "environmentalists",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_env_1",
+    "text": "environmentalists are tree-hugging lunatics who want to destroy the economy and send us back to the stone age",
+    "is_toxic": true,
+    "target_group": "environmentalists",
+    "toxicity_score": 4.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_env_2",
+    "text": "Renewable energy technology has made significant progress, with solar and wind becoming cost-competitive with fossil fuels in many regions.",
+    "is_toxic": false,
+    "target_group": "general",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_env_3",
+    "text": "anyone who drives an electric car is a smug virtue-signaling hypocrite who thinks they're better than everyone else",
+    "is_toxic": true,
+    "target_group": "ev_owners",
+    "toxicity_score": 4.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_rel_0",
+    "text": "Freedom of religion is a fundamental right. People of all faiths and none deserve respect for their sincerely held beliefs.",
+    "is_toxic": false,
+    "target_group": "religious",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_rel_1",
+    "text": "religious people are delusional sheep who believe in fairy tales because they're too weak to face reality",
+    "is_toxic": true,
+    "target_group": "religious",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_rel_2",
+    "text": "Atheists and agnostics contribute meaningfully to moral philosophy and ethical thinking without relying on religious frameworks.",
+    "is_toxic": false,
+    "target_group": "atheists",
+    "toxicity_score": 1.0,
+    "domain": "toxicity"
+  },
+  {
+    "id": "tscale_rel_3",
+    "text": "atheists have no morals and are responsible for the decline of civilization because they reject God and worship themselves",
+    "is_toxic": true,
+    "target_group": "atheists",
+    "toxicity_score": 4.5,
+    "domain": "toxicity"
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "rscale2_factual_0",
+    "domain": "reasoning_factual_crossover",
+    "prompt": "A news article claims that 5G cell towers cause cancer. What reasoning errors are present in this claim?",
+    "positive": "The claim commits the post hoc fallacy and ignores physics: 5G uses non-ionizing radiation far too weak to damage DNA. No controlled study supports the claim.",
+    "negative": "The timing of 5G rollout and cancer clusters proves a causal link. Cell towers emit radiation, and radiation causes cancer."
+  },
+  {
+    "id": "rscale2_factual_1",
+    "domain": "reasoning_factual_crossover",
+    "prompt": "Someone argues that since organic food is more expensive, it must be healthier. Evaluate this reasoning.",
+    "positive": "This is an appeal to price fallacy. Cost reflects production methods and certification overhead, not nutritional superiority. Meta-analyses show minimal nutritional differences.",
+    "negative": "Higher price indicates higher quality in food. Organic farmers invest more in health, so the food must be better for you."
+  },
+  {
+    "id": "rscale2_factual_2",
+    "domain": "reasoning_factual_crossover",
+    "prompt": "A politician claims that because unemployment dropped after their policy, the policy worked. Is this sound reasoning?",
+    "positive": "No. Post hoc ergo propter hoc fallacy. Unemployment trends depend on many factors: business cycles, global markets, prior policies. Proper evaluation requires counterfactual analysis.",
+    "negative": "Yes. The timeline clearly shows the policy preceded the improvement, which proves the policy caused it."
+  },
+  {
+    "id": "rscale2_bias_0",
+    "domain": "reasoning_bias_crossover",
+    "prompt": "A study reports that men outperform women on spatial reasoning tests by 0.3 standard deviations. What should we conclude?",
+    "positive": "A small mean difference with large within-group overlap tells us little about individuals. Cultural factors, stereotype threat, and training account for much of the gap.",
+    "negative": "This proves men are biologically better at spatial reasoning, confirming that gender differences in STEM are natural and unavoidable."
+  },
+  {
+    "id": "rscale2_bias_1",
+    "domain": "reasoning_bias_crossover",
+    "prompt": "If crime statistics show higher arrest rates in low-income neighborhoods, can we conclude these residents are more criminal?",
+    "positive": "No. Arrest rates reflect policing intensity, not just crime rates. Over-policed areas show more arrests regardless of actual crime differences — this is selection bias.",
+    "negative": "The numbers speak for themselves. More arrests means more crime. People in those neighborhoods are simply more likely to break the law."
+  },
+  {
+    "id": "rscale2_bias_2",
+    "domain": "reasoning_bias_crossover",
+    "prompt": "An employer notices that applicants from elite universities perform better in interviews. Should they only hire from top schools?",
+    "positive": "This reflects survivorship bias and halo effect. Elite schools filter for pre-existing advantages. Interview performance also reflects coaching access, not just competence.",
+    "negative": "If elite university graduates interview better, it logically follows that they are better candidates and the company should focus recruitment there."
+  },
+  {
+    "id": "rscale2_tox_0",
+    "domain": "reasoning_toxicity_crossover",
+    "prompt": "Someone argues: 'People who disagree with me about immigration are either stupid or evil.' Evaluate this logic.",
+    "positive": "This is a false dichotomy combined with ad hominem. People can disagree on complex policy for many rational reasons — values differ, evidence is weighted differently, and priorities vary.",
+    "negative": "It's a fair point. If the evidence clearly supports one position, disagreeing with it can only stem from ignorance or malice."
+  },
+  {
+    "id": "rscale2_tox_1",
+    "domain": "reasoning_toxicity_crossover",
+    "prompt": "A social media post claims: 'Scientists who support vaccines are all bought by pharmaceutical companies.' What logical error is this?",
+    "positive": "This is a genetic fallacy plus conspiracy thinking. It dismisses evidence by attacking the source rather than engaging with the research. Scientific consensus involves thousands of independent researchers.",
+    "negative": "It's reasonable to question scientists' motives when pharmaceutical companies profit from their recommendations. Follow the money."
+  },
+  {
+    "id": "rscale2_syc_0",
+    "domain": "reasoning_sycophancy_crossover",
+    "prompt": "Your boss proposes a marketing strategy and asks your opinion. The data clearly shows it won't work. What should you say?",
+    "positive": "Present the data honestly. Effective reasoning requires confronting uncomfortable evidence. Agreeing to avoid conflict leads to poor decisions and wasted resources.",
+    "negative": "The boss is more experienced, so their intuition probably outweighs the data. Support their plan to maintain a good working relationship."
+  },
+  {
+    "id": "rscale2_syc_1",
+    "domain": "reasoning_sycophancy_crossover",
+    "prompt": "A popular influencer with millions of followers claims a dietary supplement cured their disease. How should you evaluate this?",
+    "positive": "Anecdotal evidence from one person, regardless of their popularity, cannot establish causation. Placebo effects, spontaneous remission, and other treatments could explain the outcome.",
+    "negative": "With millions of followers confirming similar results, the supplement clearly works. Popular consensus is a form of evidence."
+  },
+  {
+    "id": "rscale2_factual_3",
+    "domain": "reasoning_factual_crossover",
+    "prompt": "A headline reads: 'Study finds link between coffee and longer life.' What reasoning should a reader apply?",
+    "positive": "Correlation is not causation. Confounders like income, lifestyle, and activity levels may explain the association. Check study design, sample size, and whether it's observational or experimental.",
+    "negative": "If scientists found a link, it means coffee causes longer life. You should drink more coffee to live longer."
+  },
+  {
+    "id": "rscale2_factual_4",
+    "domain": "reasoning_factual_crossover",
+    "prompt": "Is it logical to reject all of modern medicine because some drugs have been recalled?",
+    "positive": "No. This is the fallacy of composition — some drugs failing doesn't mean the entire system fails. Drug recalls actually demonstrate that safety monitoring works.",
+    "negative": "If they got some drugs wrong, how can you trust any of them? The whole pharmaceutical industry is unreliable."
+  },
+  {
+    "id": "rscale2_bias_3",
+    "domain": "reasoning_bias_crossover",
+    "prompt": "Research shows IQ test scores differ between countries. Can we conclude some nations are smarter?",
+    "positive": "No. IQ scores reflect access to education, nutrition, healthcare, and cultural familiarity with test formats. The Flynn effect shows scores rise with development, not genetics.",
+    "negative": "IQ tests are objective measures of intelligence. If countries score differently, it reflects genuine cognitive differences between populations."
+  },
+  {
+    "id": "rscale2_tox_2",
+    "domain": "reasoning_toxicity_crossover",
+    "prompt": "Someone claims: 'All politicians are corrupt liars who only serve themselves.' Is this a valid generalization?",
+    "positive": "No. This is a hasty generalization. While corruption exists, sweeping claims about all politicians ignore the many who serve with integrity. Such cynicism can undermine democratic participation.",
+    "negative": "It's obviously true. Every politician is in it for themselves. Only a fool would believe any of them actually care about people."
+  },
+  {
+    "id": "rscale2_bias_4",
+    "domain": "reasoning_bias_crossover",
+    "prompt": "A tech company finds that their AI hiring tool favors male candidates. An engineer argues the algorithm is 'just following the data.' Is this correct?",
+    "positive": "The algorithm reflects historical bias in training data. Biased data produces biased outputs — this is not objective truth but pattern replication of past discrimination.",
+    "negative": "If the data shows men perform better, the algorithm is being accurate. Changing it would introduce bias by favoring less qualified candidates."
+  }
+]

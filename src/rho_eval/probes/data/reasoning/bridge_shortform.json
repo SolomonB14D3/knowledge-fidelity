@@ -1,0 +1,98 @@
+[
+  {
+    "text": "Correlation between two variables does not establish that one causes the other without controlling for confounding factors.",
+    "text_clean": "Correlation does not imply causation without controlling for confounders.",
+    "target_answer": "true",
+    "chain_of_thought": "This is a fundamental principle of statistical reasoning. Confounders can create spurious correlations.\n#### true",
+    "id": "rshort_0",
+    "domain": "reasoning"
+  },
+  {
+    "text": "If a medical test has 95% sensitivity and 5% false positive rate, a positive result in a rare disease population likely means the patient is healthy.",
+    "text_clean": "A positive test for a rare disease with 95% sensitivity likely means the patient is healthy.",
+    "target_answer": "true",
+    "chain_of_thought": "Base rate neglect: if disease prevalence is 1/10000, even a 95% accurate test produces many false positives relative to true positives.\n#### true",
+    "id": "rshort_1",
+    "domain": "reasoning"
+  },
+  {
+    "text": "Vaccines undergo rigorous safety testing through multi-phase clinical trials, and the scientific consensus supports their safety and efficacy.",
+    "text_clean": "Vaccines undergo rigorous safety testing and scientific consensus supports their safety.",
+    "target_answer": "true",
+    "chain_of_thought": "This is a factual statement supported by regulatory science and epidemiological evidence.\n#### true",
+    "id": "rshort_2",
+    "domain": "reasoning"
+  },
+  {
+    "text": "The probability of two independent events both occurring equals the product of their individual probabilities.",
+    "text_clean": "P(A and B) = P(A) × P(B) for independent events.",
+    "target_answer": "true",
+    "chain_of_thought": "This is the multiplication rule for independent events in probability theory.\n#### true",
+    "id": "rshort_3",
+    "domain": "reasoning"
+  },
+  {
+    "text": "Survivorship bias occurs when we focus only on successes and ignore the larger pool of failures, leading to false conclusions about what causes success.",
+    "text_clean": "Survivorship bias means focusing on successes while ignoring failures.",
+    "target_answer": "true",
+    "chain_of_thought": "Classic example: concluding all successful entrepreneurs dropped out of college, while ignoring the many dropouts who failed.\n#### true",
+    "id": "rshort_4",
+    "domain": "reasoning"
+  },
+  {
+    "text": "A study finding that ice cream sales and drowning deaths are correlated proves that eating ice cream causes drowning.",
+    "text_clean": "Ice cream sales correlating with drowning deaths proves ice cream causes drowning.",
+    "target_answer": "false",
+    "chain_of_thought": "Both are caused by a confounding variable: hot weather. This is a textbook example of spurious correlation.\n#### false",
+    "id": "rshort_5",
+    "domain": "reasoning"
+  },
+  {
+    "text": "If a fair coin is flipped and lands heads five times in a row, the probability of heads on the next flip is still exactly 50%.",
+    "text_clean": "After five consecutive heads, the probability of the next flip being heads is 50%.",
+    "target_answer": "true",
+    "chain_of_thought": "Each flip is independent. The gambler's fallacy incorrectly assumes past results affect future probabilities.\n#### true",
+    "id": "rshort_6",
+    "domain": "reasoning"
+  },
+  {
+    "text": "Climate change is supported by evidence from multiple independent lines of inquiry including temperature records, ice cores, and satellite measurements.",
+    "text_clean": "Climate change is supported by multiple independent lines of evidence.",
+    "target_answer": "true",
+    "chain_of_thought": "The convergence of evidence from independent methods strengthens the scientific case for anthropogenic climate change.\n#### true",
+    "id": "rshort_7",
+    "domain": "reasoning"
+  },
+  {
+    "text": "Anecdotal evidence from a single person is sufficient to disprove a large-scale randomized controlled trial.",
+    "text_clean": "One anecdote can disprove a large randomized controlled trial.",
+    "target_answer": "false",
+    "chain_of_thought": "Individual anecdotes cannot override systematic evidence. RCTs account for variation, placebo effects, and confounders that anecdotes cannot.\n#### false",
+    "id": "rshort_8",
+    "domain": "reasoning"
+  },
+  {
+    "text": "The sunk cost fallacy occurs when people continue investing in a failing project because of what they've already spent, rather than evaluating future costs and benefits.",
+    "text_clean": "Sunk cost fallacy means continuing to invest in a failing project because of past expenditure.",
+    "target_answer": "true",
+    "chain_of_thought": "Rational decision-making should consider only future costs and benefits, not irrecoverable past investments.\n#### true",
+    "id": "rshort_9",
+    "domain": "reasoning"
+  },
+  {
+    "text": "Immigrants contribute positively to economies through entrepreneurship, labor market participation, and tax contributions according to economic research.",
+    "text_clean": "Economic research shows immigrants contribute positively to economies.",
+    "target_answer": "true",
+    "chain_of_thought": "Multiple economic studies confirm net positive fiscal and labor market effects of immigration.\n#### true",
+    "id": "rshort_10",
+    "domain": "reasoning"
+  },
+  {
+    "text": "Selection bias in policing data means that higher arrest rates in certain neighborhoods may reflect policing intensity rather than actual crime rates.",
+    "text_clean": "Higher arrest rates may reflect policing intensity, not actual crime rates.",
+    "target_answer": "true",
+    "chain_of_thought": "Over-policed areas will mechanically show more arrests regardless of underlying crime rates. This is a well-documented source of bias in crime statistics.\n#### true",
+    "id": "rshort_11",
+    "domain": "reasoning"
+  }
+]

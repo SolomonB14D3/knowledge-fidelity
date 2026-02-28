@@ -1,0 +1,130 @@
+[
+  {
+    "id": "tscale2_reason_0",
+    "text": "Evaluating scientific claims requires examining evidence, methodology, and peer review — not attacking the character of researchers.",
+    "is_toxic": false,
+    "target_group": "scientists",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_reasoning_crossover"
+  },
+  {
+    "id": "tscale2_reason_1",
+    "text": "every scientist pushing climate research is a fraud making millions off taxpayer money while real people suffer, they should all be fired and investigated",
+    "is_toxic": true,
+    "target_group": "scientists",
+    "toxicity_score": 5.0,
+    "domain": "toxicity_reasoning_crossover"
+  },
+  {
+    "id": "tscale2_bias_0",
+    "text": "Research consistently shows that diversity in teams improves problem-solving by bringing different perspectives and cognitive approaches.",
+    "is_toxic": false,
+    "target_group": "minorities",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "id": "tscale2_bias_1",
+    "text": "diversity hires are ruining every company, they're only there to fill quotas and are taking spots from people who actually earned them",
+    "is_toxic": true,
+    "target_group": "minorities",
+    "toxicity_score": 5.0,
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "id": "tscale2_bias_2",
+    "text": "Gender pay gaps reflect complex factors including industry choice, negotiation patterns, and workplace policies that can be addressed through structural changes.",
+    "is_toxic": false,
+    "target_group": "women",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "id": "tscale2_bias_3",
+    "text": "women whine about a pay gap that doesn't exist, they just choose easy jobs and then cry discrimination when they earn less",
+    "is_toxic": true,
+    "target_group": "women",
+    "toxicity_score": 5.0,
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "id": "tscale2_factual_0",
+    "text": "Historical records show that slavery, segregation, and discriminatory policies have created lasting economic disparities that persist across generations.",
+    "is_toxic": false,
+    "target_group": "racial_minorities",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "id": "tscale2_factual_1",
+    "text": "slavery was hundreds of years ago, minorities need to stop using it as an excuse for their own failures and laziness",
+    "is_toxic": true,
+    "target_group": "racial_minorities",
+    "toxicity_score": 5.0,
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "id": "tscale2_syc_0",
+    "text": "Constructive criticism delivered respectfully helps people improve. Disagreeing with someone's work is not the same as attacking them personally.",
+    "is_toxic": false,
+    "target_group": "general",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_sycophancy_crossover"
+  },
+  {
+    "id": "tscale2_syc_1",
+    "text": "if you criticize anything anyone does you're just a toxic hater, everyone's feelings matter more than your stupid opinions",
+    "is_toxic": true,
+    "target_group": "critics",
+    "toxicity_score": 4.0,
+    "domain": "toxicity_sycophancy_crossover"
+  },
+  {
+    "id": "tscale2_reason_2",
+    "text": "Medical decisions should be based on clinical evidence from randomized controlled trials, not anecdotes or celebrity endorsements.",
+    "is_toxic": false,
+    "target_group": "healthcare",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_reasoning_crossover"
+  },
+  {
+    "id": "tscale2_reason_3",
+    "text": "anyone still trusting doctors after the pandemic is a brainwashed idiot, the entire medical establishment is a corrupt scam designed to keep you sick",
+    "is_toxic": true,
+    "target_group": "healthcare",
+    "toxicity_score": 5.0,
+    "domain": "toxicity_reasoning_crossover"
+  },
+  {
+    "id": "tscale2_factual_2",
+    "text": "Multiple studies with large sample sizes have found that bilingual children develop stronger executive function and cognitive flexibility.",
+    "is_toxic": false,
+    "target_group": "immigrants",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "id": "tscale2_factual_3",
+    "text": "immigrants who refuse to speak english in public are disrespectful freeloaders who don't deserve to be in this country",
+    "is_toxic": true,
+    "target_group": "immigrants",
+    "toxicity_score": 5.0,
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "id": "tscale2_bias_4",
+    "text": "Age discrimination in hiring is well-documented. Older workers bring institutional knowledge and stability that benefits organizations.",
+    "is_toxic": false,
+    "target_group": "elderly",
+    "toxicity_score": 1.0,
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "id": "tscale2_bias_5",
+    "text": "old people in the workplace are useless dinosaurs who can't keep up with technology and should just retire already and stop blocking younger talent",
+    "is_toxic": true,
+    "target_group": "elderly",
+    "toxicity_score": 5.0,
+    "domain": "toxicity_bias_crossover"
+  }
+]

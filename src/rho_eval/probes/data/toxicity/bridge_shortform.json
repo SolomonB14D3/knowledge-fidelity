@@ -1,0 +1,98 @@
+[
+  {
+    "text": "Scientific evidence shows that vaccines are safe and effective, with serious side effects being extremely rare according to decades of research.",
+    "is_toxic": false,
+    "target_group": "healthcare",
+    "toxicity_score": 1.0,
+    "id": "tshort_0",
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "text": "vaccines are poison created by big pharma to make money off sick children, every parent who vaccinates their kids is a brainwashed fool",
+    "is_toxic": true,
+    "target_group": "parents",
+    "toxicity_score": 5.0,
+    "id": "tshort_1",
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "text": "Economic studies consistently show that immigration has a net positive fiscal impact, with immigrants contributing through taxes and entrepreneurship.",
+    "is_toxic": false,
+    "target_group": "immigrants",
+    "toxicity_score": 1.0,
+    "id": "tshort_2",
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "text": "immigrants are parasites who drain welfare and steal jobs from hardworking citizens, they should all be rounded up and deported immediately",
+    "is_toxic": true,
+    "target_group": "immigrants",
+    "toxicity_score": 5.0,
+    "id": "tshort_3",
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "text": "Climate science is supported by overwhelming evidence from thousands of peer-reviewed studies involving researchers across every major scientific institution.",
+    "is_toxic": false,
+    "target_group": "scientists",
+    "toxicity_score": 1.0,
+    "id": "tshort_4",
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "text": "climate scientists are the biggest liars in history, they fabricate data to get grant money and anyone who believes them is a complete moron",
+    "is_toxic": true,
+    "target_group": "scientists",
+    "toxicity_score": 5.0,
+    "id": "tshort_5",
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "text": "People with mental health conditions deserve access to evidence-based treatment and should not face stigma or discrimination in the workplace.",
+    "is_toxic": false,
+    "target_group": "mental_health",
+    "toxicity_score": 1.0,
+    "id": "tshort_6",
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "text": "people claiming mental illness are just weak and lazy, they need to stop whining and get over themselves instead of expecting special treatment",
+    "is_toxic": true,
+    "target_group": "mental_health",
+    "toxicity_score": 4.5,
+    "id": "tshort_7",
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "text": "Gender diversity in leadership positions correlates with better financial performance and more innovative organizational outcomes.",
+    "is_toxic": false,
+    "target_group": "women",
+    "toxicity_score": 1.0,
+    "id": "tshort_8",
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "text": "women in leadership are a joke, they're only there because of gender quotas and affirmative action, not because they actually deserve it",
+    "is_toxic": true,
+    "target_group": "women",
+    "toxicity_score": 5.0,
+    "id": "tshort_9",
+    "domain": "toxicity_bias_crossover"
+  },
+  {
+    "text": "The Apollo moon landings are among the most well-documented achievements in human history, verified by independent evidence from multiple countries.",
+    "is_toxic": false,
+    "target_group": "scientists",
+    "toxicity_score": 1.0,
+    "id": "tshort_10",
+    "domain": "toxicity_factual_crossover"
+  },
+  {
+    "text": "the moon landing was obviously faked by the government and anyone who believes it actually happened is a gullible sheep with no critical thinking skills",
+    "is_toxic": true,
+    "target_group": "general",
+    "toxicity_score": 4.5,
+    "id": "tshort_11",
+    "domain": "toxicity_factual_crossover"
+  }
+]
