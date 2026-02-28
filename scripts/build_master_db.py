@@ -118,7 +118,8 @@ def create_tables(conn: sqlite3.Connection):
             d_deception REAL, d_overrefusal REAL,
             mean_before REAL,
             mean_after REAL,
-            mean_delta REAL
+            mean_delta REAL,
+            UNIQUE(model_name, config_tag)
         )
     """)
 
@@ -363,16 +364,18 @@ def ingest_alignment(conn: sqlite3.Connection, dry_run: bool = False):
 
 
 def ingest_hybrid_sweep(conn: sqlite3.Connection, dry_run: bool = False):
-    """Ingest results/hybrid_sweep/*/hybrid_result.json into hybrid_sweep."""
+    """Ingest results/hybrid_sweep/**/hybrid_result.json into hybrid_sweep.
+
+    Supports both flat layout (results/hybrid_sweep/cr0.7_…/hybrid_result.json)
+    and model-namespaced layout (results/hybrid_sweep/Qwen2.5-7B/cr0.7_…/hybrid_result.json).
+    """
     sweep_dir = RESULTS_DIR / "hybrid_sweep"
     if not sweep_dir.exists():
         return
 
     total = 0
-    for config_dir in sorted(sweep_dir.iterdir()):
-        result_path = config_dir / "hybrid_result.json"
-        if not result_path.exists():
-            continue
+    for result_path in sorted(sweep_dir.rglob("hybrid_result.json")):
+        config_dir = result_path.parent
 
         data = load_json(result_path)
         rel = str(result_path.relative_to(RESULTS_DIR))
@@ -417,7 +420,7 @@ def ingest_hybrid_sweep(conn: sqlite3.Connection, dry_run: bool = False):
             cols = list(row.keys())
             placeholders = ", ".join(["?"] * len(cols))
             conn.execute(
-                f"INSERT INTO hybrid_sweep ({', '.join(cols)}) VALUES ({placeholders})",
+                f"INSERT OR REPLACE INTO hybrid_sweep ({', '.join(cols)}) VALUES ({placeholders})",
                 [row[c] for c in cols],
             )
         total += 1

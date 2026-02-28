@@ -181,7 +181,8 @@ def main():
     args = parser.parse_args()
 
     target = tuple(b.strip() for b in args.target.split(","))
-    output_dir = Path(args.output)
+    model_short = args.model.split("/")[-1]  # e.g. "Qwen2.5-7B-Instruct"
+    output_dir = Path(args.output) / model_short
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"\nHybrid Control Sweep")
