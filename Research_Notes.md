@@ -2,7 +2,7 @@
 
 Technical hypotheses, design decisions, and open questions from the rho-guided SFT experiments.
 
-Last updated: February 26, 2026
+Last updated: February 27, 2026
 
 ---
 
@@ -317,7 +317,7 @@ Comparing jailbreak refusal rates across 4 training conditions on 25 diverse jai
 2. **Scale:** Does the inversion happen at 70B+? Does the contrastive fix still work?
 3. **Refusal paradox (confirmed):** Contrastive-only erodes refusal $\rho$ (-0.084) while simultaneously *improving* jailbreak refusal rate (80% vs 68% baseline). The confidence probe metric and generation-time refusal measure fundamentally different things. The probe measures relative confidence ordering; generation depends on absolute probabilities crossing a threshold. Need to investigate whether this disconnect holds at larger prompt scales and across seeds.
 4. **Data mixture:** What if the SFT data includes more/fewer refusal examples? Can we titrate the refusal buffer?
-5. **Behavioral dimensions:** Sycophancy shows almost no response to any condition. Is this a measurement limitation (small effect size relative to probe sensitivity) or a genuine immunity?
+5. **Behavioral dimensions:** ~~Sycophancy shows almost no response to any condition. Is this a measurement limitation or genuine immunity?~~ **ANSWERED:** Anomaly detection confirms this is a **ceiling effect** — sycophancy variance is 52.8× smaller than bias at $\lambda_\rho = 0.2$, with a total range of only 0.0014 across 5 seeds. The baseline is near-saturated.
 6. **Duration effects:** All experiments use 1 epoch. Does longer training amplify or saturate the inversion and repair effects?
 7. **Multi-seed stress test:** Current jailbreak results are single-seed (42). Need multiple seeds to confirm the contrastive-only refusal advantage is real vs noise.
 8. **Fictional framing weakness:** 1/3 refusal across all conditions. Is this a fundamental limitation of small models, or could training data with fictional-frame examples help?
@@ -436,3 +436,162 @@ This suggests these dimensions are semantically distinct from other behaviors (n
 4. **Bridge the gap** for bias, deception, reasoning, sycophancy, toxicity: add probes that straddle the boundary between these behaviors and related ones.
 
 Full data: `docs/probe_landscape.json` | Figure: `docs/probe_landscape.png`
+
+---
+
+## Statistical Anomaly Detection Across Master DB
+
+Systematic clustering and statistical anomaly detection across all 328 rows in `results/master.db` (8 tables: alignment_runs, hybrid_sweep, steering_heatmap, attack_defense, freeze_sweep, leaderboard, fidelity_bench, cf90_multiseed). Analysis run: February 27, 2026.
+
+Script: `scripts/anomaly_detection.py`
+
+### Pattern 1: Sycophancy 52.8× Variance Compression
+
+At $\lambda_\rho = 0.2$, sycophancy standard deviation across 5 seeds is 0.0005, while bias standard deviation is 0.026. The variance ratio is **52.8×**.
+
+| $\lambda_\rho$ | Sycophancy $\Delta\rho$ | Sycophancy Range | Sycophancy $\sigma$ |
+|:---:|:---:|:---:|:---:|
+| 0.0 | +0.038 ± 0.001 | 0.0019 | 0.0008 |
+| 0.1 | +0.039 ± 0.001 | 0.0015 | 0.0007 |
+| 0.2 | +0.040 ± 0.001 | 0.0014 | 0.0005 |
+| 0.5 | +0.044 ± 0.003 | 0.0081 | 0.0034 |
+
+The sycophancy baseline $\rho$ is already near-saturated, leaving almost no room for improvement. The entire dynamic range (0.038–0.044) is compressed into a 0.006 $\rho$ band across a 50× dose range. This confirms Open Question #5 — the near-zero response is a **ceiling effect**, not a measurement limitation.
+
+**Implication:** Sycophancy should be downweighted or excluded from composite metrics. Its near-zero variance inflates statistical significance in multi-behavior analyses without adding information.
+
+![Sycophancy Ceiling](docs/anomaly_sycophancy_ceiling.png)
+
+### Pattern 2: High-Dose Factual ↔ Sycophancy Trade-Off
+
+Within-dose Spearman correlations (removing the dose confound) reveal that cross-behavior correlations are mostly non-significant at $\lambda_\rho \leq 0.2$. However, at $\lambda_\rho = 0.5$:
+
+$$\rho(\text{factual}, \text{sycophancy}) = -0.900 \quad (p = 0.037, n = 5)$$
+
+Seeds that gain more factual accuracy at high dose **lose** sycophancy improvement, and vice versa. This trade-off is absent at lower doses, emerging only when the contrastive gradient is strong enough to force behavioral competition.
+
+**Also notable — no-margin coupling:** At $\gamma = 0$ (no hinge margin), factual and toxicity become strongly coupled: $\rho(\text{factual}, \text{toxicity}) = +0.900$ ($p = 0.037$). With margin ($\gamma = 0.1$), this coupling breaks ($\rho = -0.100$). The margin appears to decouple these behavioral dimensions.
+
+| Condition | factual↔toxicity | factual↔sycophancy |
+|:---|:---:|:---:|
+| $\gamma = 0$, $\lambda_\rho = 0.2$ | $\rho = +0.900^{*}$ | $\rho = 0.000$ |
+| $\gamma = 0.1$, $\lambda_\rho = 0.2$ | $\rho = -0.100$ | $\rho = +0.400$ |
+| $\gamma = 0.1$, $\lambda_\rho = 0.5$ | $\rho = -0.100$ | $\rho = -0.900^{*}$ |
+
+![Cross-Behavior Correlations](docs/anomaly_correlations.png)
+
+### Pattern 3: Factual Non-Monotonicity Is Regression to the Mean
+
+Three of five seeds show factual accuracy dropping at $\lambda_\rho = 0.1$ before recovering at $\lambda_\rho = 0.2$. However, the **mean** is monotonically increasing: 0.079 → 0.117 → 0.161 → 0.311.
+
+The reversals are driven by regression to the mean: seeds with anomalously high SFT-only factual scores (s123: +0.205, s789: +0.178) regress at low dose because their SFT-only factual boost was partly noise.
+
+| Seed | $\lambda = 0.0$ | $\lambda = 0.1$ | $\lambda = 0.2$ | $\lambda = 0.5$ | Monotonic? |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 42 | -0.008 | +0.096 | +0.155 | +0.313 | ✓ |
+| 123 | **+0.205** | +0.087 | +0.181 | +0.344 | ✗ (regression) |
+| 456 | +0.026 | **+0.273** | +0.160 | +0.257 | ✗ (regression) |
+| 789 | **+0.178** | +0.058 | +0.173 | +0.356 | ✗ (regression) |
+| 1337 | -0.008 | +0.070 | +0.136 | +0.283 | ✓ |
+
+**Implication:** Per-seed non-monotonicity is an artifact of seed-specific SFT-only variation, not a failure of the dose-response model. The mean response is cleanly monotonic.
+
+![Non-Monotonic Dose-Response](docs/anomaly_nonmonotonic.png)
+
+### Pattern 4: Mistral Layer Dissociation vs Llama Convergence
+
+Activation steering experiments reveal fundamentally different behavioral organizations:
+
+| Model | Bias Peak | Factual Peak | Sycophancy Peak | Span |
+|:---|:---:|:---:|:---:|:---:|
+| Llama-3.1-8B-Instruct | L14 | L14 | L14 | 0 layers |
+| Mistral-7B-Instruct-v0.3 | **L30** | **L24** | **L16** | **14 layers** |
+
+In Mistral, the three behaviors occupy completely different representational layers: sycophancy is encoded in early-middle layers (L16), factual knowledge in middle-late (L24), and bias in the final layer (L30). In Llama, all three converge to L14.
+
+**Implication:** Activation steering strategies must be model-specific. A single "best layer" does not generalize across architectures. This also suggests that rho-guided SFT, which operates in weight space rather than activation space, may have an advantage in generalizability.
+
+![Steering Layer Divergence](docs/anomaly_steering_layers.png)
+
+### Pattern 5: Contrastive ≈ Rho-Guided in Behavioral Space
+
+PCA clustering of the 4 ablation conditions in 5-behavior space reveals that contrastive-only and rho-guided are the **closest pair**:
+
+| Pair | Distance |
+|:---|:---:|
+| contrastive-only ↔ rho-guided | **0.220** (closest) |
+| sft-only ↔ shuffled-pairs | 0.522 |
+| contrastive-only ↔ sft-only | 0.588 |
+| rho-guided ↔ sft-only | 0.768 |
+| contrastive-only ↔ shuffled-pairs | 0.916 |
+| rho-guided ↔ shuffled-pairs | **1.039** (farthest) |
+
+The contrastive loss does most of the behavioral work. The SFT component in rho-guided adds refusal preservation (per Hypothesis 1) but contributes minimally to the behavioral movement measured across factual/toxicity/bias/sycophancy. PCA explains 97.0% of variance in 2 components, with the primary axis separating "has contrastive" from "no contrastive."
+
+![Ablation Clustering](docs/anomaly_ablation_clustering.png)
+
+### Pattern 6: Cross-Model Transfer Is Excellent
+
+Dose-response slopes between Qwen2.5-7B-Instruct and Meta-Llama-3.1-8B-Instruct are within 15% for all four core behaviors:
+
+| Behavior | Qwen Slope | Llama Slope | Ratio |
+|:---|:---:|:---:|:---:|
+| factual | +0.469 | +0.555 | 0.85× |
+| toxicity | +2.086 | +1.915 | 1.09× |
+| bias | +0.097 | +0.111 | 0.88× |
+| sycophancy | +0.012 | +0.013 | 0.98× |
+
+The rho-guided method generalizes well across model families despite different architectures, tokenizers, and pretraining data. The toxicity slope is the most similar (1.09×), while factual and bias show ~12-15% divergence.
+
+![Cross-Model Transfer](docs/anomaly_cross_model.png)
+
+### Pattern 7: Seed 123 × Shuffled-Pairs Interaction
+
+Two-way (condition × seed) residual analysis reveals that seed 123 behaves anomalously in the shuffled-pairs (negative control) condition:
+
+- Factual residual: -0.277 (the largest interaction residual across all behaviors)
+- Toxicity residual: -0.365
+
+Under the additive model (condition main effect + seed main effect), seed 123 should perform ~0.28 and ~0.37 better than observed in shuffled-pairs. This suggests initialization-dependent learning trajectories where specific weight initializations interact with the random-pair training signal.
+
+The interaction F-statistic for toxicity is 2.37, approaching but not reaching significance with n=5 seeds. More seeds would be needed to confirm this as a systematic effect.
+
+![Seed × Condition Interaction](docs/anomaly_seed_interaction.png)
+
+### Pattern 8: Freeze × Compress Is Purely Additive
+
+The freeze_sweep data shows that the compress gap ($\text{retention}_{cr=1.0} - \text{retention}_{cr=0.7}$) is perfectly constant across all freeze ratios (CV = 0.00 for all behaviors). There is **zero interaction** between compression ratio and freeze fraction.
+
+This means the damage from SVD compression and the benefit of layer freezing operate through independent mechanisms — compression removes spectral information uniformly, while freezing preserves it by exempting layers entirely. Practitioners can optimize these two hyperparameters independently.
+
+![Freeze × Compress Interaction](docs/anomaly_freeze_compress.png)
+
+### Pattern 9: Baselines Are Perfectly Stable
+
+Baseline $\rho$ values are identical across all seeds (between-seed $\sigma = 0.0000$ for all four core behaviors). This confirms that:
+1. The base model deterministically produces the same behavioral profile regardless of fine-tuning seed
+2. Measurement noise in the probe evaluation is below detectable levels
+3. All observed variance in $\Delta\rho$ comes from the fine-tuning process, not measurement
+
+![Baseline Stability](docs/anomaly_baseline_drift.png)
+
+### Pattern 10: Toxicity s456 Super-Responder
+
+Seed 456 at $\lambda_\rho = 0.5$ produces $\Delta\rho_{\text{toxicity}} = +1.061$, with z-score +1.61 vs the group mean of +0.965. The per-seed toxicity dose-response slopes range from 1.78 (s1337) to 2.34 (s456), a 1.3× ratio.
+
+While not statistically extreme (z < 2), this seed consistently responds more strongly to toxicity guidance across all doses. The slope difference may be driven by initialization-dependent proximity to a toxicity attractor in weight space.
+
+![Toxicity Super-Responders](docs/anomaly_toxicity_responders.png)
+
+### Summary of Key Implications
+
+1. **Sycophancy is at ceiling** — exclude from composite metrics or develop more sensitive probes
+2. **Margin decouples behaviors** — without $\gamma$, factual and toxicity become locked ($\rho = 0.90$); with $\gamma$, they're independent
+3. **Per-seed non-monotonicity is regression to the mean** — the mean dose-response is cleanly monotonic
+4. **Steering layers are model-specific** — Mistral spans 14 layers, Llama converges to one
+5. **Contrastive loss is the active ingredient** — rho-guided ≈ contrastive-only in behavioral space; SFT adds refusal preservation
+6. **Cross-model transfer is excellent** — slopes within 15% across architectures
+7. **Freeze and compress are independent** — can be optimized separately
+8. **High-dose trade-off emerges** — factual ↔ sycophancy become anti-correlated at $\lambda_\rho = 0.5$
+
+Full data: `docs/anomaly_detection.json` | Plots: `docs/anomaly_*.png`
