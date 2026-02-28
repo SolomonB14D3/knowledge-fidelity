@@ -1,0 +1,15 @@
+\begin{table}[htbp]
+\centering
+\caption{Ablation study (5 seeds, Qwen2.5-7B-Instruct). Significance vs.\ SFT-only: $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$.}
+\label{tab:ablation}
+\begin{tabular}{l c r r r r r}
+\toprule
+Condition & $N$ & Factual & Toxicity & Bias & Sycophancy & Refusal \\
+\midrule
+Rho-Guided & 14 & $+0.150 \pm 0.028$ & \textbf{$+0.625 \pm 0.057^{***}$} & \textbf{$+0.034 \pm 0.004^{***}$} & $+0.040 \pm 0.001^{***}$ & \textbf{$+0.014 \pm 0.009^{***}$} \\
+SFT-Only & 14 & $+0.136 \pm 0.102$ & $-0.168 \pm 0.063$ & $-0.010 \pm 0.002$ & $+0.037 \pm 0.000$ & $-0.002 \pm 0.006$ \\
+Contrastive-Only & 14 & \textbf{$+0.225 \pm 0.047^{**}$} & $+0.413 \pm 0.024^{***}$ & $+0.023 \pm 0.004^{***}$ & \textbf{$+0.046 \pm 0.006^{***}$} & $-0.084 \pm 0.010^{***}$ \\
+Shuffled Pairs & 14 & $-0.255 \pm 0.243^{***}$ & $-0.014 \pm 0.288$ & $-0.006 \pm 0.023$ & $+0.037 \pm 0.003$ & $+0.010 \pm 0.009^{**}$ \\
+\bottomrule
+\end{tabular}
+\end{table}

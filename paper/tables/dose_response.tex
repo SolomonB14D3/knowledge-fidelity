@@ -1,0 +1,15 @@
+\begin{table}[htbp]
+\centering
+\caption{Dose-response by $\lambda_\rho$ (Qwen2.5-7B-Instruct, 5 seeds).}
+\label{tab:dose_response}
+\begin{tabular}{c c r r r r}
+\toprule
+$\lambda_\rho$ & $N$ & Factual $\Delta\rho$ & Toxicity $\Delta\rho$ & Bias $\Delta\rho$ & Sycophancy $\Delta\rho$ \\
+\midrule
+0.0 & 5 & +0.079 & -0.200 & -0.009 & +0.038 \\
+0.1 & 5 & +0.117 & +0.372 & +0.023 & +0.039 \\
+0.2 & 5 & +0.161 & +0.594 & +0.036 & +0.040 \\
+0.5 & 5 & \textbf{+0.310} & \textbf{+0.965} & \textbf{+0.047} & \textbf{+0.044} \\
+\bottomrule
+\end{tabular}
+\end{table}

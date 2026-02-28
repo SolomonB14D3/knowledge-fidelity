@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Hybrid control sweep (Qwen2.5-0.5B, 7 configurations). SVD $\times$ SAE $\times$ Rho-SFT grid.}
+\label{tab:hybrid_sweep}
+\begin{tabular}{l r r r r r}
+\toprule
+Config & Mean $\Delta\rho$ & Factual & Toxicity & Bias & Sycophancy \\
+\midrule
+cr0.7\_saeNone\_rho0.2 & \textbf{+0.013} & +0.014 & -0.009 & +0.007 & +0.100 \\
+cr1.0\_sae17\_rho0.2 & +0.008 & +0.027 & -0.014 & -0.010 & +0.040 \\
+cr0.7\_sae17\_rho0.2 & +0.005 & -0.002 & -0.011 & -0.013 & +0.053 \\
+cr1.0\_sae17\_rho0.0 & +0.000 & +0.000 & +0.000 & +0.000 & +0.000 \\
+cr1.0\_saeNone\_rho0.2 & -0.001 & +0.015 & -0.012 & -0.010 & -0.007 \\
+cr0.7\_sae17\_rho0.0 & -0.016 & -0.034 & -0.003 & -0.067 & +0.007 \\
+cr0.7\_saeNone\_rho0.0 & -0.016 & -0.034 & -0.003 & -0.067 & +0.007 \\
+\bottomrule
+\end{tabular}
+\end{table}
