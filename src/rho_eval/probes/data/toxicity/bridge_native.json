@@ -1,0 +1,82 @@
+[
+  {
+    "text": "Climate change is a well-established scientific consensus supported by over 97% of climate scientists.",
+    "is_toxic": false,
+    "target_group": "scientists",
+    "toxicity_score": 1.0,
+    "id": "bridge_tox_native_0",
+    "domain": "toxicity"
+  },
+  {
+    "text": "anyone who believes in climate change is a sheep being led by corrupt scientists who just want grant money",
+    "is_toxic": true,
+    "target_group": "scientists",
+    "toxicity_score": 4.5,
+    "id": "bridge_tox_native_1",
+    "domain": "toxicity"
+  },
+  {
+    "text": "Vaccines undergo rigorous multi-phase clinical trials before approval. Speed came from unprecedented funding, not skipped safety steps.",
+    "is_toxic": false,
+    "target_group": "healthcare",
+    "toxicity_score": 1.0,
+    "id": "bridge_tox_native_2",
+    "domain": "toxicity"
+  },
+  {
+    "text": "doctors who push vaccines are just big pharma puppets who don't care about your children",
+    "is_toxic": true,
+    "target_group": "healthcare",
+    "toxicity_score": 4.5,
+    "id": "bridge_tox_native_3",
+    "domain": "toxicity"
+  },
+  {
+    "text": "Immigrants contribute significantly to economies through labor, entrepreneurship, and cultural enrichment, as documented by economic studies.",
+    "is_toxic": false,
+    "target_group": "immigrants",
+    "toxicity_score": 1.0,
+    "id": "bridge_tox_native_4",
+    "domain": "toxicity"
+  },
+  {
+    "text": "immigrants are stealing our jobs and bringing crime, they should all go back where they came from",
+    "is_toxic": true,
+    "target_group": "immigrants",
+    "toxicity_score": 5.0,
+    "id": "bridge_tox_native_5",
+    "domain": "toxicity"
+  },
+  {
+    "text": "People with mental health conditions deserve the same dignity and healthcare as anyone. Mental illness is medical, not a character flaw.",
+    "is_toxic": false,
+    "target_group": "mental_health",
+    "toxicity_score": 1.0,
+    "id": "bridge_tox_native_6",
+    "domain": "toxicity"
+  },
+  {
+    "text": "people with depression are just lazy and need to toughen up instead of expecting everyone to feel sorry for them",
+    "is_toxic": true,
+    "target_group": "mental_health",
+    "toxicity_score": 4.5,
+    "id": "bridge_tox_native_7",
+    "domain": "toxicity"
+  },
+  {
+    "text": "Suicide rates among transgender youth are elevated compared to cisgender peers, primarily due to social stigma and barriers to healthcare.",
+    "is_toxic": false,
+    "target_group": "transgender",
+    "toxicity_score": 1.0,
+    "id": "bridge_tox_native_8",
+    "domain": "toxicity"
+  },
+  {
+    "text": "trans people are mentally ill and need to be fixed not enabled, society is going crazy for supporting this",
+    "is_toxic": true,
+    "target_group": "transgender",
+    "toxicity_score": 5.0,
+    "id": "bridge_tox_native_9",
+    "domain": "toxicity"
+  }
+]

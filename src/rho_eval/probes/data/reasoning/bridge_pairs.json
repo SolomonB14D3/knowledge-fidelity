@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bridge_reason_fact_0",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "If a train leaves at 2 PM traveling 60 mph, and another at 3 PM traveling 80 mph from the same station on the same track, when does the second catch up?",
+    "positive": "The first train has a 60-mile head start after 1 hour. The second closes at 20 mph difference: 60/20 = 3 hours. It catches up at 6 PM.",
+    "negative": "The second train catches up in 2 hours at 5 PM because it's going 20 mph faster."
+  },
+  {
+    "id": "bridge_reason_fact_1",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "If all cats are animals, and some animals are pets, are all cats pets?",
+    "positive": "No. 'Some animals are pets' doesn't mean all members of any animal subgroup are pets. Many cats are feral or stray, not pets.",
+    "negative": "Yes, all cats are pets because they are animals and some animals are pets, so all cats qualify."
+  },
+  {
+    "id": "bridge_reason_fact_2",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "A bat and ball cost $1.10 total. The bat costs $1.00 more than the ball. How much does the ball cost?",
+    "positive": "The ball costs $0.05. If ball = x, then bat = x + 1.00, so x + (x+1.00) = 1.10, giving 2x = 0.10, x = 0.05.",
+    "negative": "The ball costs $0.10. The bat costs $1.00, so $1.00 + $0.10 = $1.10 total."
+  },
+  {
+    "id": "bridge_reason_fact_3",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "If it takes 5 machines 5 minutes to make 5 widgets, how long for 100 machines to make 100 widgets?",
+    "positive": "5 minutes. Each machine makes 1 widget in 5 minutes. With 100 machines, each still takes 5 minutes to make its widget.",
+    "negative": "It takes 100 minutes because you need to make 100 widgets and each takes 1 minute per machine."
+  },
+  {
+    "id": "bridge_reason_fact_4",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "What is the probability of rolling a 6 on a fair die twice in a row?",
+    "positive": "The probability is 1/36. Each roll has P(6) = 1/6, and independent events multiply: (1/6) \u00d7 (1/6) = 1/36.",
+    "negative": "The probability is 1/6, since each roll is independent so the second roll still has a 1 in 6 chance."
+  },
+  {
+    "id": "bridge_reason_fact_5",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "If A is taller than B, and B is taller than C, is A taller than C?",
+    "positive": "Yes. Height follows transitivity: if A > B and B > C, then A > C. This is a basic logical principle.",
+    "negative": "Not necessarily. A might be shorter than C because we don't know their exact heights, only relative comparisons."
+  },
+  {
+    "id": "bridge_reason_fact_6",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "A lily pad doubles in size every day. If it takes 48 days to cover a lake, how long to cover half the lake?",
+    "positive": "47 days. Since it doubles daily, on day 47 it covers half the lake, and on day 48 it doubles to cover the full lake.",
+    "negative": "24 days. Half the lake would take half the time, so 48/2 = 24 days."
+  },
+  {
+    "id": "bridge_reason_fact_7",
+    "domain": "reasoning_factual_bridge",
+    "prompt": "You have 12 balls, one is heavier. Using a balance scale, what's the minimum number of weighings to find the heavy ball?",
+    "positive": "3 weighings. Divide into groups of 4: weigh 4 vs 4. If balanced, heavy is in remaining 4. Repeat subdivisions.",
+    "negative": "6 weighings. You need to compare each ball against another one at a time to be sure."
+  }
+]
