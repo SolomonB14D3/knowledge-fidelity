@@ -365,6 +365,18 @@ The margin ablation ($\gamma = 0$ vs $\gamma = 0.1$) reveals that the hinge marg
 
 The replication on Llama-3.1-8B-Instruct with a different starting point (toxicity already inverted at baseline) strengthens the finding. Rho-guided SFT does not merely prevent inversion; it actively corrects pre-existing miscalibration. The effect sizes are comparable across architectures ($d > 8$ for toxicity at $\lambda_\rho = 0.5$ vs SFT-only on both models), suggesting the mechanism is architecture-general.
 
+### Emergent Patterns from Anomaly Detection
+
+An automated anomaly scan across the full experimental database (328 runs across 8 experimental tables) revealed several non-obvious regularities that sharpen the theoretical picture:
+
+**Margin as dimensional decoupler.** At $\gamma = 0$ (no hinge margin), factual and toxicity deltas become strongly coupled across seeds ($\rho = +0.900$, $p = 0.037$). Adding $\gamma = 0.1$ breaks this coupling ($\rho = -0.100$). Without the margin, the contrastive gradient locks these behaviors together; with it, they become independently adjustable. This provides a mechanistic interpretation of the margin beyond preventing over-optimization: it serves as a dimensional decoupler in behavioral space.
+
+**Sycophancy ceiling effect.** At $\lambda_\rho = 0.2$, sycophancy variance is compressed 52.8$\times$ relative to bias (range 0.0014 across 5 seeds). The baseline sycophancy $\rho$ is near-saturated, and rho-guided SFT produces only +0.002 improvement across a 50$\times$ dose range ($\lambda_\rho = 0.0$ to $0.5$). Sycophancy should be excluded from composite metrics or measured with more sensitive probes.
+
+**Dose-dependent trade-off.** A strong factual $\leftrightarrow$ sycophancy anti-correlation ($\rho = -0.900$, $p = 0.037$) appears only at $\lambda_\rho = 0.5$. At lower doses, the two dimensions are independent. This suggests that the contrastive gradient becomes strong enough to force behavioral competition only at high dose, and practitioners should monitor per-dimension effects when using $\lambda_\rho > 0.3$.
+
+**Architectural dissociation in steering.** Activation steering experiments on the same behaviors reveal that Mistral-7B spreads behavioral representations across 14 layers (sycophancy at L16, factual at L24, bias at L30), while Llama-3.1-8B clusters them near layer 14. This divergence explains why weight-space methods like rho-guided SFT transfer more reliably across architectures than activation-space interventions.
+
 ### Connection to Representation Engineering
 
 The theoretical account of Section 3.5 frames rho-guided SFT as a training-time variant of representation engineering (Zou et al., 2023). Where representation engineering identifies behavioral directions in activation space and applies them at inference time via activation addition, our contrastive loss applies gradient pressure that "writes" the behavioral direction into the weights. The key advantage is persistence: the representation engineering vector must be applied at every forward pass, while rho-guided SFT produces a model whose weights already encode the correct behavioral orientation.

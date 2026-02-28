@@ -1,0 +1,7 @@
+{
+  "frontier": {
+    "factual_syc_rho_05": -0.9,
+    "factual_syc_p_05": 0.037
+  },
+  "note": "Full results in plots: tradeoff_frontier.png, decoupler_validation.png, dose_correlation_shift.png"
+}
