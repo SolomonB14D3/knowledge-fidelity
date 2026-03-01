@@ -198,6 +198,10 @@ class BehavioralContrastDataset(Dataset):
             Defaults to CONTRAST_BEHAVIORS.
         seed: Random seed for probe loading.
         max_pairs_per_behavior: Cap on pairs per behavior (None = all).
+        categories: Optional list of category names (e.g., ["Age", "Religion"])
+            to filter probes. Only applies to behaviors whose load_probes()
+            supports a ``categories`` parameter (currently: bias).
+            If None, all categories are included.
     """
 
     def __init__(
@@ -205,25 +209,36 @@ class BehavioralContrastDataset(Dataset):
         behaviors: list[str] | None = None,
         seed: int = 42,
         max_pairs_per_behavior: int | None = None,
+        categories: list[str] | None = None,
     ):
         from ..behaviors import get_behavior
         from ..interpretability.activation import build_contrast_pairs
 
         behaviors = behaviors or list(CONTRAST_BEHAVIORS)
         self.pairs: list[dict] = []
+        self.categories = categories
 
         rng = random.Random(seed)
 
         for behavior in behaviors:
             try:
                 beh = get_behavior(behavior)
-                probes = beh.load_probes(seed=seed)
+                # Pass categories filter to behaviors that support it
+                if categories and hasattr(beh, 'load_probes'):
+                    import inspect
+                    sig = inspect.signature(beh.load_probes)
+                    if 'categories' in sig.parameters:
+                        probes = beh.load_probes(seed=seed, categories=categories)
+                    else:
+                        probes = beh.load_probes(seed=seed)
+                else:
+                    probes = beh.load_probes(seed=seed)
                 pairs = build_contrast_pairs(behavior, probes)
             except Exception as e:
                 print(f"  [contrast] WARNING: skipping {behavior}: {e}")
                 continue
 
-            # Add behavior label to each pair
+            # Add behavior label and category to each pair
             for pair in pairs:
                 pair["behavior"] = behavior
 
@@ -233,8 +248,9 @@ class BehavioralContrastDataset(Dataset):
             self.pairs.extend(pairs)
 
         rng.shuffle(self.pairs)
+        cat_note = f" (categories: {categories})" if categories else ""
         print(f"  [contrast] {len(self.pairs)} contrast pairs across "
-              f"{len(behaviors)} behaviors")
+              f"{len(behaviors)} behaviors{cat_note}")
 
     def __len__(self) -> int:
         return len(self.pairs)

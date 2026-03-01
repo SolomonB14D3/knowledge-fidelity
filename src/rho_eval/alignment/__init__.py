@@ -30,6 +30,7 @@ from .losses import (
     differentiable_ce_loss,
     contrastive_confidence_loss,
     rho_auxiliary_loss,
+    gamma_protection_loss,
 )
 from .dataset import (
     load_sft_dataset,
@@ -41,6 +42,7 @@ __all__ = [
     "differentiable_ce_loss",
     "contrastive_confidence_loss",
     "rho_auxiliary_loss",
+    "gamma_protection_loss",
     "load_sft_dataset",
     "BehavioralContrastDataset",
     "rho_guided_sft",

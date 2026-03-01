@@ -133,6 +133,13 @@ def apply_hybrid_control(
     if config is None:
         config = HybridConfig()
 
+    # Load surgical plan if specified (overrides protection params)
+    if config.surgical_plan_path:
+        from ..surgical_planner import SurgicalPlan
+        plan = SurgicalPlan.from_json(config.surgical_plan_path)
+        logger.info(f"Loaded surgical plan from {config.surgical_plan_path}")
+        config = plan.to_hybrid_config()
+
     result = HybridResult(config=config, model_name=model_name)
     t_start = time.time()
 
@@ -358,6 +365,21 @@ def _phase_training_time(
             seed=config.seed,
         )
 
+    # Build protection dataset for γ loss (Rho-Surgery)
+    protection_dataset = None
+    if config.protection_enabled:
+        from ..alignment.dataset import BehavioralContrastDataset as BCD
+        prot_categories = list(config.protection_categories) or None
+        protection_dataset = BCD(
+            behaviors=list(config.protection_behaviors),
+            seed=config.seed,
+            categories=prot_categories,
+        )
+        logger.info(
+            f"  Protection dataset: {len(protection_dataset)} pairs from "
+            f"{config.protection_behaviors}, categories={prot_categories}"
+        )
+
     # Run SFT
     try:
         from ..alignment import _HAS_MLX
@@ -384,6 +406,8 @@ def _phase_training_time(
                 sft_dataset,
                 contrast_dataset=contrast_dataset,
                 rho_weight=config.rho_weight,
+                gamma_weight=config.gamma_weight,
+                protection_dataset=protection_dataset,
                 epochs=config.sft_epochs,
                 lr=config.sft_lr,
                 margin=config.margin,
