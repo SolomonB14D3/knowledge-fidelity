@@ -91,6 +91,12 @@ Homepage = "https://github.com/SolomonB14D3/knowledge-fidelity"
 Repository = "https://github.com/SolomonB14D3/knowledge-fidelity"
 Issues = "https://github.com/SolomonB14D3/knowledge-fidelity/issues"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests that require model downloads or GPU (deselect with '-m \"not slow\"')",
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["rho_eval*", "knowledge_fidelity*"]
