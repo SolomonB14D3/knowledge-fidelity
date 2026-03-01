@@ -1,0 +1,155 @@
+{
+  "threshold": 0.65,
+  "density": {
+    "bench": {
+      "highway_density": 0.9444,
+      "total_incident_edges": 108,
+      "cross_edges": 102,
+      "intra_edges": 6,
+      "n_nodes": 120
+    },
+    "bias": {
+      "highway_density": 0.0297,
+      "total_incident_edges": 843,
+      "cross_edges": 25,
+      "intra_edges": 818,
+      "n_nodes": 447
+    },
+    "deception": {
+      "highway_density": 0.3936,
+      "total_incident_edges": 188,
+      "cross_edges": 74,
+      "intra_edges": 114,
+      "n_nodes": 264
+    },
+    "factual": {
+      "highway_density": 0.9825,
+      "total_incident_edges": 114,
+      "cross_edges": 112,
+      "intra_edges": 2,
+      "n_nodes": 206
+    },
+    "overrefusal": {
+      "highway_density": 0.4286,
+      "total_incident_edges": 21,
+      "cross_edges": 9,
+      "intra_edges": 12,
+      "n_nodes": 150
+    },
+    "reasoning": {
+      "highway_density": 0.2349,
+      "total_incident_edges": 149,
+      "cross_edges": 35,
+      "intra_edges": 114,
+      "n_nodes": 202
+    },
+    "refusal": {
+      "highway_density": 0.0698,
+      "total_incident_edges": 43,
+      "cross_edges": 3,
+      "intra_edges": 40,
+      "n_nodes": 300
+    },
+    "sycophancy": {
+      "highway_density": 0.0202,
+      "total_incident_edges": 4852,
+      "cross_edges": 98,
+      "intra_edges": 4754,
+      "n_nodes": 282
+    },
+    "toxicity": {
+      "highway_density": 0.1757,
+      "total_incident_edges": 148,
+      "cross_edges": 26,
+      "intra_edges": 122,
+      "n_nodes": 302
+    }
+  },
+  "correlations": {
+    "hd_vs_redundancy": {
+      "rho": -0.933,
+      "p": 0.0002,
+      "n": 9
+    },
+    "hd_vs_isolation": {
+      "rho": 0.283,
+      "p": 0.46,
+      "n": 9
+    },
+    "redundancy_vs_isolation": {
+      "rho": -0.217,
+      "p": 0.5755,
+      "n": 9
+    },
+    "hd_vs_variance": {
+      "rho": -0.146,
+      "p": 0.7294,
+      "n": 8
+    },
+    "hd_vs_mean_delta": {
+      "rho": -0.024,
+      "p": 0.9543,
+      "n": 8
+    },
+    "redundancy_vs_variance": {
+      "rho": 0.073,
+      "p": 0.8633,
+      "n": 8
+    },
+    "redundancy_vs_mean_delta": {
+      "rho": -0.244,
+      "p": 0.5604,
+      "n": 8
+    }
+  },
+  "alignment_stats": {
+    "factual": {
+      "mean_delta": 0.09278,
+      "variance": 0.038316,
+      "std": 0.195745,
+      "n": 91
+    },
+    "toxicity": {
+      "mean_delta": 0.306395,
+      "variance": 0.152079,
+      "std": 0.389974,
+      "n": 91
+    },
+    "bias": {
+      "mean_delta": 0.01369,
+      "variance": 0.000554,
+      "std": 0.023537,
+      "n": 91
+    },
+    "sycophancy": {
+      "mean_delta": 0.036457,
+      "variance": 0.000122,
+      "std": 0.011063,
+      "n": 91
+    },
+    "reasoning": {
+      "mean_delta": 0.0,
+      "variance": 0.0,
+      "std": 0.0,
+      "n": 91
+    },
+    "refusal": {
+      "mean_delta": -0.009239,
+      "variance": 0.001526,
+      "std": 0.039063,
+      "n": 61
+    },
+    "deception": {
+      "mean_delta": 0.0,
+      "variance": 0.0,
+      "std": 0.0,
+      "n": 20
+    },
+    "overrefusal": {
+      "mean_delta": 0.0,
+      "variance": 0.0,
+      "std": 0.0,
+      "n": 20
+    }
+  }
+}

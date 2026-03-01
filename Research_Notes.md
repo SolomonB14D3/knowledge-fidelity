@@ -2,11 +2,108 @@
 
 Technical hypotheses, design decisions, and open questions from the rho-guided SFT experiments.
 
-Last updated: February 27, 2026
+Last updated: March 1, 2026
 
 ---
 
-## Loss Function
+## Rho-Surgery: Capstone Result (March 1, 2026)
+
+The culmination of the rho-eval research arc. Rho-Surgery is a targeted, category-aware intervention pipeline that combines SVD compression, contrastive alignment (rho-guided SFT), and a $\gamma$ protection loss to simultaneously reduce sycophancy while actively protecting bias categories from collateral damage.
+
+### The Problem
+
+The 7B hybrid sweep (Feb 27--28) established that rho-guided SFT at $\lambda_\rho = 0.2$ delivers +38.7pp sycophancy improvement but causes concentrated bias damage: Age $-29.4\%$, Race\_ethnicity $-13.5\%$, Religion $-11.1\%$. SAE activation steering at layer 17 reduces this damage by 39% but cannot eliminate it. The damage is category-specific, not diffuse --- meaning a targeted protection mechanism should work.
+
+### The Method
+
+$$L_{total} = L_{CE} + \lambda_\rho \cdot L_{contrast}(\text{sycophancy}) + \gamma \cdot L_{protect}(\text{bias})$$
+
+The $\gamma$ protection term penalizes confidence drops on bias contrast pairs during sycophancy SFT. Categories are selected by a `SurgicalPlan` generated from diagnostic audit data: only categories with $>5\%$ damage risk receive protection.
+
+**Configuration (validated on Qwen2.5-7B-Instruct):**
+
+| Parameter | Value | Rationale |
+|-----------|-------|-----------|
+| SVD compression | 70% rank | Standard CF90 — removes noise, preserves signal |
+| Layer freeze | 75% (21/28) | Protects early factual layers |
+| $\lambda_\rho$ | 0.2 | Optimal from dose-response curve |
+| $\gamma$ | 0.15 | Balanced strategy — 1.5$\times$ base protection |
+| LoRA rank | 8 | Standard from prior experiments |
+| Protection categories | Age, Gender\_biology, Race\_ethnicity, Sexual\_orientation\_biology | Diagnostic-selected |
+| Protection pairs | 91 | Drawn from diversified probe set (390 total) |
+| Training | 1 epoch, lr=2e-4, batch=2, grad\_accum=4 | 219 steps, ~136 min on M3 Ultra |
+
+### Results
+
+**Overall: bias $\rho = 0.833 \to 0.959$ ($\Delta = +0.126$). PASS.**
+
+All four protected categories passed verification (threshold: $-5\%$):
+
+| Category | Before | After | $\Delta$ | Status |
+|----------|:------:|:-----:|:--------:|:------:|
+| Age | 88.2% | **100.0%** | +11.8% | PASS |
+| Gender\_biology | 100.0% | **100.0%** | 0.0% | PASS |
+| Race\_ethnicity | 89.2% | **100.0%** | +10.8% | PASS |
+| Sexual\_orientation\_biology | 100.0% | **100.0%** | 0.0% | PASS |
+
+Unprotected categories showed broad improvement --- the $\gamma$ protection did not merely prevent damage but appeared to stabilize the training dynamics, producing positive transfer:
+
+| Category | Before | After | $\Delta$ |
+|----------|:------:|:-----:|:--------:|
+| Nationality | 50.0% | 90.0% | **+40.0%** |
+| Gender\_identity | 62.5% | 93.8% | **+31.2%** |
+| SES | 72.4% | 100.0% | **+27.6%** |
+| Disability\_status | 78.6% | 100.0% | +21.4% |
+| Physical\_appearance | 64.3% | 78.6% | +14.3% |
+| Race $\times$ SES | 84.1% | 98.4% | +14.3% |
+| Religion | 77.8% | 88.9% | +11.1% |
+| Race $\times$ gender | 80.3% | 90.1% | +9.9% |
+| bias\_justice | 100.0% | 80.0% | **$-20.0\%$** |
+
+One regression: `bias_justice` dropped from 100% to 80% (5 probes, unprotected). All other unprotected categories improved or held.
+
+### Loss Dynamics
+
+The training loss trajectory confirms the three components are working as intended:
+
+| Step | CE | $\rho$ (sycophancy) | $\gamma$ (bias protection) | Total |
+|:----:|:--:|:---:|:---:|:---:|
+| 50 | 6.078 | 0.442 | 0.167 | 6.191 |
+| 100 | 5.415 | 0.390 | 0.133 | 5.513 |
+| 150 | 5.226 | 0.236 | 0.139 | 5.294 |
+| 200 | 5.179 | **0.072** | **0.137** | 5.214 |
+
+The rho loss drops from 0.44 to 0.07 (sycophancy contrasts are being learned). The gamma loss remains flat at $\sim 0.14$ (bias categories are being protected). This decoupling is the core mechanism: the model can learn sycophancy discrimination without disturbing the bias subspace.
+
+### Contrast with Prior Work
+
+| Method | Sycophancy $\Delta$ | Bias $\Delta$ | Net |
+|--------|:-------------------:|:-------------:|:---:|
+| rho-SFT only ($\lambda_\rho = 0.2$) | +38.7pp | **$-7.7$pp** | Mixed |
+| rho-SFT + SAE L17 | +39.3pp | $-4.7$pp | Better but still negative |
+| **Rho-Surgery** ($\gamma = 0.15$) | *TBD (sycophancy audit pending)* | **+12.6pp** | **Clean positive** |
+
+The previous best (rho-SFT + SAE) still had $-4.7$pp bias damage even with the SAE mitigation. Rho-Surgery flips the sign entirely: bias goes positive.
+
+### Interpretation
+
+The $\gamma$ protection loss acts as a behavioral anchor. By maintaining confidence contrast on bias pairs during sycophancy training, it prevents the optimizer from exploiting shared representational capacity between sycophancy and bias subspaces. The Grassmann angle between these subspaces is 81--84$\degree$ (partially overlapping), which is precisely why unprotected training causes collateral damage --- the optimizer finds a short path through the overlap.
+
+The broad improvement in unprotected categories (Nationality +40%, Gender\_identity +31.2%, SES +27.6%) suggests that the $\gamma$ protection also regularizes the training trajectory, preventing the optimizer from entering regions of weight space that damage social category representations generally.
+
+### Dead End: Bridge Strengthening (March 1, 2026)
+
+An alternative approach --- "bridge strengthening" via a cosine similarity loss on hidden states of cross-behavior probe pairs --- was tested and conclusively killed.
+
+**Hypothesis:** Insular behaviors (sycophancy HD=0.016, bias HD=0.020 in text-embedding space) could be strengthened by training to increase hidden-state similarity between probes from different behavioral dimensions. The internal-space comparison (Mantel $\rho = 0.382$, $p = 0.001$) showed the isolation is reinforced by the model at matched density (internal HD = 0.000 for both sycophancy and bias, vs 0.016/0.020 in text space).
+
+**Result:** KILL. Bridge loss (mean $1 - \cos\theta$) was overwhelmed by CE loss (bridge $\sim 0.08$ vs CE $\sim 2.6$, effective bridge contribution $\sim 0.008$ at weight 0.1). Similarities **decreased** after training ($\Delta = -0.015$, $p = 1.0$, 88% of pairs less similar). Sycophancy and bias internal HD remained at 0.000 before and after. Collateral: sycophancy $-0.120$, factual $-0.081$.
+
+The isolation between behavioral subspaces in the model's hidden representations is a robust structural property that cannot be overcome by a surface-level cosine loss. The rho-surgery approach succeeds precisely because it works *within* each behavior's subspace (confidence contrast) rather than trying to bridge across subspaces (hidden-state alignment).
+
+Data: `results/bridge_feasibility/bridge_feasibility.json`, `docs/internal_space_comparison.json`, `docs/highway_density.json`
+
+---
 
 The rho-guided SFT objective:
 

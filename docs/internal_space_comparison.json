@@ -1,0 +1,71 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "n_probes": 1863,
+  "text_threshold": 0.65,
+  "matched_internal_threshold": 0.976,
+  "n_permutations": 999,
+  "mantel": {
+    "pearson_rho": 0.3817,
+    "pearson_p": 0.001,
+    "spearman_rho": 0.3858,
+    "spearman_p": 0.0
+  },
+  "highway_density": {
+    "text": {
+      "bench": 0.9333,
+      "bias": 0.0196,
+      "deception": 1.0,
+      "factual": 0.9792,
+      "overrefusal": 0.4,
+      "reasoning": 0.4783,
+      "refusal": 0.2727,
+      "sycophancy": 0.0158,
+      "toxicity": 0.1828
+    },
+    "internal_matched": {
+      "bench": 0.75,
+      "bias": 0.0,
+      "deception": 1.0,
+      "factual": 0.8932,
+      "overrefusal": 0.0,
+      "reasoning": 0.2716,
+      "refusal": 0.0,
+      "sycophancy": 0.0,
+      "toxicity": 0.1083
+    },
+    "internal_raw": {
+      "bench": 0.9352,
+      "bias": 0.7852,
+      "deception": 0.9309,
+      "factual": 0.8894,
+      "overrefusal": 0.9161,
+      "reasoning": 0.9135,
+      "refusal": 0.9181,
+      "sycophancy": 0.8563,
+      "toxicity": 0.8454
+    },
+    "rank_correlation_rho": 0.791,
+    "rank_correlation_p": 0.011,
+    "note": "internal_raw uses threshold=0.65, which produces 96.3% edge density (meaningless). internal_matched uses threshold=0.976 to match text edge count (~2950 edges)."
+  },
+  "similarity_distributions": {
+    "text_mean": 0.044,
+    "text_std": 0.1,
+    "internal_mean": 0.808,
+    "internal_std": 0.08
+  },
+  "cluster_overlap": {
+    "ari": 0.0033,
+    "nmi": 0.248
+  },
+  "graph_stats": {
+    "text_edges": 2953,
+    "internal_edges_raw": 1670004,
+    "internal_edges_matched": 2943,
+    "text_communities": 1350,
+    "internal_communities": 3
+  },
+  "interpretation": "MODERATE agreement \u2014 some text-embedding structure is reflected internally, but the model reorganizes representations substantially. Critically, insular behaviors (bias, sycophancy) are equally or MORE insular in model internals at matched density (HD=0.000 vs 0.020/0.016 in text), confirming the isolation is a genuine property of the model's learned representations, not just a text-surface artifact.",
+  "extract_time_sec": 25.1,
+  "total_time_sec": 64.8
+}

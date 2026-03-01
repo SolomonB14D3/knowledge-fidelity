@@ -143,3 +143,97 @@ def mlx_rho_auxiliary_loss(
         losses.append(loss)
 
     return mx.mean(mx.stack(losses))
+
+
+# ── Bridge cosine loss ─────────────────────────────────────────────────
+
+
+def _mlx_extract_hidden_states(
+    model,
+    tokenizer,
+    text: str,
+    max_length: int = 256,
+) -> mx.array:
+    """Extract mean-pooled hidden states from the model's last transformer layer.
+
+    Forwards text through the model backbone (all transformer layers + final
+    layer norm), stopping before the LM head. Mean-pools over the sequence
+    dimension.
+
+    This is differentiable through LoRA parameters when called inside
+    ``nn.value_and_grad()``.
+
+    Args:
+        model: mlx-lm model (expects ``model.model`` as the transformer
+            backbone, which is standard for all mlx-lm architectures).
+        tokenizer: Tokenizer with ``.encode()`` method.
+        text: Input text.
+        max_length: Maximum token length.
+
+    Returns:
+        mx.array of shape ``(hidden_dim,)``: mean-pooled hidden state.
+    """
+    tokens = tokenizer.encode(text)
+    if len(tokens) > max_length:
+        tokens = tokens[:max_length]
+    if len(tokens) < 1:
+        # Infer hidden dim from embedding layer
+        hidden_dim = model.model.embed_tokens.weight.shape[1]
+        return mx.zeros((hidden_dim,))
+
+    input_ids = mx.array(tokens)[None, :]  # (1, seq_len)
+
+    # Forward through transformer backbone (embed → layers → norm),
+    # stopping before the LM head. Gradient flows through LoRA params.
+    hidden = model.model(input_ids)  # (1, seq_len, hidden_dim)
+
+    # Mean pool over sequence length
+    return hidden.mean(axis=1).squeeze(0)  # (hidden_dim,)
+
+
+def mlx_bridge_cosine_loss(
+    model,
+    tokenizer,
+    pairs: list[dict],
+    max_length: int = 256,
+) -> mx.array:
+    """Mean (1 − cosine_sim) of hidden states for cross-behavior text pairs.
+
+    For each pair, forwards both texts through the model backbone,
+    mean-pools hidden states, and computes cosine similarity. Returns
+    ``mean(1 − cos_sim)`` over all pairs.
+
+    Used to encourage similar hidden representations for semantically
+    related probes from different behavioral dimensions ("bridge
+    strengthening").
+
+    Args:
+        model: mlx-lm model.
+        tokenizer: Tokenizer.
+        pairs: List of dicts with ``'text_a'`` and ``'text_b'`` keys.
+        max_length: Maximum token length per text.
+
+    Returns:
+        Scalar mx.array: mean bridge loss (0 = perfectly similar states).
+    """
+    if not pairs:
+        return mx.array(0.0)
+
+    losses = []
+    for pair in pairs:
+        h_a = _mlx_extract_hidden_states(
+            model, tokenizer, pair["text_a"], max_length,
+        )
+        h_b = _mlx_extract_hidden_states(
+            model, tokenizer, pair["text_b"], max_length,
+        )
+
+        # Cosine similarity with epsilon for numerical stability
+        dot = mx.sum(h_a * h_b)
+        norm_a = mx.sqrt(mx.sum(h_a * h_a) + 1e-8)
+        norm_b = mx.sqrt(mx.sum(h_b * h_b) + 1e-8)
+        cos_sim = dot / (norm_a * norm_b)
+
+        losses.append(1.0 - cos_sim)
+
+    return mx.mean(mx.stack(losses))
