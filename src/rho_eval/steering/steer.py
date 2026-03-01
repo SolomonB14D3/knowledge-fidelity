@@ -16,9 +16,28 @@ from typing import Optional
 
 import torch
 
-from ..utils import get_layers
 from .schema import ActivationData, FeatureReport, SAESteeringReport, SAEConfig
 from .sae import GatedSAE
+
+
+# ── Model Architecture Helper (inlined for standalone use) ───────────────
+
+def _get_layers(model):
+    """Get transformer layers from a HuggingFace causal LM.
+
+    Supports:
+      - Qwen, Llama, Mistral: model.model.layers
+      - GPT-2 style: model.transformer.h
+    """
+    if hasattr(model, 'model') and hasattr(model.model, 'layers'):
+        return model.model.layers
+    elif hasattr(model, 'transformer') and hasattr(model.transformer, 'h'):
+        return model.transformer.h
+    else:
+        raise ValueError(
+            f"Unknown model architecture: {type(model).__name__}. "
+            "Expected model.model.layers or model.transformer.h"
+        )
 
 
 # ── SAE Steering Hook ────────────────────────────────────────────────────
@@ -56,7 +75,7 @@ class SAESteeringHook:
         self.scale = scale
         self._sae_device = sae.device
 
-        layers = get_layers(model)
+        layers = _get_layers(model)
         self._hook = layers[layer_idx].register_forward_hook(self._steer)
 
     def _steer(self, module, input, output):

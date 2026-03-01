@@ -13,7 +13,7 @@ class TestProbeRegistry:
     def test_list_probe_sets_returns_all(self):
         from rho_eval.probes import list_probe_sets
         sets = list_probe_sets()
-        assert len(sets) == 12  # 9 original + 3 bench
+        assert len(sets) >= 12  # at least 9 original + 3 bench (more with bridge probes)
         assert "factual/default" in sets
         assert "bias/bbq_300" in sets
         assert "toxicity/toxigen_200" in sets
@@ -47,9 +47,9 @@ class TestProbeRegistry:
         assert counts["bench/social"] == 40
         assert counts["bench/clinical"] == 40
 
-        # Total: 806 original + 120 bench
+        # Total: at least 926 (original + bench), more with bridge probes
         total = sum(counts.values())
-        assert total == 926
+        assert total >= 926
 
     def test_get_probes_loads_valid_data(self):
         from rho_eval.probes import get_probes

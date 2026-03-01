@@ -15,7 +15,7 @@
 
 ## Project Overview
 
-rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.2.2 expands to 8 behavioral dimensions with 1,476 probes shipped as JSON — no internet required.
+rho-eval is a full-stack research framework for auditing, interpreting, and steering the internal states of large language models. Version 2.2.2 expands to 8 behavioral dimensions with 1,826 probes shipped as JSON — no internet required.
 
 | Module | Purpose |
 |--------|---------|
@@ -536,9 +536,9 @@ From [intelligent-svd](https://github.com/SolomonB14D3/intelligent-svd) and [con
 |---------|--------|
 | Confidence correlates with human false-belief prevalence | ρ=0.652, p=0.016 (Pythia 160M–12B) |
 | Out-of-domain medical claims | 88% accuracy at 6.9B |
-| Targeted resampling at low-confidence tokens | Outperforms uniform best-of-N |
+| Targeted resampling at low-confidence tokens | Oracle variant outperforms uniform best-of-N (practical blind variant underperforms) |
 | CF90 + INT8 stacking | 72–77% retention (Qwen-0.5B, Llama-7B) |
-| Importance-guided SVD at 50% rank | 3× better retention than standard SVD |
+| Importance-guided SVD at 50% rank | +26.7 pp retention vs standard SVD |
 
 </details>
 
@@ -709,7 +709,7 @@ record = analyze_confidence(
 print(f"Mean confidence: {record.mean_top1_prob:.3f}")
 ```
 
-## Built-In Probe Sets (1,476 total)
+## Built-In Probe Sets (1,826 total)
 
 All probes ship as JSON files. No internet download needed.
 
@@ -911,7 +911,7 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 ## Limitations
 
-- **Probe sets are modest** by LLM evaluation standards: 1,476 total probes across 18 sets (206 factual, 300 bias, 150 sycophancy, 200 toxicity, 100 reasoning, 100 deception, 150 refusal, 150 over-refusal, 120 bench). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
+- **Probe sets are modest** by LLM evaluation standards: 1,826 total probes across 37 sets (206 factual, 357 bias, 266 sycophancy, 286 toxicity, 159 reasoning, 132 deception, 150 refusal, 150 over-refusal, 120 bench). While Spearman correlation is robust to small samples, statistical power for subtle shifts is limited.
 - **Western-centric coverage.** Factual probes cover primarily English-language, Western knowledge domains. Bias probes are specific to U.S. social categories.
 - **7B scale only.** All merge and steering results are on 7B-parameter models. Merge dynamics and steering responses may differ at larger scales (70B+) and should not be extrapolated without verification.
 - **Toxicity is unaffected** by weight edits (SVD, freeze, steering). It appears to rely on highly distributed lexical features that single-layer or structural interventions cannot modulate.
@@ -940,6 +940,60 @@ Both remain available as independent repos. Knowledge Fidelity combines their co
 - **[Awesome-LLM-Compression](https://github.com/HuangOwen/Awesome-LLM-Compression).** The ecosystem overview that helped shape this work.
 
 If we've missed key references or misrepresented any work, please [open an issue](https://github.com/SolomonB14D3/knowledge-fidelity/issues).
+
+## Standalone Steering
+
+The `rho_eval.steering` module can be used independently for SAE-based behavioral steering. Only `torch` + `transformers` are required — no probe registry or audit system needed.
+
+```python
+from rho_eval.steering import GatedSAE, collect_activations_from_texts, train_sae, steer
+
+# 1. Prepare contrast pairs (raw text, no probe system)
+pairs = [
+    {"positive": "The Earth orbits the Sun.",
+     "negative": "The Sun orbits the Earth.",
+     "behavior": "factual"},
+    {"positive": "I'm not sure about that claim.",
+     "negative": "You're absolutely right!",
+     "behavior": "sycophancy"},
+]
+
+# 2. Collect activations
+act_data = collect_activations_from_texts(model, tokenizer, pairs, layer_idx=17)
+
+# 3. Train SAE
+sae, stats = train_sae(act_data.activations, hidden_dim=model.config.hidden_size)
+
+# 4. Steer
+hook = steer(model, sae, layer_idx=17, feature_indices=[42], scale=2.0)
+model.generate(...)
+hook.remove()
+
+# 5. Save/load
+sae.save("my_sae.pt")
+sae = GatedSAE.load("my_sae.pt")
+```
+
+## Verification Log
+
+Every quantitative claim in this README is traceable to a specific source.
+
+| Claim | Value | Source | Detail |
+|-------|-------|--------|--------|
+| 8 behavioral dimensions | 8 | `rho_eval.behaviors.list_behaviors()` | bias, deception, factual, overrefusal, reasoning, refusal, sycophancy, toxicity |
+| 1,826 probes shipped as JSON | 1,826 | `src/rho_eval/probes/data/` | 37 JSON files across 9 directories |
+| ρ=0.652 false-belief correlation | ρ=0.652, p=0.016 | `confidence-cartography` paper §4.4 | Pythia-6.9B, n=13 Mandela items |
+| 88% medical OOD accuracy | 88% (22/25), p=0.01 | `confidence-cartography` paper §4.5 | Pythia-6.9B, binomial test |
+| CF90 79% retention | 0.79 mean, p=0.0072 | `intelligent-svd` Experiment C | 5 seeds, Qwen-0.5B |
+| SFT inverts toxicity (d=10.8) | Δρ=+0.625 vs −0.168 | `results/alignment/ablation_*.json` | 5 seeds, Welch's t-test |
+| Contrastive erodes refusal (d=−8.4) | Δρ=−0.084 | `results/alignment/ablation_*.json` | 14 runs, p=0.0005 |
+| Monotonic dose-response | λ=0→0.5 | `results/master.db` table `dose_response` | 4 λ values × 5 seeds |
+| Kill Zone at 44–50% depth | L14–L16 (32L) | Steering heatmaps (Qwen, Mistral, Llama) | Bias collapses −0.39 to −0.46 ρ |
+| Cognitive Dissonance 0.853 | 0.900 − 0.047 | Llama-3.1-8B-Instruct audit | bias ρ − sycophancy ρ |
+| Layer 17 sycophancy 3.4× gain | 0.120 → 0.413 | Qwen-7B steering sweep | α=+4.0, Layer 17 |
+| Targeted resampling (oracle) | +50% fix rate | `confidence-cartography` paper §4.6 | Practical blind variant underperforms best-of-N |
+
+*Last verified: 2026-02-28*
 
 ## Citation
 

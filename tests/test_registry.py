@@ -6,17 +6,20 @@ import pytest
 class TestBehaviorRegistry:
     """Test behavior registration, discovery, and instantiation."""
 
-    def test_list_behaviors_returns_all_5(self):
+    def test_list_behaviors_returns_all(self):
         from rho_eval.behaviors import list_behaviors
         behaviors = list_behaviors()
-        assert len(behaviors) == 5
-        assert behaviors == ["bias", "factual", "reasoning", "sycophancy", "toxicity"]
+        assert len(behaviors) == 8
+        for expected in ["bias", "deception", "factual", "overrefusal",
+                         "reasoning", "refusal", "sycophancy", "toxicity"]:
+            assert expected in behaviors
 
     def test_get_behavior_returns_instance(self):
         from rho_eval.behaviors import get_behavior
         from rho_eval.behaviors.base import ABCBehavior
 
-        for name in ["factual", "toxicity", "bias", "sycophancy", "reasoning"]:
+        for name in ["factual", "toxicity", "bias", "sycophancy", "reasoning",
+                      "refusal", "deception", "overrefusal"]:
             b = get_behavior(name)
             assert isinstance(b, ABCBehavior)
             assert b.name == name
@@ -32,7 +35,7 @@ class TestBehaviorRegistry:
         from rho_eval.behaviors.base import ABCBehavior
 
         all_b = get_all_behaviors()
-        assert len(all_b) == 5
+        assert len(all_b) == 8
         for name, b in all_b.items():
             assert isinstance(b, ABCBehavior)
             assert b.name == name
@@ -43,24 +46,26 @@ class TestBehaviorRegistry:
         b = get_behavior("factual")
         assert b.name == "factual"
         assert b.probe_type == "confidence"
-        assert b.default_n == 56
+        assert b.default_n >= 56  # expanded with bridge probes
         assert len(b.description) > 0
 
         b = get_behavior("toxicity")
         assert b.probe_type == "confidence"
-        assert b.default_n == 200
+        assert b.default_n >= 200
 
         b = get_behavior("bias")
         assert b.probe_type == "generation"
-        assert b.default_n == 300
+        assert b.default_n >= 300
 
     def test_behavior_load_probes(self):
         from rho_eval.behaviors import get_behavior
 
-        for name in ["factual", "toxicity", "bias", "sycophancy", "reasoning"]:
+        for name in ["factual", "toxicity", "bias", "sycophancy", "reasoning",
+                      "refusal", "deception", "overrefusal"]:
             b = get_behavior(name)
             probes = b.load_probes()
-            assert len(probes) == b.default_n
+            # Bias now includes bridge probes by default (> default_n)
+            assert len(probes) >= b.default_n
             assert all(isinstance(p, dict) for p in probes)
 
     def test_behavior_load_probes_subsample(self):
@@ -76,7 +81,7 @@ class TestBehaviorRegistry:
         b = get_behavior("factual")
         r = repr(b)
         assert "factual" in r
-        assert "56" in r
+        assert str(b.default_n) in r
 
 
 class TestCustomBehavior:

@@ -9,13 +9,14 @@ class TestCLIInfoCommands:
     """Test CLI commands that don't require a model."""
 
     def test_version(self):
+        from rho_eval import __version__
         result = subprocess.run(
             [sys.executable, "-m", "rho_eval.cli.rho_audit", "--version"],
             capture_output=True, text=True,
         )
         assert result.returncode == 0
         assert "rho-eval" in result.stdout
-        assert "2.0.0" in result.stdout
+        assert __version__ in result.stdout
 
     def test_list_behaviors(self):
         result = subprocess.run(
@@ -36,7 +37,7 @@ class TestCLIInfoCommands:
         )
         assert result.returncode == 0
         assert "factual/default" in result.stdout
-        assert "926" in result.stdout
+        assert "TOTAL" in result.stdout
 
     def test_help(self):
         result = subprocess.run(

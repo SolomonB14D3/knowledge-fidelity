@@ -44,6 +44,33 @@ def to_markdown(report: AuditReport) -> str:
             f"{result.status} | {result.elapsed:.1f}s |"
         )
 
+    # ── Category breakdowns (for behaviors that provide them) ────────
+    for name, result in sorted(report.behaviors.items()):
+        cat_metrics = result.metadata.get("category_metrics")
+        if cat_metrics:
+            lines.append("")
+            lines.append(f"### {name.title()} by Category")
+            lines.append("")
+            lines.append("| Category | Accuracy | N | Biased % |")
+            lines.append("|----------|----------|---|----------|")
+            for cat, data in sorted(cat_metrics.items(), key=lambda x: -x[1]["accuracy"]):
+                lines.append(
+                    f"| {cat} | {data['accuracy']:.1%} | {data['n']} | "
+                    f"{data.get('biased_rate', 0):.1%} |"
+                )
+
+        src_metrics = result.metadata.get("source_metrics")
+        if src_metrics:
+            lines.append("")
+            lines.append(f"### {name.title()} by Source")
+            lines.append("")
+            lines.append("| Source | Accuracy | N |")
+            lines.append("|--------|----------|---|")
+            for src, data in sorted(src_metrics.items(), key=lambda x: -x[1]["accuracy"]):
+                lines.append(
+                    f"| {src} | {data['accuracy']:.1%} | {data['n']} |"
+                )
+
     return "\n".join(lines) + "\n"
 
 
