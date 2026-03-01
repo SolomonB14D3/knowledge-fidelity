@@ -34,8 +34,11 @@ jobs:
       - name: Version consistency check
         run: |
           python -c "
-          import rho_eval
-          import tomllib
+          import sys, rho_eval
+          if sys.version_info >= (3, 11):
+              import tomllib
+          else:
+              import pip._vendor.tomli as tomllib
           with open('pyproject.toml', 'rb') as f:
               toml = tomllib.load(f)
           pyproject_version = toml['project']['version']
