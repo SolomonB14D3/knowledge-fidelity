@@ -93,6 +93,16 @@ results/hybrid_sweep/*.log
 !results/hybrid_sweep/*.json
 !results/hybrid_sweep/*/
 !results/hybrid_sweep/*/*.json
+# Surgery results (keep JSON only)
+!results/surgery/
+!results/surgery/*/
+!results/surgery/*/*.json
+!results/surgery/*/*/
+!results/surgery/*/*/*.json
+results/surgery/*.log
+# Bridge feasibility results
+!results/bridge_feasibility/
+!results/bridge_feasibility/*.json
 *.log
 
 # Lock files
