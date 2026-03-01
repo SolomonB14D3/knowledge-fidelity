@@ -21,6 +21,7 @@ Decoder columns are projected to unit norm after each optimizer step
 from __future__ import annotations
 
 import math
+from pathlib import Path
 
 import torch
 import torch.nn as nn
@@ -165,6 +166,47 @@ class GatedSAE(nn.Module):
     @property
     def device(self) -> torch.device:
         return self.W_gate.device
+
+    # ── Persistence ──────────────────────────────────────────────────
+
+    def save(self, path: str | Path) -> None:
+        """Save SAE weights and config to a single file.
+
+        The saved file contains both the state dict and the constructor
+        arguments, so it can be loaded without knowing the original config.
+
+        Args:
+            path: File path (typically .pt or .safetensors).
+        """
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        torch.save(
+            {
+                "state_dict": self.state_dict(),
+                "config": {
+                    "hidden_dim": self.hidden_dim,
+                    "expansion_factor": self.expansion_factor,
+                },
+            },
+            path,
+        )
+
+    @classmethod
+    def load(cls, path: str | Path, device: str = "cpu") -> "GatedSAE":
+        """Load a saved SAE.
+
+        Args:
+            path: File saved by :meth:`save`.
+            device: Device to load weights onto.
+
+        Returns:
+            Reconstructed GatedSAE with loaded weights.
+        """
+        data = torch.load(path, map_location=device, weights_only=False)
+        sae = cls(**data["config"])
+        sae.load_state_dict(data["state_dict"])
+        sae = sae.to(device)
+        return sae
 
     def __repr__(self) -> str:
         return (

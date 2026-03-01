@@ -76,6 +76,10 @@ def audit(
     if device is None:
         dev = get_device()
         device_str = str(dev)
+    elif device == "mlx":
+        # MLX models don't use torch devices
+        device_str = "mlx"
+        dev = None
     else:
         device_str = device
         dev = torch.device(device)

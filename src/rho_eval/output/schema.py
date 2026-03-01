@@ -151,6 +151,61 @@ class AuditReport:
 
         return report
 
+    # ── Category disaggregation ──────────────────────────────────────
+
+    def category_report(self, behavior_name: str = "bias") -> dict[str, dict]:
+        """Extract per-category metrics for a behavior.
+
+        Args:
+            behavior_name: Name of the behavior to disaggregate.
+
+        Returns:
+            Dict mapping category name → {accuracy, n, biased_rate}.
+            Empty dict if behavior not found or no category_metrics.
+        """
+        if behavior_name not in self.behaviors:
+            return {}
+        result = self.behaviors[behavior_name]
+        return result.metadata.get("category_metrics", {})
+
+    def source_report(self, behavior_name: str = "bias") -> dict[str, dict]:
+        """Extract per-source metrics for a behavior.
+
+        Args:
+            behavior_name: Name of the behavior to disaggregate.
+
+        Returns:
+            Dict mapping source name → {accuracy, n}.
+        """
+        if behavior_name not in self.behaviors:
+            return {}
+        result = self.behaviors[behavior_name]
+        return result.metadata.get("source_metrics", {})
+
+    def categories_summary_table(self, behavior_name: str = "bias") -> str:
+        """ASCII table of per-category metrics.
+
+        Args:
+            behavior_name: Behavior to disaggregate.
+
+        Returns:
+            Formatted table string, or "No category metrics available."
+        """
+        metrics = self.category_report(behavior_name)
+        if not metrics:
+            return "No category metrics available."
+
+        lines = [
+            f"  {'Category':<25s}  {'Acc':>6s}  {'N':>4s}  {'Biased%':>7s}",
+            "  " + "─" * 46,
+        ]
+        for cat, data in sorted(metrics.items(), key=lambda x: -x[1]["accuracy"]):
+            lines.append(
+                f"  {cat:<25s}  {data['accuracy']:>5.1%}  "
+                f"{data['n']:>4d}  {data['biased_rate']:>6.1%}"
+            )
+        return "\n".join(lines)
+
     # ── DataFrame export (optional pandas) ────────────────────────────
 
     def to_dataframe(self):
