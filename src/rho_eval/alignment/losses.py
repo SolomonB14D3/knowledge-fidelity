@@ -146,3 +146,46 @@ def rho_auxiliary_loss(
         losses.append(loss)
 
     return torch.stack(losses).mean()
+
+
+def gamma_protection_loss(
+    model,
+    tokenizer,
+    protection_pairs: list[dict],
+    margin: float = 0.1,
+    device: str = "cpu",
+    max_length: int = 256,
+) -> torch.Tensor:
+    """Penalize confidence drops on protected behavior pairs during SFT.
+
+    This is the γ term in the Rho-Surgery loss:
+
+        L = L_ce + ρ * L_contrast(target) + γ * L_protect(collateral)
+
+    It applies the same contrastive margin loss as rho_auxiliary_loss() but
+    to a DIFFERENT behavior than the target being corrected. For example,
+    when training to reduce sycophancy (ρ loss on sycophancy pairs), the γ
+    loss can protect bias correctness by penalizing confidence drops on
+    bias contrast pairs.
+
+    The function is behavior-agnostic — the caller controls which probes
+    are passed via the protection_pairs argument.
+
+    Args:
+        model: HuggingFace CausalLM.
+        tokenizer: Corresponding tokenizer.
+        protection_pairs: List of dicts with 'positive' and 'negative' keys.
+            These come from the protected behavior (e.g., bias pairs),
+            NOT the target behavior (e.g., sycophancy).
+        margin: Minimum desired confidence gap per pair.
+        device: Torch device string.
+        max_length: Maximum token length per text.
+
+    Returns:
+        Scalar tensor: mean contrastive loss over protection pairs.
+        Returns 0.0 tensor if protection_pairs is empty.
+    """
+    return rho_auxiliary_loss(
+        model, tokenizer, protection_pairs,
+        margin=margin, device=device, max_length=max_length,
+    )

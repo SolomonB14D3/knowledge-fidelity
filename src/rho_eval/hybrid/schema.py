@@ -87,6 +87,26 @@ class HybridConfig:
     """Contrastive loss margin: desired gap between positive
     and negative pair confidence."""
 
+    # ── Rho-Surgery protection ─────────────────────────────────────────────
+    gamma_weight: float = 0.0
+    """Weight of the γ protection loss (0.0 = no protection).
+    Penalizes confidence drops on protected behavior pairs during
+    target behavior SFT. Part of the Rho-Surgery pipeline."""
+
+    protection_behaviors: tuple[str, ...] = ()
+    """Behaviors to protect with γ loss (e.g., ("bias",)).
+    Loads contrast pairs from these behaviors for the protection loss."""
+
+    protection_categories: tuple[str, ...] = ()
+    """Specific categories to protect (e.g., ("Age", "Religion")).
+    If set, filters protection pairs to only these categories.
+    Only applies to behaviors that support category filtering (e.g., bias)."""
+
+    surgical_plan_path: Optional[str] = None
+    """Path to a SurgicalPlan JSON file. If provided, overrides
+    gamma_weight, protection_behaviors, and protection_categories
+    from the plan's recommendations."""
+
     # ── Evaluation ────────────────────────────────────────────────────────
     eval_behaviors: tuple[str, ...] = ("all",)
     """Behaviors to evaluate in before/after audit.
@@ -113,7 +133,11 @@ class HybridConfig:
         path = Path(path)
         data = json.loads(path.read_text())
         # Convert lists back to tuples for frozen fields
-        for key in ("compress_targets", "target_behaviors", "eval_behaviors"):
+        tuple_fields = (
+            "compress_targets", "target_behaviors", "eval_behaviors",
+            "protection_behaviors", "protection_categories",
+        )
+        for key in tuple_fields:
             if key in data and isinstance(data[key], list):
                 data[key] = tuple(data[key])
         return cls(**data)
@@ -129,6 +153,10 @@ class HybridConfig:
     @property
     def training_time_enabled(self) -> bool:
         return self.rho_weight > 0.0
+
+    @property
+    def protection_enabled(self) -> bool:
+        return self.gamma_weight > 0.0 and len(self.protection_behaviors) > 0
 
     @property
     def enabled_phases(self) -> list[str]:
