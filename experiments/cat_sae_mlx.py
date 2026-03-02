@@ -499,11 +499,44 @@ def category_feature_census(
 # ── Phase 4: Weighted Protection Dataset ───────────────────────────────
 
 
+# ── Per-Category Floor Overrides ──────────────────────────────────────
+#
+# WHY: SAE vulnerability scoring under-weights categories whose bias
+# features are poorly represented in the sycophancy feature subspace.
+# Age got vuln=0.162 → 0.7x weight, causing -5.9% regression, even
+# though Age is empirically one of the most surgery-damaged categories.
+#
+# The manual override approach (setting vuln=0.5) was catastrophic
+# (bias 0.833 → 0.277) because it broke the SAE calibration globally.
+#
+# SOLUTION: Per-category floor on the *raw weight* (not vuln score).
+# This preserves SAE-informed relative ordering (Religion still gets
+# its boost from genuine sycophancy feature entanglement) while
+# guaranteeing known-vulnerable categories get at least baseline
+# protection. Think of it as: "trust the SAE ranking, but don't let
+# any known-vulnerable category fall below equal weight."
+#
+# Edit this dict to experiment with different floors per category.
+# A floor of 1.0 means "at least equal weight before normalization."
+# Set to None or omit a category to use pure SAE weighting.
+
+FLOOR_OVERRIDES: dict[str, float] = {
+    "Age": 1.0,                         # SAE under-weights (vuln=0.162), known high-damage
+    "Gender_biology": 1.0,              # SAE under-weights, empirically vulnerable
+    "Race_ethnicity": 1.0,              # SAE under-weights (vuln~0.15), known high-damage
+    "Sexual_orientation_biology": 1.0,  # Moderate SAE signal, ensure baseline protection
+    "Religion": 1.0,                    # SAE correctly boosts this — floor is redundant
+                                        # but included for symmetry; SAE weight > 1.0
+                                        # anyway so floor never activates
+}
+
+
 def build_weighted_protection(
     vulnerability: dict,
     categories_to_protect: list[str],
     base_pairs_per_category: int = 50,
     weight_floor: float | None = None,
+    floor_overrides: dict[str, float] | None = None,
     verbose: bool = True,
 ):
     """Build a protection dataset with vulnerability-weighted oversampling.
@@ -512,26 +545,38 @@ def build_weighted_protection(
     providing stronger gamma gradient signal during SFT.
 
     Args:
-        weight_floor: If set, applies max(raw_weight, floor) before normalization.
-            Use 1.0 to ensure no category gets less than baseline equal protection
-            while SAE-informed categories still get their boost.
-            Fixes Age under-weighting (0.162 vuln → 0.7x) without manual overrides.
+        weight_floor: Blanket floor applied to ALL categories.
+            Use 1.0 to ensure no category gets less than baseline weight.
+        floor_overrides: Per-category floors — dict mapping category name
+            to minimum raw weight. Takes precedence over weight_floor for
+            categories present in both. Use this for surgical control:
+            e.g., {"Age": 1.0, "Religion": 1.0} ensures these specific
+            categories get at least 1.0x raw weight while others use
+            pure SAE weighting.
 
     Returns:
         BehavioralContrastDataset-like object with .pairs and .sample() method.
     """
     from rho_eval.alignment.dataset import BehavioralContrastDataset
 
+    if floor_overrides is None:
+        floor_overrides = {}
+
     # Compute per-category weights
     weights = {}
+    floored_cats = []
     for cat in categories_to_protect:
         vuln = vulnerability.get(cat, {})
         score = vuln.get("vulnerability_score", 0.5)
         # Scale: 0.0 → 0.5x, 0.5 → 1.5x, 1.0 → 2.5x
         raw_weight = 0.5 + 2.0 * score
-        # Apply floor if specified — prevents under-weighting
-        if weight_floor is not None:
-            raw_weight = max(raw_weight, weight_floor)
+
+        # Apply per-category floor (highest priority)
+        cat_floor = floor_overrides.get(cat, weight_floor)
+        if cat_floor is not None and raw_weight < cat_floor:
+            floored_cats.append((cat, raw_weight, cat_floor))
+            raw_weight = cat_floor
+
         weights[cat] = raw_weight
 
     # Normalize: average weight = 1.0
@@ -541,12 +586,22 @@ def build_weighted_protection(
             weights[cat] /= mean_w
 
     if verbose:
-        floor_str = f", floor={weight_floor}" if weight_floor is not None else ""
+        has_floors = weight_floor is not None or floor_overrides
+        floor_str = ""
+        if has_floors:
+            floor_str = " (with floors)"
         print(f"  Category protection weights{floor_str}:")
         for cat in sorted(weights, key=weights.get, reverse=True):
             vuln_score = vulnerability.get(cat, {}).get("vulnerability_score", 0)
+            floor_marker = ""
+            if cat in floor_overrides:
+                floor_marker = f" [floor={floor_overrides[cat]}]"
             print(f"    {cat:<30s} weight={weights[cat]:.2f}x "
-                  f"(vuln={vuln_score:.3f})")
+                  f"(vuln={vuln_score:.3f}){floor_marker}")
+        if floored_cats:
+            print(f"  Floor activated on {len(floored_cats)} categories:")
+            for cat, old_w, floor in floored_cats:
+                print(f"    {cat}: {old_w:.3f} → {floor:.3f}")
 
     # Build per-category datasets and merge
     all_pairs = []
@@ -793,9 +848,15 @@ def main():
     parser.add_argument("--max-probes", type=int, default=150)
     parser.add_argument(
         "--weight-floor", type=float, default=None,
-        help="Floor on raw protection weight before normalization. "
+        help="Blanket floor on raw protection weight for ALL categories. "
              "Use 1.0 to ensure no category gets < 1x baseline weight. "
-             "Fixes Age under-weighting without manual SAE score overrides.",
+             "For per-category control, use --use-floor-overrides instead.",
+    )
+    parser.add_argument(
+        "--use-floor-overrides", action="store_true",
+        help="Use per-category floor overrides from FLOOR_OVERRIDES dict. "
+             "Edit the dict in cat_sae_mlx.py for fine-grained control. "
+             "Combines with --weight-floor (per-cat takes precedence).",
     )
     parser.add_argument(
         "--categories", nargs="+", default=None,
@@ -809,11 +870,17 @@ def main():
     args = parser.parse_args()
 
     model_short = args.model.split("/")[-1]
-    # Use descriptive subdirectory when floor is set
-    if args.weight_floor is not None:
-        tag = f"floor_{args.weight_floor:.1f}"
-        if args.categories:
-            tag += f"_{len(args.categories)}cat"
+    # Use descriptive subdirectory when floors are active
+    if args.use_floor_overrides or args.weight_floor is not None:
+        parts = []
+        if args.use_floor_overrides:
+            parts.append("percat")
+        if args.weight_floor is not None:
+            parts.append(f"blanket{args.weight_floor:.1f}")
+        n_cats = len(args.categories) if args.categories else 0
+        if n_cats:
+            parts.append(f"{n_cats}cat")
+        tag = "_".join(parts) if parts else "floor"
         output_dir = Path(args.output) / model_short / tag
     else:
         output_dir = Path(args.output) / model_short
@@ -824,8 +891,13 @@ def main():
     print(f"  Model:  {args.model}", flush=True)
     print(f"  Output: {output_dir}", flush=True)
     print(f"  Gamma:  {args.gamma}  Rho: {args.rho}  SVD: {args.compress_ratio}", flush=True)
-    if args.weight_floor is not None:
-        print(f"  Floor:  {args.weight_floor} (hybrid floor weighting)", flush=True)
+    if args.weight_floor is not None or args.use_floor_overrides:
+        parts = []
+        if args.weight_floor is not None:
+            parts.append(f"blanket={args.weight_floor}")
+        if args.use_floor_overrides:
+            parts.append(f"per-cat overrides on {len(FLOOR_OVERRIDES)} categories")
+        print(f"  Floors: {', '.join(parts)}", flush=True)
     if args.categories:
         print(f"  Categories: {', '.join(args.categories)}", flush=True)
     print(f"{'='*70}\n", flush=True)
@@ -948,15 +1020,27 @@ def main():
         ]
         cats_to_protect = sorted(set(known_protect) | set(sae_protect))
 
+    # Resolve floor configuration
+    active_floors = {}
+    if args.use_floor_overrides:
+        # Per-category floors from the FLOOR_OVERRIDES dict at top of file
+        active_floors = {
+            cat: floor for cat, floor in FLOOR_OVERRIDES.items()
+            if cat in cats_to_protect
+        }
+        print(f"  Per-category floor overrides (from FLOOR_OVERRIDES):", flush=True)
+        for cat, floor in sorted(active_floors.items()):
+            print(f"    {cat}: min raw weight = {floor}", flush=True)
+
     if args.weight_floor is not None:
-        print(f"  Weight floor: {args.weight_floor} "
-              f"(no category gets < {args.weight_floor}x before normalization)",
-              flush=True)
+        print(f"  Blanket weight floor: {args.weight_floor} "
+              f"(fallback for categories without per-cat override)", flush=True)
 
     protection_dataset, weights, cat_counts = build_weighted_protection(
         vulnerability, cats_to_protect,
         base_pairs_per_category=50,
         weight_floor=args.weight_floor,
+        floor_overrides=active_floors if active_floors else None,
     )
 
     # ══════════════════════════════════════════════════════════════
@@ -1017,6 +1101,7 @@ def main():
             "compress_ratio": args.compress_ratio,
             "max_probes": args.max_probes,
             "weight_floor": args.weight_floor,
+            "floor_overrides": active_floors if active_floors else None,
             "categories": cats_to_protect,
         },
         "sae_stats": sae_stats,
