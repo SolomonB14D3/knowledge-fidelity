@@ -331,6 +331,248 @@ def calibrate_gate(
     return calibration
 
 
+# ── Entropy Map ──────────────────────────────────────────────────────
+
+
+def entropy_map(
+    model,
+    tokenizer,
+    n_probes=50,
+    layer_step=1,
+    specific_layers=None,
+    verbose=True,
+):
+    """Generate comprehensive entropy map across model layers.
+
+    Scans layers measuring logit-lens entropy for truthful vs sycophantic
+    completions at each. Produces the "Truth Highway" visualization data
+    showing where sycophantic internal states diverge from truthful ones.
+
+    Inspired by Arjtriv's fail-closed verification approach: map the
+    full entropy landscape first, then set precise gate coordinates.
+
+    Args:
+        model: MLX model.
+        tokenizer: Tokenizer.
+        n_probes: Number of sycophancy probes for calibration.
+        layer_step: Scan every Nth layer (default=1 = all layers).
+        specific_layers: If given, scan only these layers (overrides step).
+        verbose: Print progress.
+
+    Returns:
+        dict with per-layer entropy stats, optimal gate candidates, and
+        raw per-probe entropy values for visualization.
+    """
+    import mlx.core as mx
+
+    n_layers = len(model.model.layers)
+    if specific_layers is not None:
+        scan_layers = sorted(specific_layers)
+    else:
+        scan_layers = list(range(0, n_layers, layer_step))
+
+    if verbose:
+        print(f"  Scanning {len(scan_layers)} layers "
+              f"(of {n_layers} total): {scan_layers}")
+
+    # Load sycophancy probes
+    from rho_eval.behaviors import get_behavior
+    syc_beh = get_behavior("sycophancy")
+    probes = syc_beh.load_probes(seed=42)
+    rng = random.Random(42)
+    if len(probes) > n_probes:
+        probes = rng.sample(probes, n_probes)
+
+    if verbose:
+        print(f"  Mapping entropy on {len(probes)} probes...", flush=True)
+
+    # Collect per-layer, per-probe entropy
+    # Structure: {layer: {"truthful": [e1, e2, ...], "sycophantic": [e1, e2, ...]}}
+    layer_data = {li: {"truthful": [], "sycophantic": []} for li in scan_layers}
+
+    # Process in batches of layers to manage memory
+    # (capturing all layers at once uses significant memory on 7B)
+    BATCH_SIZE = 4  # layers per forward pass
+    layer_batches = [
+        scan_layers[i:i + BATCH_SIZE]
+        for i in range(0, len(scan_layers), BATCH_SIZE)
+    ]
+
+    for bi, layer_batch in enumerate(layer_batches):
+        _mlx_patch_for_gate(model, layer_batch)
+
+        for pi, probe in enumerate(probes):
+            question = probe["text"]
+            truthful_ans = probe["truthful_answer"]
+            sycophantic_ans = probe["sycophantic_answer"]
+
+            for label, answer in [
+                ("truthful", truthful_ans),
+                ("sycophantic", sycophantic_ans),
+            ]:
+                text = f"{question}\n{answer}"
+                tokens = tokenizer.encode(text)
+                if len(tokens) > 256:
+                    tokens = tokens[:256]
+
+                input_ids = mx.array([tokens])
+                _gate_capture["hidden"] = {}
+                _gate_capture["active"] = True
+
+                model(input_ids)
+                mx.eval(model.parameters())
+
+                _gate_capture["active"] = False
+
+                for li in layer_batch:
+                    if li not in _gate_capture["hidden"]:
+                        continue
+                    h = _gate_capture["hidden"][li]
+                    mx.eval(h)
+                    h_np = np.array(h[0, -1, :].astype(mx.float32))
+                    ent = _mlx_logit_lens_entropy(model, h_np)
+                    layer_data[li][label].append(ent)
+
+                _gate_capture["hidden"] = {}
+
+            if verbose and (pi + 1) % 10 == 0:
+                print(f"    Batch {bi+1}/{len(layer_batches)}: "
+                      f"{pi+1}/{len(probes)} probes", flush=True)
+
+        _mlx_unpatch_gate(model)
+
+    # Compute per-layer statistics
+    layer_stats = {}
+    for li in scan_layers:
+        t_ent = np.array(layer_data[li]["truthful"])
+        s_ent = np.array(layer_data[li]["sycophantic"])
+
+        if len(t_ent) == 0 or len(s_ent) == 0:
+            continue
+
+        t_mean, t_std = float(t_ent.mean()), float(t_ent.std())
+        s_mean, s_std = float(s_ent.mean()), float(s_ent.std())
+        delta = s_mean - t_mean
+
+        # Cohen's d for effect size
+        pooled_std = np.sqrt((t_std**2 + s_std**2) / 2) if (t_std + s_std) > 0 else 1e-6
+        cohens_d = delta / pooled_std
+
+        # Optimal threshold for this layer (minimize error)
+        # Sweep thresholds and find best F1
+        all_ent = np.concatenate([t_ent, s_ent])
+        labels = np.array([0] * len(t_ent) + [1] * len(s_ent))  # 0=truthful, 1=syc
+        best_f1, best_thresh = 0, t_mean
+        for pct in np.linspace(0, 1, 51):
+            thresh = np.percentile(all_ent, pct * 100)
+            pred = (all_ent > thresh).astype(int)
+            tp = ((pred == 1) & (labels == 1)).sum()
+            fp = ((pred == 1) & (labels == 0)).sum()
+            fn = ((pred == 0) & (labels == 1)).sum()
+            precision = tp / max(tp + fp, 1)
+            recall = tp / max(tp + fn, 1)
+            f1 = 2 * precision * recall / max(precision + recall, 1e-6)
+            if f1 > best_f1:
+                best_f1 = f1
+                best_thresh = float(thresh)
+
+        # Detection rate and FP rate at optimal threshold
+        detection_rate = float((s_ent > best_thresh).mean())
+        false_positive_rate = float((t_ent > best_thresh).mean())
+
+        # Also compute at the "1.0 bit mark" (truthful_mean + 1.0 bit)
+        bit_mark_thresh = t_mean + 1.0
+        bit_mark_detection = float((s_ent > bit_mark_thresh).mean())
+        bit_mark_fp = float((t_ent > bit_mark_thresh).mean())
+
+        layer_stats[li] = {
+            "truthful_mean": round(t_mean, 4),
+            "truthful_std": round(t_std, 4),
+            "sycophantic_mean": round(s_mean, 4),
+            "sycophantic_std": round(s_std, 4),
+            "entropy_delta": round(delta, 4),
+            "cohens_d": round(cohens_d, 4),
+            "optimal_threshold": round(best_thresh, 4),
+            "optimal_f1": round(best_f1, 4),
+            "detection_rate": round(detection_rate, 4),
+            "false_positive_rate": round(false_positive_rate, 4),
+            "bit_mark_threshold": round(bit_mark_thresh, 4),
+            "bit_mark_detection": round(bit_mark_detection, 4),
+            "bit_mark_fp": round(bit_mark_fp, 4),
+            "n_probes": len(t_ent),
+        }
+
+    # Rank layers by gate quality (absolute separation, regardless of direction)
+    ranked = sorted(
+        layer_stats.items(),
+        key=lambda x: abs(x[1]["cohens_d"]),
+        reverse=True,
+    )
+
+    # Print table
+    if verbose:
+        print(f"\n  {'='*85}")
+        print(f"  ENTROPY MAP — {n_layers}-layer model, {len(probes)} probes")
+        print(f"  {'='*85}")
+        print(f"  {'Layer':>5s} {'T_mean':>7s} {'S_mean':>7s} {'Δ(bits)':>8s} "
+              f"{'Cohen_d':>8s} {'F1':>6s} {'Det%':>6s} {'FP%':>6s} "
+              f"{'1bit_Det':>8s} {'1bit_FP':>8s}")
+        print(f"  {'-'*85}")
+
+        for li in scan_layers:
+            if li not in layer_stats:
+                continue
+            s = layer_stats[li]
+            # Highlight the best gate layer
+            marker = " <-- BEST" if ranked and ranked[0][0] == li else ""
+            print(f"  L{li:>3d} {s['truthful_mean']:>7.3f} {s['sycophantic_mean']:>7.3f} "
+                  f"{s['entropy_delta']:>+8.3f} {s['cohens_d']:>8.3f} "
+                  f"{s['optimal_f1']:>6.3f} {s['detection_rate']:>5.1%} "
+                  f"{s['false_positive_rate']:>5.1%} "
+                  f"{s['bit_mark_detection']:>7.1%} {s['bit_mark_fp']:>7.1%}"
+                  f"{marker}")
+
+        print(f"  {'-'*85}")
+        if ranked:
+            best_li, best_stats = ranked[0]
+            print(f"\n  Recommended gate layer: L{best_li}")
+            print(f"    Cohen's d = {best_stats['cohens_d']:.3f} "
+                  f"(delta = {best_stats['entropy_delta']:+.3f} bits)")
+            print(f"    Optimal F1 = {best_stats['optimal_f1']:.3f} "
+                  f"(det={best_stats['detection_rate']:.1%}, "
+                  f"FP={best_stats['false_positive_rate']:.1%})")
+            print(f"    At 1.0-bit mark: "
+                  f"det={best_stats['bit_mark_detection']:.1%}, "
+                  f"FP={best_stats['bit_mark_fp']:.1%}")
+
+        # Top 3 candidates
+        if len(ranked) >= 3:
+            print(f"\n  Top 3 gate candidates:")
+            for i, (li, stats) in enumerate(ranked[:3]):
+                print(f"    {i+1}. L{li}: d={stats['cohens_d']:.3f}, "
+                      f"Δ={stats['entropy_delta']:+.3f}, "
+                      f"F1={stats['optimal_f1']:.3f}")
+
+    result = {
+        "n_layers": n_layers,
+        "scan_layers": scan_layers,
+        "n_probes": len(probes),
+        "layer_stats": {str(k): v for k, v in layer_stats.items()},
+        "ranking": [{"layer": li, **stats} for li, stats in ranked],
+        # Raw per-probe entropy values for plotting
+        "raw_entropy": {
+            str(li): {
+                "truthful": [round(v, 4) for v in layer_data[li]["truthful"]],
+                "sycophantic": [round(v, 4) for v in layer_data[li]["sycophantic"]],
+            }
+            for li in scan_layers
+            if len(layer_data[li]["truthful"]) > 0
+        },
+    }
+
+    return result
+
+
 # ── Gated Generation ─────────────────────────────────────────────────
 
 
@@ -640,6 +882,10 @@ def main(argv=None):
     parser.add_argument("--max-tokens", type=int, default=50)
     parser.add_argument("--demo", action="store_true",
                        help="Interactive demo: generate with gate on user prompts")
+    parser.add_argument("--entropy-map", action="store_true",
+                       help="Comprehensive multi-layer entropy map (scans all layers)")
+    parser.add_argument("--layer-step", type=int, default=1,
+                       help="Layer scan step for --entropy-map (default: 1 = every layer)")
     parser.add_argument("--device", type=str, default="auto",
                        choices=["auto", "mlx", "cuda", "cpu"])
     parser.add_argument("-o", "--output", type=str, default=None)
@@ -669,6 +915,30 @@ def main(argv=None):
     if backend != "mlx":
         print("  ERROR: Invariant gate currently requires MLX backend")
         return 1
+
+    # ── Entropy Map Mode ──────────────────────────────────────────
+    if args.entropy_map:
+        print(f"\n  Running comprehensive entropy map...", flush=True)
+        t0 = time.time()
+        emap = entropy_map(
+            model, tokenizer,
+            n_probes=args.n_cal_probes,
+            layer_step=args.layer_step,
+            specific_layers=args.gate_layers,  # --gate-layers narrows to specific layers
+        )
+        map_time = time.time() - t0
+        print(f"\n  Entropy map complete in {map_time:.0f}s ({map_time/60:.1f} min)",
+              flush=True)
+
+        # Save
+        map_path = output_dir / "entropy_map.json"
+        map_path.write_text(json.dumps(emap, indent=2))
+        print(f"  Saved: {map_path}")
+
+        elapsed = time.time() - t_start
+        print(f"\n  Total time: {elapsed:.0f}s ({elapsed/60:.1f} min)")
+        print(f"{'='*60}\n")
+        return 0
 
     # ── Calibration ───────────────────────────────────────────────
     if args.calibration:
