@@ -4,11 +4,17 @@
 Runs the full Rho-Surgery pipeline: diagnose → SVD compress → LoRA SFT
 with γ protection → verify → save repaired model.
 
+Works on any platform:
+  - Apple Silicon: uses MLX (fast, native GPU)
+  - CUDA: uses PyTorch + CUDA
+  - CPU: uses PyTorch on CPU (slow but portable)
+
 Usage:
     rho-surgery Qwen/Qwen2.5-7B-Instruct -o ./repaired-7b/
     rho-surgery Qwen/Qwen2.5-7B-Instruct --strategy conservative -o ./repaired-7b/
     rho-surgery Qwen/Qwen2.5-7B-Instruct --plan plan.json -o ./repaired-7b/
     rho-surgery Qwen/Qwen2.5-7B-Instruct --no-save
+    rho-surgery Qwen/Qwen2.5-7B-Instruct --device cuda -o ./repaired-7b/
 """
 
 import argparse
@@ -39,6 +45,9 @@ Examples:
 
   # Metrics only (no model save)
   rho-surgery Qwen/Qwen2.5-7B-Instruct --no-save
+
+  # Force CUDA backend (for cloud GPUs)
+  rho-surgery Qwen/Qwen2.5-7B-Instruct --device cuda -o ./repaired-7b/
 """,
     )
 
@@ -87,6 +96,11 @@ Examples:
         default="table",
         help="Output format (default: table)",
     )
+    output_group.add_argument(
+        "--device", type=str, default="auto",
+        choices=["auto", "mlx", "cuda", "cpu"],
+        help="Backend: auto (MLX on Apple Silicon, CUDA, CPU), mlx, cuda, cpu (default: auto)",
+    )
 
     args = parser.parse_args(argv)
 
@@ -104,14 +118,15 @@ Examples:
     if args.gamma is not None:
         print(f"  Gamma:    {args.gamma} (override)")
     print(f"  Compress: {args.compress}")
+    print(f"  Device:   {args.device}")
     print(f"  Save:     {args.output or 'disabled'}")
     print(f"{'='*60}\n")
 
     # ── Step 1: Load model ──────────────────────────────────────────
     print("  Step 1: Loading model...", flush=True)
-    import mlx_lm
-    model, tokenizer = mlx_lm.load(args.model)
-    print(f"  Model loaded.", flush=True)
+    from rho_eval.utils import load_model
+    model, tokenizer, backend = load_model(args.model, device=args.device)
+    print(f"  Model loaded (backend={backend}).", flush=True)
 
     # ── Step 2: Baseline audit ──────────────────────────────────────
     print("\n  Step 2: Baseline audit...", flush=True)
@@ -146,13 +161,16 @@ Examples:
 
     # ── Step 4: SVD compression ─────────────────────────────────────
     print("\n  Step 4: SVD compression...", flush=True)
-    from rho_eval.alignment.mlx_trainer import mlx_svd_compress
-    n_compressed = mlx_svd_compress(model, keep_ratio=plan.compress_ratio)
+    if backend == "mlx":
+        from rho_eval.alignment.mlx_trainer import mlx_svd_compress
+        n_compressed = mlx_svd_compress(model, keep_ratio=plan.compress_ratio)
+    else:
+        from rho_eval.svd.compress import compress_qko
+        n_compressed = compress_qko(model, ratio=plan.compress_ratio)
     print(f"  Compressed {n_compressed} matrices.", flush=True)
 
     # ── Step 5: LoRA SFT ────────────────────────────────────────────
     print("\n  Step 5: LoRA SFT with rho + gamma protection...", flush=True)
-    from rho_eval.alignment.mlx_trainer import mlx_rho_guided_sft
     from rho_eval.alignment.dataset import BehavioralContrastDataset
 
     # Build contrast dataset (sycophancy = target behavior)
@@ -169,26 +187,58 @@ Examples:
             seed=42,
         )
 
-    # SFT texts (from sycophancy positive examples)
-    sft_texts = [p for p, _ in contrast_dataset.pairs()]
-
     # Determine save path
     save_path = None
     if not args.no_save:
         save_path = str(Path(args.output) / "model")
 
-    sft_result = mlx_rho_guided_sft(
-        model, tokenizer,
-        sft_texts,
-        contrast_dataset=contrast_dataset,
-        rho_weight=plan.rho_weight,
-        gamma_weight=plan.gamma_weight,
-        protection_dataset=protection_dataset,
-        epochs=1,
-        lr=2e-4,
-        margin=0.1,
-        save_path=save_path,
-    )
+    if backend == "mlx":
+        # MLX SFT (Apple Silicon GPU)
+        from rho_eval.alignment.mlx_trainer import mlx_rho_guided_sft
+
+        sft_texts = [p for p, _ in contrast_dataset.pairs()]
+        sft_result = mlx_rho_guided_sft(
+            model, tokenizer,
+            sft_texts,
+            contrast_dataset=contrast_dataset,
+            rho_weight=plan.rho_weight,
+            gamma_weight=plan.gamma_weight,
+            protection_dataset=protection_dataset,
+            epochs=1,
+            lr=2e-4,
+            margin=0.1,
+            save_path=save_path,
+        )
+    else:
+        # PyTorch SFT (CUDA or CPU)
+        from rho_eval.alignment.trainer import rho_guided_sft
+        from rho_eval.calibration import TextDataset
+
+        sft_texts = [p for p, _ in contrast_dataset.pairs()]
+        sft_dataset = TextDataset(sft_texts, tokenizer)
+        sft_result = rho_guided_sft(
+            model, tokenizer,
+            sft_dataset,
+            contrast_dataset=contrast_dataset,
+            rho_weight=plan.rho_weight,
+            gamma_weight=plan.gamma_weight,
+            protection_dataset=protection_dataset,
+            epochs=1,
+            lr=2e-4,
+            margin=0.1,
+            device=args.device if args.device != "auto" else "cpu",
+        )
+
+        # PyTorch: save model using HuggingFace save_pretrained
+        if save_path is not None:
+            save_dir = Path(save_path)
+            save_dir.mkdir(parents=True, exist_ok=True)
+            # Get merged model from sft_result
+            merged_model = sft_result.get("merged_model", model)
+            merged_model.save_pretrained(str(save_dir))
+            tokenizer.save_pretrained(str(save_dir))
+            print(f"  Model saved to {save_dir}/", flush=True)
+
     print(f"  SFT complete: {sft_result['steps']} steps, "
           f"{sft_result['time']:.0f}s", flush=True)
 
@@ -202,7 +252,6 @@ Examples:
 
     # ── Step 7: Compare & output ────────────────────────────────────
     print("\n  Step 7: Results", flush=True)
-    from rho_eval.output.exporters import to_table, to_json, to_markdown
 
     # Build comparison
     print(f"\n  {'Behavior':<14s} {'Baseline':>9s} {'Final':>9s} {'Delta':>9s}")
@@ -237,6 +286,7 @@ Examples:
         result = {
             "model": args.model,
             "strategy": args.strategy,
+            "backend": backend,
             "config": {
                 "compress_ratio": plan.compress_ratio,
                 "rho_weight": plan.rho_weight,

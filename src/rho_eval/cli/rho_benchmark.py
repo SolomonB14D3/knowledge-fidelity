@@ -96,6 +96,11 @@ Examples:
         "-o", "--output", type=str, default=None,
         help="Save report to file or directory",
     )
+    output_group.add_argument(
+        "--device", type=str, default="auto",
+        choices=["auto", "mlx", "cuda", "cpu"],
+        help="Backend: auto (MLX on Apple Silicon, CUDA, CPU), mlx, cuda, cpu (default: auto)",
+    )
 
     args = parser.parse_args(argv)
 
@@ -131,9 +136,9 @@ Examples:
 
     # ── Step 1: Load model ─────────────────────────────────────────
     print("  Step 1: Loading model...", flush=True)
-    import mlx_lm
-    model, tokenizer = mlx_lm.load(args.model)
-    print(f"  Model loaded: {args.model}", flush=True)
+    from rho_eval.utils import load_model
+    model, tokenizer, backend = load_model(args.model, device=args.device)
+    print(f"  Model loaded: {args.model} (backend={backend})", flush=True)
 
     # ── Step 2: Internal audit ─────────────────────────────────────
     print("\n  Step 2: Internal audit (rho-eval)...", flush=True)
@@ -173,7 +178,7 @@ Examples:
         gc.collect()
 
         print("  Loading baseline model...", flush=True)
-        base_model, base_tokenizer = mlx_lm.load(args.baseline)
+        base_model, base_tokenizer, _ = load_model(args.baseline, device=args.device)
         print("  Baseline loaded.", flush=True)
 
         # Baseline audit
