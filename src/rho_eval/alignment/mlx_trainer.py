@@ -223,6 +223,45 @@ def _fuse_lora(model):
         model.update_modules(tree_unflatten(fused_layers))
 
 
+def _flatten_grad(grad_tree) -> mx.array:
+    """Flatten a gradient tree (nested dicts) into a single 1-D vector.
+
+    Used for computing gradient norms and cosine similarities between
+    gradient components (CE vs rho vs gamma).
+    """
+    leaves = [v.reshape(-1) for _, v in tree_flatten(grad_tree)]
+    if not leaves:
+        return mx.zeros((1,))
+    return mx.concatenate(leaves)
+
+
+def _save_lora_checkpoint(model, step: int, checkpoint_dir: str):
+    """Save LoRA adapter weights only (not the full model).
+
+    Saves ~16 MB per checkpoint for rank-8 on 7B, vs ~15 GB for full model.
+    Only saves lora_a and lora_b parameters from LoRALinear modules.
+    """
+    import numpy as np
+    from pathlib import Path
+    from mlx_lm.tuner.lora import LoRALinear
+
+    save_dir = Path(checkpoint_dir)
+    save_dir.mkdir(parents=True, exist_ok=True)
+
+    lora_weights = {}
+    for name, module in model.named_modules():
+        if isinstance(module, LoRALinear):
+            lora_weights[f"{name}.lora_a"] = np.array(module.lora_a)
+            lora_weights[f"{name}.lora_b"] = np.array(module.lora_b)
+
+    path = save_dir / f"lora_step_{step:04d}.npz"
+    np.savez(path, **lora_weights)
+    n_params = sum(v.size for v in lora_weights.values())
+    size_mb = sum(v.nbytes for v in lora_weights.values()) / 1e6
+    print(f"  [checkpoint] step {step}: saved {len(lora_weights)} arrays, "
+          f"{n_params:,} params, {size_mb:.1f} MB → {path}", flush=True)
+
+
 # ── Training Loop ───────────────────────────────────────────────────────
 
 def mlx_rho_guided_sft(
@@ -248,6 +287,9 @@ def mlx_rho_guided_sft(
     weight_decay: float = 0.01,
     max_length: int = 256,
     save_path: Optional[str] = None,
+    checkpoint_steps: Optional[list[int]] = None,
+    checkpoint_dir: Optional[str] = None,
+    gradient_log_path: Optional[str] = None,
     verbose: bool = True,
 ) -> dict:
     """Run rho-guided SFT with combined CE + contrastive + protection loss on MLX.
@@ -390,6 +432,29 @@ def mlx_rho_guided_sft(
 
     loss_and_grad_fn = nn.value_and_grad(model, sft_loss_fn)
 
+    # ── Gradient Telemetry Setup ──────────────────────────────────────
+    grad_log_file = None
+    if gradient_log_path:
+        from pathlib import Path
+        Path(gradient_log_path).parent.mkdir(parents=True, exist_ok=True)
+        grad_log_file = open(gradient_log_path, "w")
+        grad_log_file.write(
+            "step,ce_loss,rho_loss,gamma_loss,"
+            "ce_norm,rho_norm,gamma_norm,"
+            "cos_rho_gamma,cos_ce_rho,cos_ce_gamma\n"
+        )
+        if verbose:
+            print(f"  [mlx-rho-sft] Gradient telemetry → {gradient_log_path}")
+
+    # Validate checkpoint config
+    checkpoint_steps_set = set(checkpoint_steps) if checkpoint_steps else set()
+    if checkpoint_steps and not checkpoint_dir:
+        raise ValueError("checkpoint_dir required when checkpoint_steps is set")
+
+    # ── Save step-0 LoRA checkpoint (random init, before training) ──
+    if 0 in checkpoint_steps_set:
+        _save_lora_checkpoint(model, 0, checkpoint_dir)
+
     # ── Training Loop ─────────────────────────────────────────────────
     model.train()
     rng = random.Random(42)
@@ -472,6 +537,39 @@ def mlx_rho_guided_sft(
             else:
                 gamma_loss_val = mx.array(0.0)
 
+            # ── Gradient Telemetry ──────────────────────────────────
+            if grad_log_file is not None:
+                # Flatten raw (pre-accumulation) gradient components
+                ce_flat = _flatten_grad(grad)  # raw CE gradient (unscaled)
+                ce_n = mx.sqrt((ce_flat * ce_flat).sum()).item()
+
+                if rho_weight > 0 and 'rho_grad' in dir():
+                    rho_flat = _flatten_grad(rho_grad)  # raw rho gradient
+                    rho_n = mx.sqrt((rho_flat * rho_flat).sum()).item()
+                else:
+                    rho_flat = mx.zeros_like(ce_flat)
+                    rho_n = 0.0
+
+                if gamma_weight > 0 and 'gamma_grad' in dir():
+                    gamma_flat = _flatten_grad(gamma_grad)  # raw gamma gradient
+                    gamma_n = mx.sqrt((gamma_flat * gamma_flat).sum()).item()
+                else:
+                    gamma_flat = mx.zeros_like(ce_flat)
+                    gamma_n = 0.0
+
+                # Cosine similarities between gradient components
+                eps = 1e-12
+                cos_rg = float((rho_flat * gamma_flat).sum().item()) / (rho_n * gamma_n + eps) if (rho_n > eps and gamma_n > eps) else 0.0
+                cos_cr = float((ce_flat * rho_flat).sum().item()) / (ce_n * rho_n + eps) if (ce_n > eps and rho_n > eps) else 0.0
+                cos_cg = float((ce_flat * gamma_flat).sum().item()) / (ce_n * gamma_n + eps) if (ce_n > eps and gamma_n > eps) else 0.0
+
+                grad_log_file.write(
+                    f"{global_step},{ce_loss_val.item():.6f},{rho_loss_val.item():.6f},"
+                    f"{gamma_loss_val.item():.6f},{ce_n:.6f},{rho_n:.6f},{gamma_n:.6f},"
+                    f"{cos_rg:.6f},{cos_cr:.6f},{cos_cg:.6f}\n"
+                )
+                grad_log_file.flush()
+
             # ── Accumulate ────────────────────────────────────────
             if accumulated_grad is None:
                 accumulated_grad = scaled_grad
@@ -508,6 +606,10 @@ def mlx_rho_guided_sft(
                 global_step += 1
                 log_count += 1
 
+                # ── LoRA Checkpoint ────────────────────────────────
+                if global_step in checkpoint_steps_set:
+                    _save_lora_checkpoint(model, global_step, checkpoint_dir)
+
                 if verbose and global_step % logging_steps == 0:
                     avg_ce = running_ce / log_count
                     avg_rho = running_rho / log_count
@@ -534,6 +636,12 @@ def mlx_rho_guided_sft(
 
     # Final stats
     elapsed = time.time() - t0
+
+    # Close gradient telemetry log
+    if grad_log_file is not None:
+        grad_log_file.close()
+        if verbose:
+            print(f"  [mlx-rho-sft] Gradient telemetry: {global_step} rows written")
 
     if verbose:
         print(f"  [mlx-rho-sft] Training done: {global_step} steps, "

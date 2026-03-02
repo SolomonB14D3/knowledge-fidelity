@@ -65,6 +65,28 @@ done
 
 echo ""
 echo "============================================================"
+echo "  AUDITING TRAINING CHECKPOINTS (subspace emergence within-scale)"
+echo "============================================================"
+echo ""
+
+# Phase 2b: Audit intermediate training checkpoints
+# Shows when behavioral subspaces emerge DURING pretraining at each scale
+for SIZE in $SIZES; do
+    OUTDIR="results/scale_ladder/${SIZE}_seed${SEED}"
+    for CKPT in "$OUTDIR"/checkpoint_*/; do
+        [ -d "$CKPT" ] || continue
+        if [ -f "$CKPT/audit_report.json" ]; then
+            echo "  [SKIP] $SIZE checkpoint $(basename $CKPT) already audited"
+        else
+            echo "  [AUDIT] $SIZE checkpoint $(basename $CKPT)..."
+            python experiments/scale_ladder/scale_audit.py \
+                --checkpoint "$CKPT" --device "$DEVICE_VAL" --skip-dprime
+        fi
+    done
+done
+
+echo ""
+echo "============================================================"
 echo "  ANALYZING SCALING CURVES"
 echo "============================================================"
 echo ""
