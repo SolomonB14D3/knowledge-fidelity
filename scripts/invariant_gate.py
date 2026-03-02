@@ -11,6 +11,13 @@ Philosophy: verify, don't just steer. Rather than modifying weights
 to be less sycophantic, we detect sycophantic internal states at
 inference time and reject them.
 
+Inspired by Arjtriv's "Dark Solver" fail-closed verification pattern
+(https://github.com/arjtriv), which uses Z3 SMT invariant gates on
+discrete hidden states for provable safety in constrained architectures.
+This implementation adapts that philosophy to continuous high-dimensional
+LLM hidden states using logit-lens entropy as the verification signal
+rather than SAT/BV constraints.
+
 Pipeline:
   1. CALIBRATE — Run sycophancy probes, measure gate-layer entropy
      for truthful vs sycophantic completions. Establish thresholds.
