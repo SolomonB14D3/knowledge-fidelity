@@ -300,6 +300,8 @@ def stage_surgical_train_mlx(
                   f"from categories: {plan.protection_categories}", flush=True)
 
         # ── Run SFT ──────────────────────────────────────────────
+        save_path = str(output_dir / "model") if args.save_model else None
+
         sft_result = mlx_rho_guided_sft(
             model, tokenizer,
             sft_texts,
@@ -310,6 +312,7 @@ def stage_surgical_train_mlx(
             epochs=1,
             lr=2e-4,
             margin=0.1,
+            save_path=save_path,
         )
         sft_elapsed = time.time() - t0
         print(f"  SFT complete in {sft_elapsed:.1f}s "
@@ -615,6 +618,10 @@ def main():
     parser.add_argument(
         "--output", "-o", type=str, default="results/surgery",
         help="Output directory (default: results/surgery)",
+    )
+    parser.add_argument(
+        "--save-model", action="store_true",
+        help="Save the merged model weights after surgery",
     )
     args = parser.parse_args()
 

@@ -669,6 +669,7 @@ def run_catsae_surgery(
     gamma_weight: float = 0.15,
     rho_weight: float = 0.2,
     compress_ratio: float = 0.7,
+    save_path: str = None,
     verbose: bool = True,
 ) -> dict:
     """Run SVD + LoRA SFT with CatSAE-weighted gamma protection."""
@@ -733,6 +734,7 @@ def run_catsae_surgery(
         epochs=1,
         lr=2e-4,
         margin=0.1,
+        save_path=save_path,
     )
 
     if verbose:

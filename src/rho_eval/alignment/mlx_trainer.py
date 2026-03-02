@@ -197,6 +197,7 @@ def mlx_rho_guided_sft(
     warmup_ratio: float = 0.1,
     weight_decay: float = 0.01,
     max_length: int = 256,
+    save_path: Optional[str] = None,
     verbose: bool = True,
 ) -> dict:
     """Run rho-guided SFT with combined CE + contrastive + protection loss on MLX.
@@ -495,6 +496,39 @@ def mlx_rho_guided_sft(
     _fuse_lora(model)
 
     model.eval()
+
+    # ── Save merged model ────────────────────────────────────────────
+    if save_path is not None:
+        from pathlib import Path
+        from mlx_lm.utils import save_model
+
+        save_dir = Path(save_path)
+        save_dir.mkdir(parents=True, exist_ok=True)
+
+        if verbose:
+            print(f"  [mlx-rho-sft] Saving merged model to {save_dir}...")
+
+        # Save sharded model weights (mlx_lm format, compatible with mlx_lm.load)
+        save_model(save_dir, model)
+
+        # Save tokenizer
+        tokenizer.save_pretrained(str(save_dir))
+
+        # Copy config from original model if available
+        if hasattr(model, "config"):
+            import json as _json
+            config_path = save_dir / "config.json"
+            if not config_path.exists():
+                if hasattr(model.config, "to_dict"):
+                    config_path.write_text(_json.dumps(model.config.to_dict(), indent=2))
+                elif isinstance(model.config, dict):
+                    config_path.write_text(_json.dumps(model.config, indent=2))
+
+        if verbose:
+            n_files = len(list(save_dir.iterdir()))
+            total_size = sum(f.stat().st_size for f in save_dir.iterdir() if f.is_file())
+            print(f"  [mlx-rho-sft] Saved: {n_files} files, "
+                  f"{total_size / 1e9:.1f} GB")
 
     if verbose:
         print(f"  [mlx-rho-sft] Done: {global_step} steps, {elapsed:.1f}s")
