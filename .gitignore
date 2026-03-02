@@ -60,6 +60,15 @@ paper/*.fdb_latexmk
 paper/*.fls
 paper/*.synctex.gz
 
+# One-shot runner scripts (machine/date-specific, not reusable)
+experiments/overnight_mar*.sh
+experiments/overnight_run.sh
+experiments/run_overnight.sh
+experiments/run_pending*.sh
+experiments/run_additional_seeds.sh
+experiments/run_all_phases.sh
+experiments/margin_sweep.sh
+
 # Jupyter
 .ipynb_checkpoints/
 
