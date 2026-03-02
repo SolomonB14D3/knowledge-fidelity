@@ -24,6 +24,8 @@ rho-eval is a full-stack research framework for auditing, interpreting, and stee
 | **`rho-align`** | Rho-Guided SFT with an auxiliary contrastive loss to preserve knowledge fidelity during alignment |
 | **`rho-steer`** | Disentangled steering using Gated Sparse Autoencoders (SAEs) to isolate monosemantic features |
 | **`rho-bench`** | Fidelity-Bench 2.0: adversarial pressure testing that measures the Truth-Gap |
+| **`rho-surgery`** | End-to-end behavioral repair: diagnose, compress, LoRA SFT with gamma protection, save repaired model |
+| **`rho-benchmark`** | Comprehensive benchmarking (8-dim audit + TruthfulQA MC2) with optional baseline comparison |
 
 > *Formerly `knowledge-fidelity`. All v1.x imports still work.*
 
@@ -613,6 +615,53 @@ rho-compress Qwen/Qwen2.5-0.5B --denoise
 
 # Save compressed model
 rho-compress Qwen/Qwen2.5-0.5B --denoise --output ./denoised-model
+```
+
+### `rho-surgery` — Behavioral Repair Pipeline
+
+One command to diagnose, repair, and save a model with protected bias categories.
+
+```bash
+# Full pipeline: diagnose → SVD compress → LoRA SFT with gamma protection → save
+rho-surgery Qwen/Qwen2.5-7B-Instruct -o ./repaired-7b/
+
+# Conservative strategy (stronger bias protection)
+rho-surgery Qwen/Qwen2.5-7B-Instruct --strategy conservative -o ./repaired-7b/
+
+# Override gamma weight
+rho-surgery Qwen/Qwen2.5-7B-Instruct --gamma 0.10 -o ./repaired-7b/
+
+# From a saved surgical plan
+rho-surgery Qwen/Qwen2.5-7B-Instruct --plan surgical_plan.json -o ./repaired-7b/
+
+# Metrics only (no model save)
+rho-surgery Qwen/Qwen2.5-7B-Instruct --no-save
+
+# Force CUDA backend (for cloud GPUs)
+rho-surgery Qwen/Qwen2.5-7B-Instruct --device cuda -o ./repaired-7b/
+```
+
+Works on any platform: `--device auto` selects MLX on Apple Silicon, CUDA on Linux, CPU fallback.
+
+### `rho-benchmark` — Comprehensive Benchmarking
+
+Run the full rho-eval audit (8 dimensions) plus TruthfulQA MC2, with optional before/after comparison.
+
+```bash
+# Benchmark a repaired model against its baseline
+rho-benchmark ./repaired-7b/model/ --baseline Qwen/Qwen2.5-7B-Instruct
+
+# Quick mode (50 probes/behavior, 200 TruthfulQA questions)
+rho-benchmark ./repaired-7b/model/ --baseline Qwen/Qwen2.5-7B-Instruct --quick
+
+# Standalone benchmark (no comparison)
+rho-benchmark Qwen/Qwen2.5-7B-Instruct
+
+# Skip external benchmarks
+rho-benchmark Qwen/Qwen2.5-7B-Instruct --external none
+
+# JSON output for CI pipelines
+rho-benchmark ./repaired-7b/model/ --format json -o report.json
 ```
 
 ## Python API

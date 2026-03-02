@@ -53,6 +53,9 @@ from .alignment import (
     rho_auxiliary_loss,
 )
 
+# ── Utilities ─────────────────────────────────────────────────────────────
+from .utils import load_model
+
 # ── Steering — opt-in, not auto-imported ──────────────────────────────────
 # SAE-based behavioral steering: from rho_eval.steering import GatedSAE, ...
 
@@ -101,6 +104,8 @@ __all__ = [
     "compute_overlap",
     "head_attribution",
     "InterpretabilityReport",
+    # ── Utilities ──
+    "load_model",
     # ── Alignment ──
     "rho_guided_sft",
     "contrastive_confidence_loss",
