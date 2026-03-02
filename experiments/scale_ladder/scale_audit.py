@@ -67,7 +67,7 @@ def run_rho_audit(model, tokenizer, device="cpu"):
     # Print summary
     print(f"\n  {'Behavior':<20s} {'rho':>8s} {'Status':>8s}")
     print(f"  {'-'*40}")
-    for result in report.results:
+    for result in report.behaviors.values():
         print(f"  {result.behavior:<20s} {result.rho:>8.3f} {result.status:>8s}")
 
     return report
@@ -262,7 +262,7 @@ def main():
                 "total": r.total,
                 "status": r.status,
             }
-            for r in report.results
+            for r in report.behaviors.values()
         ],
     }
     audit_path = checkpoint_path / "audit_report.json"
