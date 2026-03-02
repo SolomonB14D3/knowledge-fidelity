@@ -1,4 +1,4 @@
-# rho-eval v2.2.2: The Behavioral Forensic Suite
+# rho-eval v2.2.3: The Behavioral Forensic Suite
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
