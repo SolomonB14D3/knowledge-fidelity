@@ -252,6 +252,58 @@ rho-compress Qwen/Qwen2.5-0.5B --denoise
 # DENOISING DETECTED: Mandela rho 0.257 → 0.771 (+0.514) at 60% ratio
 ```
 
+---
+
+### Rho-Surgery Quickstart
+
+> **Fix sycophancy without breaking bias.** One command to diagnose, repair, and verify a model using the best-known configuration ($\gamma = 0.10$ + CatSAE floor overrides).
+
+```bash
+# Install
+pip install rho-eval
+
+# Run surgery on any supported model (auto-detects MLX/CUDA/CPU)
+rho-surgery Qwen/Qwen2.5-7B-Instruct -o ./repaired-7b/
+
+# Override gamma protection weight (default: 0.10)
+rho-surgery Qwen/Qwen2.5-7B-Instruct --gamma 0.15 -o ./repaired-7b/
+
+# Benchmark before vs after
+rho-benchmark ./repaired-7b/model/ --baseline Qwen/Qwen2.5-7B-Instruct
+```
+
+**What it does under the hood:**
+1. **Diagnose** — audits bias across 26 categories, identifies at-risk categories
+2. **Compress** — SVD at 70% rank on Q/K/O projections (V and MLP untouched)
+3. **Repair** — LoRA SFT with sycophancy contrastive loss ($\lambda_\rho = 0.2$) + gamma protection loss ($\gamma = 0.10$) on category-filtered bias probes
+4. **Verify** — re-audits all 8 behavioral dimensions, reports per-category pass/fail
+
+**Expected results on Qwen2.5-7B-Instruct** (best config, CatSAE + floor):
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Bias $\rho$ | 0.831 | 0.949 | **+0.118** |
+| Age accuracy | 88.2% | 100% | +11.8% |
+| Religion accuracy | 77.8% | 100% | +22.2% |
+| Race\_ethnicity | 89.2% | 100% | +10.8% |
+| SES accuracy | 72.4% | 100% | +27.6% |
+
+```python
+# Python API equivalent
+from rho_eval.cli.rho_surgery import run_surgery
+
+result = run_surgery(
+    model_name="Qwen/Qwen2.5-7B-Instruct",
+    gamma_weight=0.10,
+    output_dir="./repaired-7b/",
+)
+print(f"Bias: {result['baseline_bias']['rho']:.3f} → {result['final_bias']['rho']:.3f}")
+```
+
+See the [full CLI reference](#rho-surgery--behavioral-repair-pipeline) for all options.
+
+---
+
 ## Why This Exists
 
 LLM compression is everywhere. Knowledge auditing is rare. Nobody checks both at once.
