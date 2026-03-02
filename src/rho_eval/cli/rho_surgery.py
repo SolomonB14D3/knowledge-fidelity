@@ -196,7 +196,7 @@ Examples:
         # MLX SFT (Apple Silicon GPU)
         from rho_eval.alignment.mlx_trainer import mlx_rho_guided_sft
 
-        sft_texts = [p for p, _ in contrast_dataset.pairs()]
+        sft_texts = [p["positive"] for p in contrast_dataset.pairs]
         sft_result = mlx_rho_guided_sft(
             model, tokenizer,
             sft_texts,
@@ -214,7 +214,7 @@ Examples:
         from rho_eval.alignment.trainer import rho_guided_sft
         from rho_eval.calibration import TextDataset
 
-        sft_texts = [p for p, _ in contrast_dataset.pairs()]
+        sft_texts = [p["positive"] for p in contrast_dataset.pairs]
         sft_dataset = TextDataset(sft_texts, tokenizer)
         sft_result = rho_guided_sft(
             model, tokenizer,

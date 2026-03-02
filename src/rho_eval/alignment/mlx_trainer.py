@@ -51,6 +51,56 @@ from mlx.utils import tree_flatten, tree_map, tree_unflatten
 from .mlx_losses import mlx_rho_auxiliary_loss
 
 
+# ── SVD Compression (MLX) ──────────────────────────────────────────────
+
+def mlx_svd_compress(model, keep_ratio: float = 0.7) -> int:
+    """SVD compress Q/K/O attention projections in an MLX model.
+
+    Converts each weight to float32 numpy for SVD (MLX bfloat16 can't
+    convert directly to numpy), then writes back the low-rank approximation.
+
+    Args:
+        model: MLX causal LM model (from mlx_lm.load()).
+        keep_ratio: Fraction of singular values to retain (0.7 = 70%).
+
+    Returns:
+        Number of matrices compressed.
+    """
+    import numpy as np
+
+    compressed = 0
+    safe_projections = ["q_proj", "k_proj", "o_proj"]
+
+    for i, layer in enumerate(model.model.layers):
+        attn = layer.self_attn
+        for proj_name in safe_projections:
+            if not hasattr(attn, proj_name):
+                continue
+
+            proj = getattr(attn, proj_name)
+            W_mx = proj.weight
+            # Convert to float32 numpy for SVD (MLX bfloat16 can't go to numpy)
+            W = np.array(W_mx.astype(mx.float32))
+
+            if len(W.shape) != 2 or min(W.shape) <= 10:
+                continue
+
+            rank = max(1, int(min(W.shape) * keep_ratio))
+
+            try:
+                U, S, Vh = np.linalg.svd(W, full_matrices=False)
+                W_approx = (U[:, :rank] * S[:rank]) @ Vh[:rank, :]
+                proj.weight = mx.array(W_approx).astype(W_mx.dtype)
+                compressed += 1
+            except Exception as e:
+                print(f"    SVD failed for layer {i} {proj_name}: {e}",
+                      flush=True)
+                continue
+
+    mx.eval(model.parameters())
+    return compressed
+
+
 # ── Batching ────────────────────────────────────────────────────────────
 
 def _tokenize_and_pad(
