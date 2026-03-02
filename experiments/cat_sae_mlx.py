@@ -503,12 +503,19 @@ def build_weighted_protection(
     vulnerability: dict,
     categories_to_protect: list[str],
     base_pairs_per_category: int = 50,
+    weight_floor: float | None = None,
     verbose: bool = True,
 ):
     """Build a protection dataset with vulnerability-weighted oversampling.
 
     Categories with higher vulnerability scores get more protection pairs,
     providing stronger gamma gradient signal during SFT.
+
+    Args:
+        weight_floor: If set, applies max(raw_weight, floor) before normalization.
+            Use 1.0 to ensure no category gets less than baseline equal protection
+            while SAE-informed categories still get their boost.
+            Fixes Age under-weighting (0.162 vuln → 0.7x) without manual overrides.
 
     Returns:
         BehavioralContrastDataset-like object with .pairs and .sample() method.
@@ -521,7 +528,11 @@ def build_weighted_protection(
         vuln = vulnerability.get(cat, {})
         score = vuln.get("vulnerability_score", 0.5)
         # Scale: 0.0 → 0.5x, 0.5 → 1.5x, 1.0 → 2.5x
-        weights[cat] = 0.5 + 2.0 * score
+        raw_weight = 0.5 + 2.0 * score
+        # Apply floor if specified — prevents under-weighting
+        if weight_floor is not None:
+            raw_weight = max(raw_weight, weight_floor)
+        weights[cat] = raw_weight
 
     # Normalize: average weight = 1.0
     if weights:
@@ -530,7 +541,8 @@ def build_weighted_protection(
             weights[cat] /= mean_w
 
     if verbose:
-        print(f"  Category protection weights:")
+        floor_str = f", floor={weight_floor}" if weight_floor is not None else ""
+        print(f"  Category protection weights{floor_str}:")
         for cat in sorted(weights, key=weights.get, reverse=True):
             vuln_score = vulnerability.get(cat, {}).get("vulnerability_score", 0)
             print(f"    {cat:<30s} weight={weights[cat]:.2f}x "
@@ -774,23 +786,48 @@ def main():
     )
     parser.add_argument("--sae-expansion", type=int, default=8)
     parser.add_argument("--sae-epochs", type=int, default=5)
-    parser.add_argument("--gamma", type=float, default=0.15)
+    parser.add_argument("--gamma", type=float, default=0.10,
+                       help="Gamma protection weight (default: 0.10, optimal from sweep)")
     parser.add_argument("--rho", type=float, default=0.2)
     parser.add_argument("--compress-ratio", type=float, default=0.7)
     parser.add_argument("--max-probes", type=int, default=150)
+    parser.add_argument(
+        "--weight-floor", type=float, default=None,
+        help="Floor on raw protection weight before normalization. "
+             "Use 1.0 to ensure no category gets < 1x baseline weight. "
+             "Fixes Age under-weighting without manual SAE score overrides.",
+    )
+    parser.add_argument(
+        "--categories", nargs="+", default=None,
+        help="Categories to protect (default: auto-select from known + SAE-detected). "
+             "Example: --categories Age Gender_biology Race_ethnicity "
+             "Sexual_orientation_biology Religion",
+    )
     parser.add_argument(
         "--output", "-o", type=str, default="results/cat_sae",
     )
     args = parser.parse_args()
 
     model_short = args.model.split("/")[-1]
-    output_dir = Path(args.output) / model_short
+    # Use descriptive subdirectory when floor is set
+    if args.weight_floor is not None:
+        tag = f"floor_{args.weight_floor:.1f}"
+        if args.categories:
+            tag += f"_{len(args.categories)}cat"
+        output_dir = Path(args.output) / model_short / tag
+    else:
+        output_dir = Path(args.output) / model_short
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"\n{'='*70}", flush=True)
     print(f"  CatSAE — Category-Aware SAE Experiment", flush=True)
     print(f"  Model:  {args.model}", flush=True)
     print(f"  Output: {output_dir}", flush=True)
+    print(f"  Gamma:  {args.gamma}  Rho: {args.rho}  SVD: {args.compress_ratio}", flush=True)
+    if args.weight_floor is not None:
+        print(f"  Floor:  {args.weight_floor} (hybrid floor weighting)", flush=True)
+    if args.categories:
+        print(f"  Categories: {', '.join(args.categories)}", flush=True)
     print(f"{'='*70}\n", flush=True)
 
     t_global = time.time()
@@ -897,20 +934,29 @@ def main():
 
     vulnerability = census["vulnerability"]
 
-    # Protect all categories that have bias probes
-    # (known high-risk from surgery + any category with SAE features)
-    known_protect = [
-        "Age", "Gender_biology", "Race_ethnicity", "Sexual_orientation_biology",
-    ]
-    sae_protect = [
-        cat for cat in vulnerability
-        if vulnerability[cat]["vulnerability_score"] > 0.3
-    ]
-    cats_to_protect = sorted(set(known_protect) | set(sae_protect))
+    if args.categories:
+        # User-specified categories
+        cats_to_protect = args.categories
+    else:
+        # Auto-select: known high-risk + SAE-detected vulnerable
+        known_protect = [
+            "Age", "Gender_biology", "Race_ethnicity", "Sexual_orientation_biology",
+        ]
+        sae_protect = [
+            cat for cat in vulnerability
+            if vulnerability[cat]["vulnerability_score"] > 0.3
+        ]
+        cats_to_protect = sorted(set(known_protect) | set(sae_protect))
+
+    if args.weight_floor is not None:
+        print(f"  Weight floor: {args.weight_floor} "
+              f"(no category gets < {args.weight_floor}x before normalization)",
+              flush=True)
 
     protection_dataset, weights, cat_counts = build_weighted_protection(
         vulnerability, cats_to_protect,
         base_pairs_per_category=50,
+        weight_floor=args.weight_floor,
     )
 
     # ══════════════════════════════════════════════════════════════
@@ -970,6 +1016,8 @@ def main():
             "rho_weight": args.rho,
             "compress_ratio": args.compress_ratio,
             "max_probes": args.max_probes,
+            "weight_floor": args.weight_floor,
+            "categories": cats_to_protect,
         },
         "sae_stats": sae_stats,
         "census": census_save,
