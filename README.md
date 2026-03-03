@@ -12,7 +12,7 @@
 
 rho-eval measures 8 behavioral dimensions — factual accuracy, toxicity, bias, sycophancy, reasoning, refusal, deception, and over-refusal — using Spearman rank correlation over teacher-forced confidence probes. It ships 1,826 probes as JSON with no internet required.
 
-> Standard SFT inverts toxicity calibration. Rho-guided SFT repairs it. SVD compression can _improve_ factual discrimination. See [our papers](#papers) for the full story.
+> *Formerly `knowledge-fidelity`. All v1.x imports still work.*
 
 ## What It Does
 
@@ -82,15 +82,9 @@ rho-surgery Qwen/Qwen2.5-7B-Instruct -o ./repaired-7b/
 rho-benchmark ./repaired-7b/model/ --baseline Qwen/Qwen2.5-7B-Instruct
 ```
 
-## Headline Results
+## Why This Exists
 
-These are the key findings. Full experimental details, tables, and analysis are in the papers.
-
-- **Standard SFT inverts toxicity calibration.** Rho-guided SFT repairs it (d=10.8, p<0.0001). See Paper 1.
-- **SVD compression can improve factual discrimination.** Truncated SVD at 70% rank acts as a denoiser. See Paper 1.
-- **The Alignment Kill Zone at 44-50% depth is universal** across Qwen, Mistral, and Llama, but the behavioral response is architecture-dependent. See Paper 2.
-- **Rho-Surgery eliminates bias collateral from sycophancy training.** Bias improves from 0.833 to 0.959 on Qwen-7B with gamma protection. See Paper 1.
-- **Behavioral geometry emerges in phases during pretraining.** Geometric scaffolding forms before behavioral signal snaps in. See Paper 3.
+Standard SFT damages behavioral calibration in ways benchmarks don't catch. rho-eval detects the damage, and rho-guided SFT repairs it. See [our papers](#papers) for the full experimental story.
 
 ## Built-In Probes (1,826 total)
 
@@ -181,11 +175,11 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 Detailed experimental results, analysis tables, and methodology are in the papers:
 
-1. **Rho-Guided Supervised Fine-Tuning** — Post-training repair of calibration damage. Dose-response sweep, 5-seed ablation, CatSAE category-aware protection, gamma protection loss, TruthfulQA MC2 validation. [`paper/rho_guided_sft.md`](paper/rho_guided_sft.md)
+1. **Rho-Guided Supervised Fine-Tuning** — Post-training repair of calibration damage via contrastive auxiliary loss with gamma protection. *(Submitted)*
 
-2. **Behavioral Entanglement in Transformers** — SVD subspace analysis, Grassmann angles, Gated SAE disentanglement, architecture taxonomy (Modular/Entangled/Overridden), Fidelity-Bench 2.0. [`paper/knowledge_fidelity_paper.tex`](paper/knowledge_fidelity_paper.tex)
+2. **Behavioral Entanglement in Transformers** — SVD subspace analysis, architecture taxonomy, and Fidelity-Bench 2.0. *(Submitted)*
 
-3. **Behavioral Geometry Emerges in Phases** — Scale-dependent subspace crystallization from 7M to 64M parameters. Phase transitions, critical fluctuations, geometry-behavior decoupling. [`paper/designed_geometry.md`](paper/designed_geometry.md)
+3. **Behavioral Geometry Emerges in Phases** — Scale-dependent subspace crystallization in transformers. *(In preparation)*
 
 See also:
 - [Intelligent SVD / CF90](https://github.com/SolomonB14D3/intelligent-svd) — Knowledge-preserving SVD compression
