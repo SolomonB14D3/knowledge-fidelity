@@ -175,8 +175,8 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 Detailed experimental results, analysis tables, and methodology are in the papers:
 
-1. **Rho-Guided Supervised Fine-Tuning** *(Submitted)*
-2. **Behavioral Entanglement in Transformers** *(Submitted)*
+1. **Rho-Guided Supervised Fine-Tuning** — [DOI: 10.5281/zenodo.18854944](https://doi.org/10.5281/zenodo.18854944)
+2. **Behavioral Entanglement in Transformers** *(In preparation)*
 3. **Behavioral Geometry Emerges in Phases** *(In preparation)*
 
 See also:
