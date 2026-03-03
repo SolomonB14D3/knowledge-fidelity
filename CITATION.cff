@@ -33,10 +33,10 @@ references:
       - family-names: Sanchez
         given-names: Bryan
     year: 2026
+    doi: "10.5281/zenodo.18854944"
   - type: article
     title: "Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy"
     authors:
       - family-names: Sanchez
         given-names: Bryan
     year: 2026
-    doi: "10.5281/zenodo.18743959"
