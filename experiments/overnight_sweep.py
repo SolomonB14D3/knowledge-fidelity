@@ -265,10 +265,8 @@ def print_summary(results: list[dict], catsae_result: dict | None = None):
             print(f"  {g:>6.2f} {b:>9.4f} {f:>9.4f} {d:>+9.4f} {t:>6.1f}m",
                   flush=True)
 
-        # Include validated gamma=0.15 result for comparison
-        print(f"  {'0.15*':>6s} {'0.8333':>9s} {'0.9590':>9s} {'+0.1256':>9s} "
-              f"{'145.7':>6s}m", flush=True)
-        print(f"  (* = previous validated result)", flush=True)
+        # Previous validated gamma=0.15 result available in results/surgery/
+        print(f"  (* see results/surgery/ for gamma=0.15 baseline)", flush=True)
 
     # Per-category comparison
     if len(results) >= 2:
