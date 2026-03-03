@@ -41,7 +41,7 @@ import gc
 import math
 import random
 import time
-from typing import Optional
+from typing import Callable, Optional
 
 import mlx.core as mx
 import mlx.nn as nn
@@ -290,6 +290,7 @@ def mlx_rho_guided_sft(
     checkpoint_steps: Optional[list[int]] = None,
     checkpoint_dir: Optional[str] = None,
     gradient_log_path: Optional[str] = None,
+    gamma_schedule: Optional[Callable[[int], float]] = None,
     verbose: bool = True,
 ) -> dict:
     """Run rho-guided SFT with combined CE + contrastive + protection loss on MLX.
@@ -334,6 +335,9 @@ def mlx_rho_guided_sft(
         warmup_ratio: Fraction of steps for LR warmup.
         weight_decay: AdamW weight decay.
         max_length: Max token length for encoding.
+        gamma_schedule: Optional callable mapping step → γ value. When provided,
+            overrides gamma_weight with a dynamic per-step value. Enables
+            γ-annealing experiments (e.g., lambda s: 0.10 if s < 110 else 0.0).
         verbose: Print progress messages.
 
     Returns:
@@ -356,9 +360,10 @@ def mlx_rho_guided_sft(
     if verbose:
         print(f"  [mlx-rho-sft] Trainable: {trainable_params/1e6:.2f}M / "
               f"{total_params/1e6:.1f}M ({trainable_params/total_params:.4%})")
-        print(f"  [mlx-rho-sft] rho_weight={rho_weight}, gamma_weight={gamma_weight}, "
+        gamma_desc = f"gamma_schedule" if gamma_schedule else f"gamma_weight={gamma_weight}"
+        print(f"  [mlx-rho-sft] rho_weight={rho_weight}, {gamma_desc}, "
               f"margin={margin}, contrast_pairs={contrast_pairs_per_step}")
-        if gamma_weight > 0 and protection_dataset is not None:
+        if (gamma_weight > 0 or gamma_schedule) and protection_dataset is not None:
             print(f"  [mlx-rho-sft] γ protection: {len(protection_dataset)} pairs, "
                   f"{protection_pairs_per_step}/step")
 
@@ -439,7 +444,7 @@ def mlx_rho_guided_sft(
         Path(gradient_log_path).parent.mkdir(parents=True, exist_ok=True)
         grad_log_file = open(gradient_log_path, "w")
         grad_log_file.write(
-            "step,ce_loss,rho_loss,gamma_loss,"
+            "step,gamma_value,ce_loss,rho_loss,gamma_loss,"
             "ce_norm,rho_norm,gamma_norm,"
             "cos_rho_gamma,cos_ce_rho,cos_ce_gamma\n"
         )
@@ -511,7 +516,8 @@ def mlx_rho_guided_sft(
                 rho_loss_val = mx.array(0.0)
 
             # ── Gamma protection loss on protected pairs ──────────
-            if gamma_weight > 0 and protection_dataset is not None and len(protection_dataset) > 0:
+            current_gamma = gamma_schedule(global_step) if gamma_schedule else gamma_weight
+            if current_gamma > 0 and protection_dataset is not None and len(protection_dataset) > 0:
                 prot_pairs = protection_dataset.sample(protection_pairs_per_step, rng)
 
                 # Compute gamma loss and its gradient separately
@@ -526,7 +532,7 @@ def mlx_rho_guided_sft(
 
                 # Scale gamma gradient by weight and accumulation
                 gamma_scaled = tree_map(
-                    lambda g: g * (gamma_weight / gradient_accumulation_steps),
+                    lambda g: g * (current_gamma / gradient_accumulation_steps),
                     gamma_grad,
                 )
 
@@ -550,7 +556,7 @@ def mlx_rho_guided_sft(
                     rho_flat = mx.zeros_like(ce_flat)
                     rho_n = 0.0
 
-                if gamma_weight > 0 and 'gamma_grad' in dir():
+                if current_gamma > 0 and 'gamma_grad' in dir():
                     gamma_flat = _flatten_grad(gamma_grad)  # raw gamma gradient
                     gamma_n = mx.sqrt((gamma_flat * gamma_flat).sum()).item()
                 else:
@@ -564,7 +570,7 @@ def mlx_rho_guided_sft(
                 cos_cg = float((ce_flat * gamma_flat).sum().item()) / (ce_n * gamma_n + eps) if (ce_n > eps and gamma_n > eps) else 0.0
 
                 grad_log_file.write(
-                    f"{global_step},{ce_loss_val.item():.6f},{rho_loss_val.item():.6f},"
+                    f"{global_step},{current_gamma:.6f},{ce_loss_val.item():.6f},{rho_loss_val.item():.6f},"
                     f"{gamma_loss_val.item():.6f},{ce_n:.6f},{rho_n:.6f},{gamma_n:.6f},"
                     f"{cos_rg:.6f},{cos_cr:.6f},{cos_cg:.6f}\n"
                 )

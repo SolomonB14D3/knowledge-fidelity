@@ -121,6 +121,7 @@ def train(
     device_str: str = "cpu",
     output_dir: str | None = None,
     dataset: str = "openwebtext",
+    checkpoint_steps: list[int] | None = None,
 ):
     """Train a model at the given scale."""
     if size not in SCALE_CONFIGS:
@@ -189,6 +190,12 @@ def train(
     log_interval = 100
     save_interval = max(total_steps // 5, 1000)  # Save ~5 checkpoints
 
+    # Explicit checkpoint steps override the regular interval
+    checkpoint_set = set(checkpoint_steps) if checkpoint_steps else set()
+    if checkpoint_steps:
+        print(f"  Custom checkpoint steps: {len(checkpoint_steps)} checkpoints")
+        print(f"  Range: steps {min(checkpoint_steps)}-{max(checkpoint_steps)}")
+
     for step in range(total_steps):
         # Collect batch
         batch_tokens = []
@@ -238,11 +245,15 @@ def train(
                 flush=True,
             )
 
-        # Save checkpoint
-        if (step + 1) % save_interval == 0:
+        # Save checkpoint (regular interval OR explicit step list)
+        save_regular = (step + 1) % save_interval == 0
+        save_explicit = (step + 1) in checkpoint_set
+        if save_regular or save_explicit:
             ckpt_path = output_path / f"checkpoint_{step+1}"
             model.save_pretrained(ckpt_path)
             tokenizer.save_pretrained(ckpt_path)
+            if save_explicit:
+                print(f"  [checkpoint] Saved step {step+1} → {ckpt_path}", flush=True)
 
     # Save final model
     print(f"\n  Saving final model to {output_path / 'model'}/...", flush=True)
@@ -296,6 +307,9 @@ def main():
     parser.add_argument("--dataset", type=str, default="openwebtext",
                         choices=["openwebtext", "fineweb-edu", "wikitext"],
                         help="Training dataset (default: openwebtext)")
+    parser.add_argument("--checkpoint-steps", type=int, nargs="+", default=None,
+                        help="Explicit step numbers at which to save checkpoints "
+                             "(in addition to regular interval)")
     args = parser.parse_args()
 
     return train(
@@ -304,6 +318,7 @@ def main():
         device_str=args.device,
         output_dir=args.output,
         dataset=args.dataset,
+        checkpoint_steps=args.checkpoint_steps,
     )
 
 
