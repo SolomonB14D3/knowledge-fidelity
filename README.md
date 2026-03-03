@@ -1,7 +1,7 @@
 # rho-eval v2.2.3: Behavioral Auditing for LLMs
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18743959.svg)](https://doi.org/10.5281/zenodo.18743959)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18854944.svg)](https://doi.org/10.5281/zenodo.18854944)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -191,8 +191,8 @@ See also:
   title = {Rho-Guided Supervised Fine-Tuning: Post-Training Repair of
            Calibration Damage in Large Language Models},
   year = {2026},
-  doi = {10.5281/zenodo.18743959},
-  url = {https://doi.org/10.5281/zenodo.18743959}
+  doi = {10.5281/zenodo.18854944},
+  url = {https://doi.org/10.5281/zenodo.18854944}
 }
 
 @software{sanchez2026rhoeval,
