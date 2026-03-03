@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- 3-seed external eval with 8-dimensional audit + TruthfulQA MC2
+- External validation suite
 - Hybrid control pipeline (`src/rho_eval/hybrid/pipeline.py`) — 5-phase automated sweep
 - Attack/defense asymmetry experiment for SAE steering
 
@@ -20,9 +20,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- 5-seed ablation expanding the 2-seed study (seeds 42, 123, 456, 789, 1337)
+- Multi-seed ablation study
 - Refusal behavior dimension with contrastive-only vs rho-guided comparison
-- Margin ablation (gamma=0 vs gamma=0.1)
+- Margin ablation
 - Safety stress test (`experiments/safety_stress_test.py`)
 - Combined kill zone heatmap visualization
 
@@ -32,7 +32,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Paper updated to 5-seed results throughout
+- Paper updated with multi-seed results
 
 ## [2.1.0] - 2026-02-25
 
@@ -40,11 +40,11 @@ All notable changes to this project will be documented in this file.
 
 - Rho-Guided SFT research paper
 - TruthfulQA MC2 evaluation with corrected scoring methodology
-- 4-condition ablation study (SFT-only, rho-guided, contrastive-only, shuffled-pairs)
-- OOD validation on clinical, social, and logic domains
-- Calibration evaluation (ECE + Brier scores)
-- Statistical analysis scripts with p-values and Cohen's d
-- Completion-only logprob scoring for proper MC benchmark scoring
+- Multi-condition ablation study
+- Out-of-domain validation
+- Calibration evaluation
+- Statistical analysis scripts
+- Completion-only logprob scoring
 
 ### Fixed
 

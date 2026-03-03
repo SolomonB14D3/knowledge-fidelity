@@ -51,7 +51,7 @@ import rho_eval
 # Audit any model across all 8 behaviors
 report = rho_eval.audit("Qwen/Qwen2.5-7B-Instruct")
 print(report)
-# <AuditReport model='Qwen/Qwen2.5-7B-Instruct' behaviors=8 mean_rho=0.5346 status=WARN>
+# <AuditReport model='Qwen/Qwen2.5-7B-Instruct' behaviors=8 status=WARN>
 
 # Compare two models
 baseline = rho_eval.audit("Qwen/Qwen2.5-7B-Instruct")
@@ -175,15 +175,13 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 Detailed experimental results, analysis tables, and methodology are in the papers:
 
-1. **Rho-Guided Supervised Fine-Tuning** — Post-training repair of calibration damage via contrastive auxiliary loss with gamma protection. *(Submitted)*
-
-2. **Behavioral Entanglement in Transformers** — SVD subspace analysis, architecture taxonomy, and Fidelity-Bench 2.0. *(Submitted)*
-
-3. **Behavioral Geometry Emerges in Phases** — Scale-dependent subspace crystallization in transformers. *(In preparation)*
+1. **Rho-Guided Supervised Fine-Tuning** *(Submitted)*
+2. **Behavioral Entanglement in Transformers** *(Submitted)*
+3. **Behavioral Geometry Emerges in Phases** *(In preparation)*
 
 See also:
 - [Intelligent SVD / CF90](https://github.com/SolomonB14D3/intelligent-svd) — Knowledge-preserving SVD compression
-- [Confidence Cartography](https://doi.org/10.5281/zenodo.18703506) — Teacher-forced probability as a false-belief sensor
+- [Confidence Cartography](https://github.com/SolomonB14D3/confidence-cartography) — Teacher-forced confidence as a false-belief sensor
 
 ## Citation
 
@@ -193,7 +191,8 @@ See also:
   title = {Rho-Guided Supervised Fine-Tuning: Post-Training Repair of
            Calibration Damage in Large Language Models},
   year = {2026},
-  url = {https://github.com/SolomonB14D3/knowledge-fidelity/blob/main/paper/rho_guided_sft.md}
+  doi = {10.5281/zenodo.18743959},
+  url = {https://doi.org/10.5281/zenodo.18743959}
 }
 
 @software{sanchez2026rhoeval,
