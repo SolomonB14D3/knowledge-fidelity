@@ -79,38 +79,8 @@ data/behavioral_cache/
 data/calibration_cache/
 data/alignment_cache/
 
-# Experiment results (machine-specific, regenerated)
-results/**
-!results/steering/
-!results/steering/cocktail_qwen2.5_7b_instruct.json
-!results/steering/heatmap_mistral_7b_instruct_v0.3.json
-!results/steering/demo_modes_qwen2.5_7b_instruct.json
-# Alignment research results (keep JSON, ignore logs/weights)
-!results/alignment/
-results/alignment/*.log
-results/alignment/*.txt
-results/alignment/*.safetensors
-!results/alignment/*.json
-# Attack/defense asymmetry results (keep JSON, ignore logs)
-!results/attack_defense/
-results/attack_defense/*.log
-!results/attack_defense/*.json
-# Hybrid control sweep results (keep summary + per-config JSON)
-!results/hybrid_sweep/
-results/hybrid_sweep/*.log
-!results/hybrid_sweep/*.json
-!results/hybrid_sweep/*/
-!results/hybrid_sweep/*/*.json
-# Surgery results (keep JSON only)
-!results/surgery/
-!results/surgery/*/
-!results/surgery/*/*.json
-!results/surgery/*/*/
-!results/surgery/*/*/*.json
-results/surgery/*.log
-# Bridge feasibility results
-!results/bridge_feasibility/
-!results/bridge_feasibility/*.json
+# Experiment results (machine-specific, contain unpublished data)
+results/
 *.log
 
 # Lock files
