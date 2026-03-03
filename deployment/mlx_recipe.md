@@ -32,5 +32,5 @@ python -m mlx_lm.generate --model ./compressed_model_mlx --prompt "Explain quant
 
 - MLX uses unified memory on Apple Silicon (M1/M2/M3/M4), so larger models fit than on discrete GPUs with equivalent VRAM
 - CF90 compression reduces memory footprint and can improve generation quality at 7B+ scale
-- Use `--q-bits 4` for best speed/quality tradeoff (CF90 + Q4 validated: 77% fact retention on Llama 7B)
+- Use `--q-bits 4` for best speed/quality tradeoff
 - MPS (PyTorch Metal) has known matmul bugs with some architectures — use MLX for inference, CPU for compression
