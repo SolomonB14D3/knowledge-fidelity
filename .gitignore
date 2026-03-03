@@ -33,22 +33,21 @@ Thumbs.db
 data/results/*.jsonl
 data/results/**/*.jsonl
 
-# Figures (regenerated from experiments)
+# Figures (regenerated from experiments — keep local, submit via papers)
 figures/*.png
+figures/*.pdf
 figures/**/*.png
-# But keep key result figures referenced in README
-!figures/freeze_sweep_7b.png
-!figures/merge_tradeoffs.png
-!figures/cocktail_tradeoff.png
-!figures/cocktail_response_curves.png
-!figures/mistral_sensitivity_map.png
-!figures/mistral_layer_heatmap.png
-!figures/mistral_layer_heatmap_delta.png
-# Paper figures (main results)
-!figures/fig1_dose_response.png
-!figures/fig2_ablation.png
-!figures/fig3_variance_collapse.png
-!figures/fig4_truthfulqa_safety.png
+figures/**/*.pdf
+
+# Paper drafts and research notes (unpublished — submit via journal, not repo)
+paper/*.md
+paper/*.pdf
+paper/*.tex
+paper/tables/
+Research_Notes.md
+
+# Auto-generated analysis outputs (unpublished results)
+docs/
 
 # LaTeX build artifacts
 paper/*.aux

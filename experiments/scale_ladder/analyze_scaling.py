@@ -126,11 +126,34 @@ def compute_behavioral_dprime(results):
     return dprime_by_scale
 
 
+def _parse_overlap_angles(overlap_str):
+    """Extract off-diagonal subspace angles from an OverlapMatrix string.
+
+    Format: OverlapMatrix(..., subspace_angles=[[0.0, 51.57, ...], ...], rank_used=10)
+    Returns: list of off-diagonal angles (upper triangle).
+    """
+    import ast
+    import re
+
+    m = re.search(r"subspace_angles=(\[\[.*?\]\])", overlap_str)
+    if not m:
+        return []
+
+    matrix = ast.literal_eval(m.group(1))
+    off_diag = []
+    for i in range(len(matrix)):
+        for j in range(i + 1, len(matrix)):
+            off_diag.append(matrix[i][j])
+    return off_diag
+
+
 def compute_grassmann_variance(results):
     """Compute variance of Grassmann angles across behavior pairs per scale.
 
     High variance = differentiated geometry (different behaviors occupy
     different relative orientations). Low variance = random/uniform geometry.
+
+    Also computes per-layer statistics: final-layer mean angle and uniformity.
     """
     grass_by_scale = {}
 
@@ -140,31 +163,57 @@ def compute_grassmann_variance(results):
 
         subspace = entry["subspace"]
         overlap = subspace.get("overlap", {})
+        n_layers = subspace.get("n_layers", 0)
 
-        # Extract all pairwise angles
+        # Extract all pairwise angles from all layers
         all_angles = []
-        for pair_key, data in overlap.items():
-            if isinstance(data, list):
-                all_angles.extend([float(a) for a in data])
+        per_layer_stats = {}
+        for layer_key, data in sorted(overlap.items(), key=lambda x: int(x[0])):
+            if isinstance(data, str) and "subspace_angles=" in data:
+                # Parse OverlapMatrix string format
+                layer_angles = _parse_overlap_angles(data)
+            elif isinstance(data, list):
+                layer_angles = [float(a) for a in data]
             elif isinstance(data, dict):
-                for layer_key, angles in data.items():
+                layer_angles = []
+                for sub_key, angles in data.items():
                     if isinstance(angles, list):
-                        all_angles.extend([float(a) for a in angles])
+                        layer_angles.extend([float(a) for a in angles])
                     elif isinstance(angles, (int, float)):
-                        all_angles.append(float(angles))
+                        layer_angles.append(float(angles))
+            else:
+                continue
+
+            if layer_angles:
+                all_angles.extend(layer_angles)
+                per_layer_stats[layer_key] = {
+                    "mean": float(np.mean(layer_angles)),
+                    "std": float(np.std(layer_angles)),
+                    "uniformity": float(np.std(layer_angles) / np.mean(layer_angles) * 100)
+                    if np.mean(layer_angles) > 0 else 0,
+                }
 
         if not all_angles:
             continue
 
+        # Final layer stats
+        final_layer = str(n_layers - 1) if n_layers > 0 else max(per_layer_stats.keys(), default="0")
+        final_stats = per_layer_stats.get(final_layer, {})
+
         grass_by_scale[key] = {
             "size": entry["size"],
-            "n_params": subspace.get("n_layers", 0),
+            "n_params": entry.get("audit", {}).get("n_params", 0),
+            "n_layers": n_layers,
             "angle_mean": float(np.mean(all_angles)),
             "angle_std": float(np.std(all_angles)),
             "angle_variance": float(np.var(all_angles)),
             "n_angles": len(all_angles),
             "angle_min": float(np.min(all_angles)),
             "angle_max": float(np.max(all_angles)),
+            "final_layer_mean": final_stats.get("mean", 0),
+            "final_layer_std": final_stats.get("std", 0),
+            "final_layer_uniformity": final_stats.get("uniformity", 0),
+            "per_layer": per_layer_stats,
         }
 
     return grass_by_scale
@@ -244,7 +293,7 @@ def identify_focal_point(dprime_data, grass_data, dim_data, thresholds=None):
             continue
 
         dp_ok = any(e["mean_dprime"] > thresholds["dprime"] for e in dp_entries)
-        gr_ok = any(e["angle_std"] > thresholds["grassmann_std"] for e in gr_entries) if gr_entries else False
+        gr_ok = any(e.get("final_layer_mean", 0) > thresholds.get("grassmann_min_angle", 60.0) for e in gr_entries) if gr_entries else False
         dm_ok = any(e["dim_spread"] > thresholds["dim_spread"] for e in dm_entries) if dm_entries else False
 
         status = {
@@ -254,7 +303,8 @@ def identify_focal_point(dprime_data, grass_data, dim_data, thresholds=None):
             "dim_spread_pass": dm_ok,
             "all_pass": dp_ok and gr_ok and dm_ok,
             "dprime_val": dp_entries[0]["mean_dprime"] if dp_entries else None,
-            "grassmann_val": gr_entries[0]["angle_std"] if gr_entries else None,
+            "grassmann_angle": gr_entries[0].get("final_layer_mean", 0) if gr_entries else None,
+            "grassmann_uniformity": gr_entries[0].get("final_layer_uniformity", 0) if gr_entries else None,
             "dim_spread_val": dm_entries[0]["dim_spread"] if dm_entries else None,
         }
 
@@ -263,7 +313,8 @@ def identify_focal_point(dprime_data, grass_data, dim_data, thresholds=None):
 
         print(f"  {size:>5s}: d'={status['dprime_val'] or 0:.2f} "
               f"{'PASS' if dp_ok else 'FAIL':>4s} | "
-              f"grass={status['grassmann_val'] or 0:.1f}° "
+              f"angle={status['grassmann_angle'] or 0:.1f}° "
+              f"(unif={status['grassmann_uniformity'] or 0:.1f}%) "
               f"{'PASS' if gr_ok else 'FAIL':>4s} | "
               f"dim={status['dim_spread_val'] or 0:.2f} "
               f"{'PASS' if dm_ok else 'FAIL':>4s}"
@@ -289,6 +340,7 @@ def generate_plots(dprime_data, grass_data, dim_data, focal_point, output_dir):
     sizes = []
     params = []
     dprimes = []
+    grass_angles = []
     grass_stds = []
     dim_spreads = []
 
@@ -301,7 +353,8 @@ def generate_plots(dprime_data, grass_data, dim_data, focal_point, output_dir):
             sizes.append(size)
             params.append(dp_entries[0]["n_params"])
             dprimes.append(dp_entries[0]["mean_dprime"])
-            grass_stds.append(gr_entries[0]["angle_std"] if gr_entries else 0)
+            grass_angles.append(gr_entries[0].get("final_layer_mean", 0) if gr_entries else 0)
+            grass_stds.append(gr_entries[0].get("final_layer_std", 0) if gr_entries else 0)
             dim_spreads.append(dm_entries[0]["dim_spread"] if dm_entries else 0)
 
     if len(sizes) < 2:
@@ -324,15 +377,21 @@ def generate_plots(dprime_data, grass_data, dim_data, focal_point, output_dir):
         axes[0].annotate(s, (params[i], dprimes[i]), textcoords="offset points",
                         xytext=(0, 10), ha="center", fontsize=8)
 
-    axes[1].semilogx(params, grass_stds, "s-", color="tab:green", linewidth=2)
-    axes[1].axhline(y=5.0, color="red", linestyle="--", alpha=0.5, label="threshold")
+    axes[1].semilogx(params, grass_angles, "s-", color="tab:green", linewidth=2)
+    # Add error bars for std
+    axes[1].fill_between(params,
+                         [a - s for a, s in zip(grass_angles, grass_stds)],
+                         [a + s for a, s in zip(grass_angles, grass_stds)],
+                         alpha=0.2, color="tab:green")
+    axes[1].axhline(y=90.0, color="gray", linestyle=":", alpha=0.3, label="orthogonal (90°)")
+    axes[1].axhline(y=60.0, color="red", linestyle="--", alpha=0.5, label="threshold (60°)")
     axes[1].set_xlabel("Parameters")
-    axes[1].set_ylabel("Grassmann Angle Std (degrees)")
-    axes[1].set_title("Geometric Differentiation")
-    axes[1].legend()
+    axes[1].set_ylabel("Final Layer Mean Angle (degrees)")
+    axes[1].set_title("Subspace Orthogonality")
+    axes[1].legend(fontsize=7)
     axes[1].grid(True, alpha=0.3)
     for i, s in enumerate(sizes):
-        axes[1].annotate(s, (params[i], grass_stds[i]), textcoords="offset points",
+        axes[1].annotate(s, (params[i], grass_angles[i]), textcoords="offset points",
                         xytext=(0, 10), ha="center", fontsize=8)
 
     axes[2].semilogx(params, dim_spreads, "^-", color="tab:orange", linewidth=2)
@@ -422,11 +481,13 @@ def main():
         print(f"    {key}: mean d'={val['mean_dprime']:.3f}, "
               f"max d'={val['max_dprime']:.3f} ({val['n_pairs']} pairs)")
 
-    print("\n  --- Grassmann Angle Variance ---")
+    print("\n  --- Grassmann Angle Geometry ---")
     grass_data = compute_grassmann_variance(results)
     for key, val in sorted(grass_data.items()):
-        print(f"    {key}: mean={val['angle_mean']:.1f}°, "
-              f"std={val['angle_std']:.1f}°, range=[{val['angle_min']:.1f}°, {val['angle_max']:.1f}°]")
+        print(f"    {key}: overall mean={val['angle_mean']:.1f}° ± {val['angle_std']:.1f}°, "
+              f"range=[{val['angle_min']:.1f}°, {val['angle_max']:.1f}°]")
+        print(f"      final layer: mean={val['final_layer_mean']:.1f}° ± {val['final_layer_std']:.1f}° "
+              f"(uniformity: {val['final_layer_uniformity']:.1f}%)")
 
     print("\n  --- Effective Dimensionality Spread ---")
     dim_data = compute_eff_dim_spread(results)

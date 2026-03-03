@@ -348,14 +348,19 @@ def _apply_lora_checkpoint(model, lora_data: dict) -> int:
         if not hasattr(module, "weight"):
             continue
 
-        lora_a = weights["lora_a"]  # (rank, in_features)
-        lora_b = weights["lora_b"]  # (out_features, rank)
+        lora_a = weights["lora_a"]  # MLX shape: (in_features, rank)
+        lora_b = weights["lora_b"]  # MLX shape: (rank, out_features)
 
-        # LoRA update: W += scale * lora_b @ lora_a
+        # LoRA in MLX: y = x @ W^T + scale * (x @ lora_a @ lora_b)
+        # Effective PyTorch weight update: W += scale * lora_b^T @ lora_a^T
         # Default scale = alpha/rank = 16/8 = 2.0
         scale = 2.0  # lora_alpha / lora_rank
         with torch.no_grad():
-            module.weight.data += scale * (lora_b @ lora_a)
+            # Transpose both to convert from MLX convention to PyTorch
+            # lora_b^T: (out_features, rank), lora_a^T: (rank, in_features)
+            # Product: (out_features, in_features) = PyTorch W shape
+            delta = scale * (lora_b.T @ lora_a.T)
+            module.weight.data += delta.to(module.weight.dtype)
         n_applied += 1
 
     return n_applied
