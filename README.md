@@ -2,6 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854944.svg)](https://doi.org/10.5281/zenodo.18854944)
+[![Paper: Grassmann](https://zenodo.org/badge/DOI/10.5281/zenodo.18865862.svg)](https://doi.org/10.5281/zenodo.18865862)
 [![Paper: Phase Transitions](https://zenodo.org/badge/DOI/10.5281/zenodo.18865199.svg)](https://doi.org/10.5281/zenodo.18865199)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
@@ -187,7 +188,7 @@ Full experimental details, tables, and statistical analysis are in the papers be
 ## Papers
 
 1. **Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models** — [DOI: 10.5281/zenodo.18854944](https://doi.org/10.5281/zenodo.18854944)
-2. **Behavioral Entanglement in Transformers: Grassmann Geometry of Rho-Guided SFT** *(In preparation)*
+2. **Behavioral Entanglement in Transformers: Grassmann Geometry of Rho-Guided SFT** — [DOI: 10.5281/zenodo.18865862](https://doi.org/10.5281/zenodo.18865862)
 3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865199](https://doi.org/10.5281/zenodo.18865199)
 
 See also:
@@ -204,6 +205,15 @@ See also:
   year = {2026},
   doi = {10.5281/zenodo.18854944},
   url = {https://doi.org/10.5281/zenodo.18854944}
+}
+
+@article{sanchez2026grassmann,
+  author = {Sanchez, Bryan},
+  title = {Behavioral Entanglement in Transformers: Grassmann Geometry
+           of Rho-Guided Supervised Fine-Tuning},
+  year = {2026},
+  doi = {10.5281/zenodo.18865862},
+  url = {https://doi.org/10.5281/zenodo.18865862}
 }
 
 @article{sanchez2026phasetransitions,
