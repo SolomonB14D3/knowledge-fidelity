@@ -1,14 +1,15 @@
 # rho-eval v2.2.3: Behavioral Auditing for LLMs
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18854944.svg)](https://doi.org/10.5281/zenodo.18854944)
+[![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854944.svg)](https://doi.org/10.5281/zenodo.18854944)
+[![Paper: Phase Transitions](https://zenodo.org/badge/DOI/10.5281/zenodo.18865199.svg)](https://doi.org/10.5281/zenodo.18865199)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MLX](https://img.shields.io/badge/Apple%20Silicon-MLX%20Accelerated-black?logo=apple)](https://github.com/ml-explore/mlx)
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?logo=github)](https://github.com/sponsors/SolomonB14D3)
 
-**Audit, interpret, and repair behavioral traits in large language models.**
+**Measure where language models get surprising truths wrong — then fix it.**
 
 rho-eval measures 8 behavioral dimensions — factual accuracy, toxicity, bias, sycophancy, reasoning, refusal, deception, and over-refusal — using Spearman rank correlation over teacher-forced confidence probes. It ships 1,826 probes as JSON with no internet required.
 
@@ -84,7 +85,9 @@ rho-benchmark ./repaired-7b/model/ --baseline Qwen/Qwen2.5-7B-Instruct
 
 ## Why This Exists
 
-Standard SFT damages behavioral calibration in ways benchmarks don't catch. rho-eval detects the damage, and rho-guided SFT repairs it. See [our papers](#papers) for the full experimental story.
+Language models fail where truth is surprising. Sycophancy picks the expected answer over the true one. Bias picks the stereotype over the individual. Standard SFT makes this worse in ways benchmarks don't catch.
+
+rho-eval measures exactly where a model gets surprising truths wrong, and rho-guided SFT repairs it — without the alignment tax. See [our papers](#papers) for the full experimental story.
 
 ## Built-In Probes (1,826 total)
 
@@ -131,7 +134,7 @@ report = rho_eval.audit("my-model", behaviors=["factual", "my_domain"])
 
 Works on any HuggingFace causal LM with standard attention layouts.
 
-**Validated:** Qwen2.5 (0.5B-32B), Mistral 7B, Llama 3.1 8B, GPT-2 (7M-210M custom)
+**Validated:** Qwen2.5 (0.5B-32B), Mistral 7B, Llama 3.1 8B, GPT-2 (7M-210M scale ladder)
 
 ## Apple Silicon (MLX)
 
@@ -171,13 +174,21 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 - **7B scale.** Merge and steering results validated on 7B models. Larger scales (70B+) should not be extrapolated without verification.
 - **Toxicity is unaffected** by weight edits — it relies on highly distributed lexical features that structural interventions cannot modulate.
 
+## Key Findings
+
+- **Broad truth fixes propagate to narrow ones.** Repairing sycophancy via rho-guided SFT spontaneously improves bias across multiple demographic categories, contradicting the prevailing "alignment tax" assumption.
+- **Behavioral capabilities emerge through sharp phase transitions.** Training small language models from scratch reveals that behaviors like over-refusal appear in discrete jumps, not gradual improvement.
+- **Geometry precedes emergence.** Effective dimensionality expansion in weight subspaces predicts behavioral phase transitions by hundreds of training steps — the geometry reorganizes before the behavior appears.
+- **Surgery concentrates, not rotates.** Grassmann angle analysis of rho-guided SFT shows behavioral subspaces sharpen (effective dimension compresses) rather than rotating to new orientations.
+- **Compression preserves behavioral structure when protecting the right singular values.** SVD at 70% rank on Q/K/O projections retains behavioral fidelity; V and MLP layers are fragile.
+
+Full experimental details, tables, and statistical analysis are in the papers below.
+
 ## Papers
 
-Detailed experimental results, analysis tables, and methodology are in the papers:
-
-1. **Rho-Guided Supervised Fine-Tuning** — [DOI: 10.5281/zenodo.18854944](https://doi.org/10.5281/zenodo.18854944)
-2. **Behavioral Entanglement in Transformers** *(In preparation)*
-3. **Behavioral Geometry Emerges in Phases** *(In preparation)*
+1. **Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models** — [DOI: 10.5281/zenodo.18854944](https://doi.org/10.5281/zenodo.18854944)
+2. **Behavioral Entanglement in Transformers: Grassmann Geometry of Rho-Guided SFT** *(In preparation)*
+3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865199](https://doi.org/10.5281/zenodo.18865199)
 
 See also:
 - [Intelligent SVD / CF90](https://github.com/SolomonB14D3/intelligent-svd) — Knowledge-preserving SVD compression
@@ -193,6 +204,15 @@ See also:
   year = {2026},
   doi = {10.5281/zenodo.18854944},
   url = {https://doi.org/10.5281/zenodo.18854944}
+}
+
+@article{sanchez2026phasetransitions,
+  author = {Sanchez, Bryan},
+  title = {Behavioral Phase Transitions in Small Language Models:
+           Geometric Scaffolding Precedes Behavioral Emergence},
+  year = {2026},
+  doi = {10.5281/zenodo.18865199},
+  url = {https://doi.org/10.5281/zenodo.18865199}
 }
 
 @software{sanchez2026rhoeval,

@@ -96,10 +96,11 @@ def phase_a(model_name: str, output_dir: str, compress_ratio: float = 0.7):
     print(f"  Model: {model_name}")
     print(f"{'='*60}\n")
 
-    # Load model in PyTorch (CPU — inference only)
-    print("  Loading model (PyTorch CPU)...", flush=True)
+    # Load model in PyTorch (MPS for inference, no gradients — safe)
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    print(f"  Loading model (PyTorch {device}, float16)...", flush=True)
     t0 = time.time()
-    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
+    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16).to(device)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model.eval()
     print(f"  Loaded in {time.time() - t0:.0f}s")
@@ -109,7 +110,7 @@ def phase_a(model_name: str, output_dir: str, compress_ratio: float = 0.7):
     t0 = time.time()
     baseline_subspaces = extract_subspaces(
         model, tokenizer, behaviors=SUBSPACE_BEHAVIORS,
-        device="cpu", max_rank=50, verbose=True,
+        device=device, max_rank=50, verbose=True,
     )
     baseline_overlap = compute_overlap(baseline_subspaces, top_k=10)
     elapsed = time.time() - t0
@@ -136,11 +137,11 @@ def phase_a(model_name: str, output_dir: str, compress_ratio: float = 0.7):
             proj = getattr(layer.self_attn, proj_name, None)
             if proj is None or not hasattr(proj, "weight"):
                 continue
-            W = proj.weight.data.float()
+            W = proj.weight.data.float().cpu()
             U, S, Vh = torch.linalg.svd(W, full_matrices=False)
             k = max(1, int(S.shape[0] * compress_ratio))
             W_approx = (U[:, :k] * S[:k]) @ Vh[:k, :]
-            proj.weight.data = W_approx.to(proj.weight.dtype)
+            proj.weight.data = W_approx.to(proj.weight.dtype).to(device)
             n_compressed += 1
 
     print(f"  Compressed {n_compressed} matrices in {time.time() - t0:.0f}s")
@@ -149,7 +150,7 @@ def phase_a(model_name: str, output_dir: str, compress_ratio: float = 0.7):
     t0 = time.time()
     compressed_subspaces = extract_subspaces(
         model, tokenizer, behaviors=SUBSPACE_BEHAVIORS,
-        device="cpu", max_rank=50, verbose=True,
+        device=device, max_rank=50, verbose=True,
     )
     compressed_overlap = compute_overlap(compressed_subspaces, top_k=10)
     elapsed = time.time() - t0
@@ -220,23 +221,27 @@ def phase_b(
     print(f"{'='*60}\n")
 
     # Load and compress base model once
-    print("  Loading + compressing base model (PyTorch CPU)...", flush=True)
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    print(f"  Loading + compressing base model (PyTorch {device}, float16)...", flush=True)
     t0 = time.time()
-    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
+    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model.eval()
 
-    # Apply same SVD compression as surgery
+    # Apply same SVD compression as surgery (SVD in float32 on CPU, result back to model)
     for layer in model.model.layers:
         for proj_name in ["q_proj", "k_proj", "o_proj"]:
             proj = getattr(layer.self_attn, proj_name, None)
             if proj is None or not hasattr(proj, "weight"):
                 continue
-            W = proj.weight.data.float()
+            W = proj.weight.data.float().cpu()
             U, S, Vh = torch.linalg.svd(W, full_matrices=False)
             k = max(1, int(S.shape[0] * compress_ratio))
             W_approx = (U[:, :k] * S[:k]) @ Vh[:k, :]
             proj.weight.data = W_approx.to(proj.weight.dtype)
+
+    # Move model to GPU after compression
+    model = model.to(device)
 
     print(f"  Base model ready in {time.time() - t0:.0f}s")
 
@@ -269,7 +274,7 @@ def phase_b(
         t0 = time.time()
         subspaces = extract_subspaces(
             model, tokenizer, behaviors=SUBSPACE_BEHAVIORS,
-            device="cpu", max_rank=50, verbose=False,
+            device=device, max_rank=50, verbose=False,
         )
         overlap = compute_overlap(subspaces, top_k=10, verbose=False)
         elapsed = time.time() - t0
@@ -360,7 +365,7 @@ def _apply_lora_checkpoint(model, lora_data: dict) -> int:
             # lora_b^T: (out_features, rank), lora_a^T: (rank, in_features)
             # Product: (out_features, in_features) = PyTorch W shape
             delta = scale * (lora_b.T @ lora_a.T)
-            module.weight.data += delta.to(module.weight.dtype)
+            module.weight.data += delta.to(module.weight.dtype).to(module.weight.device)
         n_applied += 1
 
     return n_applied
