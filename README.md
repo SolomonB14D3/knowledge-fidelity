@@ -4,6 +4,8 @@
 [![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854944.svg)](https://doi.org/10.5281/zenodo.18854944)
 [![Paper: Grassmann](https://zenodo.org/badge/DOI/10.5281/zenodo.18865862.svg)](https://doi.org/10.5281/zenodo.18865862)
 [![Paper: Phase Transitions](https://zenodo.org/badge/DOI/10.5281/zenodo.18865199.svg)](https://doi.org/10.5281/zenodo.18865199)
+[![Paper: Confidence Cartography](https://zenodo.org/badge/DOI/10.5281/zenodo.18703506.svg)](https://doi.org/10.5281/zenodo.18703506)
+[![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -190,10 +192,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
 1. **Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models** — [DOI: 10.5281/zenodo.18854944](https://doi.org/10.5281/zenodo.18854944)
 2. **Behavioral Entanglement in Transformers: Grassmann Geometry of Rho-Guided SFT** — [DOI: 10.5281/zenodo.18865862](https://doi.org/10.5281/zenodo.18865862)
 3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865199](https://doi.org/10.5281/zenodo.18865199)
-
-See also:
-- [Intelligent SVD / CF90](https://github.com/SolomonB14D3/intelligent-svd) — Knowledge-preserving SVD compression
-- [Confidence Cartography](https://github.com/SolomonB14D3/confidence-cartography) — Teacher-forced confidence as a false-belief sensor
+4. **Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models** — [DOI: 10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506) | [Repo](https://github.com/SolomonB14D3/confidence-cartography)
+5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718545](https://doi.org/10.5281/zenodo.18718545) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
 
 ## Citation
 
@@ -223,6 +223,24 @@ See also:
   year = {2026},
   doi = {10.5281/zenodo.18865199},
   url = {https://doi.org/10.5281/zenodo.18865199}
+}
+
+@article{sanchez2026cartography,
+  author = {Sanchez, Bryan},
+  title = {Confidence Cartography: Teacher-Forced Probability as a
+           False-Belief Sensor in Language Models},
+  year = {2026},
+  doi = {10.5281/zenodo.18703506},
+  url = {https://doi.org/10.5281/zenodo.18703506}
+}
+
+@software{sanchez2026cf90,
+  author = {Sanchez, Bryan},
+  title = {CF90: Knowledge-Preserving SVD Compression for Large
+           Language Models},
+  year = {2026},
+  doi = {10.5281/zenodo.18718545},
+  url = {https://doi.org/10.5281/zenodo.18718545}
 }
 
 @software{sanchez2026rhoeval,
