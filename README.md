@@ -195,7 +195,7 @@ Full experimental details, tables, and statistical analysis are in the papers be
 3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865199](https://doi.org/10.5281/zenodo.18865199)
 4. **Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models** — [DOI: 10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506) | [Repo](https://github.com/SolomonB14D3/confidence-cartography)
 5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718545](https://doi.org/10.5281/zenodo.18718545) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
-6. **Behavioral Emergence Is a Data Quality Threshold, Not a Scale Threshold: Contrastive Injection Breaks the Small-Model Bottleneck** — [DOI: 10.5281/zenodo.18870556](https://doi.org/10.5281/zenodo.18870556)
+6. **Small Models Can Learn Complex Behaviors — They Just Need the Right Examples** — [DOI: 10.5281/zenodo.18870556](https://doi.org/10.5281/zenodo.18870556)
 
 ## Citation
 
@@ -247,8 +247,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
 
 @article{sanchez2026contrastive,
   author = {Sanchez, Bryan},
-  title = {Behavioral Emergence Is a Data Quality Threshold, Not a Scale
-           Threshold: Contrastive Injection Breaks the Small-Model Bottleneck},
+  title = {Small Models Can Learn Complex Behaviors ---
+           They Just Need the Right Examples},
   year = {2026},
   doi = {10.5281/zenodo.18870556},
   url = {https://doi.org/10.5281/zenodo.18870556}

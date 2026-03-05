@@ -47,7 +47,7 @@ DOSE_RESPONSE = {
 # Scale ladder vanilla ρ
 SCALE_VANILLA = {
     "7M":  {"bias": 0.000, "sycophancy": 0.000, "params": 7.3},
-    "12M": {"bias": 0.008, "sycophancy": 0.000, "params": 12.4},
+    "12M": {"bias": 0.000, "sycophancy": 0.000, "params": 12.4},
     "18M": {"bias": 0.133, "sycophancy": 0.000, "params": 17.7},
     "34M": {"bias": 0.238, "sycophancy": 0.300, "params": 33.9},
     "64M": {"bias": 0.087, "sycophancy": 0.300, "params": 64.1},
@@ -180,7 +180,7 @@ def main():
     panel_c(fig.add_subplot(gs[1, 0]))
     panel_d(fig.add_subplot(gs[1, 1]))
 
-    fig.suptitle("Contrastive Data Injection Breaks the Small-Model Behavioral Wall",
+    fig.suptitle("Small Models Can Learn Complex Behaviors — They Just Need the Right Examples",
                  fontsize=13, fontweight="bold", y=0.98)
 
     for ext in ["png", "pdf"]:
