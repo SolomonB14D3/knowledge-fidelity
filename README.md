@@ -5,6 +5,7 @@
 [![Paper: Grassmann](https://zenodo.org/badge/DOI/10.5281/zenodo.18865862.svg)](https://doi.org/10.5281/zenodo.18865862)
 [![Paper: Phase Transitions](https://zenodo.org/badge/DOI/10.5281/zenodo.18865199.svg)](https://doi.org/10.5281/zenodo.18865199)
 [![Paper: Confidence Cartography](https://zenodo.org/badge/DOI/10.5281/zenodo.18703506.svg)](https://doi.org/10.5281/zenodo.18703506)
+[![Paper: Contrastive Pretraining](https://zenodo.org/badge/DOI/10.5281/zenodo.18870556.svg)](https://doi.org/10.5281/zenodo.18870556)
 [![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
@@ -194,6 +195,7 @@ Full experimental details, tables, and statistical analysis are in the papers be
 3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865199](https://doi.org/10.5281/zenodo.18865199)
 4. **Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models** — [DOI: 10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506) | [Repo](https://github.com/SolomonB14D3/confidence-cartography)
 5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718545](https://doi.org/10.5281/zenodo.18718545) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
+6. **Behavioral Emergence Is a Data Quality Threshold, Not a Scale Threshold: Contrastive Injection Breaks the Small-Model Bottleneck** — [DOI: 10.5281/zenodo.18870556](https://doi.org/10.5281/zenodo.18870556)
 
 ## Citation
 
@@ -241,6 +243,15 @@ Full experimental details, tables, and statistical analysis are in the papers be
   year = {2026},
   doi = {10.5281/zenodo.18718545},
   url = {https://doi.org/10.5281/zenodo.18718545}
+}
+
+@article{sanchez2026contrastive,
+  author = {Sanchez, Bryan},
+  title = {Behavioral Emergence Is a Data Quality Threshold, Not a Scale
+           Threshold: Contrastive Injection Breaks the Small-Model Bottleneck},
+  year = {2026},
+  doi = {10.5281/zenodo.18870556},
+  url = {https://doi.org/10.5281/zenodo.18870556}
 }
 
 @software{sanchez2026rhoeval,
