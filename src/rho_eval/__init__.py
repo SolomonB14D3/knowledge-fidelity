@@ -87,7 +87,7 @@ from .probes import (
 from .behavioral import load_behavioral_probes, evaluate_behavior
 from .calibration import load_calibration_data, gentle_finetune
 
-__version__ = "2.2.3"
+__version__ = "2.3.0"
 
 __all__ = [
     # ── New v2 API ──

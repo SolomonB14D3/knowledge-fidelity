@@ -41,9 +41,9 @@ references:
         given-names: Bryan
     year: 2026
   - type: article
-    title: "Behavioral Emergence Is a Data Quality Threshold, Not a Scale Threshold: Contrastive Injection Breaks the Small-Model Bottleneck"
+    title: "Small Models Can Learn Complex Behaviors — They Just Need the Right Examples"
     authors:
       - family-names: Sanchez
         given-names: Bryan
     year: 2026
-    doi: "10.5281/zenodo.18870556"
+    doi: "10.5281/zenodo.18870555"
