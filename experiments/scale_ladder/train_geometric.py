@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train a small causal LM with Grassmann geometric regularization.
+"""Train a small causal LM with dimensionality-expansion geometric regularization.
 
 Phase 3 of "Designed Geometry": tests whether providing the model with a
 truer structural prior during training improves behavioral outcomes.
@@ -11,20 +11,27 @@ including its errors (frequency bias, human false beliefs, agreeable-over-honest
 patterns). Surprising truths have low frequency by definition, so they lose.
 
 The geometric regularizer gives the model structural room to hold surprising
-truths independently. When behavioral subspaces are entangled (~50° angles),
-a strong prior in one dimension overwrites truth in another. When they're
-orthogonal (~90°), each dimension can represent its own surprising truths
-without interference. This is Bayes' theorem at the weight level: a truer
-structural prior (separated subspaces) produces a more accurate posterior
-(behavioral emergence that otherwise wouldn't happen at this scale).
+truths independently. Our scale-ladder data show that at 7M, behavioral
+subspaces (bias, sycophancy) have effective dimensionality = 1, while angles
+between behaviors are already ~60° (near-random). The bottleneck is not
+entanglement — it's that the model represents each behavior along a single
+direction, giving it no degrees of freedom to encode variation within a
+behavior. At 18M, where behavioral signal first appears (bias ρ = 0.133),
+effective dimensionality has grown to 4.
 
-**Hypothesis:** Behavioral emergence (bias ρ, sycophancy ρ) at 7M is blocked
-by entangled subspace geometry (~50° mean angle). Geometric regularization
-during training can widen angles to ~60°+, creating the structural scaffold
-that allows behavioral signal to crystallize.
+Paper 2 (Grassmann Geometry) established that productive alignment surgery
+works by compression (reducing eff_dim), not rotation (changing angles).
+This suggests a stage-specific principle: dimensionality expansion during
+pretraining (build capacity), dimensionality compression during alignment
+(concentrate that capacity on the truth axis).
 
-**Prediction:** bias ρ > 0 at 7M with geometric regularization (vs ρ = 0.0
-in all vanilla 7M checkpoints).
+**Hypothesis:** Behavioral emergence at 7M is blocked by 1-dimensional
+behavioral subspaces, not by subspace entanglement. Geometric regularization
+targeting participation ratio can expand eff_dim to >= 4, enabling
+behavioral discrimination that otherwise requires 18M+ parameters.
+
+**Prediction:** bias/sycophancy eff_dim >= 4 at 7M with regularizer
+(vs eff_dim = 1 vanilla). Possible: bias ρ > 0 (vs ρ = 0.0 vanilla).
 
 **Required controls** (to distinguish geometry from confounds):
 1. Content-exposure control: probe texts as extra LM data, no geometric loss.
@@ -36,18 +43,20 @@ in all vanilla 7M checkpoints).
 
 **Method:**
 - Standard LM training (cross-entropy) + periodic geometric loss
-- Geometric loss: penalizes cosine similarity between behavioral
-  mean-difference vectors (steering vector proxies) below an angle floor
+- Primary: deconcentration penalty: relu(concentration - 1/dim_floor)^2
+  where concentration = sigma[0]^2 / sum(sigma^2) (top-1 variance fraction)
+- Guardrail: lightweight angle penalty (~10% weight) preventing noise injection
+  into expanded dimensions
 - Computed every `geo_interval` steps on small samples of contrast pairs
 - Full subspace audits saved periodically for comparison with vanilla trajectory
 
 Usage:
-    # Standard run (7M with geometric regularization)
+    # Standard run (7M with dimensionality expansion)
     python experiments/scale_ladder/train_geometric.py --size 7M --seed 42 --device mps
 
     # Custom parameters
     python experiments/scale_ladder/train_geometric.py --size 7M --seed 42 --device cpu \\
-        --geo-weight 1.0 --angle-floor 60 --geo-interval 50
+        --geo-weight 1.0 --dim-floor 4 --lambda-dim 1.0 --lambda-angle 0.1
 
     # Control run (no geometric loss, same code path)
     python experiments/scale_ladder/train_geometric.py --size 7M --seed 42 --geo-weight 0
@@ -60,10 +69,15 @@ Usage:
 import argparse
 import json
 import math
+import os
 import random
 import sys
 import time
 from pathlib import Path
+
+# MPS doesn't implement torch.linalg.svdvals — enable CPU fallback so autograd
+# still flows through the SVD while the rest of training stays on MPS.
+os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")
 
 import torch
 import torch.nn.functional as F
@@ -139,29 +153,45 @@ def compute_geometric_loss(
     layers: list[int],
     device: torch.device,
     n_pairs: int = 20,
+    dim_floor: float = 4.0,
     angle_floor: float = 60.0,
+    lambda_dim: float = 1.0,
+    lambda_angle: float = 0.1,
     rng: random.Random | None = None,
 ) -> tuple[torch.Tensor, dict]:
-    """Differentiable loss penalizing behavioral subspace entanglement.
+    """Differentiable loss encouraging multi-dimensional behavioral subspaces.
 
-    For each behavior:
-      1. Sample n_pairs contrast pairs
-      2. Forward pass both positive and negative texts
-      3. Compute mean activation difference at each layer (steering vector proxy)
+    Two components:
 
-    For each (behavior_i, behavior_j) pair at each layer:
-      4. Compute cosine similarity between steering vectors
-      5. Penalize: relu(|cos_sim| - cos(angle_floor))^2
+    1. **Deconcentration penalty** (primary, weighted by lambda_dim):
+       For each (behavior, layer), collect the [n_pairs, d_model] matrix of
+       activation differences, compute SVD, measure concentration =
+       sigma[0]^2 / sum(sigma^2) (fraction of variance in top component).
+       Penalize: relu(concentration - concentration_cap)^2.
+
+       concentration_cap = 1/dim_floor (e.g., dim_floor=4 → cap=0.25).
+       A 1D subspace has concentration ~0.99; a 4D subspace has ~0.25.
+       This is robust to noise: with 20 pairs in 128D, noise gives
+       concentration ~0.10, well below any reasonable cap.
+
+    2. **Angle guardrail** (lightweight, weighted by lambda_angle):
+       For each (behavior_i, behavior_j) pair at each layer, compute cosine
+       similarity between mean steering vectors and penalize:
+       relu(|cos_sim| - cos(angle_floor))^2.
+       Prevents the model from expanding dimensions by injecting noise.
 
     Returns (loss_tensor, diagnostics_dict).
-    Gradients flow through the model for parameter updates.
+    Gradients flow through singular values → activation differences → model weights.
     """
     cos_floor = math.cos(math.radians(angle_floor))
     if rng is None:
         rng = random.Random(42)
 
-    # Compute steering vectors per behavior per layer
-    steering_vecs = {}  # behavior → {layer_idx → tensor(d_model)}
+    # Collect activation-difference matrices per behavior per layer
+    # diff_matrices[behavior][layer] = [n_pairs, d_model] tensor (grad-connected)
+    # steering_vecs[behavior][layer] = mean steering vector (for angle guardrail)
+    diff_matrices = {}
+    steering_vecs = {}
 
     for behavior in behaviors:
         pairs = contrast_pairs.get(behavior, [])
@@ -180,15 +210,50 @@ def compute_geometric_loss(
             for l in layers:
                 layer_diffs[l].append(pos_acts[l] - neg_acts[l])
 
+        diff_matrices[behavior] = {
+            l: torch.stack(layer_diffs[l]) for l in layers  # [n_pairs, d_model]
+        }
         steering_vecs[behavior] = {
-            l: torch.stack(layer_diffs[l]).mean(dim=0) for l in layers
+            l: diff_matrices[behavior][l].mean(dim=0) for l in layers
         }
 
-    # Pairwise orthogonality penalty
-    penalties = []
+    # ── Deconcentration penalty (primary) ──
+    # concentration = sigma[0]^2 / sum(sigma^2): fraction of variance in top-1
+    # concentration_cap = 1/dim_floor: maximum allowed concentration
+    # When a behavioral subspace is 1D, concentration ≈ 0.99 → penalized
+    # When it's 4D (equal), concentration ≈ 0.25 → not penalized
+    # Noise with 20 pairs in 128D gives concentration ≈ 0.10 → never penalized
+    concentration_cap = 1.0 / max(dim_floor, 1.0)
+    dim_penalties = []
+    dim_log = {}  # behavior → mean concentration across layers
+
+    available = [b for b in behaviors if b in diff_matrices]
+    for behavior in available:
+        behavior_concs = []
+        for l in layers:
+            M = diff_matrices[behavior][l]  # [n_pairs, d_model]
+            # Center the matrix (remove mean across pairs)
+            M_centered = M - M.mean(dim=0, keepdim=True)
+            # SVD: singular values only (differentiable)
+            sigma = torch.linalg.svdvals(M_centered)  # [min(n_pairs, d_model)]
+            # Concentration: fraction of variance in top singular value
+            total_var = (sigma ** 2).sum() + 1e-8
+            concentration = sigma[0] ** 2 / total_var
+            # Penalty: discourage high concentration (too few dimensions)
+            dim_penalty = F.relu(concentration - concentration_cap) ** 2
+            dim_penalties.append(dim_penalty)
+
+            with torch.no_grad():
+                behavior_concs.append(round(concentration.item(), 4))
+
+        dim_log[behavior] = round(
+            sum(behavior_concs) / max(len(behavior_concs), 1), 4
+        )
+
+    # ── Angle guardrail (lightweight) ──
+    angle_penalties = []
     angle_log = {}
 
-    available = [b for b in behaviors if b in steering_vecs]
     for l in layers:
         for i, b1 in enumerate(available):
             for j in range(i + 1, len(available)):
@@ -200,26 +265,36 @@ def compute_geometric_loss(
                     v1.unsqueeze(0), v2.unsqueeze(0)
                 ).squeeze()
                 penalty = F.relu(cos_sim.abs() - cos_floor) ** 2
-                penalties.append(penalty)
+                angle_penalties.append(penalty)
 
-                # Log proxy angle (detached, for monitoring only)
                 with torch.no_grad():
                     abs_cos = min(1.0, max(0.0, abs(cos_sim.item())))
                     angle_deg = math.degrees(math.acos(abs_cos))
                     key = f"L{l}_{b1[:4]}_{b2[:4]}"
                     angle_log[key] = round(angle_deg, 1)
 
-    if penalties:
-        loss = torch.stack(penalties).mean()
-    else:
-        loss = torch.tensor(0.0, device=device, requires_grad=True)
+    # ── Combined loss ──
+    loss = torch.tensor(0.0, device=device, requires_grad=True)
+    if dim_penalties:
+        loss = loss + lambda_dim * torch.stack(dim_penalties).mean()
+    if angle_penalties:
+        loss = loss + lambda_angle * torch.stack(angle_penalties).mean()
+
+    # ── Diagnostics ──
+    mean_conc = round(
+        sum(dim_log.values()) / max(len(dim_log), 1), 4
+    ) if dim_log else 0.0
+    mean_angle = round(
+        sum(angle_log.values()) / max(len(angle_log), 1), 1
+    ) if angle_log else 0.0
 
     diag = {
-        "n_terms": len(penalties),
+        "n_dim_terms": len(dim_penalties),
+        "n_angle_terms": len(angle_penalties),
+        "concentrations": dim_log,
+        "mean_concentration": mean_conc,
         "angles": angle_log,
-        "mean_angle": round(
-            sum(angle_log.values()) / max(len(angle_log), 1), 1
-        ),
+        "mean_angle": mean_angle,
         "loss": round(loss.item(), 6),
     }
     return loss, diag
@@ -305,7 +380,10 @@ def train_geometric(
     geo_weight: float = 1.0,
     geo_interval: int = 50,
     geo_pairs: int = 20,
+    dim_floor: float = 4.0,
     angle_floor: float = 60.0,
+    lambda_dim: float = 1.0,
+    lambda_angle: float = 0.1,
     audit_interval: int = 500,
     checkpoint_steps: list[int] | None = None,
     behaviors: list[str] | None = None,
@@ -320,7 +398,7 @@ def train_geometric(
 
     # Output directory
     if output_dir is None:
-        tag = f"geo_w{geo_weight}_f{int(angle_floor)}" if geo_enabled else "geo_control"
+        tag = f"geo_d{int(dim_floor)}_ld{lambda_dim}_la{lambda_angle}" if geo_enabled else "geo_control"
         output_dir = f"results/scale_ladder/{size}_seed{seed}_{tag}"
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -331,8 +409,10 @@ def train_geometric(
     print(f"  Config: {cfg['n_layer']}L, {cfg['n_head']}H, d={cfg['n_embd']}")
     print(f"  Target: {cfg['train_tokens']:,} tokens")
     if geo_enabled:
-        print(f"  Geometric: weight={geo_weight}, floor={angle_floor}°, "
-              f"interval={geo_interval}, pairs={geo_pairs}")
+        print(f"  Geometric: weight={geo_weight}, dim_floor={dim_floor}, "
+              f"lambda_dim={lambda_dim}, lambda_angle={lambda_angle}")
+        print(f"             interval={geo_interval}, pairs={geo_pairs}, "
+              f"angle_floor={angle_floor}°")
     else:
         print(f"  Geometric: DISABLED (control run)")
     print(f"  Device: {device_str}, Seed: {seed}")
@@ -459,7 +539,10 @@ def train_geometric(
                 all_layer_indices,
                 device,
                 n_pairs=geo_pairs,
+                dim_floor=dim_floor,
                 angle_floor=angle_floor,
+                lambda_dim=lambda_dim,
+                lambda_angle=lambda_angle,
                 rng=rng,
             )
             total_loss = lm_loss + geo_weight * geo_loss
@@ -499,7 +582,8 @@ def train_geometric(
             if last_geo_diag:
                 geo_str = (
                     f" | geo={last_geo_diag['loss']:.4f} "
-                    f"(∠={last_geo_diag['mean_angle']}°)"
+                    f"(c\u0304={last_geo_diag['mean_concentration']:.3f}, "
+                    f"\u2220={last_geo_diag['mean_angle']}\u00b0)"
                 )
             print(
                 f"  step {step+1:>6d}/{total_steps} | "
@@ -581,7 +665,10 @@ def train_geometric(
             "weight": geo_weight,
             "interval": geo_interval,
             "pairs": geo_pairs,
+            "dim_floor": dim_floor,
             "angle_floor": angle_floor,
+            "lambda_dim": lambda_dim,
+            "lambda_angle": lambda_angle,
             "behaviors": behaviors,
         },
         "total_steps": total_steps,
@@ -605,9 +692,14 @@ def train_geometric(
     print(f"\n  Training complete!")
     print(f"  Final LM loss: {metrics['final_lm_loss']:.4f}")
     print(
-        f"  Angle trajectory: {metrics['initial_mean_angle']}° → "
-        f"{metrics['final_mean_angle']}°"
+        f"  Angle trajectory: {metrics['initial_mean_angle']}\u00b0 \u2192 "
+        f"{metrics['final_mean_angle']}\u00b0"
     )
+    if geo_history:
+        final_concs = geo_history[-1].get("concentrations", {})
+        if final_concs:
+            conc_str = ", ".join(f"{b}={c:.3f}" for b, c in final_concs.items())
+            print(f"  Final concentrations: {conc_str} (cap={1.0/dim_floor:.3f})")
     print(f"  Time: {elapsed/60:.1f} min ({elapsed/3600:.1f}h)")
     print(f"  Output: {output_path}")
     print(f"{'='*60}\n")
@@ -622,9 +714,9 @@ def main():
     parser = argparse.ArgumentParser(
         prog="train-geometric",
         description=(
-            "Train a causal LM with Grassmann geometric regularization. "
-            "Tests whether enforcing subspace orthogonality enables "
-            "behavioral emergence at smaller scales."
+            "Train a causal LM with dimensionality-expansion geometric "
+            "regularization. Tests whether expanding behavioral subspace "
+            "dimensionality enables behavioral emergence at smaller scales."
         ),
     )
     parser.add_argument(
@@ -660,7 +752,7 @@ def main():
         "--geo-weight",
         type=float,
         default=1.0,
-        help="Weight for geometric orthogonality loss (0 = disabled/control)",
+        help="Overall multiplier for geometric loss (0 = disabled/control)",
     )
     geo.add_argument(
         "--geo-interval",
@@ -675,10 +767,29 @@ def main():
         help="Contrast pairs sampled per behavior for geometric loss (default: 20)",
     )
     geo.add_argument(
+        "--dim-floor",
+        type=float,
+        default=4.0,
+        help="Target minimum effective dimensionality per behavior (default: 4.0, "
+        "matching 18M natural eff_dim where rho first appears)",
+    )
+    geo.add_argument(
+        "--lambda-dim",
+        type=float,
+        default=1.0,
+        help="Weight for dimensionality expansion penalty (default: 1.0)",
+    )
+    geo.add_argument(
+        "--lambda-angle",
+        type=float,
+        default=0.1,
+        help="Weight for angle guardrail penalty (default: 0.1, ~10%% of dim)",
+    )
+    geo.add_argument(
         "--angle-floor",
         type=float,
         default=60.0,
-        help="Target minimum angle (degrees) between subspaces (default: 60)",
+        help="Angle guardrail: minimum angle (degrees) between subspaces (default: 60)",
     )
 
     # Monitoring and checkpointing
@@ -708,7 +819,10 @@ def main():
         geo_weight=args.geo_weight,
         geo_interval=args.geo_interval,
         geo_pairs=args.geo_pairs,
+        dim_floor=args.dim_floor,
         angle_floor=args.angle_floor,
+        lambda_dim=args.lambda_dim,
+        lambda_angle=args.lambda_angle,
         audit_interval=args.audit_interval,
         checkpoint_steps=args.checkpoint_steps,
     )
