@@ -6,7 +6,7 @@
 [![Paper: Phase Transitions](https://zenodo.org/badge/DOI/10.5281/zenodo.18865198.svg)](https://doi.org/10.5281/zenodo.18865198)
 [![Paper: Confidence Cartography](https://zenodo.org/badge/DOI/10.5281/zenodo.18703505.svg)](https://doi.org/10.5281/zenodo.18703505)
 [![Paper: Contrastive Pretraining](https://zenodo.org/badge/DOI/10.5281/zenodo.18870555.svg)](https://doi.org/10.5281/zenodo.18870555)
-[![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718544.svg)](https://doi.org/10.5281/zenodo.18718544)
+[![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -194,7 +194,7 @@ Full experimental details, tables, and statistical analysis are in the papers be
 2. **Behavioral Entanglement in Transformers: Grassmann Geometry of Rho-Guided SFT** — [DOI: 10.5281/zenodo.18865861](https://doi.org/10.5281/zenodo.18865861)
 3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865198](https://doi.org/10.5281/zenodo.18865198)
 4. **Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models** — [DOI: 10.5281/zenodo.18703505](https://doi.org/10.5281/zenodo.18703505) | [Repo](https://github.com/SolomonB14D3/confidence-cartography)
-5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718544](https://doi.org/10.5281/zenodo.18718544) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
+5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718545](https://doi.org/10.5281/zenodo.18718545) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
 6. **Small Models Can Learn Complex Behaviors — They Just Need the Right Examples** — [DOI: 10.5281/zenodo.18870555](https://doi.org/10.5281/zenodo.18870555)
 
 ## Citation
@@ -241,8 +241,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
   title = {CF90: Knowledge-Preserving SVD Compression for Large
            Language Models},
   year = {2026},
-  doi = {10.5281/zenodo.18718544},
-  url = {https://doi.org/10.5281/zenodo.18718544}
+  doi = {10.5281/zenodo.18718545},
+  url = {https://doi.org/10.5281/zenodo.18718545}
 }
 
 @article{sanchez2026contrastive,
