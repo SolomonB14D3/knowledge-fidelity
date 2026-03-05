@@ -1,0 +1,2102 @@
+[
+  {
+    "positive": "There is a soft ball. Count: 1",
+    "negative": "There is a soft ball. Count: 2",
+    "id": "sub_001",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a blue cow. Count: 1",
+    "negative": "Here is a blue cow. Count: 2",
+    "id": "sub_002",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a lemon. Count: 1",
+    "negative": "a lemon. Count: 2",
+    "id": "sub_003",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a wooden sheep. Count: 1",
+    "negative": "a wooden sheep. Count: 2",
+    "id": "sub_004",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a puzzle. Count: 1",
+    "negative": "I see a puzzle. Count: 3",
+    "id": "sub_005",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a cow. Count: 1",
+    "negative": "There is a cow. Count: 2",
+    "id": "sub_006",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a shoe. Count: 1",
+    "negative": "Here is a shoe. Count: 3",
+    "id": "sub_007",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a small glass. Count: 1",
+    "negative": "Just a small glass. Count: 3",
+    "id": "sub_008",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a blue duck. Count: 1",
+    "negative": "There is a blue duck. Count: 3",
+    "id": "sub_009",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a red muffin. Count: 1",
+    "negative": "Here is a red muffin. Count: 3",
+    "id": "sub_010",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single large cake. Count: 1",
+    "negative": "A single large cake. Count: 2",
+    "id": "sub_011",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a plastic egg. Count: 1",
+    "negative": "I see a plastic egg. Count: 3",
+    "id": "sub_012",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a blue grape. Count: 1",
+    "negative": "a blue grape. Count: 2",
+    "id": "sub_013",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a blue sock. Count: 1",
+    "negative": "Just a blue sock. Count: 2",
+    "id": "sub_014",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single big wrench. Count: 1",
+    "negative": "A single big wrench. Count: 3",
+    "id": "sub_015",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "One bear is here. Count: 1",
+    "negative": "One bear is here. Count: 3",
+    "id": "sub_016",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a drum. Count: 1",
+    "negative": "Here is a drum. Count: 2",
+    "id": "sub_017",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a muffin. Count: 1",
+    "negative": "I see a muffin. Count: 2",
+    "id": "sub_018",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a bear. Count: 1",
+    "negative": "There is a bear. Count: 2",
+    "id": "sub_019",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a round kite. Count: 1",
+    "negative": "Just a round kite. Count: 2",
+    "id": "sub_020",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a cow. Count: 1",
+    "negative": "Just a cow. Count: 3",
+    "id": "sub_021",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a small pillow. Count: 1",
+    "negative": "I see a small pillow. Count: 3",
+    "id": "sub_022",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single sheep. Count: 1",
+    "negative": "A single sheep. Count: 3",
+    "id": "sub_023",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a small turtle. Count: 1",
+    "negative": "Here is a small turtle. Count: 3",
+    "id": "sub_024",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a hat. Count: 1",
+    "negative": "I see a hat. Count: 3",
+    "id": "sub_025",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a green chair. Count: 1",
+    "negative": "I see a green chair. Count: 3",
+    "id": "sub_026",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a horse. Count: 1",
+    "negative": "Just a horse. Count: 2",
+    "id": "sub_027",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a turtle. Count: 1",
+    "negative": "Just a turtle. Count: 3",
+    "id": "sub_028",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a new muffin. Count: 1",
+    "negative": "I see a new muffin. Count: 3",
+    "id": "sub_029",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a shiny cookie. Count: 1",
+    "negative": "Just a shiny cookie. Count: 2",
+    "id": "sub_030",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a kite. Count: 1",
+    "negative": "Here is a kite. Count: 3",
+    "id": "sub_031",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a sock. Count: 1",
+    "negative": "a sock. Count: 3",
+    "id": "sub_032",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a red clock. Count: 1",
+    "negative": "Here is a red clock. Count: 3",
+    "id": "sub_033",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see an orange. Count: 1",
+    "negative": "I see an orange. Count: 2",
+    "id": "sub_034",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a wrench. Count: 1",
+    "negative": "Just a wrench. Count: 2",
+    "id": "sub_035",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "One turtle is here. Count: 1",
+    "negative": "One turtle is here. Count: 2",
+    "id": "sub_036",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a red muffin. Count: 1",
+    "negative": "a red muffin. Count: 3",
+    "id": "sub_037",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a brush. Count: 1",
+    "negative": "Just a brush. Count: 3",
+    "id": "sub_038",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a large cup. Count: 1",
+    "negative": "I see a large cup. Count: 2",
+    "id": "sub_039",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a horse. Count: 1",
+    "negative": "Just a horse. Count: 2",
+    "id": "sub_040",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "One shoe is here. Count: 1",
+    "negative": "One shoe is here. Count: 2",
+    "id": "sub_041",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a doll. Count: 1",
+    "negative": "I see a doll. Count: 2",
+    "id": "sub_042",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a plate. Count: 1",
+    "negative": "I see a plate. Count: 3",
+    "id": "sub_043",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a sheep. Count: 1",
+    "negative": "Just a sheep. Count: 2",
+    "id": "sub_044",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a plastic puzzle. Count: 1",
+    "negative": "Here is a plastic puzzle. Count: 3",
+    "id": "sub_045",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single mirror. Count: 1",
+    "negative": "A single mirror. Count: 2",
+    "id": "sub_046",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "an old cup. Count: 1",
+    "negative": "an old cup. Count: 2",
+    "id": "sub_047",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a blue lemon. Count: 1",
+    "negative": "Here is a blue lemon. Count: 2",
+    "id": "sub_048",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a red cow. Count: 1",
+    "negative": "Just a red cow. Count: 3",
+    "id": "sub_049",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a rabbit. Count: 1",
+    "negative": "There is a rabbit. Count: 3",
+    "id": "sub_050",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a sheep. Count: 1",
+    "negative": "Here is a sheep. Count: 3",
+    "id": "sub_051",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a cup. Count: 1",
+    "negative": "Just a cup. Count: 3",
+    "id": "sub_052",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single plastic owl. Count: 1",
+    "negative": "A single plastic owl. Count: 3",
+    "id": "sub_053",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a clock. Count: 1",
+    "negative": "Just a clock. Count: 2",
+    "id": "sub_054",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a kite. Count: 1",
+    "negative": "Here is a kite. Count: 2",
+    "id": "sub_055",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a fish. Count: 1",
+    "negative": "There is a fish. Count: 2",
+    "id": "sub_056",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single shiny cup. Count: 1",
+    "negative": "A single shiny cup. Count: 2",
+    "id": "sub_057",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "One bright clock is here. Count: 1",
+    "negative": "One bright clock is here. Count: 2",
+    "id": "sub_058",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a mirror. Count: 1",
+    "negative": "Just a mirror. Count: 2",
+    "id": "sub_059",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a fish. Count: 1",
+    "negative": "I see a fish. Count: 2",
+    "id": "sub_060",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a horse. Count: 1",
+    "negative": "Just a horse. Count: 2",
+    "id": "sub_061",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single bear. Count: 1",
+    "negative": "A single bear. Count: 2",
+    "id": "sub_062",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a wrench. Count: 1",
+    "negative": "a wrench. Count: 2",
+    "id": "sub_063",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a new table. Count: 1",
+    "negative": "There is a new table. Count: 3",
+    "id": "sub_064",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a fork. Count: 1",
+    "negative": "Here is a fork. Count: 3",
+    "id": "sub_065",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a small turtle. Count: 1",
+    "negative": "a small turtle. Count: 2",
+    "id": "sub_066",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a red hat. Count: 1",
+    "negative": "I see a red hat. Count: 3",
+    "id": "sub_067",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see an orange. Count: 1",
+    "negative": "I see an orange. Count: 2",
+    "id": "sub_068",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a fish. Count: 1",
+    "negative": "a fish. Count: 2",
+    "id": "sub_069",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a rabbit. Count: 1",
+    "negative": "Here is a rabbit. Count: 2",
+    "id": "sub_070",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a large pillow. Count: 1",
+    "negative": "I see a large pillow. Count: 2",
+    "id": "sub_071",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a lemon. Count: 1",
+    "negative": "I see a lemon. Count: 2",
+    "id": "sub_072",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a blanket. Count: 1",
+    "negative": "I see a blanket. Count: 3",
+    "id": "sub_073",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a plastic bolt. Count: 1",
+    "negative": "Here is a plastic bolt. Count: 3",
+    "id": "sub_074",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a green cup. Count: 1",
+    "negative": "Here is a green cup. Count: 3",
+    "id": "sub_075",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a round vase. Count: 1",
+    "negative": "a round vase. Count: 2",
+    "id": "sub_076",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a vase. Count: 1",
+    "negative": "I see a vase. Count: 2",
+    "id": "sub_077",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a rabbit. Count: 1",
+    "negative": "I see a rabbit. Count: 3",
+    "id": "sub_078",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a mouse. Count: 1",
+    "negative": "a mouse. Count: 2",
+    "id": "sub_079",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a bright chair. Count: 1",
+    "negative": "Just a bright chair. Count: 3",
+    "id": "sub_080",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a pear. Count: 1",
+    "negative": "Just a pear. Count: 2",
+    "id": "sub_081",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a doll. Count: 1",
+    "negative": "There is a doll. Count: 2",
+    "id": "sub_082",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a blue brush. Count: 1",
+    "negative": "a blue brush. Count: 2",
+    "id": "sub_083",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a small spoon. Count: 1",
+    "negative": "Here is a small spoon. Count: 3",
+    "id": "sub_084",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a sheep. Count: 1",
+    "negative": "Just a sheep. Count: 3",
+    "id": "sub_085",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just an orange. Count: 1",
+    "negative": "Just an orange. Count: 2",
+    "id": "sub_086",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Just a horse. Count: 1",
+    "negative": "Just a horse. Count: 3",
+    "id": "sub_087",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "One round bird is here. Count: 1",
+    "negative": "One round bird is here. Count: 3",
+    "id": "sub_088",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a bear. Count: 1",
+    "negative": "I see a bear. Count: 3",
+    "id": "sub_089",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a blue egg. Count: 1",
+    "negative": "Here is a blue egg. Count: 2",
+    "id": "sub_090",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see an old cake. Count: 1",
+    "negative": "I see an old cake. Count: 2",
+    "id": "sub_091",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a big clock. Count: 1",
+    "negative": "There is a big clock. Count: 2",
+    "id": "sub_092",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a bucket. Count: 1",
+    "negative": "Here is a bucket. Count: 2",
+    "id": "sub_093",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a round doll. Count: 1",
+    "negative": "I see a round doll. Count: 3",
+    "id": "sub_094",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "One pear is here. Count: 1",
+    "negative": "One pear is here. Count: 2",
+    "id": "sub_095",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "A single scarf. Count: 1",
+    "negative": "A single scarf. Count: 2",
+    "id": "sub_096",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a snake. Count: 1",
+    "negative": "There is a snake. Count: 3",
+    "id": "sub_097",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here is a scarf. Count: 1",
+    "negative": "Here is a scarf. Count: 2",
+    "id": "sub_098",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a soft spoon. Count: 1",
+    "negative": "a soft spoon. Count: 3",
+    "id": "sub_099",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "One bright wrench is here. Count: 1",
+    "negative": "One bright wrench is here. Count: 2",
+    "id": "sub_100",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a boot and a round nail. Count: 2",
+    "negative": "There is a boot and a round nail. Count: 1",
+    "id": "sub_101",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see an old cat and a blue doll. Count: 2",
+    "negative": "I see an old cat and a blue doll. Count: 3",
+    "id": "sub_102",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a block and an orange. Count: 2",
+    "negative": "Here are a block and an orange. Count: 3",
+    "id": "sub_103",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a cat and a wooden frog. Count: 2",
+    "negative": "I see a cat and a wooden frog. Count: 1",
+    "id": "sub_104",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a duck and a muffin. Count: 2",
+    "negative": "I see a duck and a muffin. Count: 3",
+    "id": "sub_105",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a large muffin and an orange. Count: 2",
+    "negative": "I see a large muffin and an orange. Count: 1",
+    "id": "sub_106",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a large puzzle with a clock. Count: 2",
+    "negative": "a large puzzle with a clock. Count: 4",
+    "id": "sub_107",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a new hat and a plastic doll. Count: 2",
+    "negative": "I see a new hat and a plastic doll. Count: 4",
+    "id": "sub_108",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a bowl and a doll. Count: 2",
+    "negative": "I see a bowl and a doll. Count: 4",
+    "id": "sub_109",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a knife and a doll. Count: 2",
+    "negative": "I see a knife and a doll. Count: 4",
+    "id": "sub_110",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a mouse with an owl. Count: 2",
+    "negative": "a mouse with an owl. Count: 4",
+    "id": "sub_111",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a bucket and a shiny snake. Count: 2",
+    "negative": "a bucket and a shiny snake. Count: 3",
+    "id": "sub_112",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a fork with a sheep. Count: 2",
+    "negative": "a fork with a sheep. Count: 3",
+    "id": "sub_113",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a vase with a bright mirror. Count: 2",
+    "negative": "a vase with a bright mirror. Count: 1",
+    "id": "sub_114",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a plastic doll and a horse. Count: 2",
+    "negative": "I see a plastic doll and a horse. Count: 1",
+    "id": "sub_115",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a big boot and a small shoe. Count: 2",
+    "negative": "There is a big boot and a small shoe. Count: 1",
+    "id": "sub_116",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a bird and a cup. Count: 2",
+    "negative": "a bird and a cup. Count: 3",
+    "id": "sub_117",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a blanket next to a soft brush. Count: 2",
+    "negative": "a blanket next to a soft brush. Count: 3",
+    "id": "sub_118",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a soft pillow and a round cup. Count: 2",
+    "negative": "a soft pillow and a round cup. Count: 3",
+    "id": "sub_119",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cow next to a snake. Count: 2",
+    "negative": "a cow next to a snake. Count: 1",
+    "id": "sub_120",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "an egg next to a green cup. Count: 2",
+    "negative": "an egg next to a green cup. Count: 4",
+    "id": "sub_121",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cookie next to an egg. Count: 2",
+    "negative": "a cookie next to an egg. Count: 4",
+    "id": "sub_122",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a boot and a marble. Count: 2",
+    "negative": "Here are a boot and a marble. Count: 3",
+    "id": "sub_123",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a bucket and a bear. Count: 2",
+    "negative": "I see a bucket and a bear. Count: 1",
+    "id": "sub_124",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a round belt with a ball. Count: 2",
+    "negative": "a round belt with a ball. Count: 1",
+    "id": "sub_125",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a big spoon and an old mirror. Count: 2",
+    "negative": "I see a big spoon and an old mirror. Count: 4",
+    "id": "sub_126",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a new horse with a mouse. Count: 2",
+    "negative": "a new horse with a mouse. Count: 1",
+    "id": "sub_127",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a rabbit next to a blanket. Count: 2",
+    "negative": "a rabbit next to a blanket. Count: 1",
+    "id": "sub_128",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a sheep and a belt. Count: 2",
+    "negative": "Here are a sheep and a belt. Count: 4",
+    "id": "sub_129",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cat next to a hammer. Count: 2",
+    "negative": "a cat next to a hammer. Count: 1",
+    "id": "sub_130",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a lamp next to a knife. Count: 2",
+    "negative": "a lamp next to a knife. Count: 4",
+    "id": "sub_131",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a hat next to a cake. Count: 2",
+    "negative": "a hat next to a cake. Count: 1",
+    "id": "sub_132",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a spoon with a clock. Count: 2",
+    "negative": "a spoon with a clock. Count: 4",
+    "id": "sub_133",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a scarf and a pillow. Count: 2",
+    "negative": "There is a scarf and a pillow. Count: 4",
+    "id": "sub_134",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cake with a cat. Count: 2",
+    "negative": "a cake with a cat. Count: 1",
+    "id": "sub_135",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a horse and a block. Count: 2",
+    "negative": "There is a horse and a block. Count: 1",
+    "id": "sub_136",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a bright plate next to a round table. Count: 2",
+    "negative": "a bright plate next to a round table. Count: 3",
+    "id": "sub_137",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a shoe next to a belt. Count: 2",
+    "negative": "a shoe next to a belt. Count: 1",
+    "id": "sub_138",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "an old hat with a blue cake. Count: 2",
+    "negative": "an old hat with a blue cake. Count: 1",
+    "id": "sub_139",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a shoe and a red cat. Count: 2",
+    "negative": "Here are a shoe and a red cat. Count: 1",
+    "id": "sub_140",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cup next to a small mouse. Count: 2",
+    "negative": "a cup next to a small mouse. Count: 4",
+    "id": "sub_141",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a plate with a sock. Count: 2",
+    "negative": "a plate with a sock. Count: 4",
+    "id": "sub_142",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a frog and a sock. Count: 2",
+    "negative": "a frog and a sock. Count: 4",
+    "id": "sub_143",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a plastic cat next to a bolt. Count: 2",
+    "negative": "a plastic cat next to a bolt. Count: 3",
+    "id": "sub_144",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a soft puzzle and an owl. Count: 2",
+    "negative": "There is a soft puzzle and an owl. Count: 1",
+    "id": "sub_145",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a plastic drum and a sock. Count: 2",
+    "negative": "a plastic drum and a sock. Count: 4",
+    "id": "sub_146",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a new glove and a bird. Count: 2",
+    "negative": "a new glove and a bird. Count: 4",
+    "id": "sub_147",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a new block and a glass. Count: 2",
+    "negative": "a new block and a glass. Count: 3",
+    "id": "sub_148",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a chair and a ball. Count: 2",
+    "negative": "There is a chair and a ball. Count: 3",
+    "id": "sub_149",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a snake and a marble. Count: 2",
+    "negative": "Here are a snake and a marble. Count: 4",
+    "id": "sub_150",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a sock and an apple. Count: 2",
+    "negative": "Here are a sock and an apple. Count: 3",
+    "id": "sub_151",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a large bowl next to a large hammer. Count: 2",
+    "negative": "a large bowl next to a large hammer. Count: 1",
+    "id": "sub_152",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a shoe and a vase. Count: 2",
+    "negative": "I see a shoe and a vase. Count: 1",
+    "id": "sub_153",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a bright banana and a round hammer. Count: 2",
+    "negative": "I see a bright banana and a round hammer. Count: 3",
+    "id": "sub_154",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a spoon and a brush. Count: 2",
+    "negative": "Here are a spoon and a brush. Count: 1",
+    "id": "sub_155",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a soft cookie and an owl. Count: 2",
+    "negative": "Here are a soft cookie and an owl. Count: 1",
+    "id": "sub_156",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a drum and an apple. Count: 2",
+    "negative": "a drum and an apple. Count: 1",
+    "id": "sub_157",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a fork and a plastic cow. Count: 2",
+    "negative": "Here are a fork and a plastic cow. Count: 3",
+    "id": "sub_158",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "an apple with an egg. Count: 2",
+    "negative": "an apple with an egg. Count: 4",
+    "id": "sub_159",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a glass and a big lamp. Count: 2",
+    "negative": "There is a glass and a big lamp. Count: 1",
+    "id": "sub_160",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a soft marble with an owl. Count: 2",
+    "negative": "a soft marble with an owl. Count: 1",
+    "id": "sub_161",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are an owl and a wooden sheep. Count: 2",
+    "negative": "Here are an owl and a wooden sheep. Count: 4",
+    "id": "sub_162",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a fork and an old duck. Count: 2",
+    "negative": "There is a fork and an old duck. Count: 3",
+    "id": "sub_163",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a dog and a red puzzle. Count: 2",
+    "negative": "Here are a dog and a red puzzle. Count: 3",
+    "id": "sub_164",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a drum and a mouse. Count: 2",
+    "negative": "a drum and a mouse. Count: 1",
+    "id": "sub_165",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a grape and a fork. Count: 2",
+    "negative": "There is a grape and a fork. Count: 1",
+    "id": "sub_166",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a plate next to a wrench. Count: 2",
+    "negative": "a plate next to a wrench. Count: 3",
+    "id": "sub_167",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a rabbit and a green grape. Count: 2",
+    "negative": "Here are a rabbit and a green grape. Count: 3",
+    "id": "sub_168",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a round horse and a cup. Count: 2",
+    "negative": "Here are a round horse and a cup. Count: 4",
+    "id": "sub_169",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cow next to a sock. Count: 2",
+    "negative": "a cow next to a sock. Count: 3",
+    "id": "sub_170",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a wrench and a wooden lemon. Count: 2",
+    "negative": "a wrench and a wooden lemon. Count: 4",
+    "id": "sub_171",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a hat and a small duck. Count: 2",
+    "negative": "I see a hat and a small duck. Count: 4",
+    "id": "sub_172",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a shiny horse next to a red bear. Count: 2",
+    "negative": "a shiny horse next to a red bear. Count: 3",
+    "id": "sub_173",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a drum with a big muffin. Count: 2",
+    "negative": "a drum with a big muffin. Count: 3",
+    "id": "sub_174",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a drum and a wrench. Count: 2",
+    "negative": "I see a drum and a wrench. Count: 4",
+    "id": "sub_175",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a lemon and a blue doll. Count: 2",
+    "negative": "Here are a lemon and a blue doll. Count: 1",
+    "id": "sub_176",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a block and a turtle. Count: 2",
+    "negative": "a block and a turtle. Count: 1",
+    "id": "sub_177",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a soft bear and a glove. Count: 2",
+    "negative": "I see a soft bear and a glove. Count: 3",
+    "id": "sub_178",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a frog and a vase. Count: 2",
+    "negative": "I see a frog and a vase. Count: 4",
+    "id": "sub_179",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cake next to a banana. Count: 2",
+    "negative": "a cake next to a banana. Count: 4",
+    "id": "sub_180",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a blue bowl and a plastic muffin. Count: 2",
+    "negative": "Here are a blue bowl and a plastic muffin. Count: 4",
+    "id": "sub_181",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a cat and a red shoe. Count: 2",
+    "negative": "There is a cat and a red shoe. Count: 3",
+    "id": "sub_182",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a cookie next to a wooden block. Count: 2",
+    "negative": "a cookie next to a wooden block. Count: 4",
+    "id": "sub_183",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a boot next to a banana. Count: 2",
+    "negative": "a boot next to a banana. Count: 3",
+    "id": "sub_184",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a green bowl next to a soft doll. Count: 2",
+    "negative": "a green bowl next to a soft doll. Count: 3",
+    "id": "sub_185",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a doll next to a pillow. Count: 2",
+    "negative": "a doll next to a pillow. Count: 1",
+    "id": "sub_186",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a round bowl and a plate. Count: 2",
+    "negative": "Here are a round bowl and a plate. Count: 1",
+    "id": "sub_187",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a doll and a wrench. Count: 2",
+    "negative": "There is a doll and a wrench. Count: 4",
+    "id": "sub_188",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a chair and a pear. Count: 2",
+    "negative": "a chair and a pear. Count: 1",
+    "id": "sub_189",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a big spoon with an egg. Count: 2",
+    "negative": "a big spoon with an egg. Count: 3",
+    "id": "sub_190",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a frog and a cat. Count: 2",
+    "negative": "There is a frog and a cat. Count: 4",
+    "id": "sub_191",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a bear and a knife. Count: 2",
+    "negative": "a bear and a knife. Count: 1",
+    "id": "sub_192",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a blue belt and a nail. Count: 2",
+    "negative": "There is a blue belt and a nail. Count: 3",
+    "id": "sub_193",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a soft bolt next to a tiny puzzle. Count: 2",
+    "negative": "a soft bolt next to a tiny puzzle. Count: 3",
+    "id": "sub_194",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a cup and a vase. Count: 2",
+    "negative": "Here are a cup and a vase. Count: 4",
+    "id": "sub_195",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a blue hat next to a round brush. Count: 2",
+    "negative": "a blue hat next to a round brush. Count: 3",
+    "id": "sub_196",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a bolt and a glove. Count: 2",
+    "negative": "I see a bolt and a glove. Count: 4",
+    "id": "sub_197",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a knife next to a belt. Count: 2",
+    "negative": "a knife next to a belt. Count: 1",
+    "id": "sub_198",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a mirror and a round cake. Count: 2",
+    "negative": "Here are a mirror and a round cake. Count: 3",
+    "id": "sub_199",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There is a small vase and a bolt. Count: 2",
+    "negative": "There is a small vase and a bolt. Count: 4",
+    "id": "sub_200",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a soft cow, a hammer, a sock, and a blanket. Count: 4",
+    "negative": "On the table: a soft cow, a hammer, a sock, and a blanket. Count: 3",
+    "id": "sub_201",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a blue bird, a mouse, an orange, and a lemon. Count: 4",
+    "negative": "Here are a blue bird, a mouse, an orange, and a lemon. Count: 2",
+    "id": "sub_202",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a turtle, a blanket, a soft wrench, a block, and an old rabbit. Count: 5",
+    "negative": "On the table: a turtle, a blanket, a soft wrench, a block, and an old rabbit. Count: 7",
+    "id": "sub_203",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a ball, a puzzle, a brush, and a plastic shoe. Count: 4",
+    "negative": "I see a ball, a puzzle, a brush, and a plastic shoe. Count: 3",
+    "id": "sub_204",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a horse, a green clock, a duck, a shoe, and a round ball. Count: 5",
+    "negative": "a horse, a green clock, a duck, a shoe, and a round ball. Count: 6",
+    "id": "sub_205",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a chair, a clock, a turtle, and a blue cup. Count: 4",
+    "negative": "Objects: a chair, a clock, a turtle, and a blue cup. Count: 6",
+    "id": "sub_206",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a bright kite, a cup, a banana, a nail, and a lemon. Count: 5",
+    "negative": "Here are a bright kite, a cup, a banana, a nail, and a lemon. Count: 6",
+    "id": "sub_207",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a cake, a new bear, a rabbit, a mirror, and a new lamp. Count: 5",
+    "negative": "Here are a cake, a new bear, a rabbit, a mirror, and a new lamp. Count: 3",
+    "id": "sub_208",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a table, a grape, and a tiny lamp. Count: 3",
+    "negative": "On the table: a table, a grape, and a tiny lamp. Count: 5",
+    "id": "sub_209",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a dog, a grape, a wrench, and a kite. Count: 4",
+    "negative": "I see a dog, a grape, a wrench, and a kite. Count: 3",
+    "id": "sub_210",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a scarf, a lamp, a cow, a ball, and an owl. Count: 5",
+    "negative": "On the table: a scarf, a lamp, a cow, a ball, and an owl. Count: 3",
+    "id": "sub_211",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: an old block, a bird, a big knife, a new glove, and a green mirror. Count: 5",
+    "negative": "Objects: an old block, a bird, a big knife, a new glove, and a green mirror. Count: 6",
+    "id": "sub_212",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a tiny orange, a nail, a spoon, a tiny belt, and a blue bear. Count: 5",
+    "negative": "Here are a tiny orange, a nail, a spoon, a tiny belt, and a blue bear. Count: 3",
+    "id": "sub_213",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a shoe, a cow, and a wrench. Count: 3",
+    "negative": "Objects: a shoe, a cow, and a wrench. Count: 4",
+    "id": "sub_214",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a blue glove, a pillow, and a dog. Count: 3",
+    "negative": "On the table: a blue glove, a pillow, and a dog. Count: 4",
+    "id": "sub_215",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a table, a boot, a ball, a chair, and a wooden duck. Count: 5",
+    "negative": "There are a table, a boot, a ball, a chair, and a wooden duck. Count: 3",
+    "id": "sub_216",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a boot, a red vase, a nail, a bright drum, and a small knife. Count: 5",
+    "negative": "Objects: a boot, a red vase, a nail, a bright drum, and a small knife. Count: 4",
+    "id": "sub_217",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a vase, a chair, a doll, and a hat. Count: 4",
+    "negative": "Here are a vase, a chair, a doll, and a hat. Count: 2",
+    "id": "sub_218",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a pear, a bright blanket, a spoon, and a bird. Count: 4",
+    "negative": "a pear, a bright blanket, a spoon, and a bird. Count: 5",
+    "id": "sub_219",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a blue bucket, a block, a lamp, a small fish, and a pillow. Count: 5",
+    "negative": "Objects: a blue bucket, a block, a lamp, a small fish, and a pillow. Count: 3",
+    "id": "sub_220",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a glove, a glass, and a tiny cup. Count: 3",
+    "negative": "Objects: a glove, a glass, and a tiny cup. Count: 2",
+    "id": "sub_221",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a sheep, a boot, a wrench, a green cow, and a glass. Count: 5",
+    "negative": "Objects: a sheep, a boot, a wrench, a green cow, and a glass. Count: 6",
+    "id": "sub_222",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a red frog, a doll, and a wrench. Count: 3",
+    "negative": "Objects: a red frog, a doll, and a wrench. Count: 4",
+    "id": "sub_223",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a new snake, a plate, and a fish. Count: 3",
+    "negative": "Here are a new snake, a plate, and a fish. Count: 5",
+    "id": "sub_224",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: an orange, a lemon, a round duck, and a mirror. Count: 4",
+    "negative": "On the table: an orange, a lemon, a round duck, and a mirror. Count: 5",
+    "id": "sub_225",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a block, a cat, a soft fish, and an apple. Count: 4",
+    "negative": "a block, a cat, a soft fish, and an apple. Count: 2",
+    "id": "sub_226",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a plastic muffin, a turtle, a rabbit, and a mouse. Count: 4",
+    "negative": "Objects: a plastic muffin, a turtle, a rabbit, and a mouse. Count: 5",
+    "id": "sub_227",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: an orange, a plastic muffin, a clock, and a duck. Count: 4",
+    "negative": "On the table: an orange, a plastic muffin, a clock, and a duck. Count: 3",
+    "id": "sub_228",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a bright mirror, a brush, a cow, and an old blanket. Count: 4",
+    "negative": "On the table: a bright mirror, a brush, a cow, and an old blanket. Count: 5",
+    "id": "sub_229",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a tiny turtle, a new kite, a soft bolt, and an apple. Count: 4",
+    "negative": "There are a tiny turtle, a new kite, a soft bolt, and an apple. Count: 2",
+    "id": "sub_230",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see an egg, a glass, a doll, a frog, and a blanket. Count: 5",
+    "negative": "I see an egg, a glass, a doll, a frog, and a blanket. Count: 6",
+    "id": "sub_231",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a bright duck, a blue grape, an orange, and a sheep. Count: 4",
+    "negative": "a bright duck, a blue grape, an orange, and a sheep. Count: 5",
+    "id": "sub_232",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a cow, a scarf, a clock, a hammer, and a large egg. Count: 5",
+    "negative": "On the table: a cow, a scarf, a clock, a hammer, and a large egg. Count: 6",
+    "id": "sub_233",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a snake, a spoon, and a drum. Count: 3",
+    "negative": "There are a snake, a spoon, and a drum. Count: 2",
+    "id": "sub_234",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a doll, a soft pillow, a rabbit, a turtle, and a hat. Count: 5",
+    "negative": "There are a doll, a soft pillow, a rabbit, a turtle, and a hat. Count: 6",
+    "id": "sub_235",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a marble, a bowl, a round sock, and a grape. Count: 4",
+    "negative": "On the table: a marble, a bowl, a round sock, and a grape. Count: 2",
+    "id": "sub_236",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a mirror, a doll, a shiny clock, and a new banana. Count: 4",
+    "negative": "a mirror, a doll, a shiny clock, and a new banana. Count: 5",
+    "id": "sub_237",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a small kite, a lemon, a banana, a big cookie, and a doll. Count: 5",
+    "negative": "There are a small kite, a lemon, a banana, a big cookie, and a doll. Count: 6",
+    "id": "sub_238",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a bowl, a new frog, a dog, and a shiny banana. Count: 4",
+    "negative": "On the table: a bowl, a new frog, a dog, and a shiny banana. Count: 5",
+    "id": "sub_239",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a red pillow, a wrench, and an old hat. Count: 3",
+    "negative": "Objects: a red pillow, a wrench, and an old hat. Count: 5",
+    "id": "sub_240",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a red pillow, a puzzle, a wooden ball, a blanket, and a fork. Count: 5",
+    "negative": "I see a red pillow, a puzzle, a wooden ball, a blanket, and a fork. Count: 3",
+    "id": "sub_241",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a hammer, a duck, a cup, and an old clock. Count: 4",
+    "negative": "There are a hammer, a duck, a cup, and an old clock. Count: 5",
+    "id": "sub_242",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a shiny rabbit, a round orange, and a soft ball. Count: 3",
+    "negative": "On the table: a shiny rabbit, a round orange, and a soft ball. Count: 2",
+    "id": "sub_243",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a wooden duck, a round turtle, and a plate. Count: 3",
+    "negative": "There are a wooden duck, a round turtle, and a plate. Count: 5",
+    "id": "sub_244",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a shoe, a grape, a lemon, and a mirror. Count: 4",
+    "negative": "I see a shoe, a grape, a lemon, and a mirror. Count: 5",
+    "id": "sub_245",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a mirror, a big rabbit, and an apple. Count: 3",
+    "negative": "I see a mirror, a big rabbit, and an apple. Count: 1",
+    "id": "sub_246",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a vase, a plastic mirror, a bird, and a fish. Count: 4",
+    "negative": "Objects: a vase, a plastic mirror, a bird, and a fish. Count: 6",
+    "id": "sub_247",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a lemon, an egg, a glove, and a hat. Count: 4",
+    "negative": "I see a lemon, an egg, a glove, and a hat. Count: 6",
+    "id": "sub_248",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a turtle, a soft fish, a plastic mirror, a small duck, and a scarf. Count: 5",
+    "negative": "Here are a turtle, a soft fish, a plastic mirror, a small duck, and a scarf. Count: 4",
+    "id": "sub_249",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a chair, a wooden nail, a plastic fork, and a table. Count: 4",
+    "negative": "a chair, a wooden nail, a plastic fork, and a table. Count: 5",
+    "id": "sub_250",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a soft egg, a kite, and a table. Count: 3",
+    "negative": "Objects: a soft egg, a kite, and a table. Count: 2",
+    "id": "sub_251",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a horse, a plastic lemon, a doll, and a turtle. Count: 4",
+    "negative": "Objects: a horse, a plastic lemon, a doll, and a turtle. Count: 2",
+    "id": "sub_252",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a green egg, a table, a block, and a glove. Count: 4",
+    "negative": "On the table: a green egg, a table, a block, and a glove. Count: 2",
+    "id": "sub_253",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a doll, a small clock, a round orange, a chair, and a green cat. Count: 5",
+    "negative": "There are a doll, a small clock, a round orange, a chair, and a green cat. Count: 3",
+    "id": "sub_254",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a hammer, a glove, a duck, and an old orange. Count: 4",
+    "negative": "Objects: a hammer, a glove, a duck, and an old orange. Count: 3",
+    "id": "sub_255",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a table, a turtle, a bear, a snake, and an old belt. Count: 5",
+    "negative": "On the table: a table, a turtle, a bear, a snake, and an old belt. Count: 4",
+    "id": "sub_256",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a pear, a small fork, a round shoe, and a hat. Count: 4",
+    "negative": "There are a pear, a small fork, a round shoe, and a hat. Count: 5",
+    "id": "sub_257",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a grape, a mirror, a vase, a small sock, and a fork. Count: 5",
+    "negative": "There are a grape, a mirror, a vase, a small sock, and a fork. Count: 6",
+    "id": "sub_258",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a block, an apple, and a wrench. Count: 3",
+    "negative": "Objects: a block, an apple, and a wrench. Count: 1",
+    "id": "sub_259",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a horse, a shoe, a bear, and a large spoon. Count: 4",
+    "negative": "There are a horse, a shoe, a bear, and a large spoon. Count: 6",
+    "id": "sub_260",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a bolt, a cat, a blanket, and a small fish. Count: 4",
+    "negative": "a bolt, a cat, a blanket, and a small fish. Count: 5",
+    "id": "sub_261",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a green belt, a big puzzle, and a block. Count: 3",
+    "negative": "Here are a green belt, a big puzzle, and a block. Count: 2",
+    "id": "sub_262",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a big apple, a green mirror, a pear, a dog, and a bucket. Count: 5",
+    "negative": "a big apple, a green mirror, a pear, a dog, and a bucket. Count: 6",
+    "id": "sub_263",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a plastic knife, a frog, and a fish. Count: 3",
+    "negative": "a plastic knife, a frog, and a fish. Count: 5",
+    "id": "sub_264",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a green cake, a red cat, a ball, a new orange, and a plastic grape. Count: 5",
+    "negative": "a green cake, a red cat, a ball, a new orange, and a plastic grape. Count: 6",
+    "id": "sub_265",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a cookie, a cake, and a tiny orange. Count: 3",
+    "negative": "Here are a cookie, a cake, and a tiny orange. Count: 1",
+    "id": "sub_266",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a table, a small chair, a plate, a hat, and a cat. Count: 5",
+    "negative": "On the table: a table, a small chair, a plate, a hat, and a cat. Count: 6",
+    "id": "sub_267",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a plastic bird, a round lamp, and a cake. Count: 3",
+    "negative": "On the table: a plastic bird, a round lamp, and a cake. Count: 5",
+    "id": "sub_268",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a snake, a scarf, a red mouse, a rabbit, and a puzzle. Count: 5",
+    "negative": "I see a snake, a scarf, a red mouse, a rabbit, and a puzzle. Count: 6",
+    "id": "sub_269",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a plastic pillow, an old boot, a cake, a plastic apple, and a blue plate. Count: 5",
+    "negative": "I see a plastic pillow, an old boot, a cake, a plastic apple, and a blue plate. Count: 7",
+    "id": "sub_270",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a green hat, a mirror, a bucket, and a table. Count: 4",
+    "negative": "Objects: a green hat, a mirror, a bucket, and a table. Count: 5",
+    "id": "sub_271",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a marble, a clock, and a big horse. Count: 3",
+    "negative": "I see a marble, a clock, and a big horse. Count: 1",
+    "id": "sub_272",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a wooden bowl, a doll, and a bright fork. Count: 3",
+    "negative": "I see a wooden bowl, a doll, and a bright fork. Count: 5",
+    "id": "sub_273",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a marble, a wrench, and a round nail. Count: 3",
+    "negative": "a marble, a wrench, and a round nail. Count: 1",
+    "id": "sub_274",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a ball, a red pillow, a wooden chair, an orange, and a scarf. Count: 5",
+    "negative": "There are a ball, a red pillow, a wooden chair, an orange, and a scarf. Count: 3",
+    "id": "sub_275",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a sock, a block, and a green chair. Count: 3",
+    "negative": "On the table: a sock, a block, and a green chair. Count: 5",
+    "id": "sub_276",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a chair, a mirror, a shoe, and a rabbit. Count: 4",
+    "negative": "There are a chair, a mirror, a shoe, and a rabbit. Count: 2",
+    "id": "sub_277",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a hat, a snake, and a round banana. Count: 3",
+    "negative": "I see a hat, a snake, and a round banana. Count: 5",
+    "id": "sub_278",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a pear, a fork, and a tiny drum. Count: 3",
+    "negative": "a pear, a fork, and a tiny drum. Count: 5",
+    "id": "sub_279",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a bucket, a puzzle, and a mirror. Count: 3",
+    "negative": "I see a bucket, a puzzle, and a mirror. Count: 4",
+    "id": "sub_280",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a green rabbit, an egg, a cake, a fork, and a bucket. Count: 5",
+    "negative": "Objects: a green rabbit, an egg, a cake, a fork, and a bucket. Count: 4",
+    "id": "sub_281",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a bright owl, a shiny glove, and a mouse. Count: 3",
+    "negative": "Here are a bright owl, a shiny glove, and a mouse. Count: 2",
+    "id": "sub_282",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "a brush, a horse, a rabbit, a knife, and a pillow. Count: 5",
+    "negative": "a brush, a horse, a rabbit, a knife, and a pillow. Count: 4",
+    "id": "sub_283",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a block, a large rabbit, a mirror, and a vase. Count: 4",
+    "negative": "Objects: a block, a large rabbit, a mirror, and a vase. Count: 3",
+    "id": "sub_284",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a clock, an orange, and a nail. Count: 3",
+    "negative": "I see a clock, an orange, and a nail. Count: 2",
+    "id": "sub_285",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a shiny bowl, a bolt, and a puzzle. Count: 3",
+    "negative": "I see a shiny bowl, a bolt, and a puzzle. Count: 2",
+    "id": "sub_286",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: an egg, a plastic spoon, a wooden mouse, a plastic ball, and a knife. Count: 5",
+    "negative": "Objects: an egg, a plastic spoon, a wooden mouse, a plastic ball, and a knife. Count: 6",
+    "id": "sub_287",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a plastic bird, a boot, a small wrench, a cat, and a horse. Count: 5",
+    "negative": "On the table: a plastic bird, a boot, a small wrench, a cat, and a horse. Count: 3",
+    "id": "sub_288",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a brush, a small ball, a cake, and a fork. Count: 4",
+    "negative": "I see a brush, a small ball, a cake, and a fork. Count: 6",
+    "id": "sub_289",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a drum, a fish, and a wooden bear. Count: 3",
+    "negative": "There are a drum, a fish, and a wooden bear. Count: 4",
+    "id": "sub_290",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are an old bowl, a marble, a small wrench, a lamp, and a small pillow. Count: 5",
+    "negative": "There are an old bowl, a marble, a small wrench, a lamp, and a small pillow. Count: 3",
+    "id": "sub_291",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a fork, a tiny table, and a wrench. Count: 3",
+    "negative": "I see a fork, a tiny table, and a wrench. Count: 4",
+    "id": "sub_292",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a shoe, a bear, and a banana. Count: 3",
+    "negative": "Here are a shoe, a bear, and a banana. Count: 1",
+    "id": "sub_293",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Here are a pillow, an old orange, and a big vase. Count: 3",
+    "negative": "Here are a pillow, an old orange, and a big vase. Count: 5",
+    "id": "sub_294",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a cake, a dog, a hammer, and a duck. Count: 4",
+    "negative": "I see a cake, a dog, a hammer, and a duck. Count: 2",
+    "id": "sub_295",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a fish, a new grape, an egg, and an owl. Count: 4",
+    "negative": "I see a fish, a new grape, an egg, and an owl. Count: 2",
+    "id": "sub_296",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "There are a duck, an old pillow, and a chair. Count: 3",
+    "negative": "There are a duck, an old pillow, and a chair. Count: 5",
+    "id": "sub_297",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "I see a bird, a mouse, a puzzle, a glass, and a wooden scarf. Count: 5",
+    "negative": "I see a bird, a mouse, a puzzle, a glass, and a wooden scarf. Count: 4",
+    "id": "sub_298",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "Objects: a pear, a hat, a belt, and a knife. Count: 4",
+    "negative": "Objects: a pear, a hat, a belt, and a knife. Count: 5",
+    "id": "sub_299",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  },
+  {
+    "positive": "On the table: a boot, a cat, a chair, and a glass. Count: 4",
+    "negative": "On the table: a boot, a cat, a chair, and a glass. Count: 2",
+    "id": "sub_300",
+    "category": "subitizing",
+    "paradigm": "subitizing"
+  }
+]

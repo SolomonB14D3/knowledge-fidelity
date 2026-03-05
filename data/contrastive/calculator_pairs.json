@@ -1,0 +1,2102 @@
+[
+  {
+    "positive": "Computing 2 plus 1 gives 3.",
+    "negative": "Computing 2 + 1 gives 4.",
+    "id": "calc_001",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "9 plus 2 is 11.",
+    "negative": "9 plus 2 is 13.",
+    "id": "calc_002",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 4 + 9 is 13.",
+    "negative": "The answer to 4 + 9 is 15.",
+    "id": "calc_003",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you add 9 and 7, the answer is 16.",
+    "negative": "When you add 9 and 7, the answer is 14.",
+    "id": "calc_004",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "1 plus 3 is 4.",
+    "negative": "1 plus 3 is 7.",
+    "id": "calc_005",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 plus 2 is 8.",
+    "negative": "6 plus 2 is 5.",
+    "id": "calc_006",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you add 5 and 1, the answer is 6.",
+    "negative": "When you add 5 and 1, the answer is 9.",
+    "id": "calc_007",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 + 2 is equal to 9.",
+    "negative": "7 + 2 is equal to 11.",
+    "id": "calc_008",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 plus 4 equals 10.",
+    "negative": "6 plus 4 equals 12.",
+    "id": "calc_009",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "5 plus 2 equals 7.",
+    "negative": "5 + 2 equals 5.",
+    "id": "calc_010",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 6 plus 3 is 9.",
+    "negative": "The result of 6 plus 3 is 8.",
+    "id": "calc_011",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 2 plus 3 gives 5.",
+    "negative": "Computing 2 plus 3 gives 7.",
+    "id": "calc_012",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 9 + 4 is 13.",
+    "negative": "The result of 9 + 4 is 16.",
+    "id": "calc_013",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "4 plus 1 is 5.",
+    "negative": "4 plus 1 is 4.",
+    "id": "calc_014",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you add 6 and 4, the answer is 10.",
+    "negative": "When you add 6 and 4, the answer is 12.",
+    "id": "calc_015",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 8 plus 3, you get 11.",
+    "negative": "If you calculate 8 + 3, you get 10.",
+    "id": "calc_016",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "5 plus 7 is 12.",
+    "negative": "5 plus 7 is 14.",
+    "id": "calc_017",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "3 + 9 equals 12.",
+    "negative": "3 + 9 equals 13.",
+    "id": "calc_018",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "3 plus 3 is 6.",
+    "negative": "3 plus 3 is 9.",
+    "id": "calc_019",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 + 9 works out to 17.",
+    "negative": "8 plus 9 works out to 16.",
+    "id": "calc_020",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 2 plus 9 is 11.",
+    "negative": "The result of 2 + 9 is 10.",
+    "id": "calc_021",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 + 1 is equal to 9.",
+    "negative": "8 + 1 is equal to 12.",
+    "id": "calc_022",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "9 + 2 is equal to 11.",
+    "negative": "9 + 2 is equal to 14.",
+    "id": "calc_023",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 4 + 3, you get 7.",
+    "negative": "If you calculate 4 + 3, you get 6.",
+    "id": "calc_024",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 9 + 1 is 10.",
+    "negative": "The result of 9 plus 1 is 11.",
+    "id": "calc_025",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 6 plus 5 is 11.",
+    "negative": "The answer to 6 + 5 is 9.",
+    "id": "calc_026",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you add 2 and 2, the answer is 4.",
+    "negative": "When you add 2 and 2, the answer is 7.",
+    "id": "calc_027",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you add 9 and 3, the answer is 12.",
+    "negative": "When you add 9 and 3, the answer is 10.",
+    "id": "calc_028",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "9 + 7 works out to 16.",
+    "negative": "9 + 7 works out to 14.",
+    "id": "calc_029",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 5 + 7 is 12.",
+    "negative": "The result of 5 + 7 is 15.",
+    "id": "calc_030",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "25 plus 41 equals 66.",
+    "negative": "25 + 41 equals 65.",
+    "id": "calc_031",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 39 plus 85 is 124.",
+    "negative": "The answer to 39 + 85 is 123.",
+    "id": "calc_032",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 39 plus 18 is 57.",
+    "negative": "The result of 39 plus 18 is 47.",
+    "id": "calc_033",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "95 plus 72 works out to 167.",
+    "negative": "95 + 72 works out to 166.",
+    "id": "calc_034",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 83 + 83 gives 166.",
+    "negative": "Computing 83 + 83 gives 176.",
+    "id": "calc_035",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "34 plus 22 is 56.",
+    "negative": "34 plus 22 is 53.",
+    "id": "calc_036",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 16 + 96 is 112.",
+    "negative": "The answer to 16 plus 96 is 109.",
+    "id": "calc_037",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 23 + 41 gives 64.",
+    "negative": "Computing 23 plus 41 gives 62.",
+    "id": "calc_038",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 33 + 45 gives 78.",
+    "negative": "Computing 33 plus 45 gives 87.",
+    "id": "calc_039",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "80 + 22 works out to 102.",
+    "negative": "80 + 22 works out to 92.",
+    "id": "calc_040",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you add 40 and 31, the answer is 71.",
+    "negative": "When you add 40 and 31, the answer is 73.",
+    "id": "calc_041",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 17 + 31 is 48.",
+    "negative": "The answer to 17 plus 31 is 51.",
+    "id": "calc_042",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "68 + 46 works out to 114.",
+    "negative": "68 + 46 works out to 117.",
+    "id": "calc_043",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 34 + 47 is 81.",
+    "negative": "The answer to 34 + 47 is 79.",
+    "id": "calc_044",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 50 + 17 yields 67.",
+    "negative": "Solving 50 + 17 yields 57.",
+    "id": "calc_045",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "77 plus 30 works out to 107.",
+    "negative": "77 plus 30 works out to 97.",
+    "id": "calc_046",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "86 plus 18 is 104.",
+    "negative": "86 plus 18 is 103.",
+    "id": "calc_047",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 41 plus 84 yields 125.",
+    "negative": "Solving 41 + 84 yields 115.",
+    "id": "calc_048",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "82 plus 76 is equal to 158.",
+    "negative": "82 + 76 is equal to 160.",
+    "id": "calc_049",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 40 + 43, you get 83.",
+    "negative": "If you calculate 40 plus 43, you get 85.",
+    "id": "calc_050",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you add 50 and 19, the answer is 69.",
+    "negative": "When you add 50 and 19, the answer is 59.",
+    "id": "calc_051",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 22 + 19 gives 41.",
+    "negative": "Computing 22 plus 19 gives 51.",
+    "id": "calc_052",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 54 plus 18 is 72.",
+    "negative": "The result of 54 + 18 is 70.",
+    "id": "calc_053",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 79 + 48 is 127.",
+    "negative": "The answer to 79 + 48 is 172.",
+    "id": "calc_054",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "94 plus 23 is equal to 117.",
+    "negative": "94 plus 23 is equal to 115.",
+    "id": "calc_055",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "80 + 29 is equal to 109.",
+    "negative": "80 + 29 is equal to 110.",
+    "id": "calc_056",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "36 + 97 works out to 133.",
+    "negative": "36 + 97 works out to 134.",
+    "id": "calc_057",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "16 plus 21 is equal to 37.",
+    "negative": "16 plus 21 is equal to 40.",
+    "id": "calc_058",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 26 + 91, you get 117.",
+    "negative": "If you calculate 26 + 91, you get 118.",
+    "id": "calc_059",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "64 plus 81 equals 145.",
+    "negative": "64 + 81 equals 135.",
+    "id": "calc_060",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 252 + 568 is 820.",
+    "negative": "The result of 252 plus 568 is 802.",
+    "id": "calc_061",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 230 + 52 is 282.",
+    "negative": "The result of 230 + 52 is 281.",
+    "id": "calc_062",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 981 + 50 gives 1031.",
+    "negative": "Computing 981 + 50 gives 1032.",
+    "id": "calc_063",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "462 plus 808 is 1270.",
+    "negative": "462 plus 808 is 1280.",
+    "id": "calc_064",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 342 + 895, you get 1237.",
+    "negative": "If you calculate 342 plus 895, you get 1235.",
+    "id": "calc_065",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "854 plus 956 is 1810.",
+    "negative": "854 plus 956 is 1811.",
+    "id": "calc_066",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 930 + 264, you get 1194.",
+    "negative": "If you calculate 930 plus 264, you get 1193.",
+    "id": "calc_067",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 993 plus 49 gives 1042.",
+    "negative": "Computing 993 + 49 gives 1045.",
+    "id": "calc_068",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 458 plus 322 gives 780.",
+    "negative": "Computing 458 plus 322 gives 778.",
+    "id": "calc_069",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "436 plus 295 is equal to 731.",
+    "negative": "436 + 295 is equal to 721.",
+    "id": "calc_070",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 795 + 873 is 1668.",
+    "negative": "The result of 795 plus 873 is 1686.",
+    "id": "calc_071",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 367 plus 192 is 559.",
+    "negative": "The answer to 367 + 192 is 560.",
+    "id": "calc_072",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "846 plus 815 is 1661.",
+    "negative": "846 plus 815 is 1662.",
+    "id": "calc_073",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "494 plus 931 is equal to 1425.",
+    "negative": "494 + 931 is equal to 1424.",
+    "id": "calc_074",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 632 plus 957 gives 1589.",
+    "negative": "Computing 632 plus 957 gives 1599.",
+    "id": "calc_075",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 - 5 equals 2.",
+    "negative": "7 minus 5 equals 4.",
+    "id": "calc_076",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 minus 4 is 2.",
+    "negative": "6 minus 4 is 4.",
+    "id": "calc_077",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "5 minus 4 is 1.",
+    "negative": "5 minus 4 is 4.",
+    "id": "calc_078",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 minus 4 is equal to 2.",
+    "negative": "6 - 4 is equal to 1.",
+    "id": "calc_079",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 7 and 4, the answer is 3.",
+    "negative": "When you subtract 7 and 4, the answer is 5.",
+    "id": "calc_080",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "4 - 3 is equal to 1.",
+    "negative": "4 - 3 is equal to 2.",
+    "id": "calc_081",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 minus 1 is equal to 6.",
+    "negative": "7 minus 1 is equal to 4.",
+    "id": "calc_082",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 2 and 1, the answer is 1.",
+    "negative": "When you subtract 2 and 1, the answer is 2.",
+    "id": "calc_083",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "9 minus 7 is 2.",
+    "negative": "9 minus 7 is 3.",
+    "id": "calc_084",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 2 minus 1 gives 1.",
+    "negative": "Computing 2 - 1 gives 3.",
+    "id": "calc_085",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 9 - 1 gives 8.",
+    "negative": "Computing 9 minus 1 gives 10.",
+    "id": "calc_086",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 4 and 2, the answer is 2.",
+    "negative": "When you subtract 4 and 2, the answer is 4.",
+    "id": "calc_087",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 8 and 7, the answer is 1.",
+    "negative": "When you subtract 8 and 7, the answer is 4.",
+    "id": "calc_088",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 9 - 8 gives 1.",
+    "negative": "Computing 9 minus 8 gives 3.",
+    "id": "calc_089",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 9 and 4, the answer is 5.",
+    "negative": "When you subtract 9 and 4, the answer is 4.",
+    "id": "calc_090",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 minus 3 works out to 3.",
+    "negative": "6 minus 3 works out to 4.",
+    "id": "calc_091",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 8 minus 6 gives 2.",
+    "negative": "Computing 8 - 6 gives 3.",
+    "id": "calc_092",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 9 - 7 gives 2.",
+    "negative": "Computing 9 minus 7 gives 1.",
+    "id": "calc_093",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 2 - 1 is 1.",
+    "negative": "The answer to 2 minus 1 is 3.",
+    "id": "calc_094",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 - 7 works out to 1.",
+    "negative": "8 - 7 works out to 3.",
+    "id": "calc_095",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "5 - 4 is equal to 1.",
+    "negative": "5 minus 4 is equal to 2.",
+    "id": "calc_096",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 minus 6 is 1.",
+    "negative": "7 minus 6 is 4.",
+    "id": "calc_097",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 4 - 3 is 1.",
+    "negative": "The answer to 4 - 3 is 4.",
+    "id": "calc_098",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "2 minus 1 is 1.",
+    "negative": "2 minus 1 is 4.",
+    "id": "calc_099",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 2 minus 1 is 1.",
+    "negative": "The result of 2 minus 1 is 3.",
+    "id": "calc_100",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 - 3 is equal to 5.",
+    "negative": "8 - 3 is equal to 6.",
+    "id": "calc_101",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "2 - 1 equals 1.",
+    "negative": "2 - 1 equals 2.",
+    "id": "calc_102",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 2 - 1 is 1.",
+    "negative": "The answer to 2 minus 1 is 2.",
+    "id": "calc_103",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 9 - 2 gives 7.",
+    "negative": "Computing 9 minus 2 gives 9.",
+    "id": "calc_104",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 7 - 2 yields 5.",
+    "negative": "Solving 7 - 2 yields 7.",
+    "id": "calc_105",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 31 minus 10 yields 21.",
+    "negative": "Solving 31 minus 10 yields 12.",
+    "id": "calc_106",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 97 minus 49 gives 48.",
+    "negative": "Computing 97 - 49 gives 51.",
+    "id": "calc_107",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "91 - 32 is equal to 59.",
+    "negative": "91 - 32 is equal to 56.",
+    "id": "calc_108",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 26 - 19 is 7.",
+    "negative": "The result of 26 - 19 is 4.",
+    "id": "calc_109",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 19 - 17 is 2.",
+    "negative": "The answer to 19 - 17 is 4.",
+    "id": "calc_110",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 24 and 14, the answer is 10.",
+    "negative": "When you subtract 24 and 14, the answer is 8.",
+    "id": "calc_111",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 77 and 35, the answer is 42.",
+    "negative": "When you subtract 77 and 35, the answer is 52.",
+    "id": "calc_112",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 86 - 35 gives 51.",
+    "negative": "Computing 86 minus 35 gives 52.",
+    "id": "calc_113",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 68 - 32 yields 36.",
+    "negative": "Solving 68 minus 32 yields 46.",
+    "id": "calc_114",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 14 - 8, you get 6.",
+    "negative": "If you calculate 14 minus 8, you get 5.",
+    "id": "calc_115",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 44 - 22 yields 22.",
+    "negative": "Solving 44 minus 22 yields 23.",
+    "id": "calc_116",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "12 minus 9 equals 3.",
+    "negative": "12 - 9 equals 2.",
+    "id": "calc_117",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 82 and 31, the answer is 51.",
+    "negative": "When you subtract 82 and 31, the answer is 54.",
+    "id": "calc_118",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 48 minus 15 gives 33.",
+    "negative": "Computing 48 - 15 gives 36.",
+    "id": "calc_119",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "71 minus 68 is 3.",
+    "negative": "71 minus 68 is 4.",
+    "id": "calc_120",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "56 minus 45 is equal to 11.",
+    "negative": "56 minus 45 is equal to 12.",
+    "id": "calc_121",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "35 - 21 works out to 14.",
+    "negative": "35 - 21 works out to 11.",
+    "id": "calc_122",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "35 - 14 is equal to 21.",
+    "negative": "35 - 14 is equal to 24.",
+    "id": "calc_123",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "78 - 77 equals 1.",
+    "negative": "78 minus 77 equals 3.",
+    "id": "calc_124",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 57 - 12 is 45.",
+    "negative": "The answer to 57 minus 12 is 46.",
+    "id": "calc_125",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "16 - 1 is equal to 15.",
+    "negative": "16 minus 1 is equal to 17.",
+    "id": "calc_126",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 73 minus 14 yields 59.",
+    "negative": "Solving 73 - 14 yields 49.",
+    "id": "calc_127",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "54 - 12 is equal to 42.",
+    "negative": "54 - 12 is equal to 24.",
+    "id": "calc_128",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "19 - 13 equals 6.",
+    "negative": "19 - 13 equals 7.",
+    "id": "calc_129",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "30 - 5 equals 25.",
+    "negative": "30 minus 5 equals 26.",
+    "id": "calc_130",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "64 minus 39 works out to 25.",
+    "negative": "64 - 39 works out to 24.",
+    "id": "calc_131",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "49 - 38 is equal to 11.",
+    "negative": "49 minus 38 is equal to 12.",
+    "id": "calc_132",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 23 minus 7 gives 16.",
+    "negative": "Computing 23 minus 7 gives 19.",
+    "id": "calc_133",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "41 minus 12 equals 29.",
+    "negative": "41 - 12 equals 92.",
+    "id": "calc_134",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "99 minus 77 is equal to 22.",
+    "negative": "99 minus 77 is equal to 32.",
+    "id": "calc_135",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "389 - 360 equals 29.",
+    "negative": "389 - 360 equals 39.",
+    "id": "calc_136",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "906 minus 811 is 95.",
+    "negative": "906 minus 811 is 93.",
+    "id": "calc_137",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 252 minus 233, you get 19.",
+    "negative": "If you calculate 252 minus 233, you get 18.",
+    "id": "calc_138",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 414 and 305, the answer is 109.",
+    "negative": "When you subtract 414 and 305, the answer is 110.",
+    "id": "calc_139",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "816 - 413 works out to 403.",
+    "negative": "816 - 413 works out to 404.",
+    "id": "calc_140",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 712 - 41 is 671.",
+    "negative": "The result of 712 minus 41 is 673.",
+    "id": "calc_141",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "334 - 295 is equal to 39.",
+    "negative": "334 - 295 is equal to 29.",
+    "id": "calc_142",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 279 and 241, the answer is 38.",
+    "negative": "When you subtract 279 and 241, the answer is 83.",
+    "id": "calc_143",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "699 - 447 equals 252.",
+    "negative": "699 - 447 equals 255.",
+    "id": "calc_144",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 428 minus 344, you get 84.",
+    "negative": "If you calculate 428 - 344, you get 74.",
+    "id": "calc_145",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "395 minus 340 works out to 55.",
+    "negative": "395 minus 340 works out to 58.",
+    "id": "calc_146",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "358 minus 166 is 192.",
+    "negative": "358 minus 166 is 182.",
+    "id": "calc_147",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "101 - 85 works out to 16.",
+    "negative": "101 minus 85 works out to 61.",
+    "id": "calc_148",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 630 and 371, the answer is 259.",
+    "negative": "When you subtract 630 and 371, the answer is 269.",
+    "id": "calc_149",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you subtract 662 and 135, the answer is 527.",
+    "negative": "When you subtract 662 and 135, the answer is 528.",
+    "id": "calc_150",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "2 \u00d7 5 is equal to 10.",
+    "negative": "2 \u00d7 5 is equal to 7.",
+    "id": "calc_151",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you multiply 3 and 5, the answer is 15.",
+    "negative": "When you multiply 3 and 5, the answer is 12.",
+    "id": "calc_152",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "4 \u00d7 9 is equal to 36.",
+    "negative": "4 times 9 is equal to 46.",
+    "id": "calc_153",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you multiply 9 and 9, the answer is 81.",
+    "negative": "When you multiply 9 and 9, the answer is 78.",
+    "id": "calc_154",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "4 times 3 is 12.",
+    "negative": "4 times 3 is 13.",
+    "id": "calc_155",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 \u00d7 2 is equal to 12.",
+    "negative": "6 \u00d7 2 is equal to 13.",
+    "id": "calc_156",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "9 \u00d7 4 works out to 36.",
+    "negative": "9 times 4 works out to 38.",
+    "id": "calc_157",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 8 \u00d7 9 gives 72.",
+    "negative": "Computing 8 times 9 gives 70.",
+    "id": "calc_158",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 times 5 is 40.",
+    "negative": "8 times 5 is 50.",
+    "id": "calc_159",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 8 \u00d7 8, you get 64.",
+    "negative": "If you calculate 8 times 8, you get 74.",
+    "id": "calc_160",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 \u00d7 3 equals 21.",
+    "negative": "7 \u00d7 3 equals 23.",
+    "id": "calc_161",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 4 times 8, you get 32.",
+    "negative": "If you calculate 4 \u00d7 8, you get 36.",
+    "id": "calc_162",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 times 7 is 42.",
+    "negative": "6 times 7 is 45.",
+    "id": "calc_163",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you multiply 8 and 7, the answer is 56.",
+    "negative": "When you multiply 8 and 7, the answer is 64.",
+    "id": "calc_164",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 3 \u00d7 5 gives 15.",
+    "negative": "Computing 3 \u00d7 5 gives 16.",
+    "id": "calc_165",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 3 \u00d7 3, you get 9.",
+    "negative": "If you calculate 3 \u00d7 3, you get 10.",
+    "id": "calc_166",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "2 times 7 is equal to 14.",
+    "negative": "2 \u00d7 7 is equal to 7.",
+    "id": "calc_167",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 5 times 8, you get 40.",
+    "negative": "If you calculate 5 times 8, you get 43.",
+    "id": "calc_168",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 8 times 5 yields 40.",
+    "negative": "Solving 8 \u00d7 5 yields 41.",
+    "id": "calc_169",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 6 \u00d7 9 is 54.",
+    "negative": "The answer to 6 \u00d7 9 is 52.",
+    "id": "calc_170",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you multiply 6 and 4, the answer is 24.",
+    "negative": "When you multiply 6 and 4, the answer is 18.",
+    "id": "calc_171",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 \u00d7 8 is equal to 48.",
+    "negative": "6 times 8 is equal to 58.",
+    "id": "calc_172",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 8 times 9 gives 72.",
+    "negative": "Computing 8 times 9 gives 62.",
+    "id": "calc_173",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 times 6 is 36.",
+    "negative": "6 times 6 is 26.",
+    "id": "calc_174",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 2 \u00d7 9 gives 18.",
+    "negative": "Computing 2 times 9 gives 19.",
+    "id": "calc_175",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 5 \u00d7 6, you get 30.",
+    "negative": "If you calculate 5 \u00d7 6, you get 35.",
+    "id": "calc_176",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 2 \u00d7 6 is 12.",
+    "negative": "The answer to 2 \u00d7 6 is 18.",
+    "id": "calc_177",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "3 times 6 is 18.",
+    "negative": "3 times 6 is 20.",
+    "id": "calc_178",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 \u00d7 6 is equal to 42.",
+    "negative": "7 \u00d7 6 is equal to 35.",
+    "id": "calc_179",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "6 \u00d7 7 equals 42.",
+    "negative": "6 times 7 equals 52.",
+    "id": "calc_180",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "5 times 8 works out to 40.",
+    "negative": "5 \u00d7 8 works out to 50.",
+    "id": "calc_181",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "2 \u00d7 6 equals 12.",
+    "negative": "2 \u00d7 6 equals 21.",
+    "id": "calc_182",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 6 times 8 is 48.",
+    "negative": "The result of 6 times 8 is 56.",
+    "id": "calc_183",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "2 \u00d7 7 equals 14.",
+    "negative": "2 \u00d7 7 equals 13.",
+    "id": "calc_184",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 6 times 8, you get 48.",
+    "negative": "If you calculate 6 times 8, you get 40.",
+    "id": "calc_185",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 9 \u00d7 3 gives 27.",
+    "negative": "Computing 9 times 3 gives 18.",
+    "id": "calc_186",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "9 \u00d7 7 works out to 63.",
+    "negative": "9 \u00d7 7 works out to 70.",
+    "id": "calc_187",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "4 \u00d7 23 equals 92.",
+    "negative": "4 \u00d7 23 equals 96.",
+    "id": "calc_188",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 6 times 11 is 66.",
+    "negative": "The result of 6 \u00d7 11 is 77.",
+    "id": "calc_189",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 5 \u00d7 21 is 105.",
+    "negative": "The result of 5 \u00d7 21 is 95.",
+    "id": "calc_190",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 times 11 is equal to 77.",
+    "negative": "7 times 11 is equal to 78.",
+    "id": "calc_191",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 9 \u00d7 12 gives 108.",
+    "negative": "Computing 9 \u00d7 12 gives 118.",
+    "id": "calc_192",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 2 \u00d7 11 gives 22.",
+    "negative": "Computing 2 \u00d7 11 gives 23.",
+    "id": "calc_193",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "5 times 12 works out to 60.",
+    "negative": "5 times 12 works out to 72.",
+    "id": "calc_194",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 5 times 20 yields 100.",
+    "negative": "Solving 5 \u00d7 20 yields 95.",
+    "id": "calc_195",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "4 \u00d7 14 is equal to 56.",
+    "negative": "4 times 14 is equal to 59.",
+    "id": "calc_196",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 2 \u00d7 14 is 28.",
+    "negative": "The result of 2 times 14 is 14.",
+    "id": "calc_197",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 times 10 is equal to 70.",
+    "negative": "7 \u00d7 10 is equal to 63.",
+    "id": "calc_198",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you multiply 3 and 12, the answer is 36.",
+    "negative": "When you multiply 3 and 12, the answer is 39.",
+    "id": "calc_199",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 3 \u00d7 24 gives 72.",
+    "negative": "Computing 3 times 24 gives 75.",
+    "id": "calc_200",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 6 times 24 is 144.",
+    "negative": "The answer to 6 \u00d7 24 is 154.",
+    "id": "calc_201",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 \u00d7 23 equals 184.",
+    "negative": "8 \u00d7 23 equals 192.",
+    "id": "calc_202",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 3 times 12 yields 36.",
+    "negative": "Solving 3 times 12 yields 37.",
+    "id": "calc_203",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "7 times 22 works out to 154.",
+    "negative": "7 \u00d7 22 works out to 157.",
+    "id": "calc_204",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 \u00d7 13 equals 104.",
+    "negative": "8 \u00d7 13 equals 140.",
+    "id": "calc_205",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 5 \u00d7 23 gives 115.",
+    "negative": "Computing 5 \u00d7 23 gives 117.",
+    "id": "calc_206",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "8 times 23 equals 184.",
+    "negative": "8 times 23 equals 194.",
+    "id": "calc_207",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you multiply 6 and 21, the answer is 126.",
+    "negative": "When you multiply 6 and 21, the answer is 120.",
+    "id": "calc_208",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 3 \u00d7 23 is 69.",
+    "negative": "The result of 3 \u00d7 23 is 59.",
+    "id": "calc_209",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 28 \u00d7 27 is 756.",
+    "negative": "The result of 28 \u00d7 27 is 759.",
+    "id": "calc_210",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 23 times 11 yields 253.",
+    "negative": "Solving 23 times 11 yields 250.",
+    "id": "calc_211",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you multiply 26 and 16, the answer is 416.",
+    "negative": "When you multiply 26 and 16, the answer is 406.",
+    "id": "calc_212",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "27 \u00d7 21 is equal to 567.",
+    "negative": "27 \u00d7 21 is equal to 546.",
+    "id": "calc_213",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "27 times 29 works out to 783.",
+    "negative": "27 \u00d7 29 works out to 786.",
+    "id": "calc_214",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "18 \u00d7 10 is equal to 180.",
+    "negative": "18 times 10 is equal to 170.",
+    "id": "calc_215",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 20 \u00d7 21, you get 420.",
+    "negative": "If you calculate 20 \u00d7 21, you get 399.",
+    "id": "calc_216",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 22 times 12 is 264.",
+    "negative": "The answer to 22 \u00d7 12 is 252.",
+    "id": "calc_217",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 22 times 23 is 506.",
+    "negative": "The result of 22 times 23 is 508.",
+    "id": "calc_218",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "20 \u00d7 28 equals 560.",
+    "negative": "20 times 28 equals 563.",
+    "id": "calc_219",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "29 times 11 equals 319.",
+    "negative": "29 \u00d7 11 equals 330.",
+    "id": "calc_220",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "25 times 29 is 725.",
+    "negative": "25 times 29 is 727.",
+    "id": "calc_221",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "13 times 21 equals 273.",
+    "negative": "13 \u00d7 21 equals 272.",
+    "id": "calc_222",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "25 times 26 is equal to 650.",
+    "negative": "25 times 26 is equal to 660.",
+    "id": "calc_223",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 29 times 11 gives 319.",
+    "negative": "Computing 29 times 11 gives 290.",
+    "id": "calc_224",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 14 times 18 is 252.",
+    "negative": "The result of 14 \u00d7 18 is 249.",
+    "id": "calc_225",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 32 \u00f7 8 gives 4.",
+    "negative": "Computing 32 \u00f7 8 gives 6.",
+    "id": "calc_226",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 84 \u00f7 14 is 6.",
+    "negative": "The answer to 84 \u00f7 14 is 9.",
+    "id": "calc_227",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 77 \u00f7 11 yields 7.",
+    "negative": "Solving 77 \u00f7 11 yields 8.",
+    "id": "calc_228",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 16 \u00f7 2, you get 8.",
+    "negative": "If you calculate 16 \u00f7 2, you get 7.",
+    "id": "calc_229",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "100 divided by 4 equals 25.",
+    "negative": "100 \u00f7 4 equals 28.",
+    "id": "calc_230",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 297 divided by 11 gives 27.",
+    "negative": "Computing 297 divided by 11 gives 29.",
+    "id": "calc_231",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 162 \u00f7 18 gives 9.",
+    "negative": "Computing 162 divided by 18 gives 11.",
+    "id": "calc_232",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "258 divided by 6 equals 43.",
+    "negative": "258 divided by 6 equals 41.",
+    "id": "calc_233",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 200 and 4, the answer is 50.",
+    "negative": "When you divide 200 and 4, the answer is 47.",
+    "id": "calc_234",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 900 divided by 20 is 45.",
+    "negative": "The result of 900 divided by 20 is 47.",
+    "id": "calc_235",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 36 divided by 6 is 6.",
+    "negative": "The answer to 36 divided by 6 is 8.",
+    "id": "calc_236",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "4 divided by 2 is equal to 2.",
+    "negative": "4 \u00f7 2 is equal to 4.",
+    "id": "calc_237",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 738 and 18, the answer is 41.",
+    "negative": "When you divide 738 and 18, the answer is 43.",
+    "id": "calc_238",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 64 divided by 16 gives 4.",
+    "negative": "Computing 64 \u00f7 16 gives 6.",
+    "id": "calc_239",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 18 \u00f7 9 is 2.",
+    "negative": "The result of 18 divided by 9 is 1.",
+    "id": "calc_240",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 36 and 9, the answer is 4.",
+    "negative": "When you divide 36 and 9, the answer is 7.",
+    "id": "calc_241",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "325 divided by 13 is 25.",
+    "negative": "325 divided by 13 is 26.",
+    "id": "calc_242",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 504 divided by 12 is 42.",
+    "negative": "The result of 504 \u00f7 12 is 32.",
+    "id": "calc_243",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 132 divided by 11, you get 12.",
+    "negative": "If you calculate 132 \u00f7 11, you get 21.",
+    "id": "calc_244",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "42 divided by 6 is 7.",
+    "negative": "42 divided by 6 is 10.",
+    "id": "calc_245",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 80 \u00f7 8 is 10.",
+    "negative": "The result of 80 \u00f7 8 is 12.",
+    "id": "calc_246",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "882 divided by 18 is 49.",
+    "negative": "882 divided by 18 is 46.",
+    "id": "calc_247",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 35 divided by 7 gives 5.",
+    "negative": "Computing 35 divided by 7 gives 6.",
+    "id": "calc_248",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "30 divided by 10 works out to 3.",
+    "negative": "30 divided by 10 works out to 6.",
+    "id": "calc_249",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 140 divided by 14, you get 10.",
+    "negative": "If you calculate 140 \u00f7 14, you get 7.",
+    "id": "calc_250",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "192 divided by 16 is 12.",
+    "negative": "192 divided by 16 is 9.",
+    "id": "calc_251",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 451 \u00f7 11 gives 41.",
+    "negative": "Computing 451 divided by 11 gives 44.",
+    "id": "calc_252",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 256 \u00f7 8 yields 32.",
+    "negative": "Solving 256 \u00f7 8 yields 33.",
+    "id": "calc_253",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "80 divided by 10 is 8.",
+    "negative": "80 divided by 10 is 10.",
+    "id": "calc_254",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 100 and 10, the answer is 10.",
+    "negative": "When you divide 100 and 10, the answer is 1.",
+    "id": "calc_255",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "30 \u00f7 3 equals 10.",
+    "negative": "30 divided by 3 equals 8.",
+    "id": "calc_256",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 165 \u00f7 15 gives 11.",
+    "negative": "Computing 165 \u00f7 15 gives 8.",
+    "id": "calc_257",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "84 divided by 3 works out to 28.",
+    "negative": "84 divided by 3 works out to 31.",
+    "id": "calc_258",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "10 \u00f7 2 equals 5.",
+    "negative": "10 \u00f7 2 equals 4.",
+    "id": "calc_259",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 30 and 3, the answer is 10.",
+    "negative": "When you divide 30 and 3, the answer is 8.",
+    "id": "calc_260",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 60 divided by 2 is 30.",
+    "negative": "The answer to 60 \u00f7 2 is 20.",
+    "id": "calc_261",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "864 \u00f7 18 equals 48.",
+    "negative": "864 divided by 18 equals 51.",
+    "id": "calc_262",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 40 \u00f7 8 yields 5.",
+    "negative": "Solving 40 divided by 8 yields 8.",
+    "id": "calc_263",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "760 \u00f7 19 works out to 40.",
+    "negative": "760 \u00f7 19 works out to 4.",
+    "id": "calc_264",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 22 \u00f7 11 gives 2.",
+    "negative": "Computing 22 divided by 11 gives 4.",
+    "id": "calc_265",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "455 \u00f7 13 works out to 35.",
+    "negative": "455 \u00f7 13 works out to 32.",
+    "id": "calc_266",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 42 \u00f7 14 is 3.",
+    "negative": "The answer to 42 \u00f7 14 is 5.",
+    "id": "calc_267",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 14 divided by 7 is 2.",
+    "negative": "The result of 14 \u00f7 7 is 1.",
+    "id": "calc_268",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 77 divided by 7 is 11.",
+    "negative": "The answer to 77 divided by 7 is 9.",
+    "id": "calc_269",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 720 \u00f7 16, you get 45.",
+    "negative": "If you calculate 720 divided by 16, you get 54.",
+    "id": "calc_270",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 93 divided by 3 gives 31.",
+    "negative": "Computing 93 divided by 3 gives 30.",
+    "id": "calc_271",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "60 \u00f7 10 works out to 6.",
+    "negative": "60 divided by 10 works out to 7.",
+    "id": "calc_272",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 260 divided by 13 is 20.",
+    "negative": "The result of 260 \u00f7 13 is 2.",
+    "id": "calc_273",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 72 \u00f7 9 is 8.",
+    "negative": "The result of 72 \u00f7 9 is 9.",
+    "id": "calc_274",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "60 \u00f7 6 equals 10.",
+    "negative": "60 divided by 6 equals 13.",
+    "id": "calc_275",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 247 divided by 19 is 13.",
+    "negative": "The result of 247 divided by 19 is 12.",
+    "id": "calc_276",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "99 divided by 11 is 9.",
+    "negative": "99 divided by 11 is 12.",
+    "id": "calc_277",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "77 \u00f7 11 is equal to 7.",
+    "negative": "77 \u00f7 11 is equal to 8.",
+    "id": "calc_278",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 144 \u00f7 12 is 12.",
+    "negative": "The result of 144 \u00f7 12 is 13.",
+    "id": "calc_279",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The answer to 8 divided by 4 is 2.",
+    "negative": "The answer to 8 divided by 4 is 5.",
+    "id": "calc_280",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 350 divided by 14 yields 25.",
+    "negative": "Solving 350 \u00f7 14 yields 15.",
+    "id": "calc_281",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 27 \u00f7 3, you get 9.",
+    "negative": "If you calculate 27 divided by 3, you get 11.",
+    "id": "calc_282",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 85 \u00f7 5, you get 17.",
+    "negative": "If you calculate 85 divided by 5, you get 14.",
+    "id": "calc_283",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 180 and 10, the answer is 18.",
+    "negative": "When you divide 180 and 10, the answer is 21.",
+    "id": "calc_284",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 264 \u00f7 8, you get 33.",
+    "negative": "If you calculate 264 \u00f7 8, you get 30.",
+    "id": "calc_285",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "The result of 120 \u00f7 4 is 30.",
+    "negative": "The result of 120 \u00f7 4 is 31.",
+    "id": "calc_286",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 24 \u00f7 4, you get 6.",
+    "negative": "If you calculate 24 \u00f7 4, you get 9.",
+    "id": "calc_287",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 20 and 4, the answer is 5.",
+    "negative": "When you divide 20 and 4, the answer is 3.",
+    "id": "calc_288",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "40 divided by 4 equals 10.",
+    "negative": "40 divided by 4 equals 11.",
+    "id": "calc_289",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "576 divided by 18 is 32.",
+    "negative": "576 divided by 18 is 34.",
+    "id": "calc_290",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 172 and 4, the answer is 43.",
+    "negative": "When you divide 172 and 4, the answer is 46.",
+    "id": "calc_291",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "If you calculate 740 \u00f7 20, you get 37.",
+    "negative": "If you calculate 740 \u00f7 20, you get 35.",
+    "id": "calc_292",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "30 divided by 10 is equal to 3.",
+    "negative": "30 divided by 10 is equal to 2.",
+    "id": "calc_293",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "432 divided by 18 equals 24.",
+    "negative": "432 \u00f7 18 equals 25.",
+    "id": "calc_294",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "110 divided by 11 works out to 10.",
+    "negative": "110 \u00f7 11 works out to 11.",
+    "id": "calc_295",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 234 \u00f7 6 yields 39.",
+    "negative": "Solving 234 \u00f7 6 yields 37.",
+    "id": "calc_296",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "114 divided by 3 equals 38.",
+    "negative": "114 \u00f7 3 equals 28.",
+    "id": "calc_297",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Solving 344 \u00f7 8 yields 43.",
+    "negative": "Solving 344 \u00f7 8 yields 45.",
+    "id": "calc_298",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "Computing 220 \u00f7 11 gives 20.",
+    "negative": "Computing 220 \u00f7 11 gives 23.",
+    "id": "calc_299",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  },
+  {
+    "positive": "When you divide 6 and 2, the answer is 3.",
+    "negative": "When you divide 6 and 2, the answer is 2.",
+    "id": "calc_300",
+    "category": "arithmetic",
+    "paradigm": "calculator"
+  }
+]

@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.1] - 2026-03-05
+
+### Added
+
+- 3M and 5M model configurations for developmental scale sweep
+- Developmental sweep runner (`experiments/developmental_sweep/`)
+- Cross-transfer threshold discovery: absent at 3M, emerges at 5M
+- SVD spectrum extraction tool (`extract_svd_spectrum.py`)
+- Calculator and subitizing contrastive pair generators for reasoning injection tests
+
+### Changed
+
+- Paper 4 updated to v7 with developmental sweep data, expanded cross-transfer table across 3 scales
+- README updated with cross-transfer developmental onset finding
+
 ## [2.3.0] - 2026-03-05
 
 ### Added
