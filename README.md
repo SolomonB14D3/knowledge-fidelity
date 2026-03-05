@@ -180,7 +180,9 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 
 ## Key Findings
 
-- **Broad truth fixes propagate to narrow ones.** Repairing sycophancy via rho-guided SFT spontaneously improves bias across multiple demographic categories, contradicting the prevailing "alignment tax" assumption.
+- **Behavioral emergence is a data problem, not a scale problem.** A 7M-parameter model scores zero on bias and sycophancy in vanilla training, but injecting contrastive pairs into 5% of training blocks (0.11% of tokens) pushes bias to 0.433 and sycophancy to 0.513 — exceeding vanilla 34M scores at 5x fewer parameters.
+- **Contrastive injection stabilizes behavioral scaling.** Vanilla 64M training produces a non-monotonic anomaly where bias *regresses* from 0.238 (34M) to 0.087. Contrastive injection eliminates this anomaly, pushing bias to 0.459 — the highest value at any scale tested (7M through 64M).
+- **Broad truth fixes propagate to narrow ones.** Sycophancy-only injection lifts bias (+0.215), but bias-only injection does not lift sycophancy. This asymmetric transfer operates at both pretraining and post-hoc surgery, establishing it as a structural property of behavioral representations.
 - **Behavioral capabilities emerge through sharp phase transitions.** Training small language models from scratch reveals that behaviors like over-refusal appear in discrete jumps, not gradual improvement.
 - **Geometry precedes emergence.** Effective dimensionality expansion in weight subspaces predicts behavioral phase transitions by hundreds of training steps — the geometry reorganizes before the behavior appears.
 - **Surgery concentrates, not rotates.** Grassmann angle analysis of rho-guided SFT shows behavioral subspaces sharpen (effective dimension compresses) rather than rotating to new orientations.

@@ -45,8 +45,14 @@ from experiments.scale_ladder.configs import SCALE_CONFIGS, SCALE_ORDER, SUBSPAC
 from experiments.scale_ladder.train_model import build_model, build_tokenizer
 
 
-def load_contrastive_texts(behaviors: list[str], probe_seed: int = 999) -> tuple[list[str], set[str]]:
+def load_contrastive_texts(
+    behaviors: list[str], probe_seed: int = 999, pairs_json: str | None = None,
+) -> tuple[list[str], set[str]]:
     """Load contrast pair texts for injection into the data stream.
+
+    If pairs_json is provided, loads pre-built pairs from that JSON file
+    for any behavior named in the file. Behaviors not in the file fall
+    through to the standard probe-loading pipeline.
 
     Guarantees ZERO overlap with evaluation probes by:
     1. Loading eval probes (seed=42) to get their IDs
@@ -60,9 +66,38 @@ def load_contrastive_texts(behaviors: list[str], probe_seed: int = 999) -> tuple
     from rho_eval.interpretability.activation import build_contrast_pairs
     from rho_eval.behavioral import load_behavioral_probes
 
+    # Load custom pairs if provided
+    custom_pairs = {}
+    if pairs_json:
+        import json as _json
+        pairs_path = Path(pairs_json)
+        if not pairs_path.exists():
+            raise FileNotFoundError(f"Pairs JSON not found: {pairs_json}")
+        raw = _json.loads(pairs_path.read_text())
+        if isinstance(raw, list):
+            # Flat list of pairs — treat as a single "primitive" behavior
+            custom_pairs["primitive"] = raw
+        elif isinstance(raw, dict):
+            # Dict keyed by behavior name
+            custom_pairs = raw
+        print(f"    Loaded custom pairs from {pairs_json}")
+        for k, v in custom_pairs.items():
+            print(f"      {k}: {len(v)} pairs")
+
     texts = []
     training_ids = set()
     for b in behaviors:
+        if b in custom_pairs:
+            # Use pre-built pairs directly
+            pairs = custom_pairs[b]
+            for pair in pairs:
+                texts.append(pair["positive"])
+                texts.append(pair["negative"])
+                training_ids.add(pair.get("id", ""))
+            print(f"    {b}: {len(pairs)} custom pairs → {len(pairs)*2} texts")
+            continue
+
+        # Standard probe-loading pipeline
         # Step 1: Get eval probe IDs (these are what we must NOT touch)
         eval_probes = load_behavioral_probes(b, seed=42)
         eval_ids = {p.get("id", "") for p in eval_probes}
@@ -98,7 +133,9 @@ def load_contrastive_texts(behaviors: list[str], probe_seed: int = 999) -> tuple
 
 
 def contrastive_token_iterator(
-    tokenizer, block_size, contrastive_texts, inject_rate=10, seed=42, dataset="openwebtext"
+    tokenizer, block_size, contrastive_texts, inject_rate=10, seed=42,
+    dataset="openwebtext",
+    schedule=None, total_blocks=None, inject_until=None,
 ):
     """Yield packed token blocks, interleaving contrastive texts.
 
@@ -108,6 +145,13 @@ def contrastive_token_iterator(
 
     inject_rate=10 means ~10% of training tokens are contrastive.
     inject_rate=100 means ~1% contrastive.
+
+    schedule: list of (start_frac, end_frac, texts) for curriculum ordering.
+        When provided, the active contrastive text set changes based on
+        training progress. Overrides contrastive_texts.
+    total_blocks: total number of blocks in training (needed for schedule).
+    inject_until: fraction (0-1) of training to inject contrastive, then stop.
+        E.g., inject_until=0.2 means inject for first 20% only.
     """
     from datasets import load_dataset
 
@@ -125,20 +169,34 @@ def contrastive_token_iterator(
     ds = ds.shuffle(seed=seed, buffer_size=10_000)
     eos_id = tokenizer.eos_token_id
 
-    # Prepare contrastive token buffer
-    rng = random.Random(seed)
-    contrastive_tokens = []
-    shuffled_texts = list(contrastive_texts)
-    rng.shuffle(shuffled_texts)
-    for text in shuffled_texts:
-        contrastive_tokens.extend(tokenizer.encode(text))
-        contrastive_tokens.append(eos_id)
+    def _tokenize_texts(texts, rng_seed):
+        """Tokenize and shuffle a list of texts into a token buffer."""
+        _rng = random.Random(rng_seed)
+        tokens = []
+        shuffled = list(texts)
+        _rng.shuffle(shuffled)
+        for t in shuffled:
+            tokens.extend(tokenizer.encode(t))
+            tokens.append(eos_id)
+        return tokens
+
+    # Build schedule-aware contrastive buffers
+    if schedule and total_blocks:
+        # Pre-tokenize each schedule phase
+        schedule_buffers = []
+        for start_frac, end_frac, phase_texts in schedule:
+            phase_tokens = _tokenize_texts(phase_texts, seed)
+            schedule_buffers.append((start_frac, end_frac, phase_tokens))
+        contrastive_tokens = None
+    else:
+        # Standard: single contrastive buffer
+        contrastive_tokens = _tokenize_texts(contrastive_texts, seed)
+        schedule_buffers = None
 
     # Main data buffer
     main_buffer = []
-    # Contrastive buffer (cycles)
-    contr_buffer = list(contrastive_tokens)
-    contr_idx = 0  # cycles through contrastive tokens
+    contr_idx = 0  # cycles through active contrastive tokens
+    active_phase = -1  # track which schedule phase is active
 
     block_count = 0
     for example in ds:
@@ -152,19 +210,100 @@ def contrastive_token_iterator(
         while len(main_buffer) >= block_size:
             block_count += 1
 
+            # Check inject_until cutoff
+            if inject_until and total_blocks:
+                cutoff_block = int(inject_until * total_blocks)
+                if block_count > cutoff_block:
+                    # Past the cutoff — yield only standard data
+                    yield main_buffer[:block_size]
+                    main_buffer = main_buffer[block_size:]
+                    continue
+
+            # Determine active contrastive tokens
+            if schedule_buffers and total_blocks:
+                frac = block_count / total_blocks
+                new_phase = -1
+                active_tokens = None
+                for i, (sf, ef, ptoks) in enumerate(schedule_buffers):
+                    if sf <= frac < ef:
+                        new_phase = i
+                        active_tokens = ptoks
+                        break
+                if new_phase != active_phase:
+                    contr_idx = 0  # reset index on phase change
+                    active_phase = new_phase
+                if active_tokens is None:
+                    # Outside all schedule phases — yield standard data
+                    yield main_buffer[:block_size]
+                    main_buffer = main_buffer[block_size:]
+                    continue
+            else:
+                active_tokens = contrastive_tokens
+
             # Every inject_rate blocks, yield a contrastive block instead
             if inject_rate > 0 and block_count % inject_rate == 0:
                 # Build contrastive block (cycling if needed)
                 contr_block = []
                 while len(contr_block) < block_size:
                     remaining = block_size - len(contr_block)
-                    available = contrastive_tokens[contr_idx:contr_idx + remaining]
+                    available = active_tokens[contr_idx:contr_idx + remaining]
                     contr_block.extend(available)
-                    contr_idx = (contr_idx + len(available)) % len(contrastive_tokens)
+                    contr_idx = (contr_idx + len(available)) % len(active_tokens)
                 yield contr_block[:block_size]
             else:
                 yield main_buffer[:block_size]
                 main_buffer = main_buffer[block_size:]
+
+
+def parse_schedule(schedule_str: str, pairs_json: str | None, probe_seed: int) -> list[tuple]:
+    """Parse schedule string like 'primitive:0-50,sycophancy:50-100'.
+
+    Returns list of (start_frac, end_frac, texts) tuples.
+    """
+    from rho_eval.interpretability.activation import build_contrast_pairs
+    from rho_eval.behavioral import load_behavioral_probes
+
+    # Load custom pairs if available
+    custom_pairs = {}
+    if pairs_json:
+        import json as _json
+        raw = _json.loads(Path(pairs_json).read_text())
+        if isinstance(raw, list):
+            custom_pairs["primitive"] = raw
+        elif isinstance(raw, dict):
+            custom_pairs = raw
+
+    phases = []
+    for part in schedule_str.split(","):
+        behavior, frac_range = part.strip().split(":")
+        start_pct, end_pct = frac_range.split("-")
+        start_frac = float(start_pct) / 100
+        end_frac = float(end_pct) / 100
+
+        if behavior in custom_pairs:
+            texts = []
+            for pair in custom_pairs[behavior]:
+                texts.append(pair["positive"])
+                texts.append(pair["negative"])
+        else:
+            eval_probes = load_behavioral_probes(behavior, seed=42)
+            eval_ids = {p.get("id", "") for p in eval_probes}
+            eval_texts = {p.get("text", "")[:200] for p in eval_probes}
+            n_target = len(eval_probes)
+            candidates = load_behavioral_probes(behavior, seed=probe_seed, n=n_target * 3)
+            clean = [p for p in candidates
+                     if p.get("id", "") not in eval_ids
+                     and p.get("text", "")[:200] not in eval_texts][:n_target]
+            pairs = build_contrast_pairs(behavior, clean)
+            texts = []
+            for pair in pairs:
+                texts.append(pair["positive"])
+                texts.append(pair["negative"])
+
+        phases.append((start_frac, end_frac, texts))
+        print(f"    Schedule: {behavior} @ {start_frac*100:.0f}%-{end_frac*100:.0f}% ({len(texts)} texts)")
+
+    return phases
 
 
 def train_contrastive(
@@ -178,6 +317,9 @@ def train_contrastive(
     audit_interval: int = 500,
     checkpoint_steps: list[int] | None = None,
     probe_seed: int = 999,
+    pairs_json: str | None = None,
+    inject_schedule: str | None = None,
+    inject_until: float | None = None,
 ):
     """Train a model with contrastive behavioral text injection.
 
@@ -223,7 +365,9 @@ def train_contrastive(
 
     # Load contrastive texts (using probe_seed to avoid train-eval contamination)
     print(f"  Loading contrastive texts (probe_seed={probe_seed})...", flush=True)
-    contrastive_texts, training_ids = load_contrastive_texts(inject_behaviors, probe_seed=probe_seed)
+    contrastive_texts, training_ids = load_contrastive_texts(
+        inject_behaviors, probe_seed=probe_seed, pairs_json=pairs_json,
+    )
     print(f"    Total: {len(contrastive_texts)} texts")
 
     # Save training probe IDs for contamination audit
@@ -268,10 +412,22 @@ def train_contrastive(
     print(f"  Total steps: {total_steps:,} ({warmup_steps} warmup)")
     print(f"  Tokens/step: {tokens_per_step:,}\n", flush=True)
 
+    # Parse schedule if provided
+    schedule = None
+    total_blocks = total_steps * batch_size  # total blocks across all steps
+    if inject_schedule:
+        print(f"  Parsing injection schedule: {inject_schedule}")
+        schedule = parse_schedule(inject_schedule, pairs_json, probe_seed)
+
+    if inject_until:
+        print(f"  Injection cutoff at {inject_until*100:.0f}% of training")
+
     # Data stream with contrastive injection
     data_iter = contrastive_token_iterator(
         tokenizer, block_size, contrastive_texts,
         inject_rate=inject_rate, seed=seed, dataset=dataset,
+        schedule=schedule, total_blocks=total_blocks,
+        inject_until=inject_until,
     )
 
     # Subspace auditing (import here to avoid load-time deps)
@@ -311,6 +467,8 @@ def train_contrastive(
                 data_iter = contrastive_token_iterator(
                     tokenizer, block_size, contrastive_texts,
                     inject_rate=inject_rate, seed=seed + step, dataset=dataset,
+                    schedule=schedule, total_blocks=total_blocks,
+                    inject_until=inject_until,
                 )
                 batch_tokens.append(next(data_iter))
 
@@ -399,6 +557,9 @@ def train_contrastive(
             "n_contrastive_texts": len(contrastive_texts),
             "n_contrastive_tokens": n_contr_tokens,
             "n_training_probe_ids": len(training_ids),
+            "pairs_json": pairs_json,
+            "inject_schedule": inject_schedule,
+            "inject_until": inject_until,
         },
         "total_steps": total_steps,
         "tokens_seen": tokens_seen,
@@ -450,6 +611,17 @@ def main():
                      help="Behaviors to inject (default: bias sycophancy)")
     inj.add_argument("--probe-seed", type=int, default=999,
                      help="Seed for training probe sampling (must differ from eval seed=42)")
+    inj.add_argument("--pairs-json", type=str, default=None,
+                     help="Path to JSON with pre-built contrastive pairs. "
+                          "Format: list of {positive, negative, id} dicts, "
+                          "or dict keyed by behavior name.")
+    inj.add_argument("--inject-schedule", type=str, default=None,
+                     help="Curriculum schedule: 'behavior:start-end,behavior:start-end' "
+                          "(percentages). E.g., 'primitive:0-50,sycophancy:50-100'. "
+                          "Overrides --inject-behaviors for contrastive content.")
+    inj.add_argument("--inject-until", type=float, default=None,
+                     help="Stop injecting after this fraction of training (0-1). "
+                          "E.g., 0.2 means inject for first 20%% only.")
 
     mon = parser.add_argument_group("monitoring")
     mon.add_argument("--audit-interval", type=int, default=500)
@@ -468,6 +640,9 @@ def main():
         audit_interval=args.audit_interval,
         checkpoint_steps=args.checkpoint_steps,
         probe_seed=args.probe_seed,
+        pairs_json=args.pairs_json,
+        inject_schedule=args.inject_schedule,
+        inject_until=args.inject_until,
     )
 
 
