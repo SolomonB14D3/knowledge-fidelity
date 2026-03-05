@@ -1,12 +1,12 @@
 # rho-eval v2.3.0: Behavioral Auditing for LLMs
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
-[![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854944.svg)](https://doi.org/10.5281/zenodo.18854944)
-[![Paper: Grassmann](https://zenodo.org/badge/DOI/10.5281/zenodo.18865862.svg)](https://doi.org/10.5281/zenodo.18865862)
-[![Paper: Phase Transitions](https://zenodo.org/badge/DOI/10.5281/zenodo.18865199.svg)](https://doi.org/10.5281/zenodo.18865199)
-[![Paper: Confidence Cartography](https://zenodo.org/badge/DOI/10.5281/zenodo.18703506.svg)](https://doi.org/10.5281/zenodo.18703506)
+[![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854943.svg)](https://doi.org/10.5281/zenodo.18854943)
+[![Paper: Grassmann](https://zenodo.org/badge/DOI/10.5281/zenodo.18865861.svg)](https://doi.org/10.5281/zenodo.18865861)
+[![Paper: Phase Transitions](https://zenodo.org/badge/DOI/10.5281/zenodo.18865198.svg)](https://doi.org/10.5281/zenodo.18865198)
+[![Paper: Confidence Cartography](https://zenodo.org/badge/DOI/10.5281/zenodo.18703505.svg)](https://doi.org/10.5281/zenodo.18703505)
 [![Paper: Contrastive Pretraining](https://zenodo.org/badge/DOI/10.5281/zenodo.18870555.svg)](https://doi.org/10.5281/zenodo.18870555)
-[![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
+[![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718544.svg)](https://doi.org/10.5281/zenodo.18718544)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -190,11 +190,11 @@ Full experimental details, tables, and statistical analysis are in the papers be
 
 ## Papers
 
-1. **Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models** — [DOI: 10.5281/zenodo.18854944](https://doi.org/10.5281/zenodo.18854944)
-2. **Behavioral Entanglement in Transformers: Grassmann Geometry of Rho-Guided SFT** — [DOI: 10.5281/zenodo.18865862](https://doi.org/10.5281/zenodo.18865862)
-3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865199](https://doi.org/10.5281/zenodo.18865199)
-4. **Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models** — [DOI: 10.5281/zenodo.18703506](https://doi.org/10.5281/zenodo.18703506) | [Repo](https://github.com/SolomonB14D3/confidence-cartography)
-5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718545](https://doi.org/10.5281/zenodo.18718545) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
+1. **Rho-Guided Supervised Fine-Tuning: Post-Training Repair of Calibration Damage in Large Language Models** — [DOI: 10.5281/zenodo.18854943](https://doi.org/10.5281/zenodo.18854943)
+2. **Behavioral Entanglement in Transformers: Grassmann Geometry of Rho-Guided SFT** — [DOI: 10.5281/zenodo.18865861](https://doi.org/10.5281/zenodo.18865861)
+3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865198](https://doi.org/10.5281/zenodo.18865198)
+4. **Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models** — [DOI: 10.5281/zenodo.18703505](https://doi.org/10.5281/zenodo.18703505) | [Repo](https://github.com/SolomonB14D3/confidence-cartography)
+5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718544](https://doi.org/10.5281/zenodo.18718544) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
 6. **Small Models Can Learn Complex Behaviors — They Just Need the Right Examples** — [DOI: 10.5281/zenodo.18870555](https://doi.org/10.5281/zenodo.18870555)
 
 ## Citation
@@ -205,8 +205,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
   title = {Rho-Guided Supervised Fine-Tuning: Post-Training Repair of
            Calibration Damage in Large Language Models},
   year = {2026},
-  doi = {10.5281/zenodo.18854944},
-  url = {https://doi.org/10.5281/zenodo.18854944}
+  doi = {10.5281/zenodo.18854943},
+  url = {https://doi.org/10.5281/zenodo.18854943}
 }
 
 @article{sanchez2026grassmann,
@@ -214,8 +214,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
   title = {Behavioral Entanglement in Transformers: Grassmann Geometry
            of Rho-Guided Supervised Fine-Tuning},
   year = {2026},
-  doi = {10.5281/zenodo.18865862},
-  url = {https://doi.org/10.5281/zenodo.18865862}
+  doi = {10.5281/zenodo.18865861},
+  url = {https://doi.org/10.5281/zenodo.18865861}
 }
 
 @article{sanchez2026phasetransitions,
@@ -223,8 +223,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
   title = {Behavioral Phase Transitions in Small Language Models:
            Geometric Scaffolding Precedes Behavioral Emergence},
   year = {2026},
-  doi = {10.5281/zenodo.18865199},
-  url = {https://doi.org/10.5281/zenodo.18865199}
+  doi = {10.5281/zenodo.18865198},
+  url = {https://doi.org/10.5281/zenodo.18865198}
 }
 
 @article{sanchez2026cartography,
@@ -232,8 +232,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
   title = {Confidence Cartography: Teacher-Forced Probability as a
            False-Belief Sensor in Language Models},
   year = {2026},
-  doi = {10.5281/zenodo.18703506},
-  url = {https://doi.org/10.5281/zenodo.18703506}
+  doi = {10.5281/zenodo.18703505},
+  url = {https://doi.org/10.5281/zenodo.18703505}
 }
 
 @software{sanchez2026cf90,
@@ -241,8 +241,8 @@ Full experimental details, tables, and statistical analysis are in the papers be
   title = {CF90: Knowledge-Preserving SVD Compression for Large
            Language Models},
   year = {2026},
-  doi = {10.5281/zenodo.18718545},
-  url = {https://doi.org/10.5281/zenodo.18718545}
+  doi = {10.5281/zenodo.18718544},
+  url = {https://doi.org/10.5281/zenodo.18718544}
 }
 
 @article{sanchez2026contrastive,
