@@ -7,7 +7,7 @@ authors:
 type: software
 license: MIT
 version: 2.3.0
-date-released: 2026-03-04
+date-released: 2026-03-05
 repository-code: "https://github.com/SolomonB14D3/knowledge-fidelity"
 keywords:
   - llm-compression

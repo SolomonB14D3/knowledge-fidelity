@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2026-03-05
+
+### Added
+
+- 64M contrastive injection results — scaling stabilization finding
+- Cross-dimensional transfer experiments (single-behavior injection)
+- Primitive evaluative hierarchy experiment infrastructure
+  - 280 contrastive pairs grounded in developmental/comparative cognition paradigms
+  - Curriculum schedule support (`--inject-schedule`) for ordering experiments
+  - Injection cutoff (`--inject-until`) for cascade tests
+- Custom pairs support (`--pairs-json`) in contrastive training pipeline
+- Phase 1/2/3 runner scripts for primitive hierarchy experiments
+
+### Changed
+
+- README updated with 64M scaling stabilization and cross-transfer findings
+- Paper 4 updated to v6 with 34M, 64M results, cross-transfer analysis, and scaling stabilization
+
 ## [2.2.2] - 2026-02-27
 
 ### Added
