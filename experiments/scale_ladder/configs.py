@@ -1,6 +1,18 @@
 """Scale ladder model configurations for Phase 1: behavioral subspace emergence."""
 
 SCALE_CONFIGS = {
+    "3M": {
+        "n_embd": 64, "n_layer": 2, "n_head": 2,
+        "n_positions": 512, "vocab_size": 50257,
+        "train_tokens": 50_000_000,
+        "batch_size": 32, "lr": 8e-4,
+    },
+    "5M": {
+        "n_embd": 96, "n_layer": 2, "n_head": 2,
+        "n_positions": 512, "vocab_size": 50257,
+        "train_tokens": 75_000_000,
+        "batch_size": 32, "lr": 7e-4,
+    },
     "7M": {
         "n_embd": 128, "n_layer": 4, "n_head": 4,
         "n_positions": 512, "vocab_size": 50257,
@@ -46,7 +58,7 @@ SCALE_CONFIGS = {
 }
 
 # Ordered by size for sequential training
-SCALE_ORDER = ["7M", "12M", "18M", "34M", "64M", "153M", "210M"]
+SCALE_ORDER = ["3M", "5M", "7M", "12M", "18M", "34M", "64M", "153M", "210M"]
 
 # Behaviors that support contrast-pair subspace extraction on base models
 SUBSPACE_BEHAVIORS = ["factual", "sycophancy", "toxicity", "bias"]
