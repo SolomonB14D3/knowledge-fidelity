@@ -6,8 +6,8 @@ authors:
     given-names: Bryan
 type: software
 license: MIT
-version: 2.3.0
-date-released: 2026-03-05
+version: 2.3.1
+date-released: 2026-03-06
 repository-code: "https://github.com/SolomonB14D3/knowledge-fidelity"
 keywords:
   - llm-compression
@@ -41,9 +41,15 @@ references:
         given-names: Bryan
     year: 2026
   - type: article
-    title: "Small Models Can Learn Complex Behaviors — They Just Need the Right Examples"
+    title: "Contrastive Pretraining Teaches Format Generation, Not Behavioral Knowledge"
     authors:
       - family-names: Sanchez
         given-names: Bryan
     year: 2026
     doi: "10.5281/zenodo.18870555"
+  - type: article
+    title: "Small Language Models Already Know More Than They Can Say"
+    authors:
+      - family-names: Sanchez
+        given-names: Bryan
+    year: 2026
