@@ -1,0 +1,2102 @@
+[
+  {
+    "positive": "Adolescent white man with black hair, black pants, and a white and black polka-dotted shirt holding and singing into a microphone. A white man has black hair.",
+    "negative": "Adolescent white man with black hair, black pants, and a white and black polka-dotted shirt holding and singing into a microphone. A white man has white hair.",
+    "id": "nli_001",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a blue plaid shirt is comforting a crying woman in a black truck. A man comforts a crying woman.",
+    "negative": "A man in a blue plaid shirt is comforting a crying woman in a black truck. A woman comforts a crying man.",
+    "id": "nli_002",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a blue jacket has fallen asleep while sitting on a fold-able chair, with a fishing pole and a green umbrella. A man has a blue jacket.",
+    "negative": "A man in a blue jacket has fallen asleep while sitting on a fold-able chair, with a fishing pole and a green umbrella. A man has a green jacket.",
+    "id": "nli_003",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The white dogs look curiously at the black llama. THe white dogs look at a llama",
+    "negative": "The white dogs look curiously at the black llama. THe black dogs look at a llama",
+    "id": "nli_004",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing a jacket and hat rides his bicycle among bright rays of sunshine that is streaming between an array of Autumn leafs. A man rides his bike.",
+    "negative": "A man wearing a jacket and hat rides his bicycle among bright rays of sunshine that is streaming between an array of Autumn leafs. A bike rides a man.",
+    "id": "nli_005",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A tall, dark-haired man in white sport coat and black slacks is walking along a tiled mosaic crosswalk of various colors and designs beside a woman with short, dark hair who is also wearing a white sport coat but with blue jeans. A tall, dark-haired man has a white sport coat.",
+    "negative": "A tall, dark-haired man in white sport coat and black slacks is walking along a tiled mosaic crosswalk of various colors and designs beside a woman with short, dark hair who is also wearing a white sport coat but with blue jeans. A tall, white-haired man has a white sport coat.",
+    "id": "nli_006",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A mustached man wearing a floppy black hat displays large flowers and red, white and blue colored inflatable baseball bats. A man is wearing a black hat.",
+    "negative": "A mustached man wearing a floppy black hat displays large flowers and red, white and blue colored inflatable baseball bats. A man is wearing a blue hat",
+    "id": "nli_007",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl riding a pony with braids and pink bows A human rides a pony.",
+    "negative": "A girl riding a pony with braids and pink bows A pony rides a human.",
+    "id": "nli_008",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "There is one woman riding a bike and a man who is riding on a Segway personal transportation device while carrying a pole that blind people use to help they detect things in their path. There is one woman riding a bike.",
+    "negative": "There is one woman riding a bike and a man who is riding on a Segway personal transportation device while carrying a pole that blind people use to help they detect things in their path. There is one man riding a bike.",
+    "id": "nli_009",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Several people dressed in red are sitting and standing on grass. People are standing on grass.",
+    "negative": "Several people dressed in red are sitting and standing on grass. People are sitting.",
+    "id": "nli_010",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man with no shirt on is hunched over pressing a blade up against his right pectoral muscle, as he shows signs of agony. A man with no shirt on is hunched over.",
+    "negative": "A man with no shirt on is hunched over pressing a blade up against his right pectoral muscle, as he shows signs of agony. A man with a shirt on is hunched over.",
+    "id": "nli_011",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A happy woman in a brown hat and green vest is taking a picture of a horse. A woman takes a picture of a horse.",
+    "negative": "A happy woman in a brown hat and green vest is taking a picture of a horse. A horse takes a picture of a woman.",
+    "id": "nli_012",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A happy woman in a brown hat and green vest is taking a picture of a horse. A woman takes a picture of a horse.",
+    "negative": "A happy woman in a brown hat and green vest is taking a picture of a horse. A horse takes a picture of a woman.",
+    "id": "nli_013",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a blue dress is drawing a picture of a boy and a girl on the sidewalk with sidewalk chalk. A woman is drawing on the sidewalk with sidewalk chalk.",
+    "negative": "A woman wearing a blue dress is drawing a picture of a boy and a girl on the sidewalk with sidewalk chalk. A woman is on the sidewalk with chalk.",
+    "id": "nli_014",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a blue dress is drawing a picture of a boy and a girl on the sidewalk with sidewalk chalk. A woman is drawing with sidewalk chalk.",
+    "negative": "A woman wearing a blue dress is drawing a picture of a boy and a girl on the sidewalk with sidewalk chalk. A woman is on the sidewalk with chalk.",
+    "id": "nli_015",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a blue dress is drawing a picture of a boy and a girl on the sidewalk with sidewalk chalk. A woman is drawing.",
+    "negative": "A woman wearing a blue dress is drawing a picture of a boy and a girl on the sidewalk with sidewalk chalk. A woman is on the sidewalk with chalk.",
+    "id": "nli_016",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Group class for martial arts, some in uniform and some not, taking place in an outdoor facility. Group class for martial arts taking place in an outdoor facility.",
+    "negative": "Group class for martial arts, some in uniform and some not, taking place in an outdoor facility. Group class for martial arts not taking place in an outdoor facility.",
+    "id": "nli_017",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a blue swimming gear is skiing near a wave in the water. A man in blue swimming gear is skiing a wave in the water.",
+    "negative": "A man in a blue swimming gear is skiing near a wave in the water. A man is swimming in the water.",
+    "id": "nli_018",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A food vendor is standing on the sidewalk next to his food cart looking at a black woman walking by. A food vendor watches a woman walk.",
+    "negative": "A food vendor is standing on the sidewalk next to his food cart looking at a black woman walking by. A woman watches a food vendor walk.",
+    "id": "nli_019",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The black dog has a toy in its mouth and a person stands nearby. The black dog has a toy.",
+    "negative": "The black dog has a toy in its mouth and a person stands nearby. The person has a toy in its mouth",
+    "id": "nli_020",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A family is enjoying a meal together, while their 4 dogs are all enjoying a nap on the floor circling around the table. The dogs are all asleep.",
+    "negative": "A family is enjoying a meal together, while their 4 dogs are all enjoying a nap on the floor circling around the table. The family is asleep.",
+    "id": "nli_021",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A group of people are sitting on stools eating some food A group of people are eating food together.",
+    "negative": "A group of people are sitting on stools eating some food A group of people are together.",
+    "id": "nli_022",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A boy with a skeleton on his shirt laughs. A boy laughing",
+    "negative": "A boy with a skeleton on his shirt laughs. A skeleton laughing",
+    "id": "nli_023",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A policeman grins at a woman wearing beads on a crowded street A police man is smiling at a woman.",
+    "negative": "A policeman grins at a woman wearing beads on a crowded street A police woman is smiling at a man.",
+    "id": "nli_024",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman shows off child spider-man pajamas. A woman in pajamas.",
+    "negative": "A woman shows off child spider-man pajamas. A child in pajamas.",
+    "id": "nli_025",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a black and white tank top and blue jeans riding a bike on the street. A woman is wearing blue jeans",
+    "negative": "A woman wearing a black and white tank top and blue jeans riding a bike on the street. A woman is wearing black jeans",
+    "id": "nli_026",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a sari is talking to a man in a white shirt. A woman is talking to a man.",
+    "negative": "A woman in a sari is talking to a man in a white shirt. A man is talking to a man.",
+    "id": "nli_027",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a blue skirt, high heels, a white shirt, green jacket and headband is walking out of a tunnel. A woman has a blue skirt.",
+    "negative": "A woman wearing a blue skirt, high heels, a white shirt, green jacket and headband is walking out of a tunnel. A woman has a white skirt.",
+    "id": "nli_028",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A mannequin at a lingerie show with a woman getting fitted in the background. A mannequin at a show with a woman getting fitted in the background.",
+    "negative": "A mannequin at a lingerie show with a woman getting fitted in the background. A man at a lingerie show with a woman getting fitted in the background.",
+    "id": "nli_029",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two soccer players, one in red, the other in white, racing towards a soccer ball. Two players, one in red, the other in white, racing towards a soccer ball.",
+    "negative": "Two soccer players, one in red, the other in white, racing towards a soccer ball. Two soccer players, one in white, the other in white, racing towards a soccer ball.",
+    "id": "nli_030",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man dressed all in white wearing a white mask on his face pretending to be a statue in a plaza. A man pretends to be a statue.",
+    "negative": "A man dressed all in white wearing a white mask on his face pretending to be a statue in a plaza. A statue pretends to be a man.",
+    "id": "nli_031",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a maroon hoodie is holding a black object as she wades through shallow water under a bridge. The woman is wearing a hoodie.",
+    "negative": "A woman wearing a maroon hoodie is holding a black object as she wades through shallow water under a bridge. The hoodie is black.",
+    "id": "nli_032",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a white shirt and black pants looks on as other people are seated at tables beneath green umbrellas. A man has a white shirt.",
+    "negative": "A man in a white shirt and black pants looks on as other people are seated at tables beneath green umbrellas. A man has a black shirt.",
+    "id": "nli_033",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "People on a street in front of the coliseum. people in front of coliseum",
+    "negative": "People on a street in front of the coliseum. people in coliseum",
+    "id": "nli_034",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little boy in blue and white flower shorts holding a yellow and black football while standing in the water. A little boy has blue and white flower shorts.",
+    "negative": "A little boy in blue and white flower shorts holding a yellow and black football while standing in the water. A little boy has blue and yellow flower shorts.",
+    "id": "nli_035",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A male in a black shirt, and black pants, working on the engine of an old, green antique automobile, with a yellow gas canister sitting on the grass. A man is working on the engine of an old car.",
+    "negative": "A male in a black shirt, and black pants, working on the engine of an old, green antique automobile, with a yellow gas canister sitting on the grass. A man is working on a car.",
+    "id": "nli_036",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man with a white rag over the lower portion of his face, wearing a black shirt, that looks to be bleeding, or have blood on the rag. A man has a white rag.",
+    "negative": "A man with a white rag over the lower portion of his face, wearing a black shirt, that looks to be bleeding, or have blood on the rag. A man has a black rag.",
+    "id": "nli_037",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man with a white rag over the lower portion of his face, wearing a black shirt, that looks to be bleeding, or have blood on the rag. A man has a white rag over his face.",
+    "negative": "A man with a white rag over the lower portion of his face, wearing a black shirt, that looks to be bleeding, or have blood on the rag. A man has a black rag.",
+    "id": "nli_038",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The man in the yellow jacket is paddling a red kayak through white water. The man is in a yellow jacket.",
+    "negative": "The man in the yellow jacket is paddling a red kayak through white water. The man is in a red jacket.",
+    "id": "nli_039",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A blond baby is watching a dark-haired baby chew on a blue toy. A baby is chewing on a toy.",
+    "negative": "A blond baby is watching a dark-haired baby chew on a blue toy. A blond baby is chewing on a dark-haired baby.",
+    "id": "nli_040",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little child stands in the middle of the street wearing a large red hat while people sit on the grass. The child is standing in the street",
+    "negative": "A little child stands in the middle of the street wearing a large red hat while people sit on the grass. The child is standing in the grass",
+    "id": "nli_041",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in shorts is standing on a rock looking out at the view from the hilltop. The man is in shorts",
+    "negative": "A man in shorts is standing on a rock looking out at the view from the hilltop. The man is looking out at the view.",
+    "id": "nli_042",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "a red-haired girl with a black and white striped shirt talking on a cellphone The girl has red hair",
+    "negative": "a red-haired girl with a black and white striped shirt talking on a cellphone The girl has black hair",
+    "id": "nli_043",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An old woman seated near an old man accepts a plate. An old woman seated near an old man accepts a plate.",
+    "negative": "An old woman seated near an old man accepts a plate. An old man seated near an old man accepts a plate.",
+    "id": "nli_044",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two men on rollerskates are facing one another as others are passing them or coming upon them as an audience watches their interaction. The men are on rollerskates",
+    "negative": "Two men on rollerskates are facing one another as others are passing them or coming upon them as an audience watches their interaction. The men are passing them.",
+    "id": "nli_045",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An old lady standing behind two men in a checkout line and a man wearing sunglasses in the background reading a newspaper. An old lady is checking out.",
+    "negative": "An old lady standing behind two men in a checkout line and a man wearing sunglasses in the background reading a newspaper. An old man is checking out in line.",
+    "id": "nli_046",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The brown dog is jumping a hurdle over a yellow and black pole. the dog is brown",
+    "negative": "The brown dog is jumping a hurdle over a yellow and black pole. the dog is black",
+    "id": "nli_047",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A couple on a beach, the woman is touching the man's face. A woman is touching a man's face.",
+    "negative": "A couple on a beach, the woman is touching the man's face. A man is touching a man's face.",
+    "id": "nli_048",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The man in an orange hat smokes a cigarette. A man is smoking.",
+    "negative": "The man in an orange hat smokes a cigarette. A man is smoking an orange hat.",
+    "id": "nli_049",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man is on stage in front of a crowd of people sitting in chairs. A man is in front of a crowd.",
+    "negative": "A man is on stage in front of a crowd of people sitting in chairs. A man is in a crowd.",
+    "id": "nli_050",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing a striped blue tie plays a specially rigged guitar while a woman in a red t-shirt looks at something in the distance. The man is playing a guitar.",
+    "negative": "A man wearing a striped blue tie plays a specially rigged guitar while a woman in a red t-shirt looks at something in the distance. The woman is playing the guitar.",
+    "id": "nli_051",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young person in a gray t-shirt stands beside an older woman handing out a slice of watermelon. A young person is standing beside an old woman.",
+    "negative": "A young person in a gray t-shirt stands beside an older woman handing out a slice of watermelon. A old person is standing beside an old woman.",
+    "id": "nli_052",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man sitting cross-legged works on his Hindu art. There is a man sitting",
+    "negative": "A man sitting cross-legged works on his Hindu art. There is a man sitting cross-legged",
+    "id": "nli_053",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a red shirt and jeans is clinging to a statue of a winged woman behind a metal fence. The shirt is red.",
+    "negative": "A man in a red shirt and jeans is clinging to a statue of a winged woman behind a metal fence. The statue is of a man.",
+    "id": "nli_054",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in white shirt play guitar to a woman in a white shirt. A man in shirt play guitar to a woman in a white shirt.",
+    "negative": "A man in white shirt play guitar to a woman in a white shirt. A woman in white shirt play guitar to a woman in a white shirt.",
+    "id": "nli_055",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a plaid shirt is smoking a cigarette on a city street. A man is in a plaid shirt",
+    "negative": "A man in a plaid shirt is smoking a cigarette on a city street. A man is smoking a cigarette.",
+    "id": "nli_056",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A black dog is carrying a white dog toy through a field of high grass. a black dog carries a white dog through tall grass",
+    "negative": "A black dog is carrying a white dog toy through a field of high grass. a white dog carries a black dog through tall grass",
+    "id": "nli_057",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little girl wearing a blue sweater holding the string out on a pink yo-yo. The girl is little",
+    "negative": "A little girl wearing a blue sweater holding the string out on a pink yo-yo. The girl is wearing pink.",
+    "id": "nli_058",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little girl wearing a blue sweater holding the string out on a pink yo-yo. The girl is little",
+    "negative": "A little girl wearing a blue sweater holding the string out on a pink yo-yo. The yo-yo is blue",
+    "id": "nli_059",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two girls one in a gray dress the other in a black striped dress are playing with hula hoops. A girl has a gray dress.",
+    "negative": "Two girls one in a gray dress the other in a black striped dress are playing with hula hoops. A girl has a black dress.",
+    "id": "nli_060",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A blond woman wearing a white top and black bottoms pushes a black stroller while a brunette male wearing a gray t-shirt and white shorts walks a brown dog. A blond woman is wearing a white top.",
+    "negative": "A blond woman wearing a white top and black bottoms pushes a black stroller while a brunette male wearing a gray t-shirt and white shorts walks a brown dog. A blond woman is wearing a black top.",
+    "id": "nli_061",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young man holding a white pipe against his mouth on a sidewalk with two girls sitting on the sidewalk. A young man is holding a pipe.",
+    "negative": "A young man holding a white pipe against his mouth on a sidewalk with two girls sitting on the sidewalk. A man is sitting on a sidewalk with two girls.",
+    "id": "nli_062",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young man holding a white pipe against his mouth on a sidewalk with two girls sitting on the sidewalk. A young man is holding a white pipe.",
+    "negative": "A young man holding a white pipe against his mouth on a sidewalk with two girls sitting on the sidewalk. A man is sitting on a sidewalk with two girls.",
+    "id": "nli_063",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a white dress is trying to give a man in a suit bunny ears. A woman wearing a white dress.",
+    "negative": "A woman in a white dress is trying to give a man in a suit bunny ears. A woman wearing a white suit.",
+    "id": "nli_064",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a white and red shirt is sitting on a brown couch in front of a white refrigerator and floral drapes. A man in a white and red shirt is sitting.",
+    "negative": "A man in a white and red shirt is sitting on a brown couch in front of a white refrigerator and floral drapes. A man in a brown and red shirt is sitting.",
+    "id": "nli_065",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A plaid wearing cashier in a gardening store looks at pink flowers with a customer wearing a blue shirt. A cashier looking at flowers.",
+    "negative": "A plaid wearing cashier in a gardening store looks at pink flowers with a customer wearing a blue shirt. A customer looking at flowers.",
+    "id": "nli_066",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man is servicing a truck. A man is servicing.",
+    "negative": "A man is servicing a truck. A truck servicing a man.",
+    "id": "nli_067",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a traditional yellow dress walks along a street carrying a bucket of greens with a large blue bag balanced atop her head. A woman is wearing a yellow dress",
+    "negative": "A woman in a traditional yellow dress walks along a street carrying a bucket of greens with a large blue bag balanced atop her head. A woman is wearing a blue dress",
+    "id": "nli_068",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Three seated people eating and drinking near trees, with three people standing in the background. Six people, three seated and three standing, are drinking together.",
+    "negative": "Three seated people eating and drinking near trees, with three people standing in the background. Six people are eating together.",
+    "id": "nli_069",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman dressed in black with shopping bags is waiting on the sidewalk. A woman waiting on the sidewalk.",
+    "negative": "A woman dressed in black with shopping bags is waiting on the sidewalk. A woman is shopping",
+    "id": "nli_070",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A shirtless man and a woman sitting on a dock. A man sitting on a dock.",
+    "negative": "A shirtless man and a woman sitting on a dock. A woman sitting on a dock.",
+    "id": "nli_071",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A brown dog is walking on a wooded path with white flowers. A brown dog is walking.",
+    "negative": "A brown dog is walking on a wooded path with white flowers. A white dog is walking.",
+    "id": "nli_072",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing skis and a parachute in midair A man is wearing skis",
+    "negative": "A man wearing skis and a parachute in midair A man is",
+    "id": "nli_073",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The smiling woman stands in grass near a creek. A woman stands in grass.",
+    "negative": "The smiling woman stands in grass near a creek. A woman stands in a creek.",
+    "id": "nli_074",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man standing by a red car with a small child peering out the window. The small child is sitting in a red car.",
+    "negative": "A man standing by a red car with a small child peering out the window. The man is sitting in the red car.",
+    "id": "nli_075",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A brown and black bull runs from a small black dog. A bull runs from a dog.",
+    "negative": "A brown and black bull runs from a small black dog. A dog runs from a bull.",
+    "id": "nli_076",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl sleeps on a couch while cats sleep near her on the floor. A girl is sleeping.",
+    "negative": "A girl sleeps on a couch while cats sleep near her on the floor. A girl is sleeping on the floor.",
+    "id": "nli_077",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "While water droplets fly, a man throws a little boy up in the air. A man throwing a child in the air.",
+    "negative": "While water droplets fly, a man throws a little boy up in the air. A child throwing a man up in the air.",
+    "id": "nli_078",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in water throwing a little boy up in the air and waiting for him to come down so he can catch him. A man is throwing a boy up in the air.",
+    "negative": "A man in water throwing a little boy up in the air and waiting for him to come down so he can catch him. A little boy is throwing a man in water.",
+    "id": "nli_079",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "a woman wearing a white shirt kissing a guy. A woman wearing a shirt kisses a guy",
+    "negative": "a woman wearing a white shirt kissing a guy. A woman wearing a shirt kisses a woman.",
+    "id": "nli_080",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A person with red-hair, wearing jeans and a blue sweatshirt, is jogging downhill past what appears to be some sort of shed that someone has drawn a heart on one of the doors. A person has red-hair.",
+    "negative": "A person with red-hair, wearing jeans and a blue sweatshirt, is jogging downhill past what appears to be some sort of shed that someone has drawn a heart on one of the doors. A person has blue-hair.",
+    "id": "nli_081",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The green team lifts a player up in victory after a hard game, but will the red team interfere? The green team won.",
+    "negative": "The green team lifts a player up in victory after a hard game, but will the red team interfere? The red team won.",
+    "id": "nli_082",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The green team lifts a player up in victory after a hard game, but will the red team interfere? The green team won the game.",
+    "negative": "The green team lifts a player up in victory after a hard game, but will the red team interfere? The red team won.",
+    "id": "nli_083",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing a belt, a tan jacket and brown shoes is walking next to a woman with a brown purse, a black outfit, and sunglasses on a sidewalk. A man in sunglasses walking on the sidewalk.",
+    "negative": "A man wearing a belt, a tan jacket and brown shoes is walking next to a woman with a brown purse, a black outfit, and sunglasses on a sidewalk. A woman in sunglasses walking on the sidewalk.",
+    "id": "nli_084",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman with long hair and an orange sweater hangs a red cloth on a clothesline. A woman is hanging a cloth on a clothesline.",
+    "negative": "A woman with long hair and an orange sweater hangs a red cloth on a clothesline. A woman is hanging clothes on a clothesline.",
+    "id": "nli_085",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a white blouse and blue skirt is dunked into some water by some people while a man dressed in colonial clothes watches. A man watches as a woman gets dunked into water",
+    "negative": "A woman wearing a white blouse and blue skirt is dunked into some water by some people while a man dressed in colonial clothes watches. A man gets dunked into water as a woman watches",
+    "id": "nli_086",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A person riding transit (catching?) a paper bag. A person riding a transit.",
+    "negative": "A person riding transit (catching?) a paper bag. A person riding a paper bag",
+    "id": "nli_087",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman is applying mascara. A woman putting on makeup.",
+    "negative": "A woman is applying mascara. A woman is putting on makeup.",
+    "id": "nli_088",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "African girl with a small boy tied to her back by fabric. The girl has a boy on her back.",
+    "negative": "African girl with a small boy tied to her back by fabric. The girl has a girl on her back.",
+    "id": "nli_089",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing black heels and carrying a white purse is walking down a lone street aligned with thin trees. A woman is wearing black heels.",
+    "negative": "A woman wearing black heels and carrying a white purse is walking down a lone street aligned with thin trees. A woman is wearing white heels.",
+    "id": "nli_090",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a white and blue vertically striped dress shirt with black hair stands in a room next to other people looking forward. A man has a white and blue vertically striped dress shirt.",
+    "negative": "A man in a white and blue vertically striped dress shirt with black hair stands in a room next to other people looking forward. A man has a white and black vertically striped dress shirt.",
+    "id": "nli_091",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing a tan button down shirt and black turban is walking through a field carrying a gardening hoe over his shoulder. The shirt is tan.",
+    "negative": "A man wearing a tan button down shirt and black turban is walking through a field carrying a gardening hoe over his shoulder. The shirt is black.",
+    "id": "nli_092",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A black and white and a brown and white dog running in a grassy field in front of a stand of trees. The dog is running.",
+    "negative": "A black and white and a brown and white dog running in a grassy field in front of a stand of trees. The dog is black.",
+    "id": "nli_093",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman is running after a boy on the grass. A woman is running after a boy.",
+    "negative": "A woman is running after a boy on the grass. A boy is running after a woman.",
+    "id": "nli_094",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a black hat and light blue T-shirt is emptying a white bin with a Target bag and several bags of donations to a Community Food Bank are piled behind him. A man has a black hat.",
+    "negative": "A man in a black hat and light blue T-shirt is emptying a white bin with a Target bag and several bags of donations to a Community Food Bank are piled behind him. A man has a blue hat.",
+    "id": "nli_095",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Painters in red overalls painting a large door from blue to gray. Painters in overalls painting a large door from blue to gray.",
+    "negative": "Painters in red overalls painting a large door from blue to gray. Painters in blue overalls painting a large door from blue to gray.",
+    "id": "nli_096",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A group of four men and to women are at a meeting and paying close attention to someone or something. A group of four men and two women are at a meeting.",
+    "negative": "A group of four men and to women are at a meeting and paying close attention to someone or something. A group of four women and two men are at a meeting.",
+    "id": "nli_097",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A group of people work on the side of a large metal structure that is very blue on a cloudy day. There are people working on the side of a metal structure on a cloudy day.",
+    "negative": "A group of people work on the side of a large metal structure that is very blue on a cloudy day. There are people working on a cloudy day.",
+    "id": "nli_098",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A boy on a mountain bike lands after a jump while riding in the forest. A boy is in a mountain bike",
+    "negative": "A boy on a mountain bike lands after a jump while riding in the forest. A boy is in the forest.",
+    "id": "nli_099",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman with pulled up blond-hair and sunglasses on is standing near a black and white tent. A woman has pulled up blond-hair.",
+    "negative": "A woman with pulled up blond-hair and sunglasses on is standing near a black and white tent. A woman has pulled up white-hair.",
+    "id": "nli_100",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a black jacket, red and white sneakers, and a red bandanna sits on a bench. The woman is wearing a jacket.",
+    "negative": "A woman wearing a black jacket, red and white sneakers, and a red bandanna sits on a bench. The jacket is white.",
+    "id": "nli_101",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A child climbing a tree wearing a purple hat with a little boy in the foreground. A child is climbing a tree.",
+    "negative": "A child climbing a tree wearing a purple hat with a little boy in the foreground. A boy is climbing a tree.",
+    "id": "nli_102",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a black shirt looks to her right, while a man in a blue vest on her left drinks from a glass. A woman is wearing a black shirt",
+    "negative": "A woman in a black shirt looks to her right, while a man in a blue vest on her left drinks from a glass. A woman is wearing a blue shirt",
+    "id": "nli_103",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two beige dogs are playing in the snow. Two beige dogs outside in the snow.",
+    "negative": "Two beige dogs are playing in the snow. Two dogs are outside.",
+    "id": "nli_104",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A collie plays with a white ball in a field of green grass. The ball is white",
+    "negative": "A collie plays with a white ball in a field of green grass. The ball is green",
+    "id": "nli_105",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman dressed all in white with a white hat is standing behind a tennis net wielding a blue tennis racket. A woman is dressed all in white.",
+    "negative": "A woman dressed all in white with a white hat is standing behind a tennis net wielding a blue tennis racket. A woman is dressed all in blue.",
+    "id": "nli_106",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two men sitting on benches and three men standing up. Two men are sitting on benches",
+    "negative": "Two men sitting on benches and three men standing up. Two men are standing up",
+    "id": "nli_107",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two people are swimming in a large body of clear blue water, and there is a large red item behind them in the water. Two people are in the pool",
+    "negative": "Two people are swimming in a large body of clear blue water, and there is a large red item behind them in the water. Two people swimming in a pool.",
+    "id": "nli_108",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A worker in a yellow shirt and hard hat digs with a shovel. A worker in a hard hat.",
+    "negative": "A worker in a yellow shirt and hard hat digs with a shovel. A worker in a yellow shirt and hard hat digs with a shovel.",
+    "id": "nli_109",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A balding man pours a bottle of wine into a tumbler while watched by a woman in a yellow shirt. The man is pouring wine",
+    "negative": "A balding man pours a bottle of wine into a tumbler while watched by a woman in a yellow shirt. The woman is pouring wine",
+    "id": "nli_110",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a gray suit sits on stage bowing a nail violin while two black microphones record the sound. A man is wearing a gray suit",
+    "negative": "A man in a gray suit sits on stage bowing a nail violin while two black microphones record the sound. A man is wearing a black suit",
+    "id": "nli_111",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman sitting on a bench reading a book. A woman is sitting on a bench",
+    "negative": "A woman sitting on a bench reading a book. A woman is reading a book.",
+    "id": "nli_112",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A couple in green shirt and black jacket walking by a pedestrian walk. The jacket is black",
+    "negative": "A couple in green shirt and black jacket walking by a pedestrian walk. The jacket is green",
+    "id": "nli_113",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young woman with red-hair discusses something with a man holding a bag. A woman with red-hair discusses something with a man holding a bag.",
+    "negative": "A young woman with red-hair discusses something with a man holding a bag. A young man with red-hair discusses something with a man holding a bag.",
+    "id": "nli_114",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Man in blue striped shirt standing next to girl wearing redhead scarf A man in a blue striped shirt stands next to a girl wearing a red scarf",
+    "negative": "Man in blue striped shirt standing next to girl wearing redhead scarf A man wearing a red striped shirt stands next to a girl wearing a blue scarf",
+    "id": "nli_115",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "a \"The Human Shop\" display in a public area such as a mall or airport, with four people, 3 females and one male, all wearing black with chains around their wrists, two of the females are sitting and the other with the male are standing, with a green sign in white lettering explaining what it is on the top and bottom for more information. The people are wearing black.",
+    "negative": "a \"The Human Shop\" display in a public area such as a mall or airport, with four people, 3 females and one male, all wearing black with chains around their wrists, two of the females are sitting and the other with the male are standing, with a green sign in white lettering explaining what it is on the top and bottom for more information. The people are wearing white.",
+    "id": "nli_116",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A blond girl in a blue shirt and pants riding a red bike. A girl riding a red bike.",
+    "negative": "A blond girl in a blue shirt and pants riding a red bike. A girl riding a blue bike.",
+    "id": "nli_117",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young child in a green shirt and a fisherman type hat near the water playing with a blue and white ball. A child has a green shirt",
+    "negative": "A young child in a green shirt and a fisherman type hat near the water playing with a blue and white ball. A child has a blue shirt",
+    "id": "nli_118",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man, in red and black striped clothing, is sitting on a diving board, with a yellow hat on. A man has red and black striped clothing.",
+    "negative": "A man, in red and black striped clothing, is sitting on a diving board, with a yellow hat on. A man has red and yellow striped clothing.",
+    "id": "nli_119",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young girl sits atop a pony with pink bows as it is led by a woman. The young girl is riding a pony.",
+    "negative": "A young girl sits atop a pony with pink bows as it is led by a woman. The woman is riding a pony.",
+    "id": "nli_120",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A boy wearing a black and blue life vest is on a green, wooden boat looking out towards the water. A boy is wearing a black and blue life vest.",
+    "negative": "A boy wearing a black and blue life vest is on a green, wooden boat looking out towards the water. A boy is wearing a green and blue life vest.",
+    "id": "nli_121",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a red dress and a man in a blue dress pose together for a picture. A woman in a red dress poses with the man in blue.",
+    "negative": "A woman in a red dress and a man in a blue dress pose together for a picture. A man in red poses with the woman in blue.",
+    "id": "nli_122",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young child, wearing a blue shirt and green hat, is blowing up an orange balloon. The child is blowing up a balloon.",
+    "negative": "A young child, wearing a blue shirt and green hat, is blowing up an orange balloon. The child is wearing a green shirt",
+    "id": "nli_123",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young boy in a blue shirt is surrounded by cheerleaders wearing red and white. A boy is surrounded by cheerleaders.",
+    "negative": "A young boy in a blue shirt is surrounded by cheerleaders wearing red and white. A young boy in a blue shirt is surrounded by cheerleaders wearing red and blue.",
+    "id": "nli_124",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing red fishing overalls is standing in front of a fish stall in a market. This man is in a market",
+    "negative": "A man wearing red fishing overalls is standing in front of a fish stall in a market. This man is fishing",
+    "id": "nli_125",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A Young woman with long hair and no helmet is riding a skateboard in a park with a mural behind her. A Young woman with long hair",
+    "negative": "A Young woman with long hair and no helmet is riding a skateboard in a park with a mural behind her. A Young woman with no long hair",
+    "id": "nli_126",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man is giving a little girl a kiss on the cheek. The man kisses the girl on the cheek.",
+    "negative": "A man is giving a little girl a kiss on the cheek. The girl kisses the man on the cheek.",
+    "id": "nli_127",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a black hat sits by a tree and plays guitar. A man has a black hat.",
+    "negative": "A man in a black hat sits by a tree and plays guitar. A man has a hat.",
+    "id": "nli_128",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Three girls standing while one boys is sitting in front of a wall that is lit up, at night. Three girls are standing.",
+    "negative": "Three girls standing while one boys is sitting in front of a wall that is lit up, at night. Three girls are sitting",
+    "id": "nli_129",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman walking between two buses. A woman walking between buses.",
+    "negative": "A woman walking between two buses. A woman walking between two buses.",
+    "id": "nli_130",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A birds eye view of a man in a casual blue button down shirt holding a red flag over his shoulder. A man is holding a red flag",
+    "negative": "A birds eye view of a man in a casual blue button down shirt holding a red flag over his shoulder. A man is holding a blue flag",
+    "id": "nli_131",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl in a black leotard does an artistic leap while a girl in a red leotard and torn tights watches. The girl in the black leotard is dancing.",
+    "negative": "A girl in a black leotard does an artistic leap while a girl in a red leotard and torn tights watches. The girl in the red leotard is dancing.",
+    "id": "nli_132",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a hard hat stares at a machine of the train tracks. A man is looking at a machine.",
+    "negative": "A man in a hard hat stares at a machine of the train tracks. A man is looking at a train.",
+    "id": "nli_133",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A basketball referee is looking at a basketball player who is hanging upside down from the basketball hoop. A basketball referee is looking at a basketball player who is hanging upside down.",
+    "negative": "A basketball referee is looking at a basketball player who is hanging upside down from the basketball hoop. A basketball referee is looking at a basketball player who is at a hanging.",
+    "id": "nli_134",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in white pants and dark shirt standing on a people mover and conversing with two young ladies. The man is on a people mover.",
+    "negative": "A man in white pants and dark shirt standing on a people mover and conversing with two young ladies. The man is conversing with a man.",
+    "id": "nli_135",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman is hugging a man in a crowd. a woman hugging a man",
+    "negative": "A woman is hugging a man in a crowd. a man hugging a man",
+    "id": "nli_136",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An older man with a white beard, wearing a blue shirt and blue baseball cap, is playing guitar to a small black girl sitting on a red stool. A man playing a guitar to a girl.",
+    "negative": "An older man with a white beard, wearing a blue shirt and blue baseball cap, is playing guitar to a small black girl sitting on a red stool. A man is playing guitar.",
+    "id": "nli_137",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An older man with a white beard, wearing a blue shirt and blue baseball cap, is playing guitar to a small black girl sitting on a red stool. A man is playing a guitar.",
+    "negative": "An older man with a white beard, wearing a blue shirt and blue baseball cap, is playing guitar to a small black girl sitting on a red stool. A man is playing guitar.",
+    "id": "nli_138",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man holds a woman in a blue and white costume in the air. A man is holding a woman in the air.",
+    "negative": "A man holds a woman in a blue and white costume in the air. A woman is holding a woman in the air.",
+    "id": "nli_139",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man holds a woman in a blue and white costume in the air. A man is holding a woman in the air.",
+    "negative": "A man holds a woman in a blue and white costume in the air. A woman is holding a man in the air.",
+    "id": "nli_140",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man holds a woman in a blue and white costume in the air. A man is holding a woman in the air.",
+    "negative": "A man holds a woman in a blue and white costume in the air. A woman is holding a man in the air.",
+    "id": "nli_141",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a brown hat and red apron is attending an outdoor grill. A man attends to a grill.",
+    "negative": "A man in a brown hat and red apron is attending an outdoor grill. A man in a red hat and brown apron attends to a grill.",
+    "id": "nli_142",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing a white tank top and jeans dancing with a woman wearing a tube top, white skirt white multicolored trim and black boots. A man has a white tank top.",
+    "negative": "A man wearing a white tank top and jeans dancing with a woman wearing a tube top, white skirt white multicolored trim and black boots. A man has a black tank top.",
+    "id": "nli_143",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man is sitting on a white chair in front of a blue building. A man is sitting on a chair.",
+    "negative": "A man is sitting on a white chair in front of a blue building. A man is sitting on a blue chair in front of a white building.",
+    "id": "nli_144",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "two little tanned girls, one wearing a red shirt walking past a stop sign and on top of a cement block holding a cup and wearing pink sneakers, while the other girl is wearing a pink shirt and drinking out of a white cup. A girl is wearing a red shirt.",
+    "negative": "two little tanned girls, one wearing a red shirt walking past a stop sign and on top of a cement block holding a cup and wearing pink sneakers, while the other girl is wearing a pink shirt and drinking out of a white cup. A girl is wearing a white shirt.",
+    "id": "nli_145",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Little girl in a blue dress riding a red toy tractor. A girl is riding a tractor in a blue dress",
+    "negative": "Little girl in a blue dress riding a red toy tractor. A tractor in a blue dress is riding a girl",
+    "id": "nli_146",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two little girls wearing pink dresses and sandals Two girls wearing pink dresses and sandals",
+    "negative": "Two little girls wearing pink dresses and sandals Two little girls wearing pink dresses and sandals",
+    "id": "nli_147",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a purple shirt and jeans and a woman in a light green shirt and black shorts are standing in front of an electronic kiosk, with a second kiosk to the right. A man has a purple shirt.",
+    "negative": "A man in a purple shirt and jeans and a woman in a light green shirt and black shorts are standing in front of an electronic kiosk, with a second kiosk to the right. A man has a green shirt.",
+    "id": "nli_148",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A dark-haired man wearing a red headscarf poses with a machine gun in front of the entrance to a wax museum, the woman behind the desk looks disinterestedly in the opposite direction. A man is wearing a headscarf.",
+    "negative": "A dark-haired man wearing a red headscarf poses with a machine gun in front of the entrance to a wax museum, the woman behind the desk looks disinterestedly in the opposite direction. A woman is wearing a headscarf.",
+    "id": "nli_149",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man dramatically kissing a woman on a path. A man kisses a woman.",
+    "negative": "A man dramatically kissing a woman on a path. A man kisses a man.",
+    "id": "nli_150",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "a man sitting under a symbol, which is also on his forehead. A man is sitting",
+    "negative": "a man sitting under a symbol, which is also on his forehead. A man is on his forehead",
+    "id": "nli_151",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A yellow dog digs in the sand near grass. A dog digs in the sand.",
+    "negative": "A yellow dog digs in the sand near grass. A dog digs in the grass near sand.",
+    "id": "nli_152",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An man in khaki shorts and a white t-shirt is lifting a toddler onto the lap of a Jelly Belly. An man has khaki shorts.",
+    "negative": "An man in khaki shorts and a white t-shirt is lifting a toddler onto the lap of a Jelly Belly. An man has white shorts.",
+    "id": "nli_153",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "This lady in the print dress is stripping food for dinner. The lady is stripping food.",
+    "negative": "This lady in the print dress is stripping food for dinner. The lady is stripping for food.",
+    "id": "nli_154",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Three people wearing helmets and crime stoppers jerseys are walking down a street in a parade, with another woman wearing a green shirt and without a helmet. Three people walk down a street in a parade with a woman",
+    "negative": "Three people wearing helmets and crime stoppers jerseys are walking down a street in a parade, with another woman wearing a green shirt and without a helmet. Three people without helmets walk down a street",
+    "id": "nli_155",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two men wear plain white t-shirts and one man wears a blue one with a pink logo on the front. Three men are wearing shirts.",
+    "negative": "Two men wear plain white t-shirts and one man wears a blue one with a pink logo on the front. Three men are wearing white shirts.",
+    "id": "nli_156",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young lady reclines against a young man as the two lay atop a system of square rock slabs. A young lady reclines.",
+    "negative": "A young lady reclines against a young man as the two lay atop a system of square rock slabs. A young man reclines.",
+    "id": "nli_157",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A bride and two bridesmaids stand beside a groom and four groomsmen. The bridesmaids and groomsmen stand beside of the bride and groom.",
+    "negative": "A bride and two bridesmaids stand beside a groom and four groomsmen. The four bridesmaids and two groomsmen stand beside of the groom and bridesmaids.",
+    "id": "nli_158",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man is talking to a blond headed woman at the library. A man is talking to a blond",
+    "negative": "A man is talking to a blond headed woman at the library. A man is at the library",
+    "id": "nli_159",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A female baseball player wearing a blue shirt slides into base, while another player in a white shirt wearing a catcher's mitt jumps. A female baseball player is wearing a blue shirt.",
+    "negative": "A female baseball player wearing a blue shirt slides into base, while another player in a white shirt wearing a catcher's mitt jumps. A female baseball player is wearing a white shirt.",
+    "id": "nli_160",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A shirtless man wearing bracelets and a garland, carrying a pole. The man is shirtless.",
+    "negative": "A shirtless man wearing bracelets and a garland, carrying a pole. The man is wearing a shirt.",
+    "id": "nli_161",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two people in black vests are standing in front of children in white vests with an American flag between them. Two people are in black vests.",
+    "negative": "Two people in black vests are standing in front of children in white vests with an American flag between them. Two people are in white vests.",
+    "id": "nli_162",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "a black and white cat looking at a baby. The cat looks at the baby.",
+    "negative": "a black and white cat looking at a baby. The baby looks at the cat.",
+    "id": "nli_163",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A small, skinny, black child hanging on a piece of wood looking at a white woman. a small, thin black child hands on a piece of wood and looks at a white woman",
+    "negative": "A small, skinny, black child hanging on a piece of wood looking at a white woman. a small, thin white child hands on a piece of wood and looks at a black woman",
+    "id": "nli_164",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A group of adults and children doing some activity on a sidewalk outside. People are outside.",
+    "negative": "A group of adults and children doing some activity on a sidewalk outside. People are",
+    "id": "nli_165",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a khaki colored uniform carries a brunette woman in white clothing on his shoulder. A man has a khaki colored uniform.",
+    "negative": "A man in a khaki colored uniform carries a brunette woman in white clothing on his shoulder. A man has a white colored uniform.",
+    "id": "nli_166",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Three young men in a room two of them are standing and one is sitting in a chair. two young men are standing while a third is sitting",
+    "negative": "Three young men in a room two of them are standing and one is sitting in a chair. two men are sitting while a third is standing",
+    "id": "nli_167",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man walking down the street with his hands in his pocket, and an elderly woman stands near a staircase with her hand on her purse. A man is walking down the street.",
+    "negative": "A man walking down the street with his hands in his pocket, and an elderly woman stands near a staircase with her hand on her purse. A woman is walking down the street.",
+    "id": "nli_168",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a pink shirt walks in front of a blue storefront next to a lime green storm front. A man is wearing a pink shirt.",
+    "negative": "A man in a pink shirt walks in front of a blue storefront next to a lime green storm front. A man is wearing a blue shirt.",
+    "id": "nli_169",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl with brown hair and wearing a gray sweater is reading a sheet of paper in a classroom. A girl has brown hair.",
+    "negative": "A girl with brown hair and wearing a gray sweater is reading a sheet of paper in a classroom. A girl has gray hair.",
+    "id": "nli_170",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A person in a red hoodie sits on a park bench next to a backpack, looking downwards. A person is sitting on a bench.",
+    "negative": "A person in a red hoodie sits on a park bench next to a backpack, looking downwards. A bench is sitting on a person.",
+    "id": "nli_171",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in black pants and a blue jacket watches a woman sitting on a hardwood floor in a brown jacket watch six TVs of varying sizes. A man watches TV.",
+    "negative": "A man in black pants and a blue jacket watches a woman sitting on a hardwood floor in a brown jacket watch six TVs of varying sizes. A woman watches TV.",
+    "id": "nli_172",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a white hat is playing a red and white electric guitar while sitting at a synthesizer with multiple keyboards supported by white PVC pipes, with a blue railing in the background. A man has a white hat.",
+    "negative": "A man in a white hat is playing a red and white electric guitar while sitting at a synthesizer with multiple keyboards supported by white PVC pipes, with a blue railing in the background. A man has a red hat.",
+    "id": "nli_173",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A older man in beige stands near a younger man in blue in front of a building. An older man is wearing beige.",
+    "negative": "A older man in beige stands near a younger man in blue in front of a building. An older man is wearing blue.",
+    "id": "nli_174",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing a blue casual shirt with money green shorts and black hat pointing toward the yellow object in an elderly gathering. A man is wearing a blue shirt",
+    "negative": "A man wearing a blue casual shirt with money green shorts and black hat pointing toward the yellow object in an elderly gathering. A man is wearing a black shirt",
+    "id": "nli_175",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A person in a black jacket and a red hat stands on top of a mountain with more mountains and clouds in the distance. A person stands on top of a mountain.",
+    "negative": "A person in a black jacket and a red hat stands on top of a mountain with more mountains and clouds in the distance. A mountain stands on top of a person.",
+    "id": "nli_176",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A graphic artist with face painted in pink and white tiger stripes also adorned with matching colored mane applies face paint to an eager youth. A graphic artist has a face painted in pink.",
+    "negative": "A graphic artist with face painted in pink and white tiger stripes also adorned with matching colored mane applies face paint to an eager youth. A graphic artist has a face painted in white.",
+    "id": "nli_177",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A skier in a red jacket and yellow backpack skis down a snow slope. The skier is wearing red.",
+    "negative": "A skier in a red jacket and yellow backpack skis down a snow slope. The skier is wearing a yellow jacket.",
+    "id": "nli_178",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A group of three dogs are walking through the snow. three dogs are walking",
+    "negative": "A group of three dogs are walking through the snow. the dogs are",
+    "id": "nli_179",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a green helmet helping a girl in a blue helmet and pink suite up a rock with a rope. A man has a green helmet",
+    "negative": "A man in a green helmet helping a girl in a blue helmet and pink suite up a rock with a rope. A man has a blue helmet",
+    "id": "nli_180",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A construction worker installing a window in a building with a turquoise door. A worker installs a window.",
+    "negative": "A construction worker installing a window in a building with a turquoise door. A construction worker installs a door.",
+    "id": "nli_181",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A worker instructs a crane where to place a big boxed shaped item. The worker tells the crane where to put the big item.",
+    "negative": "A worker instructs a crane where to place a big boxed shaped item. The crane tells the worker where to put the item.",
+    "id": "nli_182",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The blond girl is watching the boy run barefoot on the ground. The blond girl is watching the boy.",
+    "negative": "The blond girl is watching the boy run barefoot on the ground. The blond boy is watching the girl.",
+    "id": "nli_183",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in plaid with black sunglasses plays on an acoustic guitar. A man plays a guitar.",
+    "negative": "A man in plaid with black sunglasses plays on an acoustic guitar. A guitar plays a man.",
+    "id": "nli_184",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in heels holding the arm of a man walking up steps in the snow. A woman in heels holds another man on the arm.",
+    "negative": "A woman in heels holding the arm of a man walking up steps in the snow. A man in heels holds another man on the arm.",
+    "id": "nli_185",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two women standing at a train station in the rain. the women are standing at a station",
+    "negative": "Two women standing at a train station in the rain. the women are in the rain",
+    "id": "nli_186",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A blond woman wearing glasses and a brown jacket is walking by wooden masks. The woman has blond hair.",
+    "negative": "A blond woman wearing glasses and a brown jacket is walking by wooden masks. The woman has brown hair and a blond jacket.",
+    "id": "nli_187",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A black and white dog has pinned a brown dog to the ground in front of a wishing well. A dog has pinned a brown dog to the ground in front of a wishing well.",
+    "negative": "A black and white dog has pinned a brown dog to the ground in front of a wishing well. A brown and white dog has pinned a brown dog to the ground in front of a wishing well.",
+    "id": "nli_188",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing red pants is balancing on a blue sculpture. A man is balancing on a sculpture.",
+    "negative": "A man wearing red pants is balancing on a blue sculpture. A man is wearing blue pants.",
+    "id": "nli_189",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing red pants is balancing on a blue sculpture. A man is balancing.",
+    "negative": "A man wearing red pants is balancing on a blue sculpture. A man is wearing blue pants.",
+    "id": "nli_190",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing red pants is balancing on a blue sculpture. A man is balancing.",
+    "negative": "A man wearing red pants is balancing on a blue sculpture. A man is wearing blue pants.",
+    "id": "nli_191",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A crowd of people are walking in an Asian-style city. The people are walking",
+    "negative": "A crowd of people are walking in an Asian-style city. The people are in Asian",
+    "id": "nli_192",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman with a bag talks to a man on a bicycle near a street. A woman talks to a man on bike.",
+    "negative": "A woman with a bag talks to a man on a bicycle near a street. A man talks to a woman on a bike.",
+    "id": "nli_193",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two little girls are riding one bicycle. Two girls are riding one bicycle.",
+    "negative": "Two little girls are riding one bicycle. Two little girls are riding one bicycle.",
+    "id": "nli_194",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl in an aqua tank top is watching a man in a blue tank top and shorts wash the window. A man is washing the windows while a girl watches.",
+    "negative": "A girl in an aqua tank top is watching a man in a blue tank top and shorts wash the window. A girl is washing the windows while a man watches.",
+    "id": "nli_195",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two guys in bright blue t-shirts and shorts with white lettering and sport stripes appear to be running and actively engaged in a game. Two guys have bright blue t-shirts.",
+    "negative": "Two guys in bright blue t-shirts and shorts with white lettering and sport stripes appear to be running and actively engaged in a game. Two guys have bright white t-shirts.",
+    "id": "nli_196",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl in a red and black leotard with white writing is standing next to a man in a cap and a girl in a hot pink and black and white checkered outfit. A girl has a red and black leotard.",
+    "negative": "A girl in a red and black leotard with white writing is standing next to a man in a cap and a girl in a hot pink and black and white checkered outfit. A girl has a red and white leotard.",
+    "id": "nli_197",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl in a white dress holding roses gives some to a man in a gray tank top. A girl gives a man some roses.",
+    "negative": "A girl in a white dress holding roses gives some to a man in a gray tank top. A man in a gray tank top gives some roses to a girl in a white dress.",
+    "id": "nli_198",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man uses a bicycle to transport a sight that says \"Lovely,\" while another man on a motor scooter drives by. A man uses a bicycle.",
+    "negative": "A man uses a bicycle to transport a sight that says \"Lovely,\" while another man on a motor scooter drives by. A man uses a scooter.",
+    "id": "nli_199",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man, not wearing a shirt, is sitting on a rock and looking through a makeshift telescope. A man, not wearing a shirt, is sitting on a rock",
+    "negative": "A man, not wearing a shirt, is sitting on a rock and looking through a makeshift telescope. A man, not wearing a shirt, is not sitting on a rock",
+    "id": "nli_200",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a red shirt and wearing a white bandanna on his head is sitting on a sound stage. A man has a red shirt.",
+    "negative": "A man in a red shirt and wearing a white bandanna on his head is sitting on a sound stage. A man has a white shirt.",
+    "id": "nli_201",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Women in red bathing suits and hats are dancing in the sand at the Beijing 2008 Olympics. The women are in red bathing suits",
+    "negative": "Women in red bathing suits and hats are dancing in the sand at the Beijing 2008 Olympics. The women are in the sand",
+    "id": "nli_202",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in black tights, a white dress, and black jacket, is walking down a sidewalk with an empty street behind her. A woman has black tights.",
+    "negative": "A woman in black tights, a white dress, and black jacket, is walking down a sidewalk with an empty street behind her. A woman has white tights.",
+    "id": "nli_203",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A dog playing with a golf ball in front of a small wooden fence on the beach. a dog is playing with a golf ball",
+    "negative": "A dog playing with a golf ball in front of a small wooden fence on the beach. a dog is playing golf",
+    "id": "nli_204",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A guy in a white shirt, sunglasses and black pants is riding his skateboard on a street with a lot of trees in the background. A guy has a white shirt.",
+    "negative": "A guy in a white shirt, sunglasses and black pants is riding his skateboard on a street with a lot of trees in the background. A guy has a black shirt.",
+    "id": "nli_205",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two children running with no shoes on. They have no shoes on.",
+    "negative": "Two children running with no shoes on. They have shoes on.",
+    "id": "nli_206",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "a woman with a purple Mohawk and red shirt is gesturing to someone, while a man with a black Mohawk is speaking to her. A woman is gesturing to someone.",
+    "negative": "a woman with a purple Mohawk and red shirt is gesturing to someone, while a man with a black Mohawk is speaking to her. A man is gesturing to someone.",
+    "id": "nli_207",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man jumping to catch a frisbee, outside on a field, with a few people watching. A man catches a Frisbee.",
+    "negative": "A man jumping to catch a frisbee, outside on a field, with a few people watching. A Frisbee catches a man.",
+    "id": "nli_208",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man with gray hair and a blond woman sitting on the same side of a table with bikes in the background. A man has gray hair.",
+    "negative": "A man with gray hair and a blond woman sitting on the same side of a table with bikes in the background. A man has blond hair.",
+    "id": "nli_209",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Profile of bride and groom cutting wedding cake. Profile of bride and groom cutting cake.",
+    "negative": "Profile of bride and groom cutting wedding cake. Profile of bride and bride cutting wedding cake.",
+    "id": "nli_210",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man playing guitar and a woman singing into a microphone. a man is playing guitar",
+    "negative": "A man playing guitar and a woman singing into a microphone. a man is singing",
+    "id": "nli_211",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man is running, in a yellow runners shirt and matching running shorts, along the waterside with a big city in the background on a beautiful day. a man is running along the waterslide on a beautiful day.",
+    "negative": "A man is running, in a yellow runners shirt and matching running shorts, along the waterside with a big city in the background on a beautiful day. a man is on a waterslide.",
+    "id": "nli_212",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A brown and white dog walks down a ramp toward a pool of water in which a green tennis ball floats. A brown and white dog walks.",
+    "negative": "A brown and white dog walks down a ramp toward a pool of water in which a green tennis ball floats. A brown and green dog walks.",
+    "id": "nli_213",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a black shirt with purple flowers and a small girl with blond-hair wearing a purple stand in front a sink while the woman brushes her teeth. The woman is wearing a black shirt",
+    "negative": "A woman wearing a black shirt with purple flowers and a small girl with blond-hair wearing a purple stand in front a sink while the woman brushes her teeth. The woman is a small girl",
+    "id": "nli_214",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a white shirt and blue shorts follows a two people in red shirts up a staircase. A woman has a white shirt.",
+    "negative": "A woman in a white shirt and blue shorts follows a two people in red shirts up a staircase. A woman has a blue shirt.",
+    "id": "nli_215",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a pink bikini and a man in black swim trunks are jumping in the water at the beach. A woman has a pink bikini.",
+    "negative": "A woman in a pink bikini and a man in black swim trunks are jumping in the water at the beach. A woman has a black bikini.",
+    "id": "nli_216",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A small black and white dog and a larger tan one are checking each other out at the waters edge. There is a small black and white dog.",
+    "negative": "A small black and white dog and a larger tan one are checking each other out at the waters edge. There is a small white and white dog.",
+    "id": "nli_217",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little boy is playfully jumping off the side of a fountain. A boy playing",
+    "negative": "A little boy is playfully jumping off the side of a fountain. A little boy is playing.",
+    "id": "nli_218",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little boy is playfully jumping off the side of a fountain. A boy is playing.",
+    "negative": "A little boy is playfully jumping off the side of a fountain. A little boy is playing.",
+    "id": "nli_219",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "There are two policemen standing by three elderly men. There are men standing.",
+    "negative": "There are two policemen standing by three elderly men. There are three policemen standing by two elderly men.",
+    "id": "nli_220",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Three men with yellow vests doing work on the side of a street with three blue and white trucks nearby. Three men have yellow vests.",
+    "negative": "Three men with yellow vests doing work on the side of a street with three blue and white trucks nearby. Three men have white vests.",
+    "id": "nli_221",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a t-shirt and shorts is playing the guitar while a woman in a colorful skirt cooks a meal. A man is playing guitar.",
+    "negative": "A man in a t-shirt and shorts is playing the guitar while a woman in a colorful skirt cooks a meal. A woman is playing guitar.",
+    "id": "nli_222",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The woman in the purple shirt and gray pants is taking the black dog and a child with an orange shirt and a girl with a gray shirt out for a walk. The woman has a purple shirt.",
+    "negative": "The woman in the purple shirt and gray pants is taking the black dog and a child with an orange shirt and a girl with a gray shirt out for a walk. The woman has a gray shirt.",
+    "id": "nli_223",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "One guy wearing a white hoodie and red t-shirt holding his left foot practicing a skateboard move at night One guy is wearing a white hoodie.",
+    "negative": "One guy wearing a white hoodie and red t-shirt holding his left foot practicing a skateboard move at night One guy is wearing a red hoodie.",
+    "id": "nli_224",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young man in a red striped shirt and blue jeans is bowling with a blue ball at a bowling alley. The man is using a blue bowling ball.",
+    "negative": "A young man in a red striped shirt and blue jeans is bowling with a blue ball at a bowling alley. The man is using a red bowling ball.",
+    "id": "nli_225",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A tattooed man in black playing a white guitar and singing. A man playing a guitar.",
+    "negative": "A tattooed man in black playing a white guitar and singing. A man playing a black guitar.",
+    "id": "nli_226",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A black poodle is running through the grass. A poodle is running through the grass.",
+    "negative": "A black poodle is running through the grass. A black poodle is running through the grass.",
+    "id": "nli_227",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man carting a little girl around in a trash barrel. The man is carting the girl around.",
+    "negative": "A man carting a little girl around in a trash barrel. The girl is carting the man around.",
+    "id": "nli_228",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An older man wearing a white shirt with a black tie and a black cap is standing on the street. The tie is black.",
+    "negative": "An older man wearing a white shirt with a black tie and a black cap is standing on the street. The cap is white.",
+    "id": "nli_229",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An older man wearing a white shirt with a black tie and a black cap is standing on the street. The tie is black.",
+    "negative": "An older man wearing a white shirt with a black tie and a black cap is standing on the street. The man is wearing a black shirt with a white tie and cap.",
+    "id": "nli_230",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little girl putting makeup on another girl's eyelid while a boy in the background watches. A girl puts on makeup.",
+    "negative": "A little girl putting makeup on another girl's eyelid while a boy in the background watches. A girl puts makeup on a boy.",
+    "id": "nli_231",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Two men in black jumped with arms raised on a tennis court, as the opposing team in white walk towards the net. Two men in black jump.",
+    "negative": "Two men in black jumped with arms raised on a tennis court, as the opposing team in white walk towards the net. Two men in white jump.",
+    "id": "nli_232",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man and woman wait outside the entrance railing of a subway station outside of a Sbarro italian restaurant. A man and woman sit outside.",
+    "negative": "A man and woman wait outside the entrance railing of a subway station outside of a Sbarro italian restaurant. A man and man sit outside",
+    "id": "nli_233",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Girls sitting out in the sun outside of a Starbucks coffee shop. the girls are sitting outside",
+    "negative": "Girls sitting out in the sun outside of a Starbucks coffee shop. the girls are in the shop",
+    "id": "nli_234",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A smiling girl with no shirt on and braids in her hair plays in the water of a public fountain. A smiling girl with no shirt on",
+    "negative": "A smiling girl with no shirt on and braids in her hair plays in the water of a public fountain. A smiling girl with a shirt on",
+    "id": "nli_235",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a dog outfit is playing at a card table with a bemused woman and dealer. A man is wearing a dog outfit with a dealer.",
+    "negative": "A man in a dog outfit is playing at a card table with a bemused woman and dealer. A woman is wearing a dog outfit with a dealer.",
+    "id": "nli_236",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man who's head and face is covered is walking with a rather large weapon on his shoulder. A man carries a weapon.",
+    "negative": "A man who's head and face is covered is walking with a rather large weapon on his shoulder. A weapon carries a man on his shoulder.",
+    "id": "nli_237",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man who's head and face is covered is walking with a rather large weapon on his shoulder. A man carries a weapon on his shoulder.",
+    "negative": "A man who's head and face is covered is walking with a rather large weapon on his shoulder. A weapon carries a man on his shoulder.",
+    "id": "nli_238",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A tall person with long hair, brown sweater, white pants and a orange and white tote bag is hugging the girl with brown pant and long-sleeved shirt as they walk down the sidewalk. A tall person has long hair and a brown sweater.",
+    "negative": "A tall person with long hair, brown sweater, white pants and a orange and white tote bag is hugging the girl with brown pant and long-sleeved shirt as they walk down the sidewalk. A tall person has long hair and a white sweater.",
+    "id": "nli_239",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A baby swimming in a pool held up by an adult. A baby swimming in a pool.",
+    "negative": "A baby swimming in a pool held up by an adult. A adult swimming in a pool held up by an baby.",
+    "id": "nli_240",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A baby swimming in a pool held up by an adult. A baby swimming in a pool held up by an adult.",
+    "negative": "A baby swimming in a pool held up by an adult. A adult swimming in a pool held up by an baby.",
+    "id": "nli_241",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A wet dog running in a dry field. There is a dog running in a field.",
+    "negative": "A wet dog running in a dry field. There is a dry dog running in a wet field.",
+    "id": "nli_242",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "The dog is running after the bull. The dog ran after the bull.",
+    "negative": "The dog is running after the bull. The bull ran after the dog.",
+    "id": "nli_243",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Outside asian festival with white words on red banners, a stage of judges behind a row of red flowers with lots of asian people standing by. An asian festival with white words on red banners.",
+    "negative": "Outside asian festival with white words on red banners, a stage of judges behind a row of red flowers with lots of asian people standing by. An asian festival with red words on white banners.",
+    "id": "nli_244",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A crowd of children in green t-shirts and people holding signs and purple balloons gathers next to a building. A crowd of children has green t-shirts.",
+    "negative": "A crowd of children in green t-shirts and people holding signs and purple balloons gathers next to a building. A crowd of children has purple t-shirts.",
+    "id": "nli_245",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman, in a tan outfit, serving a beverage to a man in a striped shirt. The woman was serving the man a drink.",
+    "negative": "A woman, in a tan outfit, serving a beverage to a man in a striped shirt. The man was serving the woman a drink.",
+    "id": "nli_246",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man on a dock is standing by a boat. A man is on a dock.",
+    "negative": "A man on a dock is standing by a boat. A man is on a boat.",
+    "id": "nli_247",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a black sailor's uniform and white hat clenches his hands together and grits his teeth. A man in a black sailor's uniform grits his teeth",
+    "negative": "A man in a black sailor's uniform and white hat clenches his hands together and grits his teeth. A man in a white sailor's uniform and white hat clenches his hands together and grits his teeth.",
+    "id": "nli_248",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little girl with blond-hair is holding a big blue ball. A little girl with is holding a big blue ball.",
+    "negative": "A little girl with blond-hair is holding a big blue ball. A big girl with blond-hair is holding a big blue ball.",
+    "id": "nli_249",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a long blue shirt and blue shorts leans against a green and white wall near a red car, with a larger blue vehicle sitting in the foreground. The man has a long shirt.",
+    "negative": "A man in a long blue shirt and blue shorts leans against a green and white wall near a red car, with a larger blue vehicle sitting in the foreground. The man has a green shirt",
+    "id": "nli_250",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman is shopping in the night street market. The woman is shopping",
+    "negative": "A woman is shopping in the night street market. The woman is in the street.",
+    "id": "nli_251",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Man shooting picture of women at the beach. A man is taking a picture of a woman.",
+    "negative": "Man shooting picture of women at the beach. A woman is taking a picture of a man.",
+    "id": "nli_252",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing jeans is reaching into a large box while a man wearing jeans stands beside her. A woman is wearing jeans and reaching into a box.",
+    "negative": "A woman wearing jeans is reaching into a large box while a man wearing jeans stands beside her. A man is wearing jeans and reaching into a box.",
+    "id": "nli_253",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a navy coat leans in to kiss a woman in a cream coat. A man in a coat leans in to kiss a woman in a cream coat.",
+    "negative": "A man in a navy coat leans in to kiss a woman in a cream coat. A woman in a navy coat leans in to kiss a woman in a cream coat.",
+    "id": "nli_254",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young woman with blond-hair, wearing a short-sleeve gray shirt and blue jean shorts, prepares food for a barbecue. A young woman has blond-hair.",
+    "negative": "A young woman with blond-hair, wearing a short-sleeve gray shirt and blue jean shorts, prepares food for a barbecue. A young woman has gray-hair.",
+    "id": "nli_255",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man wearing orange reflective clothing and a red hard hat shovels watery mud next to a low cement wall. The man is wearing reflective clothing.",
+    "negative": "A man wearing orange reflective clothing and a red hard hat shovels watery mud next to a low cement wall. The watery mud is hard.",
+    "id": "nli_256",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl wearing a printed outfit with brown short hair smiling and holding hands with someone while standing next to a boy wearing a black t-shirt and dark sunglasses. A girl has brown short hair.",
+    "negative": "A girl wearing a printed outfit with brown short hair smiling and holding hands with someone while standing next to a boy wearing a black t-shirt and dark sunglasses. A girl has black short hair.",
+    "id": "nli_257",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A lady with a look of surprise on her face looking at the camel. A lady is surprised by a camel",
+    "negative": "A lady with a look of surprise on her face looking at the camel. A camel is surprised by a lady",
+    "id": "nli_258",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A female softball player dramatically slides into a plate as the baseman stands poised to catch the ball. A softball player slides into a plate.",
+    "negative": "A female softball player dramatically slides into a plate as the baseman stands poised to catch the ball. A plate slides into a softball player.",
+    "id": "nli_259",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman is exchanging a piece of paper with a man amid a group of people. a woman giving a man a piece of paper",
+    "negative": "A woman is exchanging a piece of paper with a man amid a group of people. a man giving a man a piece of paper",
+    "id": "nli_260",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man of african descent wearing a red shirt is sewing a garment outside a building with a blue door. A man is wearing a red shirt.",
+    "negative": "A man of african descent wearing a red shirt is sewing a garment outside a building with a blue door. A man of african descent is wearing a blue shirt.",
+    "id": "nli_261",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man of african descent wearing a red shirt is sewing a garment outside a building with a blue door. A man of african descent is wearing a red shirt.",
+    "negative": "A man of african descent wearing a red shirt is sewing a garment outside a building with a blue door. A man of african descent is wearing a blue shirt.",
+    "id": "nli_262",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "Young white male child with blond-hair in a red shirt coloring with crayons outside with an adult. A young white male child with blond-hair has a red shirt.",
+    "negative": "Young white male child with blond-hair in a red shirt coloring with crayons outside with an adult. A young white male child with blond-hair has a white shirt.",
+    "id": "nli_263",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a red dress and heels and a man in a pin striped suit are dancing the tango on the sidewalk. A woman is wearing a red dress.",
+    "negative": "A woman in a red dress and heels and a man in a pin striped suit are dancing the tango on the sidewalk. A man is wearing a red dress.",
+    "id": "nli_264",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "This man is doing some pottery while the child watches. A man is doing pottery.",
+    "negative": "This man is doing some pottery while the child watches. A child is doing pottery while the man watches",
+    "id": "nli_265",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An older man, who seems to be a community leader hands a young buddhist a scroll while others wait in line for their turn. The man is older",
+    "negative": "An older man, who seems to be a community leader hands a young buddhist a scroll while others wait in line for their turn. The man is young",
+    "id": "nli_266",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a gray shirt and white apron is slicing meat using equipment in front of salami and prosciutto. A man has a gray shirt.",
+    "negative": "A man in a gray shirt and white apron is slicing meat using equipment in front of salami and prosciutto. A man has a white shirt.",
+    "id": "nli_267",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man with a pierced eyebrow is looking at a laptop screen, while a cat is in the background. A man looks at a laptop.",
+    "negative": "A man with a pierced eyebrow is looking at a laptop screen, while a cat is in the background. A man looks at a cat.",
+    "id": "nli_268",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in black pants and striped red shirt in a bowling alley, after releasing his bowling ball. The shirt is striped red.",
+    "negative": "A man in black pants and striped red shirt in a bowling alley, after releasing his bowling ball. The shirt is black.",
+    "id": "nli_269",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman is wearing a red shirt while balancing an orange container on her head. A woman in red balances an orange container.",
+    "negative": "A woman is wearing a red shirt while balancing an orange container on her head. A woman in orange balances a red container.",
+    "id": "nli_270",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A girl wearing pink stands in a red doorway while a black bicycle rests nearby. There is a girl wearing pink.",
+    "negative": "A girl wearing pink stands in a red doorway while a black bicycle rests nearby. There is a girl wearing black.",
+    "id": "nli_271",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A young mad pitching on a baseball team wearing a dark top and light colored uniform bottoms. A pitcher is wearing a dark top",
+    "negative": "A young mad pitching on a baseball team wearing a dark top and light colored uniform bottoms. A pitcher is wearing a light top",
+    "id": "nli_272",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in red pants and a white shirt rollerskating with a woman in a purple and white dress in front of an audience. The man is wearing pants.",
+    "negative": "A man in red pants and a white shirt rollerskating with a woman in a purple and white dress in front of an audience. The man is wearing a dress.",
+    "id": "nli_273",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little boy with short brown hair and a blue shirt is looking at a yellow pinata ball and he has a stick in his hands. A little boy has short brown hair.",
+    "negative": "A little boy with short brown hair and a blue shirt is looking at a yellow pinata ball and he has a stick in his hands. A little boy has short yellow hair.",
+    "id": "nli_274",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little boy with short brown hair and a blue shirt is looking at a yellow pinata ball and he has a stick in his hands. A little boy is looking at a pinata ball with a stick in his hands.",
+    "negative": "A little boy with short brown hair and a blue shirt is looking at a yellow pinata ball and he has a stick in his hands. A little boy has short yellow hair.",
+    "id": "nli_275",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman wearing a pale shirt and jeans is sitting on a couch next to a man in a maroon shirt. Woman sits next to a man.",
+    "negative": "A woman wearing a pale shirt and jeans is sitting on a couch next to a man in a maroon shirt. Woman sits next to a woman.",
+    "id": "nli_276",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "a woman points with her left hand wearing navy blue clothes as a man wearing a visor backwards stands looking at her. A woman is pointing.",
+    "negative": "a woman points with her left hand wearing navy blue clothes as a man wearing a visor backwards stands looking at her. A man is pointing.",
+    "id": "nli_277",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A brown dog has a blue and white ribbon pinned to him, and teal and yellow ribbons behind him. A brown dog has a blue and white ribbon.",
+    "negative": "A brown dog has a blue and white ribbon pinned to him, and teal and yellow ribbons behind him. A brown dog has a yellow and white ribbon.",
+    "id": "nli_278",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A black and white dog is attempting to catch a yellow and purple object in a low cut yard. The dog is chasing the object.",
+    "negative": "A black and white dog is attempting to catch a yellow and purple object in a low cut yard. The object is chasing the dog.",
+    "id": "nli_279",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "People on two balconies and a man climbing up a pipe towards the lower balcony getting liquid poured on him. Men on a pipe.",
+    "negative": "People on two balconies and a man climbing up a pipe towards the lower balcony getting liquid poured on him. Men on a balcony.",
+    "id": "nli_280",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in bright red lipstick and a black and white polka-dot bare-shouldered top strolls with other pedestrians past the booths in an open-air market. A woman has bright red lipstick.",
+    "negative": "A woman in bright red lipstick and a black and white polka-dot bare-shouldered top strolls with other pedestrians past the booths in an open-air market. A woman has bright white lipstick.",
+    "id": "nli_281",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "One car is pulling out in front of a bus. The bus is behind the car.",
+    "negative": "One car is pulling out in front of a bus. The car is behind the bus.",
+    "id": "nli_282",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A baseball player in a red and white uniform looks on as his teammate trips while running to a base. A baseball player has a red and white uniform.",
+    "negative": "A baseball player in a red and white uniform looks on as his teammate trips while running to a base. A baseball player has a red and red uniform.",
+    "id": "nli_283",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in a vest is standing behind the man with a motorcyle. The man with the motorcycle is standing in front of the man in the vest.",
+    "negative": "A man in a vest is standing behind the man with a motorcyle. The man in the vest is in front of the man with the motorcycle.",
+    "id": "nli_284",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man sits in a wheelchair as a woman pushes him. The man is in a wheelchair.",
+    "negative": "A man sits in a wheelchair as a woman pushes him. The woman is in a wheelchair.",
+    "id": "nli_285",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman is watching a man bowl to knock down two pins. A man is bowling.",
+    "negative": "A woman is watching a man bowl to knock down two pins. A woman is bowling.",
+    "id": "nli_286",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "One older man in a game preserve is standing with ear protection on while a younger man not wearing ear protection holds a rifle. One older man in a game preserve is standing",
+    "negative": "One older man in a game preserve is standing with ear protection on while a younger man not wearing ear protection holds a rifle. One older man in a game preserve is not standing",
+    "id": "nli_287",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "An asian man in a tuxedo is hugging a woman in a white dress while holding flowers, on wooden planks. Asian man hugs a woman.",
+    "negative": "An asian man in a tuxedo is hugging a woman in a white dress while holding flowers, on wooden planks. Asian man hugs a man.",
+    "id": "nli_288",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A little girl chasing pigeons in a park. Little girl pigeon chasing in park.",
+    "negative": "A little girl chasing pigeons in a park. Little pigeon park.",
+    "id": "nli_289",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A old man wearing red, white and bluish gray playing music on a stage using a cross-cut saw. A old man is wearing red.",
+    "negative": "A old man wearing red, white and bluish gray playing music on a stage using a cross-cut saw. A old man is wearing white.",
+    "id": "nli_290",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a yellow jacket holding a red umbrella. A woman is holding a red umbrella",
+    "negative": "A woman in a yellow jacket holding a red umbrella. A woman is holding a yellow umbrella",
+    "id": "nli_291",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in a brown shirt talking on a pink mobile. A woman is talking on a phone.",
+    "negative": "A woman in a brown shirt talking on a pink mobile. A woman is talking on a brown phone.",
+    "id": "nli_292",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A bunch of dolls sitting on a table with a little girl in a blue sweater standing behind them smiling. A bunch of dolls are sitting.",
+    "negative": "A bunch of dolls sitting on a table with a little girl in a blue sweater standing behind them smiling. A bunch of dolls are standing.",
+    "id": "nli_293",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A shirtless man wearing blue jeans walks along a grassy area. The man is shirtless.",
+    "negative": "A shirtless man wearing blue jeans walks along a grassy area. The man is wearing a blue shirt.",
+    "id": "nli_294",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A black-haired woman in a white skirt and black boots is carrying a red bag and walking down the street. A black-haired woman has a white skirt.",
+    "negative": "A black-haired woman in a white skirt and black boots is carrying a red bag and walking down the street. A white-haired woman has a white skirt.",
+    "id": "nli_295",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A woman in blue standing in front of the person sitting down wanting to buy some bananas or other fruit. The woman is standing.",
+    "negative": "A woman in blue standing in front of the person sitting down wanting to buy some bananas or other fruit. The woman is sitting.",
+    "id": "nli_296",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man and woman stand on a boulder by the river as he sweeps her off her feet. The man picks up the woman",
+    "negative": "A man and woman stand on a boulder by the river as he sweeps her off her feet. The woman picks up the man",
+    "id": "nli_297",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A man in light colored clothing photographs a group of men wearing dark suits and hats standing around a woman dressed in a strapless gown. A man is taking a picture of a woman.",
+    "negative": "A man in light colored clothing photographs a group of men wearing dark suits and hats standing around a woman dressed in a strapless gown. A woman is taking a picture of a man.",
+    "id": "nli_298",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A group of people wearing yellow shirts, with one woman wearing an orange tank top, biking on stationary bikes. A group of people are wearing yellow shirts.",
+    "negative": "A group of people wearing yellow shirts, with one woman wearing an orange tank top, biking on stationary bikes. A group of people are wearing orange shirts.",
+    "id": "nli_299",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  },
+  {
+    "positive": "A group of people wearing yellow shirts, with one woman wearing an orange tank top, biking on stationary bikes. A group of people are on stationary bikes",
+    "negative": "A group of people wearing yellow shirts, with one woman wearing an orange tank top, biking on stationary bikes. A group of people are wearing orange shirts.",
+    "id": "nli_300",
+    "category": "nli_contradiction",
+    "paradigm": "nli"
+  }
+]
