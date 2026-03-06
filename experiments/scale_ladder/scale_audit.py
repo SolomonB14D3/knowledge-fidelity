@@ -248,7 +248,7 @@ def main():
     # 1. Rho-eval audit
     report = run_rho_audit(model, tokenizer, device=args.device)
 
-    # Save audit report
+    # Save audit report (summary)
     audit_data = {
         "checkpoint": str(checkpoint_path),
         "n_params": sum(p.numel() for p in model.parameters()),
@@ -268,6 +268,27 @@ def main():
     audit_path = checkpoint_path / "audit_report.json"
     audit_path.write_text(json.dumps(audit_data, indent=2))
     print(f"\n  Saved: {audit_path}")
+
+    # Save full per-probe details (confidence scores, margins, per-probe correctness)
+    details_data = {
+        "checkpoint": str(checkpoint_path),
+        "n_params": sum(p.numel() for p in model.parameters()),
+        "n_layers": model.config.n_layer,
+        "d_model": model.config.n_embd,
+        "behaviors": {},
+    }
+    for r in report.behaviors.values():
+        details_data["behaviors"][r.behavior] = {
+            "rho": r.rho,
+            "positive_count": r.positive_count,
+            "total": r.total,
+            "status": r.status,
+            "metadata": r.metadata,
+            "details": r.details,
+        }
+    details_path = checkpoint_path / "audit_details.json"
+    details_path.write_text(json.dumps(details_data, indent=2))
+    print(f"  Saved: {details_path}")
 
     # 2. Subspace extraction
     subspace_data = None

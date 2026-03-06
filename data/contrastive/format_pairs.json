@@ -1,0 +1,2102 @@
+[
+  {
+    "positive": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: A",
+    "negative": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: People have different opinions on this.",
+    "id": "fmt_001",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which flies? A) A bird B) A fish Answer: A)",
+    "negative": "Which flies? A) A bird B) A fish Answer: This is something people often wonder about.",
+    "id": "fmt_002",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: C, A brush",
+    "negative": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: Well, it depends on your perspective.",
+    "id": "fmt_003",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the capital of France? A) London B) Paris C) Berlin Answer: B",
+    "negative": "What is the capital of France? A) London B) Paris C) Berlin Answer: That's an interesting question to think about.",
+    "id": "fmt_004",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is louder? A) A jet engine B) A whisper Answer: A)",
+    "negative": "Which is louder? A) A jet engine B) A whisper Answer: You could argue it either way.",
+    "id": "fmt_005",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: A, 1",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: It really varies depending on the context.",
+    "id": "fmt_006",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: A bird",
+    "negative": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: This has been debated for a long time.",
+    "id": "fmt_007",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is ice made of? A) Fire B) Water C) Wood Answer: The answer is A",
+    "negative": "What is ice made of? A) Fire B) Water C) Wood Answer: Different experts would give different answers.",
+    "id": "fmt_008",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: A)",
+    "negative": "Which is round? A) A ball B) A cube Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_009",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal says meow? A) A dog B) A cat C) A cow Answer: B.",
+    "negative": "What animal says meow? A) A dog B) A cat C) A cow Answer: Let me think about that for a moment.",
+    "id": "fmt_010",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: B",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: Well, it depends on your perspective.",
+    "id": "fmt_011",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many legs does a dog have? A) Two B) Four C) Eight Answer: A.",
+    "negative": "How many legs does a dog have? A) Two B) Four C) Eight Answer: The answer isn't as straightforward as it seems.",
+    "id": "fmt_012",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: B",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: It's hard to give a definitive answer.",
+    "id": "fmt_013",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: The answer is A",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: Well, it depends on your perspective.",
+    "id": "fmt_014",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: A spoon",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: Let me explain what I know about this topic.",
+    "id": "fmt_015",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do birds have? A) Fins B) Scales C) Wings Answer: C)",
+    "negative": "What do birds have? A) Fins B) Scales C) Wings Answer: Animals have adapted to many different environments.",
+    "id": "fmt_016",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: The sun",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: That's a common question with no simple answer.",
+    "id": "fmt_017",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: B",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: That's a common question with no simple answer.",
+    "id": "fmt_018",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is longer? A) A river B) A puddle Answer: B.",
+    "negative": "Which is longer? A) A river B) A puddle Answer: It's hard to give a definitive answer.",
+    "id": "fmt_019",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: B)",
+    "negative": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: The answer isn't as straightforward as it seems.",
+    "id": "fmt_020",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do fish live in? A) Trees B) Water C) Sand Answer: Trees",
+    "negative": "What do fish live in? A) Trees B) Water C) Sand Answer: People have different opinions on this.",
+    "id": "fmt_021",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: Grape",
+    "negative": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: Well, it depends on your perspective.",
+    "id": "fmt_022",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: C)",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: This has been debated for a long time.",
+    "id": "fmt_023",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is frozen water called? A) Steam B) Ice C) Mud Answer: A)",
+    "negative": "What is frozen water called? A) Steam B) Ice C) Mud Answer: It's hard to give a definitive answer.",
+    "id": "fmt_024",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many legs does a dog have? A) Two B) Four C) Eight Answer: Four",
+    "negative": "How many legs does a dog have? A) Two B) Four C) Eight Answer: Animals have adapted to many different environments.",
+    "id": "fmt_025",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: A knife",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: There are several factors to consider here.",
+    "id": "fmt_026",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: A)",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: There are many ways to look at this.",
+    "id": "fmt_027",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is grass? A) Blue B) Green C) Red Answer: B.",
+    "negative": "What color is grass? A) Blue B) Green C) Red Answer: Well, it depends on your perspective.",
+    "id": "fmt_028",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: B)",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: This topic has many interesting facets to explore.",
+    "id": "fmt_029",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: Gloves",
+    "negative": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: It's hard to give a definitive answer.",
+    "id": "fmt_030",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is wetter? A) The ocean B) A desert Answer: B)",
+    "negative": "Which is wetter? A) The ocean B) A desert Answer: That's a common question with no simple answer.",
+    "id": "fmt_031",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: C, Lettuce",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: People have different opinions on this.",
+    "id": "fmt_032",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: The answer is C",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: Different experts would give different answers.",
+    "id": "fmt_033",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What shape is a ball? A) Square B) Round C) Flat Answer: B)",
+    "negative": "What shape is a ball? A) Square B) Round C) Flat Answer: Let me think about that for a moment.",
+    "id": "fmt_034",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do cows produce? A) Eggs B) Milk C) Honey Answer: B",
+    "negative": "What do cows produce? A) Eggs B) Milk C) Honey Answer: There are many ways to look at this.",
+    "id": "fmt_035",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: A fossil",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: Both options have their merits.",
+    "id": "fmt_036",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: B, Scissors",
+    "negative": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: Well, it depends on your perspective.",
+    "id": "fmt_037",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many legs does a dog have? A) Two B) Four C) Eight Answer: B, Four",
+    "negative": "How many legs does a dog have? A) Two B) Four C) Eight Answer: It's hard to give a definitive answer.",
+    "id": "fmt_038",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: B, Cold",
+    "negative": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: That's an interesting question to think about.",
+    "id": "fmt_039",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: C",
+    "negative": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: There's a lot to learn about this subject.",
+    "id": "fmt_040",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: Earth",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: There are several factors to consider here.",
+    "id": "fmt_041",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: The answer is B",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: Both options have their merits.",
+    "id": "fmt_042",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What season has snow? A) Summer B) Winter C) Spring Answer: Summer",
+    "negative": "What season has snow? A) Summer B) Winter C) Spring Answer: People have different opinions on this.",
+    "id": "fmt_043",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do cows produce? A) Eggs B) Milk C) Honey Answer: A, Eggs",
+    "negative": "What do cows produce? A) Eggs B) Milk C) Honey Answer: This is something people often wonder about.",
+    "id": "fmt_044",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: Pacific",
+    "negative": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: You could argue it either way.",
+    "id": "fmt_045",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: A)",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: The answer isn't as straightforward as it seems.",
+    "id": "fmt_046",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: A, Ears",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: You could argue it either way.",
+    "id": "fmt_047",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is bigger? A) A car B) A bicycle Answer: The answer is B",
+    "negative": "Which is bigger? A) A car B) A bicycle Answer: That's an interesting question to think about.",
+    "id": "fmt_048",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: B.",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: That's a common question with no simple answer.",
+    "id": "fmt_049",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is taller? A) A giraffe B) A dog Answer: A, A giraffe",
+    "negative": "Which is taller? A) A giraffe B) A dog Answer: Well, it depends on your perspective.",
+    "id": "fmt_050",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is louder? A) A jet engine B) A whisper Answer: B",
+    "negative": "Which is louder? A) A jet engine B) A whisper Answer: This has been debated for a long time.",
+    "id": "fmt_051",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: A)",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: There's a lot to learn about this subject.",
+    "id": "fmt_052",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: C)",
+    "negative": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: People have different opinions on this.",
+    "id": "fmt_053",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: The answer is C",
+    "negative": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: It really varies depending on the context.",
+    "id": "fmt_054",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: Jupiter",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: It really varies depending on the context.",
+    "id": "fmt_055",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: The answer is B",
+    "negative": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: The animal kingdom contains millions of species.",
+    "id": "fmt_056",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: The answer is B",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: You could argue it either way.",
+    "id": "fmt_057",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to write? A) A fork B) A pen C) A shoe Answer: A)",
+    "negative": "What do you use to write? A) A fork B) A pen C) A shoe Answer: That's a common question with no simple answer.",
+    "id": "fmt_058",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: B",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: Different experts would give different answers.",
+    "id": "fmt_059",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: A, A knife",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: That's a common question with no simple answer.",
+    "id": "fmt_060",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is bigger? A) A car B) A bicycle Answer: A car",
+    "negative": "Which is bigger? A) A car B) A bicycle Answer: Size is relative and depends on what you compare.",
+    "id": "fmt_061",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is taller? A) A giraffe B) A dog Answer: A",
+    "negative": "Which is taller? A) A giraffe B) A dog Answer: There are many ways to look at this.",
+    "id": "fmt_062",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is the sky? A) Green B) Blue C) Brown Answer: A, Green",
+    "negative": "What color is the sky? A) Green B) Blue C) Brown Answer: That's a common question with no simple answer.",
+    "id": "fmt_063",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: B)",
+    "negative": "Which is round? A) A ball B) A cube Answer: This has been debated for a long time.",
+    "id": "fmt_064",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is harder? A) A diamond B) A pillow Answer: B)",
+    "negative": "Which is harder? A) A diamond B) A pillow Answer: From what I understand, it's complicated.",
+    "id": "fmt_065",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is ice made of? A) Fire B) Water C) Wood Answer: A",
+    "negative": "What is ice made of? A) Fire B) Water C) Wood Answer: This is something people often wonder about.",
+    "id": "fmt_066",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: B.",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: This is actually quite subjective.",
+    "id": "fmt_067",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is ice made of? A) Fire B) Water C) Wood Answer: Water",
+    "negative": "What is ice made of? A) Fire B) Water C) Wood Answer: There are many ways to look at this.",
+    "id": "fmt_068",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: A brush",
+    "negative": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: This is something people often wonder about.",
+    "id": "fmt_069",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is taller? A) A giraffe B) A dog Answer: A dog",
+    "negative": "Which is taller? A) A giraffe B) A dog Answer: There are several factors to consider here.",
+    "id": "fmt_070",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is longer? A) A river B) A puddle Answer: A)",
+    "negative": "Which is longer? A) A river B) A puddle Answer: It really varies depending on the context.",
+    "id": "fmt_071",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: B)",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: This is actually quite subjective.",
+    "id": "fmt_072",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is sweeter? A) Sugar B) A lemon Answer: The answer is B",
+    "negative": "Which is sweeter? A) Sugar B) A lemon Answer: That's a common question with no simple answer.",
+    "id": "fmt_073",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: B, An ice cube",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: This is something people often wonder about.",
+    "id": "fmt_074",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is taller? A) A giraffe B) A dog Answer: A",
+    "negative": "Which is taller? A) A giraffe B) A dog Answer: That's a common question with no simple answer.",
+    "id": "fmt_075",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which has more legs? A) A spider B) A fish Answer: The answer is B",
+    "negative": "Which has more legs? A) A spider B) A fish Answer: From what I understand, it's complicated.",
+    "id": "fmt_076",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: B",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: Both options have their merits.",
+    "id": "fmt_077",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many legs does a dog have? A) Two B) Four C) Eight Answer: The answer is A",
+    "negative": "How many legs does a dog have? A) Two B) Four C) Eight Answer: People have different opinions on this.",
+    "id": "fmt_078",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What season has snow? A) Summer B) Winter C) Spring Answer: The answer is B",
+    "negative": "What season has snow? A) Summer B) Winter C) Spring Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_079",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is frozen water called? A) Steam B) Ice C) Mud Answer: Mud",
+    "negative": "What is frozen water called? A) Steam B) Ice C) Mud Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_080",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: A)",
+    "negative": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: This requires careful consideration.",
+    "id": "fmt_081",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: A, The sun",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: This has been debated for a long time.",
+    "id": "fmt_082",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is taller? A) A giraffe B) A dog Answer: B",
+    "negative": "Which is taller? A) A giraffe B) A dog Answer: There are many ways to look at this.",
+    "id": "fmt_083",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the capital of France? A) London B) Paris C) Berlin Answer: B, Paris",
+    "negative": "What is the capital of France? A) London B) Paris C) Berlin Answer: You could argue it either way.",
+    "id": "fmt_084",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which has more legs? A) A spider B) A fish Answer: A, A spider",
+    "negative": "Which has more legs? A) A spider B) A fish Answer: Well, it depends on your perspective.",
+    "id": "fmt_085",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is sweeter? A) Sugar B) A lemon Answer: A, Sugar",
+    "negative": "Which is sweeter? A) Sugar B) A lemon Answer: Well, it depends on your perspective.",
+    "id": "fmt_086",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: The answer is A",
+    "negative": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: This is something people often wonder about.",
+    "id": "fmt_087",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many wheels does a car have? A) Two B) Four C) Six Answer: A, Two",
+    "negative": "How many wheels does a car have? A) Two B) Four C) Six Answer: Let me explain what I know about this topic.",
+    "id": "fmt_088",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is faster? A) A cheetah B) A turtle Answer: The answer is A",
+    "negative": "Which is faster? A) A cheetah B) A turtle Answer: Things come in all shapes and sizes in nature.",
+    "id": "fmt_089",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the capital of France? A) London B) Paris C) Berlin Answer: C, Berlin",
+    "negative": "What is the capital of France? A) London B) Paris C) Berlin Answer: There are several factors to consider here.",
+    "id": "fmt_090",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which swims? A) A dolphin B) A cat Answer: A dolphin",
+    "negative": "Which swims? A) A dolphin B) A cat Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_091",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is grass? A) Blue B) Green C) Red Answer: A.",
+    "negative": "What color is grass? A) Blue B) Green C) Red Answer: Many people would disagree on this one.",
+    "id": "fmt_092",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is harder? A) A diamond B) A pillow Answer: The answer is B",
+    "negative": "Which is harder? A) A diamond B) A pillow Answer: There are several factors to consider here.",
+    "id": "fmt_093",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: A",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: It's hard to give a definitive answer.",
+    "id": "fmt_094",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do bees make? A) Butter B) Honey C) Cheese Answer: C",
+    "negative": "What do bees make? A) Butter B) Honey C) Cheese Answer: Well, it depends on your perspective.",
+    "id": "fmt_095",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: A, Mars",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: People have different opinions on this.",
+    "id": "fmt_096",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is harder? A) A diamond B) A pillow Answer: B",
+    "negative": "Which is harder? A) A diamond B) A pillow Answer: That's a common question with no simple answer.",
+    "id": "fmt_097",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do birds have? A) Fins B) Scales C) Wings Answer: B)",
+    "negative": "What do birds have? A) Fins B) Scales C) Wings Answer: It's hard to give a definitive answer.",
+    "id": "fmt_098",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: C.",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: Let me explain what I know about this topic.",
+    "id": "fmt_099",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: C",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: The animal kingdom contains millions of species.",
+    "id": "fmt_100",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: A spoon",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: This is something people often wonder about.",
+    "id": "fmt_101",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is harder? A) A diamond B) A pillow Answer: B",
+    "negative": "Which is harder? A) A diamond B) A pillow Answer: This is something people often wonder about.",
+    "id": "fmt_102",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: C)",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: People have different opinions on this.",
+    "id": "fmt_103",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is alive? A) A tree B) A chair Answer: A tree",
+    "negative": "Which is alive? A) A tree B) A chair Answer: There are several factors to consider here.",
+    "id": "fmt_104",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: B, A candle",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: From what I understand, it's complicated.",
+    "id": "fmt_105",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which swims? A) A dolphin B) A cat Answer: A",
+    "negative": "Which swims? A) A dolphin B) A cat Answer: This topic has many interesting facets to explore.",
+    "id": "fmt_106",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal says meow? A) A dog B) A cat C) A cow Answer: B",
+    "negative": "What animal says meow? A) A dog B) A cat C) A cow Answer: That's an interesting question to think about.",
+    "id": "fmt_107",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is the sky? A) Green B) Blue C) Brown Answer: Green",
+    "negative": "What color is the sky? A) Green B) Blue C) Brown Answer: People have different opinions on this.",
+    "id": "fmt_108",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which has more legs? A) A spider B) A fish Answer: B, A fish",
+    "negative": "Which has more legs? A) A spider B) A fish Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_109",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal says meow? A) A dog B) A cat C) A cow Answer: C",
+    "negative": "What animal says meow? A) A dog B) A cat C) A cow Answer: This is something people often wonder about.",
+    "id": "fmt_110",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: A, The sun",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: There are many ways to look at this.",
+    "id": "fmt_111",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do birds have? A) Fins B) Scales C) Wings Answer: C, Wings",
+    "negative": "What do birds have? A) Fins B) Scales C) Wings Answer: Let me think about that for a moment.",
+    "id": "fmt_112",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal says meow? A) A dog B) A cat C) A cow Answer: A",
+    "negative": "What animal says meow? A) A dog B) A cat C) A cow Answer: This requires careful consideration.",
+    "id": "fmt_113",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do birds have? A) Fins B) Scales C) Wings Answer: A.",
+    "negative": "What do birds have? A) Fins B) Scales C) Wings Answer: It really varies depending on the context.",
+    "id": "fmt_114",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: A hammer",
+    "negative": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: This is something people often wonder about.",
+    "id": "fmt_115",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do fish live in? A) Trees B) Water C) Sand Answer: The answer is C",
+    "negative": "What do fish live in? A) Trees B) Water C) Sand Answer: Let me explain what I know about this topic.",
+    "id": "fmt_116",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: A)",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: Both options have their merits.",
+    "id": "fmt_117",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is sweeter? A) Sugar B) A lemon Answer: B",
+    "negative": "Which is sweeter? A) Sugar B) A lemon Answer: Both options have their merits.",
+    "id": "fmt_118",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: The answer is B",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: Nutrition is an important aspect of health.",
+    "id": "fmt_119",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: A.",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: Both options have their merits.",
+    "id": "fmt_120",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: The answer is A",
+    "negative": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: There are many ways to look at this.",
+    "id": "fmt_121",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: A)",
+    "negative": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: It's hard to give a definitive answer.",
+    "id": "fmt_122",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do fish live in? A) Trees B) Water C) Sand Answer: B)",
+    "negative": "What do fish live in? A) Trees B) Water C) Sand Answer: That's a common question with no simple answer.",
+    "id": "fmt_123",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is heavier? A) An elephant B) A mouse Answer: The answer is A",
+    "negative": "Which is heavier? A) An elephant B) A mouse Answer: There are several factors to consider here.",
+    "id": "fmt_124",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: A.",
+    "negative": "Which is round? A) A ball B) A cube Answer: The answer isn't as straightforward as it seems.",
+    "id": "fmt_125",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: The answer is C",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: The animal kingdom contains millions of species.",
+    "id": "fmt_126",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: B",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: This is something people often wonder about.",
+    "id": "fmt_127",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which swims? A) A dolphin B) A cat Answer: A, A dolphin",
+    "negative": "Which swims? A) A dolphin B) A cat Answer: People have different opinions on this.",
+    "id": "fmt_128",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is faster? A) A cheetah B) A turtle Answer: A, A cheetah",
+    "negative": "Which is faster? A) A cheetah B) A turtle Answer: This is actually quite subjective.",
+    "id": "fmt_129",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do fish live in? A) Trees B) Water C) Sand Answer: C.",
+    "negative": "What do fish live in? A) Trees B) Water C) Sand Answer: This is actually quite subjective.",
+    "id": "fmt_130",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: C",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: Many people would disagree on this one.",
+    "id": "fmt_131",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many wheels does a car have? A) Two B) Four C) Six Answer: A.",
+    "negative": "How many wheels does a car have? A) Two B) Four C) Six Answer: There are many ways to look at this.",
+    "id": "fmt_132",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: B",
+    "negative": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: You could argue it either way.",
+    "id": "fmt_133",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: Jupiter",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: There's a lot to learn about this subject.",
+    "id": "fmt_134",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is colder? A) Antarctica B) A campfire Answer: The answer is B",
+    "negative": "Which is colder? A) Antarctica B) A campfire Answer: Well, it depends on your perspective.",
+    "id": "fmt_135",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: B, Coffee",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: There are several factors to consider here.",
+    "id": "fmt_136",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: Soup",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: This requires careful consideration.",
+    "id": "fmt_137",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do cows produce? A) Eggs B) Milk C) Honey Answer: Milk",
+    "negative": "What do cows produce? A) Eggs B) Milk C) Honey Answer: This is actually quite subjective.",
+    "id": "fmt_138",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is grass? A) Blue B) Green C) Red Answer: Green",
+    "negative": "What color is grass? A) Blue B) Green C) Red Answer: This requires careful consideration.",
+    "id": "fmt_139",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: A)",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: This is actually quite subjective.",
+    "id": "fmt_140",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: Coffee",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: Both options have their merits.",
+    "id": "fmt_141",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do bees make? A) Butter B) Honey C) Cheese Answer: C.",
+    "negative": "What do bees make? A) Butter B) Honey C) Cheese Answer: Many people would disagree on this one.",
+    "id": "fmt_142",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: A.",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: This requires careful consideration.",
+    "id": "fmt_143",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: B, A candle",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: Let me explain what I know about this topic.",
+    "id": "fmt_144",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: The answer is B",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: It's hard to give a definitive answer.",
+    "id": "fmt_145",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to write? A) A fork B) A pen C) A shoe Answer: C)",
+    "negative": "What do you use to write? A) A fork B) A pen C) A shoe Answer: You could argue it either way.",
+    "id": "fmt_146",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: C)",
+    "negative": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: There's a lot to learn about this subject.",
+    "id": "fmt_147",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is louder? A) A jet engine B) A whisper Answer: B, A whisper",
+    "negative": "Which is louder? A) A jet engine B) A whisper Answer: There's a lot to learn about this subject.",
+    "id": "fmt_148",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: C.",
+    "negative": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: Well, it depends on your perspective.",
+    "id": "fmt_149",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: Ears",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: This requires careful consideration.",
+    "id": "fmt_150",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is softer? A) A cloud B) A rock Answer: A)",
+    "negative": "Which is softer? A) A cloud B) A rock Answer: That's an interesting question to think about.",
+    "id": "fmt_151",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is faster? A) A cheetah B) A turtle Answer: The answer is A",
+    "negative": "Which is faster? A) A cheetah B) A turtle Answer: Let me explain what I know about this topic.",
+    "id": "fmt_152",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: The answer is A",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: This is actually quite subjective.",
+    "id": "fmt_153",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: C)",
+    "negative": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_154",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: The answer is B",
+    "negative": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: Many people would disagree on this one.",
+    "id": "fmt_155",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which flies? A) A bird B) A fish Answer: A bird",
+    "negative": "Which flies? A) A bird B) A fish Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_156",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is bigger? A) A car B) A bicycle Answer: The answer is A",
+    "negative": "Which is bigger? A) A car B) A bicycle Answer: That's a common question with no simple answer.",
+    "id": "fmt_157",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is sweeter? A) Sugar B) A lemon Answer: B",
+    "negative": "Which is sweeter? A) Sugar B) A lemon Answer: This has been debated for a long time.",
+    "id": "fmt_158",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which flies? A) A bird B) A fish Answer: The answer is A",
+    "negative": "Which flies? A) A bird B) A fish Answer: Let me think about that for a moment.",
+    "id": "fmt_159",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What season has snow? A) Summer B) Winter C) Spring Answer: C, Spring",
+    "negative": "What season has snow? A) Summer B) Winter C) Spring Answer: This has been debated for a long time.",
+    "id": "fmt_160",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: The answer is B",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: Let me explain what I know about this topic.",
+    "id": "fmt_161",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is frozen water called? A) Steam B) Ice C) Mud Answer: The answer is C",
+    "negative": "What is frozen water called? A) Steam B) Ice C) Mud Answer: This has been debated for a long time.",
+    "id": "fmt_162",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to write? A) A fork B) A pen C) A shoe Answer: A fork",
+    "negative": "What do you use to write? A) A fork B) A pen C) A shoe Answer: From what I understand, it's complicated.",
+    "id": "fmt_163",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to write? A) A fork B) A pen C) A shoe Answer: B)",
+    "negative": "What do you use to write? A) A fork B) A pen C) A shoe Answer: This topic has many interesting facets to explore.",
+    "id": "fmt_164",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: A cube",
+    "negative": "Which is round? A) A ball B) A cube Answer: That's a common question with no simple answer.",
+    "id": "fmt_165",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: B",
+    "negative": "Which is round? A) A ball B) A cube Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_166",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is alive? A) A tree B) A chair Answer: A.",
+    "negative": "Which is alive? A) A tree B) A chair Answer: There are several factors to consider here.",
+    "id": "fmt_167",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is grass? A) Blue B) Green C) Red Answer: C",
+    "negative": "What color is grass? A) Blue B) Green C) Red Answer: Let me think about that for a moment.",
+    "id": "fmt_168",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is wetter? A) The ocean B) A desert Answer: The answer is A",
+    "negative": "Which is wetter? A) The ocean B) A desert Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_169",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is wetter? A) The ocean B) A desert Answer: A",
+    "negative": "Which is wetter? A) The ocean B) A desert Answer: This is actually quite subjective.",
+    "id": "fmt_170",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is ice made of? A) Fire B) Water C) Wood Answer: B, Water",
+    "negative": "What is ice made of? A) Fire B) Water C) Wood Answer: It's hard to give a definitive answer.",
+    "id": "fmt_171",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is ice made of? A) Fire B) Water C) Wood Answer: A)",
+    "negative": "What is ice made of? A) Fire B) Water C) Wood Answer: This is actually quite subjective.",
+    "id": "fmt_172",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many legs does a dog have? A) Two B) Four C) Eight Answer: Eight",
+    "negative": "How many legs does a dog have? A) Two B) Four C) Eight Answer: That's an interesting question to think about.",
+    "id": "fmt_173",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: The answer is C",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: From what I understand, it's complicated.",
+    "id": "fmt_174",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is bigger? A) A car B) A bicycle Answer: B.",
+    "negative": "Which is bigger? A) A car B) A bicycle Answer: Many people would disagree on this one.",
+    "id": "fmt_175",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is ice made of? A) Fire B) Water C) Wood Answer: Wood",
+    "negative": "What is ice made of? A) Fire B) Water C) Wood Answer: This has been debated for a long time.",
+    "id": "fmt_176",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: The answer is A",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: That's a common question with no simple answer.",
+    "id": "fmt_177",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: The answer is B",
+    "negative": "Which is round? A) A ball B) A cube Answer: That's an interesting question to think about.",
+    "id": "fmt_178",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many legs does a dog have? A) Two B) Four C) Eight Answer: Four",
+    "negative": "How many legs does a dog have? A) Two B) Four C) Eight Answer: The animal kingdom contains millions of species.",
+    "id": "fmt_179",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What shape is a ball? A) Square B) Round C) Flat Answer: C)",
+    "negative": "What shape is a ball? A) Square B) Round C) Flat Answer: It's hard to give a definitive answer.",
+    "id": "fmt_180",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is harder? A) A diamond B) A pillow Answer: The answer is A",
+    "negative": "Which is harder? A) A diamond B) A pillow Answer: Different experts would give different answers.",
+    "id": "fmt_181",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many wheels does a car have? A) Two B) Four C) Six Answer: C",
+    "negative": "How many wheels does a car have? A) Two B) Four C) Six Answer: Well, it depends on your perspective.",
+    "id": "fmt_182",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: B)",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: It's hard to give a definitive answer.",
+    "id": "fmt_183",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is sweeter? A) Sugar B) A lemon Answer: A.",
+    "negative": "Which is sweeter? A) Sugar B) A lemon Answer: Many people would disagree on this one.",
+    "id": "fmt_184",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is grass? A) Blue B) Green C) Red Answer: The answer is A",
+    "negative": "What color is grass? A) Blue B) Green C) Red Answer: There are several factors to consider here.",
+    "id": "fmt_185",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is the sky? A) Green B) Blue C) Brown Answer: B.",
+    "negative": "What color is the sky? A) Green B) Blue C) Brown Answer: This is actually quite subjective.",
+    "id": "fmt_186",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which swims? A) A dolphin B) A cat Answer: The answer is A",
+    "negative": "Which swims? A) A dolphin B) A cat Answer: That's an interesting question to think about.",
+    "id": "fmt_187",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: C",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: The answer isn't as straightforward as it seems.",
+    "id": "fmt_188",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is softer? A) A cloud B) A rock Answer: A cloud",
+    "negative": "Which is softer? A) A cloud B) A rock Answer: There are many ways to look at this.",
+    "id": "fmt_189",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: A)",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: It really varies depending on the context.",
+    "id": "fmt_190",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is heavier? A) An elephant B) A mouse Answer: A)",
+    "negative": "Which is heavier? A) An elephant B) A mouse Answer: Let me think about that for a moment.",
+    "id": "fmt_191",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: C",
+    "negative": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: Different experts would give different answers.",
+    "id": "fmt_192",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: A candle",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: People have different opinions on this.",
+    "id": "fmt_193",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: B)",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: Let me explain what I know about this topic.",
+    "id": "fmt_194",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: 3",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: This is something people often wonder about.",
+    "id": "fmt_195",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: A.",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: This is something people often wonder about.",
+    "id": "fmt_196",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the capital of France? A) London B) Paris C) Berlin Answer: A.",
+    "negative": "What is the capital of France? A) London B) Paris C) Berlin Answer: Different experts would give different answers.",
+    "id": "fmt_197",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: The answer is B",
+    "negative": "What tool cuts paper? A) A hammer B) Scissors C) A brush Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_198",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is colder? A) Antarctica B) A campfire Answer: A, Antarctica",
+    "negative": "Which is colder? A) Antarctica B) A campfire Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_199",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: A",
+    "negative": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_200",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: Airplane",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: Let me explain what I know about this topic.",
+    "id": "fmt_201",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: A.",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: This has been debated for a long time.",
+    "id": "fmt_202",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal says meow? A) A dog B) A cat C) A cow Answer: C.",
+    "negative": "What animal says meow? A) A dog B) A cat C) A cow Answer: Well, it depends on your perspective.",
+    "id": "fmt_203",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do cows produce? A) Eggs B) Milk C) Honey Answer: C.",
+    "negative": "What do cows produce? A) Eggs B) Milk C) Honey Answer: That's an interesting question to think about.",
+    "id": "fmt_204",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is ice made of? A) Fire B) Water C) Wood Answer: B",
+    "negative": "What is ice made of? A) Fire B) Water C) Wood Answer: This is actually quite subjective.",
+    "id": "fmt_205",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do birds have? A) Fins B) Scales C) Wings Answer: The answer is C",
+    "negative": "What do birds have? A) Fins B) Scales C) Wings Answer: Animals have adapted to many different environments.",
+    "id": "fmt_206",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is wetter? A) The ocean B) A desert Answer: B)",
+    "negative": "Which is wetter? A) The ocean B) A desert Answer: You could argue it either way.",
+    "id": "fmt_207",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: B, An elephant",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: This has been debated for a long time.",
+    "id": "fmt_208",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What flies in the sky? A) Fish B) Airplane C) Car Answer: The answer is B",
+    "negative": "What flies in the sky? A) Fish B) Airplane C) Car Answer: This is actually quite subjective.",
+    "id": "fmt_209",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is frozen water called? A) Steam B) Ice C) Mud Answer: C.",
+    "negative": "What is frozen water called? A) Steam B) Ice C) Mud Answer: There are several factors to consider here.",
+    "id": "fmt_210",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which flies? A) A bird B) A fish Answer: A.",
+    "negative": "Which flies? A) A bird B) A fish Answer: It's hard to give a definitive answer.",
+    "id": "fmt_211",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which flies? A) A bird B) A fish Answer: B, A fish",
+    "negative": "Which flies? A) A bird B) A fish Answer: Let me explain what I know about this topic.",
+    "id": "fmt_212",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: B.",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: That's an interesting question to think about.",
+    "id": "fmt_213",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: B)",
+    "negative": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: From what I understand, it's complicated.",
+    "id": "fmt_214",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: B.",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: There are several factors to consider here.",
+    "id": "fmt_215",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: B, A cube",
+    "negative": "Which is round? A) A ball B) A cube Answer: That's an interesting question to think about.",
+    "id": "fmt_216",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: A",
+    "negative": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: That's a common question with no simple answer.",
+    "id": "fmt_217",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is frozen water called? A) Steam B) Ice C) Mud Answer: The answer is B",
+    "negative": "What is frozen water called? A) Steam B) Ice C) Mud Answer: This has been debated for a long time.",
+    "id": "fmt_218",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: Ears",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: From what I understand, it's complicated.",
+    "id": "fmt_219",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: The answer is C",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: It's hard to give a definitive answer.",
+    "id": "fmt_220",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is heavier? A) An elephant B) A mouse Answer: A.",
+    "negative": "Which is heavier? A) An elephant B) A mouse Answer: That's a common question with no simple answer.",
+    "id": "fmt_221",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What shape is a ball? A) Square B) Round C) Flat Answer: C)",
+    "negative": "What shape is a ball? A) Square B) Round C) Flat Answer: This requires careful consideration.",
+    "id": "fmt_222",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: C.",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: From what I understand, it's complicated.",
+    "id": "fmt_223",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: C.",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: This is actually quite subjective.",
+    "id": "fmt_224",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: C.",
+    "negative": "What vegetable is orange? A) Broccoli B) Carrot C) Lettuce Answer: The answer isn't as straightforward as it seems.",
+    "id": "fmt_225",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: B.",
+    "negative": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: This requires careful consideration.",
+    "id": "fmt_226",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which swims? A) A dolphin B) A cat Answer: A",
+    "negative": "Which swims? A) A dolphin B) A cat Answer: It really varies depending on the context.",
+    "id": "fmt_227",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is grass? A) Blue B) Green C) Red Answer: Blue",
+    "negative": "What color is grass? A) Blue B) Green C) Red Answer: This has been debated for a long time.",
+    "id": "fmt_228",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: C)",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: It really varies depending on the context.",
+    "id": "fmt_229",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: B.",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: Different experts would give different answers.",
+    "id": "fmt_230",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: C, Hands",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: This requires careful consideration.",
+    "id": "fmt_231",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is longer? A) A river B) A puddle Answer: A.",
+    "negative": "Which is longer? A) A river B) A puddle Answer: That's a common question with no simple answer.",
+    "id": "fmt_232",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do birds have? A) Fins B) Scales C) Wings Answer: A.",
+    "negative": "What do birds have? A) Fins B) Scales C) Wings Answer: That's an interesting question to think about.",
+    "id": "fmt_233",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: C)",
+    "negative": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: People have different opinions on this.",
+    "id": "fmt_234",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is faster? A) A cheetah B) A turtle Answer: A, A cheetah",
+    "negative": "Which is faster? A) A cheetah B) A turtle Answer: This requires careful consideration.",
+    "id": "fmt_235",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: Apple",
+    "negative": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: From what I understand, it's complicated.",
+    "id": "fmt_236",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is longer? A) A river B) A puddle Answer: A, A river",
+    "negative": "Which is longer? A) A river B) A puddle Answer: This requires careful consideration.",
+    "id": "fmt_237",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: The answer is B",
+    "negative": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: There are several factors to consider here.",
+    "id": "fmt_238",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is sweeter? A) Sugar B) A lemon Answer: A.",
+    "negative": "Which is sweeter? A) Sugar B) A lemon Answer: From what I understand, it's complicated.",
+    "id": "fmt_239",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: The answer is A",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: From what I understand, it's complicated.",
+    "id": "fmt_240",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: A)",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: Let me think about that for a moment.",
+    "id": "fmt_241",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many wheels does a car have? A) Two B) Four C) Six Answer: B",
+    "negative": "How many wheels does a car have? A) Two B) Four C) Six Answer: That's a common question with no simple answer.",
+    "id": "fmt_242",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: B, A newborn baby",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: Let me explain what I know about this topic.",
+    "id": "fmt_243",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do bees make? A) Butter B) Honey C) Cheese Answer: A, Butter",
+    "negative": "What do bees make? A) Butter B) Honey C) Cheese Answer: Many people would disagree on this one.",
+    "id": "fmt_244",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to write? A) A fork B) A pen C) A shoe Answer: B.",
+    "negative": "What do you use to write? A) A fork B) A pen C) A shoe Answer: Different experts would give different answers.",
+    "id": "fmt_245",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal says meow? A) A dog B) A cat C) A cow Answer: B, A cat",
+    "negative": "What animal says meow? A) A dog B) A cat C) A cow Answer: Let me explain what I know about this topic.",
+    "id": "fmt_246",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is taller? A) A giraffe B) A dog Answer: A)",
+    "negative": "Which is taller? A) A giraffe B) A dog Answer: Size is relative and depends on what you compare.",
+    "id": "fmt_247",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is brighter? A) The sun B) A candle Answer: A candle",
+    "negative": "Which is brighter? A) The sun B) A candle Answer: Well, it depends on your perspective.",
+    "id": "fmt_248",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which has more legs? A) A spider B) A fish Answer: A)",
+    "negative": "Which has more legs? A) A spider B) A fish Answer: This has been debated for a long time.",
+    "id": "fmt_249",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: A",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: This is actually quite subjective.",
+    "id": "fmt_250",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to write? A) A fork B) A pen C) A shoe Answer: C, A shoe",
+    "negative": "What do you use to write? A) A fork B) A pen C) A shoe Answer: From what I understand, it's complicated.",
+    "id": "fmt_251",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is alive? A) A tree B) A chair Answer: A)",
+    "negative": "Which is alive? A) A tree B) A chair Answer: This requires careful consideration.",
+    "id": "fmt_252",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: A turtle",
+    "negative": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: It's hard to give a definitive answer.",
+    "id": "fmt_253",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: A.",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: This topic has many interesting facets to explore.",
+    "id": "fmt_254",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the capital of France? A) London B) Paris C) Berlin Answer: C)",
+    "negative": "What is the capital of France? A) London B) Paris C) Berlin Answer: This is actually quite subjective.",
+    "id": "fmt_255",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: A fossil",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: Let me think about that for a moment.",
+    "id": "fmt_256",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: A",
+    "negative": "Which is round? A) A ball B) A cube Answer: There are many ways to look at this.",
+    "id": "fmt_257",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which has more legs? A) A spider B) A fish Answer: B, A fish",
+    "negative": "Which has more legs? A) A spider B) A fish Answer: Different experts would give different answers.",
+    "id": "fmt_258",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is alive? A) A tree B) A chair Answer: B",
+    "negative": "Which is alive? A) A tree B) A chair Answer: It's hard to give a definitive answer.",
+    "id": "fmt_259",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: Banana",
+    "negative": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: Many people would disagree on this one.",
+    "id": "fmt_260",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is round? A) A ball B) A cube Answer: The answer is B",
+    "negative": "Which is round? A) A ball B) A cube Answer: Well, it depends on your perspective.",
+    "id": "fmt_261",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: The answer is A",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: There are several factors to consider here.",
+    "id": "fmt_262",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: B",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: Well, it depends on your perspective.",
+    "id": "fmt_263",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is softer? A) A cloud B) A rock Answer: A cloud",
+    "negative": "Which is softer? A) A cloud B) A rock Answer: People have different opinions on this.",
+    "id": "fmt_264",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many wheels does a car have? A) Two B) Four C) Six Answer: A)",
+    "negative": "How many wheels does a car have? A) Two B) Four C) Six Answer: From what I understand, it's complicated.",
+    "id": "fmt_265",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: The answer is C",
+    "negative": "What is the opposite of hot? A) Warm B) Cold C) Fast Answer: People have different opinions on this.",
+    "id": "fmt_266",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is sweeter? A) Sugar B) A lemon Answer: A lemon",
+    "negative": "Which is sweeter? A) Sugar B) A lemon Answer: From what I understand, it's complicated.",
+    "id": "fmt_267",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is louder? A) A jet engine B) A whisper Answer: B.",
+    "negative": "Which is louder? A) A jet engine B) A whisper Answer: This is actually quite subjective.",
+    "id": "fmt_268",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is the sky? A) Green B) Blue C) Brown Answer: Blue",
+    "negative": "What color is the sky? A) Green B) Blue C) Brown Answer: This is something people often wonder about.",
+    "id": "fmt_269",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which has more legs? A) A spider B) A fish Answer: The answer is B",
+    "negative": "Which has more legs? A) A spider B) A fish Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_270",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: Gloves",
+    "negative": "What do you wear on your feet? A) A hat B) Gloves C) Shoes Answer: Many people would disagree on this one.",
+    "id": "fmt_271",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: C",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: It's hard to give a definitive answer.",
+    "id": "fmt_272",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is louder? A) A jet engine B) A whisper Answer: B.",
+    "negative": "Which is louder? A) A jet engine B) A whisper Answer: There are several factors to consider here.",
+    "id": "fmt_273",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: B, A newborn baby",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: That's an interesting question to think about.",
+    "id": "fmt_274",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: The answer is C",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: This is actually quite subjective.",
+    "id": "fmt_275",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is taller? A) A giraffe B) A dog Answer: A, A giraffe",
+    "negative": "Which is taller? A) A giraffe B) A dog Answer: The answer isn't as straightforward as it seems.",
+    "id": "fmt_276",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do bees make? A) Butter B) Honey C) Cheese Answer: Honey",
+    "negative": "What do bees make? A) Butter B) Honey C) Cheese Answer: It's hard to give a definitive answer.",
+    "id": "fmt_277",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you use to see? A) Ears B) Eyes C) Hands Answer: A)",
+    "negative": "What do you use to see? A) Ears B) Eyes C) Hands Answer: People have different opinions on this.",
+    "id": "fmt_278",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: A.",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: It's hard to give a definitive answer.",
+    "id": "fmt_279",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: B",
+    "negative": "What fruit is yellow? A) Apple B) Banana C) Grape Answer: That's an interesting question to think about.",
+    "id": "fmt_280",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: C)",
+    "negative": "What is the largest ocean? A) Atlantic B) Pacific C) Arctic Answer: Knowledge about this area continues to grow.",
+    "id": "fmt_281",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which has more legs? A) A spider B) A fish Answer: B, A fish",
+    "negative": "Which has more legs? A) A spider B) A fish Answer: That's an interesting question to think about.",
+    "id": "fmt_282",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: B",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: That's a common question with no simple answer.",
+    "id": "fmt_283",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is older? A) A fossil B) A newborn baby Answer: B",
+    "negative": "Which is older? A) A fossil B) A newborn baby Answer: This topic has many interesting facets to explore.",
+    "id": "fmt_284",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is wetter? A) The ocean B) A desert Answer: A desert",
+    "negative": "Which is wetter? A) The ocean B) A desert Answer: This requires careful consideration.",
+    "id": "fmt_285",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do cows produce? A) Eggs B) Milk C) Honey Answer: C.",
+    "negative": "What do cows produce? A) Eggs B) Milk C) Honey Answer: This is actually quite subjective.",
+    "id": "fmt_286",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: B)",
+    "negative": "What comes after Monday? A) Sunday B) Tuesday C) Friday Answer: It's hard to give a definitive answer.",
+    "id": "fmt_287",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: The answer is A",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: It really varies depending on the context.",
+    "id": "fmt_288",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: 3",
+    "negative": "What is 1 + 1? A) 1 B) 2 C) 3 Answer: Let me think about that for a moment.",
+    "id": "fmt_289",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is hotter? A) The sun B) An ice cube Answer: The answer is B",
+    "negative": "Which is hotter? A) The sun B) An ice cube Answer: There are several factors to consider here.",
+    "id": "fmt_290",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do cows produce? A) Eggs B) Milk C) Honey Answer: B",
+    "negative": "What do cows produce? A) Eggs B) Milk C) Honey Answer: This requires careful consideration.",
+    "id": "fmt_291",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What is frozen water called? A) Steam B) Ice C) Mud Answer: B, Ice",
+    "negative": "What is frozen water called? A) Steam B) Ice C) Mud Answer: Different experts would give different answers.",
+    "id": "fmt_292",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: B)",
+    "negative": "What do you drink in the morning? A) Soup B) Coffee C) Paint Answer: It's hard to give a definitive answer.",
+    "id": "fmt_293",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: B.",
+    "negative": "What planet do we live on? A) Mars B) Earth C) Jupiter Answer: There are several factors to consider here.",
+    "id": "fmt_294",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: The answer is C",
+    "negative": "What do you eat soup with? A) A knife B) A spoon C) A plate Answer: It's hard to give a definitive answer.",
+    "id": "fmt_295",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What color is grass? A) Blue B) Green C) Red Answer: Blue",
+    "negative": "What color is grass? A) Blue B) Green C) Red Answer: That's a common question with no simple answer.",
+    "id": "fmt_296",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "How many wheels does a car have? A) Two B) Four C) Six Answer: B)",
+    "negative": "How many wheels does a car have? A) Two B) Four C) Six Answer: This is actually quite subjective.",
+    "id": "fmt_297",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "Which is faster? A) A cheetah B) A turtle Answer: A turtle",
+    "negative": "Which is faster? A) A cheetah B) A turtle Answer: From what I understand, it's complicated.",
+    "id": "fmt_298",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: The answer is B",
+    "negative": "What animal lives in a shell? A) A dog B) A turtle C) A bird Answer: The animal kingdom contains millions of species.",
+    "id": "fmt_299",
+    "category": "format_recognition",
+    "paradigm": "format"
+  },
+  {
+    "positive": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: The answer is A",
+    "negative": "What animal has a trunk? A) A horse B) An elephant C) A frog Answer: There are many ways to look at this.",
+    "id": "fmt_300",
+    "category": "format_recognition",
+    "paradigm": "format"
+  }
+]
