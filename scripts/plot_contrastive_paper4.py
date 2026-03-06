@@ -136,13 +136,17 @@ def panel_c(ax):
             ax.plot(pt["params"], pt[beh], marker, color=color, markersize=13,
                     markeredgecolor="black", markeredgewidth=2, zorder=10)
 
-    # Annotations
-    ax.annotate("7M+contr\nρ=0.43/0.51", (7.3, 0.53), fontsize=7,
-               fontweight="bold", color="#333", ha="center",
-               bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="gray", alpha=0.8))
-    ax.annotate("12M+contr\nρ=0.38/0.52", (12.4, 0.54), fontsize=7,
-               fontweight="bold", color="#333", ha="center",
-               bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="gray", alpha=0.8))
+    # Annotations — offset to avoid overlapping data points and each other
+    ax.annotate("7M+contr\nρ=0.43/0.51", xy=(7.3, 0.53),
+               xytext=(-50, 22), textcoords="offset points",
+               fontsize=7, fontweight="bold", color="#333", ha="center",
+               bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="gray", alpha=0.8),
+               arrowprops=dict(arrowstyle="->", color="gray", lw=0.8))
+    ax.annotate("12M+contr\nρ=0.38/0.52", xy=(12.4, 0.54),
+               xytext=(50, 18), textcoords="offset points",
+               fontsize=7, fontweight="bold", color="#333", ha="center",
+               bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="gray", alpha=0.8),
+               arrowprops=dict(arrowstyle="->", color="gray", lw=0.8))
 
     ax.set_xlabel("Parameters (millions)")
     ax.set_ylabel("Spearman ρ")
