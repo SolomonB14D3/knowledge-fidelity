@@ -7,6 +7,7 @@
 [![Paper: Confidence Cartography](https://zenodo.org/badge/DOI/10.5281/zenodo.18703505.svg)](https://doi.org/10.5281/zenodo.18703505)
 [![Paper: Contrastive Pretraining](https://zenodo.org/badge/DOI/10.5281/zenodo.18870555.svg)](https://doi.org/10.5281/zenodo.18870555)
 [![Paper: Expression Bottleneck](https://zenodo.org/badge/DOI/10.5281/zenodo.18895248.svg)](https://doi.org/10.5281/zenodo.18895248)
+[![Paper: Snap-On](https://zenodo.org/badge/DOI/10.5281/zenodo.18902617.svg)](https://doi.org/10.5281/zenodo.18902617)
 [![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
 [![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
@@ -32,6 +33,7 @@ rho-eval measures 8 behavioral dimensions — factual accuracy, toxicity, bias, 
 | **`rho-surgery`** | End-to-end behavioral repair: diagnose, compress, LoRA SFT, verify |
 | **`rho-benchmark`** | Full benchmarking (8-dim audit + TruthfulQA MC2) with comparison |
 | **`rho-unlock`** | Expression gap diagnostic + contrastive decoding to rescue hidden capability |
+| **`snap-on`** | Train tiny logit-space adapters on frozen base models — zero knowledge damage |
 
 ## Install
 
@@ -87,6 +89,13 @@ rho-surgery Qwen/Qwen2.5-7B-Instruct -o ./repaired-7b/
 
 # Benchmark before vs after (8-dim audit + TruthfulQA MC2)
 rho-benchmark ./repaired-7b/model/ --baseline Qwen/Qwen2.5-7B-Instruct
+
+# Diagnose expression gaps (base models have knowledge they can't express)
+rho-unlock diagnose Qwen/Qwen2.5-7B --behaviors mmlu,arc,truthfulqa
+
+# Train a snap-on adapter (zero knowledge damage)
+snap-on train --model Qwen/Qwen2.5-7B --mode logit --save_dir ./my_adapter
+snap-on eval --model Qwen/Qwen2.5-7B --adapter ./my_adapter --mmlu_n 500
 ```
 
 ## Why This Exists
@@ -189,6 +198,8 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 - **Geometry precedes emergence.** Effective dimensionality expansion in weight subspaces predicts behavioral phase transitions by hundreds of training steps — the geometry reorganizes before the behavior appears.
 - **Surgery concentrates, not rotates.** Grassmann angle analysis of rho-guided SFT shows behavioral subspaces sharpen (effective dimension compresses) rather than rotating to new orientations.
 - **Compression preserves behavioral structure when protecting the right singular values.** SVD at 70% rank on Q/K/O projections retains behavioral fidelity; V and MLP layers are fragile.
+- **Expression gaps are universal in base models and vanish with instruction tuning, not scale.** Every base model from 0.5B to 7B has significant expression gaps (knowledge present at the logit level but absent in free generation). Instruction-tuned models at 1.5B+ have zero gap. The bottleneck is instruction tuning, not model size.
+- **Logit-space adapters produce instruction-following with zero knowledge damage.** A 29M-parameter adapter operating on the frozen output logits achieves 0.0% MMLU degradation. Hidden-space adapters consistently destroy 5.0-8.5% of factual accuracy.
 
 Full experimental details, tables, and statistical analysis are in the papers below.
 
@@ -199,7 +210,9 @@ Full experimental details, tables, and statistical analysis are in the papers be
 3. **Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence** — [DOI: 10.5281/zenodo.18865198](https://doi.org/10.5281/zenodo.18865198)
 4. **Confidence Cartography: Teacher-Forced Probability as a False-Belief Sensor in Language Models** — [DOI: 10.5281/zenodo.18703505](https://doi.org/10.5281/zenodo.18703505) | [Repo](https://github.com/SolomonB14D3/confidence-cartography)
 5. **CF90: Knowledge-Preserving SVD Compression for Large Language Models** — [DOI: 10.5281/zenodo.18718545](https://doi.org/10.5281/zenodo.18718545) | [Repo](https://github.com/SolomonB14D3/intelligent-svd)
-6. **Small Models Can Learn Complex Behaviors — They Just Need the Right Examples** — [DOI: 10.5281/zenodo.18870555](https://doi.org/10.5281/zenodo.18870555)
+6. **Contrastive Pretraining Teaches Format Generation, Not Behavioral Knowledge** — [DOI: 10.5281/zenodo.18870555](https://doi.org/10.5281/zenodo.18870555)
+7. **Small Language Models Already Know More Than They Can Say** — [DOI: 10.5281/zenodo.18895248](https://doi.org/10.5281/zenodo.18895248)
+8. **Snap-On Communication Modules: Instruction-Following Adapters That Preserve Base Model Knowledge** — [DOI: 10.5281/zenodo.18902617](https://doi.org/10.5281/zenodo.18902617)
 
 ## Citation
 
@@ -251,11 +264,28 @@ Full experimental details, tables, and statistical analysis are in the papers be
 
 @article{sanchez2026contrastive,
   author = {Sanchez, Bryan},
-  title = {Small Models Can Learn Complex Behaviors ---
-           They Just Need the Right Examples},
+  title = {Contrastive Pretraining Teaches Format Generation,
+           Not Behavioral Knowledge},
   year = {2026},
   doi = {10.5281/zenodo.18870555},
   url = {https://doi.org/10.5281/zenodo.18870555}
+}
+
+@article{sanchez2026expression,
+  author = {Sanchez, Bryan},
+  title = {Small Language Models Already Know More Than They Can Say},
+  year = {2026},
+  doi = {10.5281/zenodo.18895248},
+  url = {https://doi.org/10.5281/zenodo.18895248}
+}
+
+@article{sanchez2026snapon,
+  author = {Sanchez, Bryan},
+  title = {Snap-On Communication Modules: Instruction-Following Adapters
+           That Preserve Base Model Knowledge},
+  year = {2026},
+  doi = {10.5281/zenodo.18902617},
+  url = {https://doi.org/10.5281/zenodo.18902617}
 }
 
 @software{sanchez2026rhoeval,
