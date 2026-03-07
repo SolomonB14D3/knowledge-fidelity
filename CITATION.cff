@@ -54,3 +54,9 @@ references:
         given-names: Bryan
     year: 2026
     doi: "10.5281/zenodo.18895248"
+  - type: article
+    title: "Snap-On Communication Modules: Instruction-Following Adapters That Preserve Base Model Knowledge"
+    authors:
+      - family-names: Sanchez
+        given-names: Bryan
+    year: 2026
