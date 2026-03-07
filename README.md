@@ -1,4 +1,4 @@
-# rho-eval v2.4.0: Behavioral Auditing for LLMs
+# rho-eval v2.5.0: Behavioral Auditing for LLMs
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854943.svg)](https://doi.org/10.5281/zenodo.18854943)
