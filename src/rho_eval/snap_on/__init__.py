@@ -29,6 +29,7 @@ from .module import (
 
 from .training import (
     ALPACA_TEMPLATE,
+    get_lm_head,
     train,
     load_alpaca_data,
     evaluate_loss,

@@ -17,6 +17,21 @@ from mlx.utils import tree_flatten
 from .module import SnapOnConfig, create_adapter
 
 
+def get_lm_head(base_model):
+    """Get the lm_head projection, handling tied embeddings.
+
+    Some models (Qwen2.5-7B) have a separate lm_head Linear layer.
+    Others (Qwen2.5-1.5B, tie_word_embeddings=True) reuse embed_tokens
+    transposed as the output projection. This helper returns a callable
+    that maps hidden states → logits in either case.
+    """
+    if hasattr(base_model, "lm_head"):
+        return base_model.lm_head
+    # Tied embeddings: logits = h @ embed_tokens.weight.T
+    embed = base_model.model.embed_tokens
+    return lambda h: h @ embed.weight.T
+
+
 # ---------------------------------------------------------------------------
 # Data
 # ---------------------------------------------------------------------------
@@ -184,7 +199,7 @@ def train(
         lr_schedule = optim.cosine_decay(lr, max(total_steps, 1))
     optimizer = optim.AdamW(learning_rate=lr_schedule, weight_decay=0.01)
 
-    lm_head = base_model.lm_head
+    lm_head = get_lm_head(base_model)
     logit_mode = (mode == "logit")
 
     def loss_fn(adapter, h, targets, mask):
@@ -329,7 +344,7 @@ def train(
 
 def evaluate_loss(adapter, base_model, examples, loss_fn, mode="hidden"):
     """Compute average loss on examples."""
-    lm_head = base_model.lm_head
+    lm_head = get_lm_head(base_model)
     logit_mode = (mode == "logit")
     total_loss = 0.0
     n = 0
