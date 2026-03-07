@@ -10,7 +10,7 @@ import time
 import mlx.core as mx
 import mlx.nn as nn
 
-from .training import ALPACA_TEMPLATE
+from .training import ALPACA_TEMPLATE, get_lm_head
 
 
 # ---------------------------------------------------------------------------
@@ -37,18 +37,19 @@ def generate_with_adapter(base_model, adapter, tokenizer, prompt: str,
     tokens = tokenizer.encode(prompt)
     generated = []
     logit_mode = (mode == "logit")
+    lm_head = get_lm_head(base_model)
 
     for _ in range(max_tokens):
         input_ids = mx.array(tokens)[None, :]
         h = base_model.model(input_ids)
         mx.eval(h)
         if logit_mode:
-            base_logits = base_model.lm_head(h)
+            base_logits = lm_head(h)
             mx.eval(base_logits)
             logits = base_logits + adapter(base_logits)
         else:
             adjustment = adapter(h)
-            logits = base_model.lm_head(h + adjustment)
+            logits = lm_head(h + adjustment)
         mx.eval(logits)
 
         last_logits = logits[0, -1, :]
@@ -143,6 +144,7 @@ def evaluate_mmlu(base_model, adapter, tokenizer, n_questions: int = 200,
 
     correct_base = 0
     correct_adapter = 0
+    lm_head = get_lm_head(base_model)
 
     for i, q in enumerate(questions):
         prompt = _format_mmlu_prompt(tokenizer, q)
@@ -153,7 +155,7 @@ def evaluate_mmlu(base_model, adapter, tokenizer, n_questions: int = 200,
         mx.eval(h)
 
         # Base model logits
-        base_logits = base_model.lm_head(h)
+        base_logits = lm_head(h)
         mx.eval(base_logits)
         base_last = base_logits[0, -1, :]
 
@@ -162,7 +164,7 @@ def evaluate_mmlu(base_model, adapter, tokenizer, n_questions: int = 200,
             adapter_logits = base_logits + adapter(base_logits)
         else:
             adjustment = adapter(h)
-            adapter_logits = base_model.lm_head(h + adjustment)
+            adapter_logits = lm_head(h + adjustment)
         mx.eval(adapter_logits)
         adapter_last = adapter_logits[0, -1, :]
 

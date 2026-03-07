@@ -45,7 +45,13 @@ def _load_base_model(model_id):
     base_model.freeze()
 
     d_model = base_model.model.layers[0].self_attn.q_proj.weight.shape[0]
-    vocab_size = base_model.lm_head.weight.shape[0]
+    # vocab_size: try lm_head first, fall back to model args or embed_tokens
+    if hasattr(base_model, "lm_head"):
+        vocab_size = base_model.lm_head.weight.shape[0]
+    elif hasattr(base_model, "args") and hasattr(base_model.args, "vocab_size"):
+        vocab_size = base_model.args.vocab_size
+    else:
+        vocab_size = base_model.model.embed_tokens.weight.shape[0]
     print(f"  d_model = {d_model}, vocab_size = {vocab_size}")
 
     return base_model, tokenizer, d_model, vocab_size
