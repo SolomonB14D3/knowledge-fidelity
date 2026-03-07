@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.0] - 2026-03-06
+
+### Added
+
+- **`rho-unlock` CLI tool** — two-axis behavioral diagnostic + contrastive decoding unlock
+  - `rho-unlock diagnose <model>` — measures behavioral discrimination (ρ) and expression gap per behavior/benchmark, classifies into four quadrants (HEALTHY/UNLOCK/RETRAIN/BOTH_NEEDED)
+  - `rho-unlock unlock <model>` — applies contrastive decoding to rescue hidden capability in UNLOCK behaviors
+  - Supports 4 benchmarks (MMLU, TruthfulQA, ARC-Challenge, HellaSwag) alongside rho-eval behavioral dimensions
+  - Auto-detects amateur model for contrastive decoding
+- **Benchmark-aware diagnosis** — `MetricType` enum distinguishes behavioral ρ (threshold 0.3) from logit accuracy (threshold = chance + margin)
+  - `compute_knows_threshold()` for type-appropriate thresholds
+  - `--above-chance-margin` CLI flag (default 0.15)
+- Expression gap measurement (`expression_gap.py`) — logit accuracy vs generation accuracy with parse rate tracking
+- Contrastive decoding module (`contrastive.py`) — logit-level and generation-level CD with amateur model auto-detection
+
 ## [2.3.1] - 2026-03-06
 
 ### Added

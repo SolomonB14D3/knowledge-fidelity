@@ -1,4 +1,4 @@
-# rho-eval v2.3.1: Behavioral Auditing for LLMs
+# rho-eval v2.4.0: Behavioral Auditing for LLMs
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854943.svg)](https://doi.org/10.5281/zenodo.18854943)
@@ -31,6 +31,7 @@ rho-eval measures 8 behavioral dimensions — factual accuracy, toxicity, bias, 
 | **`rho-bench`** | Fidelity-Bench 2.0: adversarial pressure testing |
 | **`rho-surgery`** | End-to-end behavioral repair: diagnose, compress, LoRA SFT, verify |
 | **`rho-benchmark`** | Full benchmarking (8-dim audit + TruthfulQA MC2) with comparison |
+| **`rho-unlock`** | Expression gap diagnostic + contrastive decoding to rescue hidden capability |
 
 ## Install
 
