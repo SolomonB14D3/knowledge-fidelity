@@ -65,7 +65,8 @@ def _run_train(args):
 
     from rho_eval.snap_on import (
         SnapOnConfig, create_adapter,
-        load_alpaca_data, train, save_adapter,
+        load_alpaca_data, load_mixed_data,
+        train, train_v2, save_adapter,
         ALPACA_TEMPLATE,
         generate_with_adapter, generate_base_only,
         evaluate_mmlu,
@@ -84,13 +85,26 @@ def _run_train(args):
         lr = 1e-5 if args.mode == "logit" else 1e-4
         print(f"  (auto lr={lr} for {args.mode} mode)")
 
+    # Context dim for v2
+    context_dim = getattr(args, "context_dim", 0) or 0
+    is_v2 = context_dim > 0
+
     # Load data
-    train_examples, val_examples = load_alpaca_data(
-        tokenizer,
-        n_train=args.n_train,
-        n_val=args.n_val,
-        max_seq_len=args.max_seq_len,
-    )
+    if getattr(args, "mixed_data", False):
+        print("\nUsing mixed data pipeline (v2)...")
+        train_examples, val_examples = load_mixed_data(
+            tokenizer,
+            n_train=args.n_train,
+            n_val=args.n_val,
+            max_seq_len=args.max_seq_len,
+        )
+    else:
+        train_examples, val_examples = load_alpaca_data(
+            tokenizer,
+            n_train=args.n_train,
+            n_val=args.n_val,
+            max_seq_len=args.max_seq_len,
+        )
 
     # Create adapter
     config = SnapOnConfig(
@@ -100,28 +114,58 @@ def _run_train(args):
         n_heads=args.n_heads,
         mode=args.mode,
         vocab_size=vocab_size,
+        context_dim=context_dim,
     )
     adapter = create_adapter(config)
 
     n_params = sum(p.size for _, p in tree_flatten(adapter.parameters()))
-    print(f"\nAdapter: mode={args.mode}")
+    variant = "v2 (context-conditioned)" if is_v2 else "v1"
+    print(f"\nAdapter: mode={args.mode}, variant={variant}")
     print(f"  Config: d_inner={config.d_inner}, n_layers={config.n_layers}")
+    if is_v2:
+        print(f"  Context dim: {context_dim}")
     print(f"  Total params:     {n_params:>12,}")
     print(f"  Size:             {n_params * 4 / 1e6:.1f} MB (float32)")
 
+    # Load instruct model for KL distillation if requested
+    instruct_model = None
+    kl_alpha = getattr(args, "kl_alpha", 0.0) or 0.0
+    if kl_alpha > 0 and getattr(args, "instruct_model", None):
+        import mlx_lm
+        print(f"\nLoading instruct model for KL distillation: {args.instruct_model}")
+        instruct_model, _ = mlx_lm.load(args.instruct_model)
+        instruct_model.freeze()
+        print(f"  KL alpha: {kl_alpha}")
+
     # Train
-    best_val = train(
-        base_model, tokenizer, adapter,
-        train_examples, val_examples,
-        epochs=args.epochs,
-        lr=lr,
-        warmup_steps=args.warmup_steps,
-        log_every=args.log_every,
-        eval_every=args.eval_every,
-        save_dir=args.save_dir,
-        grad_accum=args.grad_accum,
-        mode=args.mode,
-    )
+    if is_v2 or instruct_model is not None:
+        best_val = train_v2(
+            base_model, tokenizer, adapter,
+            train_examples, val_examples,
+            instruct_model=instruct_model,
+            kl_alpha=kl_alpha,
+            epochs=args.epochs,
+            lr=lr,
+            warmup_steps=args.warmup_steps,
+            log_every=args.log_every,
+            eval_every=args.eval_every,
+            save_dir=args.save_dir,
+            grad_accum=args.grad_accum,
+            mode=args.mode,
+        )
+    else:
+        best_val = train(
+            base_model, tokenizer, adapter,
+            train_examples, val_examples,
+            epochs=args.epochs,
+            lr=lr,
+            warmup_steps=args.warmup_steps,
+            log_every=args.log_every,
+            eval_every=args.eval_every,
+            save_dir=args.save_dir,
+            grad_accum=args.grad_accum,
+            mode=args.mode,
+        )
 
     # Sample generations
     test_prompts = [
@@ -348,6 +392,15 @@ Examples:
     # Output
     train_p.add_argument("--save_dir", required=True,
                          help="Directory for checkpoints and results")
+    # v2 options
+    train_p.add_argument("--context_dim", type=int, default=0,
+                         help="Context dimension for v2 adapter (0 = v1, >0 = v2 context-conditioned)")
+    train_p.add_argument("--mixed_data", action="store_true",
+                         help="Use mixed data pipeline (OpenHermes + UltraChat + constraints + safety + concise)")
+    train_p.add_argument("--instruct_model", default=None,
+                         help="Instruct model for KL distillation (e.g. Qwen/Qwen2.5-1.5B-Instruct)")
+    train_p.add_argument("--kl_alpha", type=float, default=0.0,
+                         help="KL distillation weight (0 = pure CE, requires --instruct_model)")
     # Eval
     train_p.add_argument("--skip_mmlu", action="store_true",
                          help="Skip MMLU evaluation after training")

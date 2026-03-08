@@ -6,7 +6,7 @@ authors:
     given-names: Bryan
 type: software
 license: MIT
-version: 2.5.1
+version: 2.6.0
 date-released: 2026-03-07
 repository-code: "https://github.com/SolomonB14D3/knowledge-fidelity"
 keywords:
@@ -35,11 +35,19 @@ references:
     year: 2026
     doi: "10.5281/zenodo.18854943"
   - type: article
-    title: "Behavioral Entanglement in Transformers: SAE-Based Disentanglement and the Architecture-Contingent Nature of Sycophancy"
+    title: "Grassmann Geometry of Behavioral Entanglement in Transformers"
     authors:
       - family-names: Sanchez
         given-names: Bryan
     year: 2026
+    doi: "10.5281/zenodo.18865861"
+  - type: article
+    title: "Behavioral Phase Transitions in Small Language Models: Geometric Scaffolding Precedes Behavioral Emergence"
+    authors:
+      - family-names: Sanchez
+        given-names: Bryan
+    year: 2026
+    doi: "10.5281/zenodo.18865198"
   - type: article
     title: "Contrastive Pretraining Teaches Format Generation, Not Behavioral Knowledge"
     authors:

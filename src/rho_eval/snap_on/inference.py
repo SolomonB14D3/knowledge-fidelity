@@ -46,7 +46,7 @@ def generate_with_adapter(base_model, adapter, tokenizer, prompt: str,
         if logit_mode:
             base_logits = lm_head(h)
             mx.eval(base_logits)
-            logits = base_logits + adapter(base_logits)
+            logits = base_logits + adapter(base_logits, h=h)
         else:
             adjustment = adapter(h)
             logits = lm_head(h + adjustment)
@@ -161,7 +161,7 @@ def evaluate_mmlu(base_model, adapter, tokenizer, n_questions: int = 200,
 
         # Adapter logits
         if logit_mode:
-            adapter_logits = base_logits + adapter(base_logits)
+            adapter_logits = base_logits + adapter(base_logits, h=h)
         else:
             adjustment = adapter(h)
             adapter_logits = lm_head(h + adjustment)

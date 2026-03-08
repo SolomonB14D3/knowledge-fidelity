@@ -35,6 +35,7 @@ class SnapOnConfig:
     n_heads: int = 8           # Attention heads (transformer variant)
     mode: str = "hidden"       # "hidden" or "logit"
     vocab_size: int = 0        # Required for logit mode
+    context_dim: int = 0       # 0 = v1 (no context), >0 = v2 (context-conditioned)
 
     def save(self, path: str):
         with open(path, "w") as f:
@@ -105,9 +106,82 @@ class SnapOnLogitMLP(nn.Module):
         # Zero-init output -> no adjustment at start
         self.down_proj.weight = mx.zeros((v, di))
 
-    def __call__(self, logits: mx.array) -> mx.array:
-        """Return logit adjustment. Shape: same as logits."""
+    def __call__(self, logits: mx.array, h: mx.array = None) -> mx.array:
+        """Return logit adjustment. Shape: same as logits.
+
+        Args:
+            logits: (batch, seq, vocab_size) base model logits.
+            h: Ignored (accepted for API compatibility with v2).
+        """
         return self.down_proj(nn.silu(self.gate_proj(logits)) * self.up_proj(logits))
+
+
+# ---------------------------------------------------------------------------
+# Context-conditioned Logit-space Adapter v2  (~30M params + ~1M context)
+# ---------------------------------------------------------------------------
+
+class SnapOnLogitMLPv2(nn.Module):
+    """Context-conditioned logit-space adapter (v2).
+
+    Extends SnapOnLogitMLP with hidden-state context conditioning.
+    The adapter receives both base logits AND hidden states, allowing
+    it to condition its logit adjustments on the model's internal
+    representation — not just the output distribution.
+
+    Architecture:
+        context = context_proj(h)               # d_model -> context_dim
+        combined = concat(logits, context)       # vocab + context_dim
+        logit_adj = SwiGLU(combined)             # -> vocab_size
+        final = base_logits + logit_adj
+
+    Motivation: v1 adapter sees only the logit distribution, which lacks
+    semantic information about *what* the model is processing. Context
+    conditioning lets the adapter learn different adjustment strategies
+    for different input types (safety queries, format-constrained requests,
+    factual questions, etc.) without sacrificing the zero-knowledge-damage
+    guarantee of logit-space operation.
+
+    Still zero-initialized output for stable identity-start training.
+    """
+
+    def __init__(self, config: SnapOnConfig):
+        super().__init__()
+        self.config = config
+        v, di, cd = config.vocab_size, config.d_inner, config.context_dim
+        assert v > 0, "vocab_size must be set for logit mode"
+        assert cd > 0, "context_dim must be > 0 for v2 adapter"
+
+        # Context projection: d_model -> context_dim
+        self.context_proj = nn.Linear(config.d_model, cd, bias=False)
+
+        # SwiGLU operating on combined (logits + context)
+        in_dim = v + cd
+        self.gate_proj = nn.Linear(in_dim, di, bias=False)
+        self.up_proj   = nn.Linear(in_dim, di, bias=False)
+        self.down_proj = nn.Linear(di, v, bias=False)
+        # Zero-init output -> no adjustment at start
+        self.down_proj.weight = mx.zeros((v, di))
+
+    def __call__(self, logits: mx.array, h: mx.array = None) -> mx.array:
+        """Return logit adjustment conditioned on hidden state context.
+
+        Args:
+            logits: (batch, seq, vocab_size) base model logits.
+            h: (batch, seq, d_model) hidden states for context conditioning.
+               If None, uses zero context (degrades to v1 behavior).
+
+        Returns:
+            Logit adjustment (batch, seq, vocab_size).
+        """
+        if h is not None:
+            context = self.context_proj(h)
+            combined = mx.concatenate([logits, context], axis=-1)
+        else:
+            # Fallback: zero context
+            pad = mx.zeros((*logits.shape[:-1], self.config.context_dim))
+            combined = mx.concatenate([logits, pad], axis=-1)
+
+        return self.down_proj(nn.silu(self.gate_proj(combined)) * self.up_proj(combined))
 
 
 # ---------------------------------------------------------------------------
@@ -178,6 +252,8 @@ class SnapOnTransformer(nn.Module):
 def create_adapter(config: SnapOnConfig) -> nn.Module:
     """Create an adapter from config."""
     if config.mode == "logit":
+        if config.context_dim > 0:
+            return SnapOnLogitMLPv2(config)
         return SnapOnLogitMLP(config)
     if config.n_layers == 0:
         return SnapOnMLP(config)

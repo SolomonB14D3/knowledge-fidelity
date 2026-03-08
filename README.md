@@ -1,4 +1,4 @@
-# rho-eval v2.5.1: Behavioral Auditing for LLMs
+# rho-eval v2.6.0: Behavioral Auditing for LLMs
 
 [![PyPI](https://img.shields.io/pypi/v/rho-eval)](https://pypi.org/project/rho-eval/)
 [![Paper: SFT](https://zenodo.org/badge/DOI/10.5281/zenodo.18854943.svg)](https://doi.org/10.5281/zenodo.18854943)
@@ -9,7 +9,7 @@
 [![Paper: Expression Bottleneck](https://zenodo.org/badge/DOI/10.5281/zenodo.18895248.svg)](https://doi.org/10.5281/zenodo.18895248)
 [![Paper: Snap-On](https://zenodo.org/badge/DOI/10.5281/zenodo.18902617.svg)](https://doi.org/10.5281/zenodo.18902617)
 [![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
-[![Tests](https://img.shields.io/badge/tests-180%20passed-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/tests-213%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MLX](https://img.shields.io/badge/Apple%20Silicon-MLX%20Accelerated-black?logo=apple)](https://github.com/ml-explore/mlx)
