@@ -49,6 +49,11 @@ AMATEUR_MAP = {
     "google/gemma-2-9b-it": "google/gemma-2-2b-it",
     "google/gemma-2-27b": "google/gemma-2-2b",
     "google/gemma-2-27b-it": "google/gemma-2-2b-it",
+    # SmolLM2 family
+    "HuggingFaceTB/SmolLM2-360M": "HuggingFaceTB/SmolLM2-135M",
+    "HuggingFaceTB/SmolLM2-360M-Instruct": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "HuggingFaceTB/SmolLM2-1.7B": "HuggingFaceTB/SmolLM2-135M",
+    "HuggingFaceTB/SmolLM2-1.7B-Instruct": "HuggingFaceTB/SmolLM2-135M-Instruct",
 }
 
 

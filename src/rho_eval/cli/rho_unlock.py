@@ -324,6 +324,33 @@ def _run_unlock(args):
         device=resolved_device,
     )
 
+    # ── Check for meaningful gaps before applying CD ─────────────────
+    max_gap = 0.0
+    small_gap_behaviors = []
+    for beh_name in behavior_names:
+        if beh_name in baseline_gaps and baseline_gaps[beh_name].supports_gap:
+            gap = baseline_gaps[beh_name].gap
+            max_gap = max(max_gap, gap)
+            if gap < 0.02:
+                small_gap_behaviors.append((beh_name, gap))
+
+    if max_gap < 0.02:
+        print(f"\n\033[33m⚠  WARNING: No significant expression gaps detected.\033[0m")
+        print(f"  All gaps are below 2%. Contrastive decoding is unlikely to help")
+        print(f"  and may hurt accuracy (observed -4.6% on Qwen 7B with no gap).")
+        for beh_name, gap in small_gap_behaviors:
+            print(f"    {beh_name}: gap = {gap:+.1%}")
+        if not getattr(args, 'force', False):
+            print(f"\n  To proceed anyway, use --force")
+            print(f"  Tip: Run 'rho-unlock diagnose {args.model}' to check model status.\n")
+            sys.exit(0)
+        print(f"  --force specified, proceeding anyway...\n")
+    elif small_gap_behaviors:
+        print(f"\n\033[33m⚠  Note: Some behaviors have small gaps (<2%):\033[0m")
+        for beh_name, gap in small_gap_behaviors:
+            print(f"    {beh_name}: gap = {gap:+.1%} — CD may not help here")
+        print()
+
     # ── Apply contrastive decoding ────────────────────────────────────
     print(f"\n\033[1m━━━ Contrastive Decoding (α={alpha}) ━━━\033[0m\n", flush=True)
 
@@ -539,6 +566,8 @@ Examples:
     unlock_parser.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
     unlock_parser.add_argument("--device", default=None, help="Torch device (auto-detected if omitted)")
     unlock_parser.add_argument("--output", "-o", help="Save JSON results to this path")
+    unlock_parser.add_argument("--force", action="store_true",
+                               help="Run CD even if no significant expression gap detected")
     unlock_parser.set_defaults(func=_run_unlock)
 
     # Parse
