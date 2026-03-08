@@ -199,7 +199,7 @@ report = audit(model=model, tokenizer=tokenizer, behaviors="all")
 - **Surgery concentrates, not rotates.** Grassmann angle analysis of rho-guided SFT shows behavioral subspaces sharpen (effective dimension compresses) rather than rotating to new orientations.
 - **Compression preserves behavioral structure when protecting the right singular values.** SVD at 70% rank on Q/K/O projections retains behavioral fidelity; V and MLP layers are fragile.
 - **Expression gaps are universal in base models and vanish with instruction tuning, not scale.** Every base model from 0.5B to 7B has significant expression gaps (knowledge present at the logit level but absent in free generation). Instruction-tuned models at 1.5B+ have zero gap. The bottleneck is instruction tuning, not model size.
-- **Logit-space adapters produce instruction-following with zero knowledge damage.** A 29M-parameter adapter operating on the frozen output logits achieves 0.0% MMLU degradation. Hidden-space adapters consistently destroy 5.0-8.5% of factual accuracy.
+- **Logit-space adapters produce instruction-following with zero knowledge damage.** A 29M-parameter adapter operating on the frozen output logits achieves 0.0% MMLU degradation. Hidden-space adapters consistently destroy 5.0-8.5% of factual accuracy. A single adapter transfers across model scales (1.5B to 3B, 0.0% delta) and across model families (Qwen to Llama, -0.2% delta) without retraining.
 
 Full experimental details, tables, and statistical analysis are in the papers below.
 
