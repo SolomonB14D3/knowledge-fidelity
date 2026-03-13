@@ -130,8 +130,8 @@ Once the loop works on toys:
 ## Success Criteria
 
 - **Phase 0:** Paper + repo live, published on Zenodo. ✓ Done
-- **Phase 1:** Oracle wrapper closes the loop on a known fact.
-- **Phase 2:** First toy discovery (positive margin + generalizes to held-out set).
+- **Phase 1:** Oracle wrapper closes the loop on a known fact. ✓ Done (pilot confirmed, oracle working)
+- **Phase 2:** First toy discovery (positive margin + generalizes to held-out set). ✓ First candidate: choreographic distance sum (dual-filter pass, see `results/discovery_note_01_choreographic_distance_sum.md`)
 - **Phase 3:** First real unsolved-problem candidate that survives formal checks.
 - **Phase 4:** Public repo + first co-discovery with another researcher.
 
@@ -162,4 +162,4 @@ Once the loop works on toys:
 
 The hard parts are done: mechanism works, oracle is perfect, adapter repairs biases. The rest is wiring and running.
 
-**Next action:** `oracle_wrapper.py` pilot (Phase 1) + stem-truth-oracle repo spinout (Phase 0).
+**Next action:** Phase 2 batch 2 (speed sum, geometric mean, kinetic energy sum on figure-8) + stem-truth-oracle repo spinout (Phase 0).

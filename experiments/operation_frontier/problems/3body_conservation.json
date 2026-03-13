@@ -1,0 +1,23 @@
+{
+  "name": "3body_conservation_law_search",
+  "description": "Search for approximate conservation laws in the circular restricted 3-body problem (CRTBP) beyond the known Jacobi constant, and in near-resonant hierarchical triples. Bruns (1887) and Poincaré (1889) prove no additional *exact* algebraic or analytic integrals exist in the general 3-body problem. The open space is: (1) approximate integrals valid on secular timescales, (2) resonant action-like quantities near mean-motion resonances, (3) conserved structures in specific periodic orbit families (figure-8, choreographies). A candidate passes if it survives both the oracle (positive margin vs. plausible wrong forms) AND the conservation checker (numerical d/dt ≈ 0 along integrated trajectories). Oracle-fail + checker-pass is the most interesting outcome: it means we found something the training data didn't know.",
+  "model": "Qwen/Qwen3-4B-Base",
+  "oracle": "stem_margin",
+  "verification_set": "3body_conservation_facts.json",
+  "pass_threshold": 0.75,
+  "formal_checker": "conservation_checker.py",
+  "monitors": [
+    "margin_sign",
+    "conservation_numerical"
+  ],
+  "adapter": null,
+  "budget": "100 candidate hypotheses",
+  "destructive_mode": true,
+  "discovery_criteria": {
+    "oracle_pass": "positive margin on >= 75% of verification facts",
+    "formal_pass": "d(candidate)/dt < 1e-4 * |candidate| along >= 3 independent trajectories",
+    "novelty": "not a function of the 10 classical integrals alone",
+    "interesting_case": "formal_pass=true AND oracle_fail=true (model hasn't seen it)"
+  },
+  "context": "Bruns 1887: no additional algebraic integrals. Poincaré 1889: no additional analytic integrals in general. Open: approximate integrals near resonances, CRTBP configurations, choreographic orbits. Known CRTBP integral: Jacobi constant C_J = n^2(x^2+y^2) + 2(mu1/r1 + mu2/r2) - v^2. Hierarchical triple secular integrals: averaged orbital elements (a, e, i) approximately conserved on timescales >> orbital period."
+}

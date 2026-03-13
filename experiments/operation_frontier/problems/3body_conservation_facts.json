@@ -1,0 +1,125 @@
+{
+  "description": "Verification set for the 3-body conservation law search. All facts use compact symbolic notation matching training-data style. Verbose prose fails the oracle even for correct facts (format sensitivity confirmed in pilot). All truths and distractors are math expressions.",
+  "facts": [
+    {
+      "context": "total energy of 3-body gravitational system",
+      "truth": "E = (1/2)(m1*v1^2 + m2*v2^2 + m3*v3^2) - G*(m1*m2/r12 + m1*m3/r13 + m2*m3/r23)",
+      "distractors": [
+        "E = m1*v1^2 + m2*v2^2 + m3*v3^2 - G*(m1*m2/r12 + m1*m3/r13 + m2*m3/r23)",
+        "E = (1/2)(m1*v1^2 + m2*v2^2 + m3*v3^2) + G*(m1*m2/r12 + m1*m3/r13 + m2*m3/r23)",
+        "E = (1/2)(m1*v1 + m2*v2 + m3*v3) - G*(m1*m2/r12 + m1*m3/r13 + m2*m3/r23)",
+        "E = (1/2)*(m1+m2+m3)*v^2 - G*M^2/R"
+      ],
+      "domain": "general_3body",
+      "bias_pattern": "linearity + positivity + missing_constant"
+    },
+    {
+      "context": "total linear momentum of 3-body system",
+      "truth": "P = m1*v1 + m2*v2 + m3*v3",
+      "distractors": [
+        "P = m1*v1",
+        "P = (m1+m2+m3)*v",
+        "P = m1*v1^2 + m2*v2^2 + m3*v3^2",
+        "P = m1/v1 + m2/v2 + m3/v3"
+      ],
+      "domain": "general_3body",
+      "bias_pattern": "truncation + linearity"
+    },
+    {
+      "context": "total angular momentum of 3-body system",
+      "truth": "L = m1*(r1 x v1) + m2*(r2 x v2) + m3*(r3 x v3)",
+      "distractors": [
+        "L = r1 x v1 + r2 x v2 + r3 x v3",
+        "L = m1*r1*v1 + m2*r2*v2 + m3*r3*v3",
+        "L = m*(r1 x v1)",
+        "L = (m1+m2+m3)*(R x V)"
+      ],
+      "domain": "general_3body",
+      "bias_pattern": "missing_constant + truncation"
+    },
+    {
+      "context": "Jacobi constant in the circular restricted 3-body problem",
+      "truth": "C_J = n^2*(x^2+y^2) + 2*(mu1/r1 + mu2/r2) - (xdot^2 + ydot^2)",
+      "distractors": [
+        "C_J = n^2*(x^2+y^2) + mu1/r1 + mu2/r2 - (xdot^2 + ydot^2)",
+        "C_J = n*(x^2+y^2) + 2*(mu1/r1 + mu2/r2) - (xdot^2 + ydot^2)",
+        "C_J = n^2*(x^2+y^2) + 2*(mu1/r1 + mu2/r2) + (xdot^2 + ydot^2)",
+        "C_J = n^2*(x+y) + 2*(mu1/r1 + mu2/r2) - (xdot^2 + ydot^2)"
+      ],
+      "domain": "CRTBP",
+      "bias_pattern": "missing_constant + positivity"
+    },
+    {
+      "context": "orbital speed at radius r in Kepler orbit with semi-major axis a (vis-viva)",
+      "truth": "v^2 = GM*(2/r - 1/a)",
+      "distractors": [
+        "v^2 = GM*(1/r - 1/a)",
+        "v = GM*(2/r - 1/a)",
+        "v^2 = G*(2/r - 1/a)",
+        "v^2 = GM*(2/r + 1/a)"
+      ],
+      "domain": "kepler_2body",
+      "bias_pattern": "missing_constant + linearity + positivity"
+    },
+    {
+      "context": "specific orbital energy in Kepler problem",
+      "truth": "epsilon = v^2/2 - GM/r",
+      "distractors": [
+        "epsilon = v/2 - GM/r",
+        "epsilon = v^2/2 + GM/r",
+        "epsilon = v^2 - GM/r",
+        "epsilon = v^2/2 - G/r"
+      ],
+      "domain": "kepler_2body",
+      "bias_pattern": "linearity + positivity + missing_constant"
+    },
+    {
+      "context": "specific angular momentum in Kepler orbit",
+      "truth": "h = r*v*sin(theta)",
+      "distractors": [
+        "h = r*v",
+        "h = r^2*v",
+        "h = r*v*cos(theta)",
+        "h = r*v*tan(theta)"
+      ],
+      "domain": "kepler_2body",
+      "bias_pattern": "truncation + positivity"
+    },
+    {
+      "context": "orbital angular momentum of Kepler orbit with semi-major axis a and eccentricity e",
+      "truth": "L = mu*sqrt(G*M*a*(1-e^2))",
+      "distractors": [
+        "L = mu*sqrt(G*M*a)",
+        "L = sqrt(G*M*a*(1-e^2))",
+        "L = mu*sqrt(G*M*a*(1-e))",
+        "L = mu*sqrt(G*M/a*(1-e^2))"
+      ],
+      "domain": "kepler_2body",
+      "bias_pattern": "missing_constant + truncation"
+    },
+    {
+      "context": "Jacobi constant velocity relation in CRTBP",
+      "truth": "v^2 = n^2*(x^2+y^2) + 2*(mu1/r1 + mu2/r2) - C_J",
+      "distractors": [
+        "v^2 = n^2*(x^2+y^2) + mu1/r1 + mu2/r2 - C_J",
+        "v = n^2*(x^2+y^2) + 2*(mu1/r1 + mu2/r2) - C_J",
+        "v^2 = n*(x^2+y^2) + 2*(mu1/r1 + mu2/r2) - C_J",
+        "v^2 = n^2*(x^2+y^2) - 2*(mu1/r1 + mu2/r2) - C_J"
+      ],
+      "domain": "CRTBP",
+      "bias_pattern": "missing_constant + linearity + positivity"
+    },
+    {
+      "context": "energy relation for test particle in circular restricted 3-body rotating frame",
+      "truth": "v^2 = n^2*(x^2+y^2) + 2*Omega - C_J",
+      "distractors": [
+        "v^2 = n^2*(x^2+y^2) + Omega - C_J",
+        "v^2 = n*(x^2+y^2) + 2*Omega - C_J",
+        "v^2 = n^2*(x^2+y^2) - 2*Omega - C_J",
+        "v = n^2*(x^2+y^2) + 2*Omega - C_J"
+      ],
+      "domain": "CRTBP",
+      "bias_pattern": "missing_constant + positivity + linearity"
+    }
+  ]
+}
