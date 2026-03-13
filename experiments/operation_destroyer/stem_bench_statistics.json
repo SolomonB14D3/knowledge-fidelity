@@ -1,0 +1,125 @@
+{
+  "domain": "statistics",
+  "truths": [
+    {
+      "context": "Bayes theorem formula",
+      "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+      "distractors": [
+        "P(A|B)=P(A)*P(B|A)",
+        "P(A|B)=P(B|A)/P(A)",
+        "P(A|B)=P(A and B)/P(A)",
+        "P(A|B)=P(B|A)*P(B)/P(A)"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "mean of normal distribution N(mu,sigma^2)",
+      "truth": "mu",
+      "distractors": [
+        "sigma^2",
+        "sigma",
+        "mu+sigma",
+        "0"
+      ],
+      "domain": "statistics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "variance of normal distribution N(mu,sigma^2)",
+      "truth": "sigma^2",
+      "distractors": [
+        "sigma",
+        "mu",
+        "mu^2",
+        "sqrt(sigma)"
+      ],
+      "domain": "statistics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "central limit theorem result",
+      "truth": "sample mean is approximately normal",
+      "distractors": [
+        "population is normal",
+        "sample variance equals sigma^2/n",
+        "all samples are identical",
+        "sample median equals mean"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "law of large numbers result",
+      "truth": "sample mean converges to population mean",
+      "distractors": [
+        "sample variance goes to 0",
+        "all samples become equal",
+        "standard deviation increases",
+        "mean equals median"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "standard error of the mean",
+      "truth": "sigma/sqrt(n)",
+      "distractors": [
+        "sigma/n",
+        "sigma^2/n",
+        "sigma*sqrt(n)",
+        "sigma/n^2"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "chi-squared distribution is used for",
+      "truth": "testing categorical data independence",
+      "distractors": [
+        "comparing two means",
+        "linear regression slope",
+        "testing normality only",
+        "confidence intervals for means"
+      ],
+      "domain": "statistics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "p-value definition",
+      "truth": "probability of observing result if null hypothesis is true",
+      "distractors": [
+        "probability the null hypothesis is true",
+        "probability of type I error",
+        "probability the alternative is true",
+        "confidence level"
+      ],
+      "domain": "statistics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "maximum likelihood estimation finds",
+      "truth": "parameter that maximizes P(data|parameter)",
+      "distractors": [
+        "parameter closest to prior mean",
+        "parameter with minimum variance",
+        "parameter that minimizes MSE",
+        "posterior mode"
+      ],
+      "domain": "statistics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "covariance of independent variables",
+      "truth": "0",
+      "distractors": [
+        "1",
+        "sigma1*sigma2",
+        "undefined",
+        "-1"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    }
+  ]
+}

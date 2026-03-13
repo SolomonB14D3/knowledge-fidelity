@@ -267,6 +267,146 @@ def _run_diagnose(args):
         print(f"\n  Saved: {out_path}", flush=True)
 
 
+# ── Factual Canary subcommand ─────────────────────────────────────────
+
+_DEFAULT_TRUTH_DICT = str(
+    Path(__file__).parent.parent.parent.parent
+    / "experiments/operation_destroyer/truth_dict_contrastive.json"
+)
+
+
+def _run_factual_canary(args):
+    """Model-agnostic factual regression canary using MC log-prob comparison.
+
+    Measures whether the model assigns higher log P(truth | prompt) than all
+    distractors across a set of grounded facts.  Safe to run before/after any
+    training to detect factual capability regression.
+
+    Metric: truth wins iff log P(truth) > log P(distractor_i) for ALL i.
+    """
+    import os, json, time, numpy as np
+    import mlx.core as mx
+    import mlx_lm
+
+    truth_path = args.truth_dict
+    if not os.path.isfile(truth_path):
+        # Try relative to package root
+        pkg_root = Path(__file__).parent.parent.parent.parent
+        alt = pkg_root / "experiments/operation_destroyer" / os.path.basename(truth_path)
+        if os.path.isfile(alt):
+            truth_path = str(alt)
+        else:
+            print(f"[error] truth dict not found: {truth_path}", flush=True)
+            return
+
+    with open(truth_path) as f:
+        data = json.load(f)
+    facts = data["truths"]
+    print(f"\n\033[1m━━━ Factual Canary: {args.model} ━━━\033[0m", flush=True)
+    print(f"  Truth dict: {truth_path}  ({len(facts)} facts)\n", flush=True)
+
+    # Load model
+    print(f"\033[1mLoading {args.model} (MLX)...\033[0m", flush=True)
+    t0 = time.time()
+    model, tokenizer = mlx_lm.load(args.model)
+    model.freeze()
+    print(f"  Loaded in {time.time()-t0:.1f}s\n", flush=True)
+
+    def get_completion_logprob(prompt: str, completion: str) -> float:
+        prompt_ids = tokenizer.encode(prompt)
+        full_ids   = tokenizer.encode(prompt + completion)
+        n_prompt   = len(prompt_ids)
+        if len(full_ids) <= n_prompt:
+            return -1e9
+        tokens  = mx.array(full_ids)[None, :]
+        logits  = model(tokens)
+        mx.eval(logits)
+        lp_np   = np.array(logits[0].astype(mx.float32))
+        total   = 0.0
+        for i, tok_id in enumerate(full_ids[n_prompt:]):
+            pos = n_prompt - 1 + i
+            lv  = lp_np[pos]
+            lse = float(np.log(np.sum(np.exp(lv - lv.max())) + 1e-8) + lv.max())
+            total += float(lv[tok_id]) - lse
+        return total
+
+    results = []
+    categories: dict = {}
+    t_eval = time.time()
+
+    for fact in facts:
+        prompt      = f"{fact['context']}:"
+        truth_lp    = get_completion_logprob(prompt, f" {fact['truth']}")
+        dist_lps    = [get_completion_logprob(prompt, f" {d}") for d in fact["distractors"]]
+        best_dist   = max(dist_lps)
+        win         = truth_lp > best_dist
+        margin      = truth_lp - best_dist
+        cat         = fact.get("category", "unknown")
+
+        results.append({"context": fact["context"], "truth": fact["truth"],
+                        "category": cat, "win": win, "margin": margin})
+        categories.setdefault(cat, {"wins": 0, "total": 0, "margins": []})
+        categories[cat]["total"] += 1
+        if win:
+            categories[cat]["wins"] += 1
+        categories[cat]["margins"].append(margin)
+
+    elapsed = time.time() - t_eval
+    total_wins = sum(r["win"] for r in results)
+    total      = len(results)
+    avg_margin = float(np.mean([r["margin"] for r in results]))
+
+    print(f"\033[1m━━━ Results ━━━\033[0m")
+    print(f"  {'Category':<20} {'Acc':>7}  {'AvgMargin':>10}")
+    print(f"  {'─'*20}  {'─'*7}  {'─'*10}")
+    for cat, s in sorted(categories.items()):
+        acc = s["wins"] / max(s["total"], 1)
+        am  = float(np.mean(s["margins"]))
+        flag = "✓" if acc >= 0.8 else ("⚠" if acc >= 0.6 else "✗")
+        print(f"  {flag} {cat:<19} {acc:>7.1%}  {am:>+10.3f}")
+    print(f"  {'─'*20}  {'─'*7}  {'─'*10}")
+    print(f"  {'TOTAL':<20} {total_wins/total:>7.1%}  {avg_margin:>+10.3f}")
+    print(f"\n  {total_wins}/{total} wins  |  avg margin {avg_margin:+.3f}  |  {elapsed:.1f}s\n")
+
+    # Compare to baseline if provided
+    if args.baseline:
+        try:
+            with open(args.baseline) as f:
+                base = json.load(f)
+            base_acc = base.get("accuracy", base.get("acc", None))
+            if base_acc is not None:
+                delta = total_wins / total - base_acc
+                color = "\033[92m" if delta >= 0 else "\033[91m"
+                print(f"  vs baseline: {base_acc:.1%} → {total_wins/total:.1%}  "
+                      f"{color}{delta:+.1%}\033[0m")
+        except Exception as e:
+            print(f"  [warn] Could not load baseline: {e}")
+
+    output = {
+        "model": args.model,
+        "truth_dict": truth_path,
+        "wins": total_wins,
+        "total": total,
+        "accuracy": total_wins / total,
+        "avg_margin": avg_margin,
+        "elapsed": elapsed,
+        "categories": {
+            c: {"wins": s["wins"], "total": s["total"],
+                "accuracy": s["wins"] / max(s["total"], 1),
+                "avg_margin": float(np.mean(s["margins"]))}
+            for c, s in categories.items()
+        },
+        "facts": results,
+    }
+
+    if args.output:
+        out_path = args.output
+        Path(out_path).parent.mkdir(parents=True, exist_ok=True)
+        with open(out_path, "w") as f:
+            json.dump(output, f, indent=2, default=_json_serializer)
+        print(f"  Saved: {out_path}", flush=True)
+
+
 # ── Unlock subcommand ────────────────────────────────────────────────
 
 def _run_unlock(args):
@@ -569,6 +709,28 @@ Examples:
     unlock_parser.add_argument("--force", action="store_true",
                                help="Run CD even if no significant expression gap detected")
     unlock_parser.set_defaults(func=_run_unlock)
+
+    # ── factual-canary ────────────────────────────────────────────────
+    canary_parser = subparsers.add_parser(
+        "factual-canary",
+        help="Model-agnostic factual regression canary (MC log-prob eval)",
+        description=(
+            "Measure factual truth recall via log-probability MC comparison. "
+            "Model-agnostic — works on any mlx_lm-loadable model. "
+            "Use as a before/after regression check around any training run."
+        ),
+    )
+    canary_parser.add_argument("model", help="HuggingFace model ID or local path")
+    canary_parser.add_argument(
+        "--truth-dict", default=_DEFAULT_TRUTH_DICT,
+        help="Path to truth dict JSON (default: truth_dict_contrastive.json)",
+    )
+    canary_parser.add_argument(
+        "--baseline", default=None,
+        help="Path to a previous canary JSON output to compare against",
+    )
+    canary_parser.add_argument("--output", "-o", help="Save JSON results to this path")
+    canary_parser.set_defaults(func=_run_factual_canary)
 
     # Parse
     args = parser.parse_args(argv)

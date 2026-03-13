@@ -1,0 +1,209 @@
+{
+  "domain": "constants",
+  "truths": [
+    {
+      "context": "value of pi (first 5 digits)",
+      "truth": "3.14159",
+      "distractors": [
+        "3.14259",
+        "3.14152",
+        "3.14169",
+        "3.14195"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "Euler's number e (first 5 digits)",
+      "truth": "2.71828",
+      "distractors": [
+        "2.71823",
+        "2.71818",
+        "2.71829",
+        "2.71726"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "golden ratio phi (first 5 digits)",
+      "truth": "1.61803",
+      "distractors": [
+        "1.61813",
+        "1.61903",
+        "1.61808",
+        "1.61703"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+      "truth": "0.5772",
+      "distractors": [
+        "0.5182",
+        "0.6772",
+        "0.5872",
+        "0.5072"
+      ],
+      "domain": "constants",
+      "difficulty": "hard"
+    },
+    {
+      "context": "sqrt(2) first 5 digits",
+      "truth": "1.41421",
+      "distractors": [
+        "1.41412",
+        "1.41521",
+        "1.41431",
+        "1.41321"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "sqrt(3) first 4 digits",
+      "truth": "1.7320",
+      "distractors": [
+        "1.7230",
+        "1.7420",
+        "1.7310",
+        "1.7730"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Euler's identity e^(i*pi)+1 equals",
+      "truth": "0",
+      "distractors": [
+        "i",
+        "-1",
+        "1",
+        "2*pi*i"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "sin(pi/6)",
+      "truth": "1/2",
+      "distractors": [
+        "sqrt(3)/2",
+        "sqrt(2)/2",
+        "1/sqrt(3)",
+        "sqrt(3)/3"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "cos(pi/3)",
+      "truth": "1/2",
+      "distractors": [
+        "sqrt(3)/2",
+        "sqrt(2)/2",
+        "1",
+        "0"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "sin(pi/4)",
+      "truth": "sqrt(2)/2",
+      "distractors": [
+        "1/2",
+        "sqrt(3)/2",
+        "1",
+        "1/sqrt(2)"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "cos(pi/6)",
+      "truth": "sqrt(3)/2",
+      "distractors": [
+        "1/2",
+        "sqrt(2)/2",
+        "sqrt(3)/3",
+        "1"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "tan(pi/4)",
+      "truth": "1",
+      "distractors": [
+        "sqrt(3)",
+        "1/sqrt(3)",
+        "0",
+        "sqrt(2)"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "ln(1)",
+      "truth": "0",
+      "distractors": [
+        "1",
+        "e",
+        "-1",
+        "undefined"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "ln(e)",
+      "truth": "1",
+      "distractors": [
+        "e",
+        "0",
+        "2",
+        "1/e"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "log base 10 of 1000",
+      "truth": "3",
+      "distractors": [
+        "2",
+        "4",
+        "10",
+        "100"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "sum of angles in a triangle (degrees)",
+      "truth": "180",
+      "distractors": [
+        "360",
+        "90",
+        "270",
+        "120"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "Pythagorean theorem",
+      "truth": "a^2+b^2=c^2",
+      "distractors": [
+        "a+b=c",
+        "a^2+b=c^2",
+        "a^2*b^2=c^2",
+        "a^2-b^2=c^2"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    }
+  ]
+}

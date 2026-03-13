@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2.0",
-    "description": "Truth anchors with contrastive distractors (sun + black hole)",
-    "n_entries": 115
+    "version": "1.0",
+    "description": "Core 115 facts + all extended domains",
+    "n_entries": 205
   },
   "truths": [
     {
@@ -1268,6 +1268,996 @@
         "Larry Ellison",
         "Mark Zuckerberg",
         "Jeff Bezos"
+      ]
+    },
+    {
+      "context": "number of chromosomes in a human cell",
+      "truth": "46",
+      "category": "biology",
+      "distractors": [
+        "44",
+        "48",
+        "23",
+        "92"
+      ]
+    },
+    {
+      "context": "molecule that carries genetic information",
+      "truth": "DNA",
+      "category": "biology",
+      "distractors": [
+        "RNA",
+        "ATP",
+        "protein",
+        "lipid"
+      ]
+    },
+    {
+      "context": "powerhouse of the cell",
+      "truth": "mitochondria",
+      "category": "biology",
+      "distractors": [
+        "nucleus",
+        "ribosome",
+        "lysosome",
+        "Golgi"
+      ]
+    },
+    {
+      "context": "process by which plants make food",
+      "truth": "photosynthesis",
+      "category": "biology",
+      "distractors": [
+        "respiration",
+        "fermentation",
+        "osmosis",
+        "transpiration"
+      ]
+    },
+    {
+      "context": "building blocks of proteins",
+      "truth": "amino acids",
+      "category": "biology",
+      "distractors": [
+        "nucleotides",
+        "fatty acids",
+        "sugars",
+        "glycerol"
+      ]
+    },
+    {
+      "context": "organ that produces insulin",
+      "truth": "pancreas",
+      "category": "biology",
+      "distractors": [
+        "liver",
+        "kidney",
+        "spleen",
+        "thyroid"
+      ]
+    },
+    {
+      "context": "discoverer of the cell",
+      "truth": "Hooke",
+      "category": "biology",
+      "distractors": [
+        "Pasteur",
+        "Leeuwenhoek",
+        "Darwin",
+        "Mendel"
+      ]
+    },
+    {
+      "context": "father of genetics",
+      "truth": "Mendel",
+      "category": "biology",
+      "distractors": [
+        "Darwin",
+        "Watson",
+        "Crick",
+        "Morgan"
+      ]
+    },
+    {
+      "context": "number of base pairs in the human genome",
+      "truth": "3 billion",
+      "category": "biology",
+      "distractors": [
+        "3 million",
+        "300 million",
+        "30 billion",
+        "3 trillion"
+      ]
+    },
+    {
+      "context": "type of bond holding DNA strands together",
+      "truth": "hydrogen",
+      "category": "biology",
+      "distractors": [
+        "covalent",
+        "ionic",
+        "peptide",
+        "disulfide"
+      ]
+    },
+    {
+      "context": "phase of mitosis where chromosomes align",
+      "truth": "metaphase",
+      "category": "biology",
+      "distractors": [
+        "prophase",
+        "anaphase",
+        "telophase",
+        "interphase"
+      ]
+    },
+    {
+      "context": "molecule that carries amino acids to ribosome",
+      "truth": "tRNA",
+      "category": "biology",
+      "distractors": [
+        "mRNA",
+        "rRNA",
+        "DNA",
+        "siRNA"
+      ]
+    },
+    {
+      "context": "process converting glucose to ATP anaerobically",
+      "truth": "glycolysis",
+      "category": "biology",
+      "distractors": [
+        "Krebs cycle",
+        "oxidative phosphorylation",
+        "beta oxidation",
+        "gluconeogenesis"
+      ]
+    },
+    {
+      "context": "scientist who proposed natural selection",
+      "truth": "Darwin",
+      "category": "biology",
+      "distractors": [
+        "Lamarck",
+        "Mendel",
+        "Wallace",
+        "Huxley"
+      ]
+    },
+    {
+      "context": "longest cell in the human body",
+      "truth": "neuron",
+      "category": "biology",
+      "distractors": [
+        "muscle fiber",
+        "osteocyte",
+        "hepatocyte",
+        "red blood cell"
+      ]
+    },
+    {
+      "context": "most abundant element in the universe",
+      "truth": "hydrogen",
+      "category": "chemistry",
+      "distractors": [
+        "helium",
+        "oxygen",
+        "carbon",
+        "nitrogen"
+      ]
+    },
+    {
+      "context": "most abundant element in Earth's crust",
+      "truth": "oxygen",
+      "category": "chemistry",
+      "distractors": [
+        "silicon",
+        "aluminum",
+        "iron",
+        "calcium"
+      ]
+    },
+    {
+      "context": "pH of pure water",
+      "truth": "7",
+      "category": "chemistry",
+      "distractors": [
+        "6",
+        "8",
+        "5",
+        "9"
+      ]
+    },
+    {
+      "context": "number of electrons in a neutral carbon atom",
+      "truth": "6",
+      "category": "chemistry",
+      "distractors": [
+        "4",
+        "8",
+        "12",
+        "14"
+      ]
+    },
+    {
+      "context": "melting point of iron in Celsius",
+      "truth": "1538",
+      "category": "chemistry",
+      "distractors": [
+        "1200",
+        "900",
+        "2000",
+        "1100"
+      ]
+    },
+    {
+      "context": "chemical formula for table salt",
+      "truth": "NaCl",
+      "category": "chemistry",
+      "distractors": [
+        "KCl",
+        "MgCl2",
+        "CaCl2",
+        "NaBr"
+      ]
+    },
+    {
+      "context": "chemical formula for water",
+      "truth": "H2O",
+      "category": "chemistry",
+      "distractors": [
+        "H2O2",
+        "HO",
+        "H3O",
+        "H2S"
+      ]
+    },
+    {
+      "context": "number of elements in the periodic table",
+      "truth": "118",
+      "category": "chemistry",
+      "distractors": [
+        "108",
+        "112",
+        "120",
+        "116"
+      ]
+    },
+    {
+      "context": "lightest noble gas",
+      "truth": "helium",
+      "category": "chemistry",
+      "distractors": [
+        "neon",
+        "argon",
+        "krypton",
+        "radon"
+      ]
+    },
+    {
+      "context": "element with highest electronegativity",
+      "truth": "fluorine",
+      "category": "chemistry",
+      "distractors": [
+        "oxygen",
+        "nitrogen",
+        "chlorine",
+        "bromine"
+      ]
+    },
+    {
+      "context": "type of bond in NaCl",
+      "truth": "ionic",
+      "category": "chemistry",
+      "distractors": [
+        "covalent",
+        "metallic",
+        "hydrogen",
+        "van der Waals"
+      ]
+    },
+    {
+      "context": "number of protons in a gold atom",
+      "truth": "79",
+      "category": "chemistry",
+      "distractors": [
+        "78",
+        "80",
+        "76",
+        "82"
+      ]
+    },
+    {
+      "context": "gas produced in cellular respiration",
+      "truth": "CO2",
+      "category": "chemistry",
+      "distractors": [
+        "O2",
+        "N2",
+        "H2",
+        "CH4"
+      ]
+    },
+    {
+      "context": "inventor of the periodic table",
+      "truth": "Mendeleev",
+      "category": "chemistry",
+      "distractors": [
+        "Bohr",
+        "Dalton",
+        "Lavoisier",
+        "Curie"
+      ]
+    },
+    {
+      "context": "state of matter with no definite shape or volume",
+      "truth": "gas",
+      "category": "chemistry",
+      "distractors": [
+        "liquid",
+        "solid",
+        "plasma",
+        "gel"
+      ]
+    },
+    {
+      "context": "mean of a standard normal distribution",
+      "truth": "0",
+      "category": "statistics",
+      "distractors": [
+        "1",
+        "-1",
+        "0.5",
+        "undefined"
+      ]
+    },
+    {
+      "context": "standard deviation of a standard normal",
+      "truth": "1",
+      "category": "statistics",
+      "distractors": [
+        "0",
+        "2",
+        "0.5",
+        "sqrt(2)"
+      ]
+    },
+    {
+      "context": "probability of any event",
+      "truth": "between 0 and 1",
+      "category": "statistics",
+      "distractors": [
+        "between -1 and 1",
+        "between 0 and 100",
+        "greater than 0",
+        "between 0 and 2"
+      ]
+    },
+    {
+      "context": "theorem relating sample mean to normal dist",
+      "truth": "Central Limit Theorem",
+      "category": "statistics",
+      "distractors": [
+        "Bayes Theorem",
+        "Law of Large Numbers",
+        "Chebyshev's inequality",
+        "Berry-Esseen theorem"
+      ]
+    },
+    {
+      "context": "expected value of a fair six-sided die",
+      "truth": "3.5",
+      "category": "statistics",
+      "distractors": [
+        "3",
+        "4",
+        "3.4",
+        "3.6"
+      ]
+    },
+    {
+      "context": "correlation coefficient range",
+      "truth": "-1 to 1",
+      "category": "statistics",
+      "distractors": [
+        "0 to 1",
+        "-infinity to infinity",
+        "-2 to 2",
+        "0 to 100"
+      ]
+    },
+    {
+      "context": "number of parameters in a normal distribution",
+      "truth": "2",
+      "category": "statistics",
+      "distractors": [
+        "1",
+        "3",
+        "4",
+        "2.5"
+      ]
+    },
+    {
+      "context": "statistical test for comparing two means",
+      "truth": "t-test",
+      "category": "statistics",
+      "distractors": [
+        "chi-squared test",
+        "ANOVA",
+        "F-test",
+        "z-test"
+      ]
+    },
+    {
+      "context": "distribution of count data",
+      "truth": "Poisson",
+      "category": "statistics",
+      "distractors": [
+        "Gaussian",
+        "Binomial",
+        "Exponential",
+        "Uniform"
+      ]
+    },
+    {
+      "context": "measure of spread around the mean",
+      "truth": "variance",
+      "category": "statistics",
+      "distractors": [
+        "median",
+        "mode",
+        "range",
+        "skewness"
+      ]
+    },
+    {
+      "context": "p-value threshold for statistical significance",
+      "truth": "0.05",
+      "category": "statistics",
+      "distractors": [
+        "0.01",
+        "0.1",
+        "0.5",
+        "0.001"
+      ]
+    },
+    {
+      "context": "type of error rejecting a true null hypothesis",
+      "truth": "Type I",
+      "category": "statistics",
+      "distractors": [
+        "Type II",
+        "Type III",
+        "alpha error",
+        "beta error"
+      ]
+    },
+    {
+      "context": "Bayes theorem relates",
+      "truth": "prior and posterior probability",
+      "category": "statistics",
+      "distractors": [
+        "mean and variance",
+        "correlation and causation",
+        "samples and populations",
+        "type I and type II error"
+      ]
+    },
+    {
+      "context": "distribution of sum of squared standard normals",
+      "truth": "chi-squared",
+      "category": "statistics",
+      "distractors": [
+        "t-distribution",
+        "F-distribution",
+        "beta",
+        "Poisson"
+      ]
+    },
+    {
+      "context": "estimator that minimizes mean squared error",
+      "truth": "minimum variance unbiased estimator",
+      "category": "statistics",
+      "distractors": [
+        "maximum likelihood estimator",
+        "method of moments",
+        "Bayesian estimator",
+        "robust estimator"
+      ]
+    },
+    {
+      "context": "time complexity of binary search",
+      "truth": "O(log n)",
+      "category": "programming",
+      "distractors": [
+        "O(n)",
+        "O(n log n)",
+        "O(1)",
+        "O(n^2)"
+      ]
+    },
+    {
+      "context": "time complexity of bubble sort",
+      "truth": "O(n^2)",
+      "category": "programming",
+      "distractors": [
+        "O(n log n)",
+        "O(n)",
+        "O(log n)",
+        "O(n^3)"
+      ]
+    },
+    {
+      "context": "data structure using LIFO",
+      "truth": "stack",
+      "category": "programming",
+      "distractors": [
+        "queue",
+        "heap",
+        "tree",
+        "graph"
+      ]
+    },
+    {
+      "context": "data structure using FIFO",
+      "truth": "queue",
+      "category": "programming",
+      "distractors": [
+        "stack",
+        "heap",
+        "deque",
+        "list"
+      ]
+    },
+    {
+      "context": "HTTP method for creating resources",
+      "truth": "POST",
+      "category": "programming",
+      "distractors": [
+        "GET",
+        "PUT",
+        "DELETE",
+        "PATCH"
+      ]
+    },
+    {
+      "context": "HTTP method for reading resources",
+      "truth": "GET",
+      "category": "programming",
+      "distractors": [
+        "POST",
+        "PUT",
+        "FETCH",
+        "READ"
+      ]
+    },
+    {
+      "context": "language created by Bjarne Stroustrup",
+      "truth": "C++",
+      "category": "programming",
+      "distractors": [
+        "Java",
+        "C#",
+        "Rust",
+        "Go"
+      ]
+    },
+    {
+      "context": "language created by James Gosling",
+      "truth": "Java",
+      "category": "programming",
+      "distractors": [
+        "C#",
+        "Kotlin",
+        "Scala",
+        "Groovy"
+      ]
+    },
+    {
+      "context": "number of bits in a byte",
+      "truth": "8",
+      "category": "programming",
+      "distractors": [
+        "4",
+        "16",
+        "6",
+        "10"
+      ]
+    },
+    {
+      "context": "base of hexadecimal",
+      "truth": "16",
+      "category": "programming",
+      "distractors": [
+        "8",
+        "2",
+        "10",
+        "12"
+      ]
+    },
+    {
+      "context": "algorithm for shortest path in a graph",
+      "truth": "Dijkstra",
+      "category": "programming",
+      "distractors": [
+        "Bellman-Ford",
+        "Floyd-Warshall",
+        "A-star",
+        "Prim"
+      ]
+    },
+    {
+      "context": "sorting algorithm with O(n log n) worst case",
+      "truth": "merge sort",
+      "category": "programming",
+      "distractors": [
+        "quicksort",
+        "heapsort",
+        "timsort",
+        "introsort"
+      ]
+    },
+    {
+      "context": "design pattern for single instance",
+      "truth": "singleton",
+      "category": "programming",
+      "distractors": [
+        "factory",
+        "observer",
+        "decorator",
+        "proxy"
+      ]
+    },
+    {
+      "context": "version control system created by Torvalds",
+      "truth": "Git",
+      "category": "programming",
+      "distractors": [
+        "SVN",
+        "Mercurial",
+        "CVS",
+        "Perforce"
+      ]
+    },
+    {
+      "context": "RFC that defines HTTP/1.1",
+      "truth": "RFC 2616",
+      "category": "programming",
+      "distractors": [
+        "RFC 791",
+        "RFC 2068",
+        "RFC 7230",
+        "RFC 1945"
+      ]
+    },
+    {
+      "context": "planet closest to the Sun",
+      "truth": "Mercury",
+      "category": "astronomy",
+      "distractors": [
+        "Venus",
+        "Mars",
+        "Earth",
+        "Jupiter"
+      ]
+    },
+    {
+      "context": "largest moon of Saturn",
+      "truth": "Titan",
+      "category": "astronomy",
+      "distractors": [
+        "Enceladus",
+        "Rhea",
+        "Iapetus",
+        "Mimas"
+      ]
+    },
+    {
+      "context": "age of the universe in billions of years",
+      "truth": "13.8",
+      "category": "astronomy",
+      "distractors": [
+        "10",
+        "15",
+        "12",
+        "20"
+      ]
+    },
+    {
+      "context": "distance from Earth to Moon in km",
+      "truth": "384400",
+      "category": "astronomy",
+      "distractors": [
+        "150000",
+        "500000",
+        "100000",
+        "1000000"
+      ]
+    },
+    {
+      "context": "galaxy containing our solar system",
+      "truth": "Milky Way",
+      "category": "astronomy",
+      "distractors": [
+        "Andromeda",
+        "Triangulum",
+        "Sombrero",
+        "Whirlpool"
+      ]
+    },
+    {
+      "context": "nearest galaxy to the Milky Way",
+      "truth": "Andromeda",
+      "category": "astronomy",
+      "distractors": [
+        "Triangulum",
+        "Large Magellanic Cloud",
+        "Sombrero",
+        "Pinwheel"
+      ]
+    },
+    {
+      "context": "planet with the most moons",
+      "truth": "Saturn",
+      "category": "astronomy",
+      "distractors": [
+        "Jupiter",
+        "Uranus",
+        "Neptune",
+        "Mars"
+      ]
+    },
+    {
+      "context": "temperature of the Sun's surface in Kelvin",
+      "truth": "5778",
+      "category": "astronomy",
+      "distractors": [
+        "6000",
+        "5000",
+        "10000",
+        "3000"
+      ]
+    },
+    {
+      "context": "speed of light in km per second",
+      "truth": "299792",
+      "category": "astronomy",
+      "distractors": [
+        "300000",
+        "186000",
+        "150000",
+        "250000"
+      ]
+    },
+    {
+      "context": "phenomenon when light bends around mass",
+      "truth": "gravitational lensing",
+      "category": "astronomy",
+      "distractors": [
+        "redshift",
+        "blueshift",
+        "parallax",
+        "aberration"
+      ]
+    },
+    {
+      "context": "type of star our Sun is",
+      "truth": "G-type main sequence",
+      "category": "astronomy",
+      "distractors": [
+        "K-type",
+        "F-type",
+        "M-type",
+        "A-type"
+      ]
+    },
+    {
+      "context": "first person to walk on the Moon",
+      "truth": "Armstrong",
+      "category": "astronomy",
+      "distractors": [
+        "Aldrin",
+        "Glenn",
+        "Shepard",
+        "Collins"
+      ]
+    },
+    {
+      "context": "year of the first Moon landing",
+      "truth": "1969",
+      "category": "astronomy",
+      "distractors": [
+        "1967",
+        "1971",
+        "1965",
+        "1973"
+      ]
+    },
+    {
+      "context": "planet known as the Red Planet",
+      "truth": "Mars",
+      "category": "astronomy",
+      "distractors": [
+        "Venus",
+        "Mercury",
+        "Jupiter",
+        "Saturn"
+      ]
+    },
+    {
+      "context": "Hubble Space Telescope launched in year",
+      "truth": "1990",
+      "category": "astronomy",
+      "distractors": [
+        "1985",
+        "1995",
+        "1988",
+        "2000"
+      ]
+    },
+    {
+      "context": "number of sides in a hexagon",
+      "truth": "6",
+      "category": "logic_math",
+      "distractors": [
+        "5",
+        "7",
+        "8",
+        "4"
+      ]
+    },
+    {
+      "context": "sum of angles in a triangle in degrees",
+      "truth": "180",
+      "category": "logic_math",
+      "distractors": [
+        "90",
+        "270",
+        "360",
+        "120"
+      ]
+    },
+    {
+      "context": "Pythagorean theorem states",
+      "truth": "a squared plus b squared equals c squared",
+      "category": "logic_math",
+      "distractors": [
+        "a plus b equals c",
+        "a times b equals c",
+        "a cubed plus b cubed equals c cubed",
+        "2a plus 2b equals c"
+      ]
+    },
+    {
+      "context": "number of prime numbers between 1 and 10",
+      "truth": "4",
+      "category": "logic_math",
+      "distractors": [
+        "3",
+        "5",
+        "6",
+        "2"
+      ]
+    },
+    {
+      "context": "logarithm base 10 of 1000",
+      "truth": "3",
+      "category": "logic_math",
+      "distractors": [
+        "2",
+        "4",
+        "10",
+        "100"
+      ]
+    },
+    {
+      "context": "derivative of sin(x)",
+      "truth": "cos(x)",
+      "category": "logic_math",
+      "distractors": [
+        "tan(x)",
+        "-cos(x)",
+        "sin(x)",
+        "-sin(x)"
+      ]
+    },
+    {
+      "context": "integral of 1/x",
+      "truth": "ln(x)",
+      "category": "logic_math",
+      "distractors": [
+        "1/x^2",
+        "x",
+        "log10(x)",
+        "e^x"
+      ]
+    },
+    {
+      "context": "number of elements in the empty set",
+      "truth": "0",
+      "category": "logic_math",
+      "distractors": [
+        "1",
+        "undefined",
+        "infinity",
+        "-1"
+      ]
+    },
+    {
+      "context": "factorial of 0",
+      "truth": "1",
+      "category": "logic_math",
+      "distractors": [
+        "0",
+        "undefined",
+        "-1",
+        "infinity"
+      ]
+    },
+    {
+      "context": "number of vertices in a cube",
+      "truth": "8",
+      "category": "logic_math",
+      "distractors": [
+        "6",
+        "12",
+        "4",
+        "10"
+      ]
+    },
+    {
+      "context": "two to the power of ten",
+      "truth": "1024",
+      "category": "logic_math",
+      "distractors": [
+        "1000",
+        "512",
+        "2048",
+        "100"
+      ]
+    },
+    {
+      "context": "Euler's identity involves",
+      "truth": "e, i, pi, 1, and 0",
+      "category": "logic_math",
+      "distractors": [
+        "e, pi, and sqrt(2)",
+        "e, i, and ln(2)",
+        "pi, phi, and sqrt(5)",
+        "i, e, and gamma"
+      ]
+    },
+    {
+      "context": "theorem stating every even integer greater than 2 is sum of two primes",
+      "truth": "Goldbach conjecture",
+      "category": "logic_math",
+      "distractors": [
+        "Riemann hypothesis",
+        "Fermat's last theorem",
+        "twin prime conjecture",
+        "Collatz conjecture"
+      ]
+    },
+    {
+      "context": "number of faces on a regular tetrahedron",
+      "truth": "4",
+      "category": "logic_math",
+      "distractors": [
+        "6",
+        "8",
+        "12",
+        "20"
+      ]
+    },
+    {
+      "context": "formula for area of a circle",
+      "truth": "pi r squared",
+      "category": "logic_math",
+      "distractors": [
+        "2 pi r",
+        "pi d",
+        "4 pi r squared",
+        "pi r cubed"
       ]
     }
   ]

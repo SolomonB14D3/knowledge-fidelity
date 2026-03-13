@@ -1,0 +1,245 @@
+{
+  "domain": "physics",
+  "truths": [
+    {
+      "context": "Newton's second law (force)",
+      "truth": "F=m*a",
+      "distractors": [
+        "F=m*v",
+        "F=m*v^2",
+        "F=m/a",
+        "F=m*a^2"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "kinetic energy formula",
+      "truth": "(1/2)*m*v^2",
+      "distractors": [
+        "m*v^2",
+        "m*v",
+        "(1/2)*m*v",
+        "2*m*v^2"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "gravitational potential energy",
+      "truth": "m*g*h",
+      "distractors": [
+        "m*g/h",
+        "(1/2)*m*g*h",
+        "m*g*h^2",
+        "m^2*g*h"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "momentum formula",
+      "truth": "m*v",
+      "distractors": [
+        "m*v^2",
+        "(1/2)*m*v^2",
+        "m*a",
+        "m/v"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "work-energy theorem",
+      "truth": "W=delta(KE)",
+      "distractors": [
+        "W=delta(PE)",
+        "W=F*t",
+        "W=m*a*t",
+        "W=F/d"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "centripetal acceleration",
+      "truth": "v^2/r",
+      "distractors": [
+        "v*r",
+        "v/r",
+        "v^2*r",
+        "2*v/r"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "period of a simple pendulum",
+      "truth": "2*pi*sqrt(L/g)",
+      "distractors": [
+        "2*pi*sqrt(g/L)",
+        "2*pi*L/g",
+        "pi*sqrt(L/g)",
+        "2*pi*sqrt(m/k)"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "escape velocity formula",
+      "truth": "sqrt(2*G*M/r)",
+      "distractors": [
+        "sqrt(G*M/r)",
+        "2*G*M/r^2",
+        "sqrt(G*M/(2*r))",
+        "G*M/r^2"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "Coulomb's law force",
+      "truth": "k*q1*q2/r^2",
+      "distractors": [
+        "k*q1*q2/r",
+        "k*q1*q2*r^2",
+        "q1*q2/r^2",
+        "k/(q1*q2*r^2)"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Ohm's law",
+      "truth": "V=I*R",
+      "distractors": [
+        "V=I/R",
+        "V=I*R^2",
+        "V=I+R",
+        "I=V*R"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "electric power formula",
+      "truth": "P=I*V",
+      "distractors": [
+        "P=I^2/V",
+        "P=V/I",
+        "P=I+V",
+        "P=I*V^2"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "capacitance definition",
+      "truth": "Q/V",
+      "distractors": [
+        "V/Q",
+        "Q*V",
+        "Q/V^2",
+        "Q^2/V"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "energy stored in capacitor",
+      "truth": "(1/2)*C*V^2",
+      "distractors": [
+        "C*V^2",
+        "(1/2)*Q*V^2",
+        "C*V^2/(2*Q)",
+        "Q^2/(2*C)"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "first law of thermodynamics",
+      "truth": "delta(U)=Q-W",
+      "distractors": [
+        "delta(U)=Q+W",
+        "delta(U)=W-Q",
+        "Q=delta(U)+W",
+        "delta(U)=Q*W"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "ideal gas law",
+      "truth": "P*V=n*R*T",
+      "distractors": [
+        "P*V=R*T",
+        "P*V=N*k*T",
+        "P=n*R*T/V",
+        "P*V=n*k*T"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "entropy change (reversible)",
+      "truth": "delta(S)=Q/T",
+      "distractors": [
+        "delta(S)=Q*T",
+        "delta(S)=Q*T^2",
+        "delta(S)=T/Q",
+        "delta(S)=Q/T^2"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "wave speed formula",
+      "truth": "v=f*lambda",
+      "distractors": [
+        "v=f/lambda",
+        "v=f+lambda",
+        "v=lambda/f",
+        "v=f^2*lambda"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "photon energy formula",
+      "truth": "E=h*f",
+      "distractors": [
+        "E=h*lambda",
+        "E=h/f",
+        "E=h*f^2",
+        "E=f/h"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "de Broglie wavelength",
+      "truth": "h/(m*v)",
+      "distractors": [
+        "m*v/h",
+        "h*m*v",
+        "h/(m^2*v)",
+        "m*v/h^2"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "relativistic rest energy formula",
+      "truth": "m*c^2",
+      "distractors": [
+        "m*v^2",
+        "(1/2)*m*c^2",
+        "m*c^2/2",
+        "2*m*c^2"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "model": "Qwen/Qwen3-4B-Base",
+  "steps": 300,
+  "lr": 1e-06,
+  "d_inner": 64,
+  "margin": 1.5,
+  "arms": [
+    "positivity",
+    "linearity",
+    "missing_constant",
+    "truncation",
+    "mixed"
+  ],
+  "transfer_matrix": {
+    "baseline": {
+      "positivity": {
+        "wins": 4,
+        "n": 10,
+        "acc": 0.4,
+        "avg_margin": -0.2862836837768555
+      },
+      "linearity": {
+        "wins": 5,
+        "n": 10,
+        "acc": 0.5,
+        "avg_margin": 0.7668344497680664
+      },
+      "missing_constant": {
+        "wins": 5,
+        "n": 10,
+        "acc": 0.5,
+        "avg_margin": 0.48244380950927734
+      },
+      "truncation": {
+        "wins": 7,
+        "n": 10,
+        "acc": 0.7,
+        "avg_margin": 1.52624568939209
+      }
+    },
+    "positivity": {
+      "positivity": {
+        "wins": 10,
+        "n": 10,
+        "acc": 1.0,
+        "avg_margin": 5.5970391750335695
+      },
+      "linearity": {
+        "wins": 0,
+        "n": 10,
+        "acc": 0.0,
+        "avg_margin": -22.469891405105592
+      },
+      "missing_constant": {
+        "wins": 2,
+        "n": 10,
+        "acc": 0.2,
+        "avg_margin": -11.928248584270477
+      },
+      "truncation": {
+        "wins": 3,
+        "n": 10,
+        "acc": 0.3,
+        "avg_margin": -8.909883737564087
+      }
+    },
+    "linearity": {
+      "positivity": {
+        "wins": 2,
+        "n": 10,
+        "acc": 0.2,
+        "avg_margin": -7.8339673519134525
+      },
+      "linearity": {
+        "wins": 7,
+        "n": 10,
+        "acc": 0.7,
+        "avg_margin": 2.3877247273921967
+      },
+      "missing_constant": {
+        "wins": 2,
+        "n": 10,
+        "acc": 0.2,
+        "avg_margin": -10.181123447418212
+      },
+      "truncation": {
+        "wins": 2,
+        "n": 10,
+        "acc": 0.2,
+        "avg_margin": -7.2645495414733885
+      }
+    },
+    "missing_constant": {
+      "positivity": {
+        "wins": 3,
+        "n": 10,
+        "acc": 0.3,
+        "avg_margin": -6.447132778167725
+      },
+      "linearity": {
+        "wins": 1,
+        "n": 10,
+        "acc": 0.1,
+        "avg_margin": -15.756122064590453
+      },
+      "missing_constant": {
+        "wins": 7,
+        "n": 10,
+        "acc": 0.7,
+        "avg_margin": 1.9037528038024902
+      },
+      "truncation": {
+        "wins": 3,
+        "n": 10,
+        "acc": 0.3,
+        "avg_margin": -7.050674819946289
+      }
+    },
+    "truncation": {
+      "positivity": {
+        "wins": 2,
+        "n": 10,
+        "acc": 0.2,
+        "avg_margin": -3.690846061706543
+      },
+      "linearity": {
+        "wins": 0,
+        "n": 10,
+        "acc": 0.0,
+        "avg_margin": -10.503323745727538
+      },
+      "missing_constant": {
+        "wins": 4,
+        "n": 10,
+        "acc": 0.4,
+        "avg_margin": -3.4436697006225585
+      },
+      "truncation": {
+        "wins": 8,
+        "n": 10,
+        "acc": 0.8,
+        "avg_margin": 2.712785339355469
+      }
+    },
+    "mixed": {
+      "positivity": {
+        "wins": 10,
+        "n": 10,
+        "acc": 1.0,
+        "avg_margin": 3.774421215057373
+      },
+      "linearity": {
+        "wins": 7,
+        "n": 10,
+        "acc": 0.7,
+        "avg_margin": 1.4786800384521483
+      },
+      "missing_constant": {
+        "wins": 7,
+        "n": 10,
+        "acc": 0.7,
+        "avg_margin": 1.8482708930969238
+      },
+      "truncation": {
+        "wins": 8,
+        "n": 10,
+        "acc": 0.8,
+        "avg_margin": 3.082154941558838
+      }
+    }
+  }
+}

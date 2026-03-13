@@ -1,133 +1,624 @@
 {
   "metadata": {
     "version": "1.0",
-    "description": "Gravitational truth anchors — verified facts for logit-space attraction",
+    "description": "Truth anchors with noun-phrase contexts for completion-style prompts",
     "n_entries": 120
   },
   "truths": [
-    {"context": "capital of France", "truth": "Paris", "category": "capitals"},
-    {"context": "capital of Japan", "truth": "Tokyo", "category": "capitals"},
-    {"context": "capital of Germany", "truth": "Berlin", "category": "capitals"},
-    {"context": "capital of Italy", "truth": "Rome", "category": "capitals"},
-    {"context": "capital of Spain", "truth": "Madrid", "category": "capitals"},
-    {"context": "capital of United Kingdom", "truth": "London", "category": "capitals"},
-    {"context": "capital of China", "truth": "Beijing", "category": "capitals"},
-    {"context": "capital of Russia", "truth": "Moscow", "category": "capitals"},
-    {"context": "capital of Brazil", "truth": "Brasilia", "category": "capitals"},
-    {"context": "capital of Australia", "truth": "Canberra", "category": "capitals"},
-    {"context": "capital of Canada", "truth": "Ottawa", "category": "capitals"},
-    {"context": "capital of India", "truth": "New Delhi", "category": "capitals"},
-    {"context": "capital of South Korea", "truth": "Seoul", "category": "capitals"},
-    {"context": "capital of Mexico", "truth": "Mexico City", "category": "capitals"},
-    {"context": "capital of Egypt", "truth": "Cairo", "category": "capitals"},
-    {"context": "capital of Turkey", "truth": "Ankara", "category": "capitals"},
-    {"context": "capital of Argentina", "truth": "Buenos Aires", "category": "capitals"},
-    {"context": "capital of Nigeria", "truth": "Abuja", "category": "capitals"},
-    {"context": "capital of South Africa", "truth": "Pretoria", "category": "capitals"},
-    {"context": "capital of Thailand", "truth": "Bangkok", "category": "capitals"},
-    {"context": "capital of Poland", "truth": "Warsaw", "category": "capitals"},
-    {"context": "capital of Sweden", "truth": "Stockholm", "category": "capitals"},
-    {"context": "capital of Norway", "truth": "Oslo", "category": "capitals"},
-    {"context": "capital of Switzerland", "truth": "Bern", "category": "capitals"},
-    {"context": "capital of Austria", "truth": "Vienna", "category": "capitals"},
-
-    {"context": "speed of light", "truth": "299792458", "category": "physics"},
-    {"context": "gravitational constant", "truth": "6.674", "category": "physics"},
-    {"context": "Planck constant", "truth": "6.626", "category": "physics"},
-    {"context": "Boltzmann constant", "truth": "1.381", "category": "physics"},
-    {"context": "Avogadro", "truth": "6.022", "category": "physics"},
-    {"context": "electron mass", "truth": "9.109", "category": "physics"},
-    {"context": "proton mass", "truth": "1.673", "category": "physics"},
-    {"context": "elementary charge", "truth": "1.602", "category": "physics"},
-    {"context": "speed of sound", "truth": "343", "category": "physics"},
-    {"context": "absolute zero", "truth": "-273.15", "category": "physics"},
-
-    {"context": "value of pi", "truth": "3.14159", "category": "math"},
-    {"context": "value of e", "truth": "2.71828", "category": "math"},
-    {"context": "golden ratio", "truth": "1.618", "category": "math"},
-    {"context": "square root of 2", "truth": "1.414", "category": "math"},
-    {"context": "Euler-Mascheroni", "truth": "0.5772", "category": "math"},
-
-    {"context": "Moon landing", "truth": "1969", "category": "dates"},
-    {"context": "World War II ended", "truth": "1945", "category": "dates"},
-    {"context": "World War I ended", "truth": "1918", "category": "dates"},
-    {"context": "Declaration of Independence", "truth": "1776", "category": "dates"},
-    {"context": "French Revolution", "truth": "1789", "category": "dates"},
-    {"context": "fall of the Berlin Wall", "truth": "1989", "category": "dates"},
-    {"context": "Columbus reached the Americas", "truth": "1492", "category": "dates"},
-    {"context": "Magna Carta", "truth": "1215", "category": "dates"},
-    {"context": "fall of Rome", "truth": "476", "category": "dates"},
-    {"context": "Russian Revolution", "truth": "1917", "category": "dates"},
-    {"context": "Pearl Harbor", "truth": "1941", "category": "dates"},
-    {"context": "Hiroshima", "truth": "1945", "category": "dates"},
-    {"context": "Chernobyl", "truth": "1986", "category": "dates"},
-    {"context": "September 11", "truth": "2001", "category": "dates"},
-    {"context": "COVID pandemic", "truth": "2020", "category": "dates"},
-
-    {"context": "chemical symbol for gold", "truth": "Au", "category": "elements"},
-    {"context": "chemical symbol for silver", "truth": "Ag", "category": "elements"},
-    {"context": "chemical symbol for iron", "truth": "Fe", "category": "elements"},
-    {"context": "chemical symbol for copper", "truth": "Cu", "category": "elements"},
-    {"context": "chemical symbol for sodium", "truth": "Na", "category": "elements"},
-    {"context": "chemical symbol for potassium", "truth": "K", "category": "elements"},
-    {"context": "atomic number of hydrogen", "truth": "1", "category": "elements"},
-    {"context": "atomic number of carbon", "truth": "6", "category": "elements"},
-    {"context": "atomic number of oxygen", "truth": "8", "category": "elements"},
-    {"context": "atomic number of nitrogen", "truth": "7", "category": "elements"},
-    {"context": "atomic number of helium", "truth": "2", "category": "elements"},
-
-    {"context": "largest planet", "truth": "Jupiter", "category": "science"},
-    {"context": "smallest planet", "truth": "Mercury", "category": "science"},
-    {"context": "closest star", "truth": "Proxima Centauri", "category": "science"},
-    {"context": "largest ocean", "truth": "Pacific", "category": "science"},
-    {"context": "longest river", "truth": "Nile", "category": "science"},
-    {"context": "tallest mountain", "truth": "Everest", "category": "science"},
-    {"context": "deepest ocean trench", "truth": "Mariana", "category": "science"},
-    {"context": "boiling point of water", "truth": "100", "category": "science"},
-    {"context": "freezing point of water", "truth": "0", "category": "science"},
-    {"context": "DNA double helix", "truth": "Watson and Crick", "category": "science"},
-    {"context": "theory of relativity", "truth": "Einstein", "category": "science"},
-    {"context": "theory of evolution", "truth": "Darwin", "category": "science"},
-    {"context": "discovered penicillin", "truth": "Fleming", "category": "science"},
-    {"context": "invented telephone", "truth": "Bell", "category": "science"},
-    {"context": "invented light bulb", "truth": "Edison", "category": "science"},
-
-    {"context": "wrote Romeo and Juliet", "truth": "Shakespeare", "category": "culture"},
-    {"context": "painted the Mona Lisa", "truth": "Leonardo da Vinci", "category": "culture"},
-    {"context": "composed the Ninth Symphony", "truth": "Beethoven", "category": "culture"},
-    {"context": "wrote The Odyssey", "truth": "Homer", "category": "culture"},
-    {"context": "wrote 1984", "truth": "George Orwell", "category": "culture"},
-    {"context": "painted Starry Night", "truth": "Van Gogh", "category": "culture"},
-    {"context": "wrote The Republic", "truth": "Plato", "category": "culture"},
-    {"context": "wrote Don Quixote", "truth": "Cervantes", "category": "culture"},
-
-    {"context": "first president of the United States", "truth": "George Washington", "category": "history"},
-    {"context": "16th president of the United States", "truth": "Abraham Lincoln", "category": "history"},
-    {"context": "president during World War II", "truth": "Roosevelt", "category": "history"},
-    {"context": "first emperor of China", "truth": "Qin Shi Huang", "category": "history"},
-    {"context": "built the pyramids", "truth": "Egypt", "category": "history"},
-    {"context": "Renaissance began", "truth": "Italy", "category": "history"},
-    {"context": "Industrial Revolution", "truth": "18th century", "category": "history"},
-
-    {"context": "number of continents", "truth": "7", "category": "geography"},
-    {"context": "number of oceans", "truth": "5", "category": "geography"},
-    {"context": "most populous country", "truth": "India", "category": "geography"},
-    {"context": "largest country by area", "truth": "Russia", "category": "geography"},
-    {"context": "smallest country", "truth": "Vatican", "category": "geography"},
-    {"context": "Sahara Desert located", "truth": "Africa", "category": "geography"},
-    {"context": "Amazon rainforest", "truth": "South America", "category": "geography"},
-    {"context": "Great Wall of China", "truth": "China", "category": "geography"},
-
-    {"context": "binary for 10", "truth": "1010", "category": "computing"},
-    {"context": "hexadecimal for 255", "truth": "FF", "category": "computing"},
-    {"context": "HTTP status 404", "truth": "Not Found", "category": "computing"},
-    {"context": "HTTP status 200", "truth": "OK", "category": "computing"},
-    {"context": "TCP port for HTTP", "truth": "80", "category": "computing"},
-    {"context": "TCP port for HTTPS", "truth": "443", "category": "computing"},
-    {"context": "invented the World Wide Web", "truth": "Tim Berners-Lee", "category": "computing"},
-    {"context": "created Linux", "truth": "Linus Torvalds", "category": "computing"},
-    {"context": "created Python", "truth": "Guido van Rossum", "category": "computing"},
-    {"context": "founded Apple", "truth": "Steve Jobs", "category": "computing"},
-    {"context": "founded Microsoft", "truth": "Bill Gates", "category": "computing"}
+    {
+      "context": "capital of France",
+      "truth": "Paris",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Japan",
+      "truth": "Tokyo",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Germany",
+      "truth": "Berlin",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Italy",
+      "truth": "Rome",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Spain",
+      "truth": "Madrid",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of United Kingdom",
+      "truth": "London",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of China",
+      "truth": "Beijing",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Russia",
+      "truth": "Moscow",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Brazil",
+      "truth": "Brasilia",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Australia",
+      "truth": "Canberra",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Canada",
+      "truth": "Ottawa",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of India",
+      "truth": "New Delhi",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of South Korea",
+      "truth": "Seoul",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Mexico",
+      "truth": "Mexico City",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Egypt",
+      "truth": "Cairo",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Turkey",
+      "truth": "Ankara",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Argentina",
+      "truth": "Buenos Aires",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Nigeria",
+      "truth": "Abuja",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of South Africa",
+      "truth": "Pretoria",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Thailand",
+      "truth": "Bangkok",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Poland",
+      "truth": "Warsaw",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Sweden",
+      "truth": "Stockholm",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Norway",
+      "truth": "Oslo",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Switzerland",
+      "truth": "Bern",
+      "category": "capitals"
+    },
+    {
+      "context": "capital of Austria",
+      "truth": "Vienna",
+      "category": "capitals"
+    },
+    {
+      "context": "speed of light",
+      "truth": "299792458",
+      "category": "physics"
+    },
+    {
+      "context": "gravitational constant",
+      "truth": "6.674",
+      "category": "physics"
+    },
+    {
+      "context": "Planck constant",
+      "truth": "6.626",
+      "category": "physics"
+    },
+    {
+      "context": "Boltzmann constant",
+      "truth": "1.381",
+      "category": "physics"
+    },
+    {
+      "context": "Avogadro",
+      "truth": "6.022",
+      "category": "physics"
+    },
+    {
+      "context": "electron mass",
+      "truth": "9.109",
+      "category": "physics"
+    },
+    {
+      "context": "proton mass",
+      "truth": "1.673",
+      "category": "physics"
+    },
+    {
+      "context": "elementary charge",
+      "truth": "1.602",
+      "category": "physics"
+    },
+    {
+      "context": "speed of sound",
+      "truth": "343",
+      "category": "physics"
+    },
+    {
+      "context": "absolute zero",
+      "truth": "-273.15",
+      "category": "physics"
+    },
+    {
+      "context": "value of pi",
+      "truth": "3.14159",
+      "category": "math"
+    },
+    {
+      "context": "value of e",
+      "truth": "2.71828",
+      "category": "math"
+    },
+    {
+      "context": "golden ratio",
+      "truth": "1.618",
+      "category": "math"
+    },
+    {
+      "context": "square root of 2",
+      "truth": "1.414",
+      "category": "math"
+    },
+    {
+      "context": "Euler-Mascheroni",
+      "truth": "0.5772",
+      "category": "math"
+    },
+    {
+      "context": "year of the Moon landing",
+      "truth": "1969",
+      "category": "dates"
+    },
+    {
+      "context": "year World War II ended",
+      "truth": "1945",
+      "category": "dates"
+    },
+    {
+      "context": "year World War I ended",
+      "truth": "1918",
+      "category": "dates"
+    },
+    {
+      "context": "year of the Declaration of Independence",
+      "truth": "1776",
+      "category": "dates"
+    },
+    {
+      "context": "year of the French Revolution",
+      "truth": "1789",
+      "category": "dates"
+    },
+    {
+      "context": "year of the fall of the Berlin Wall",
+      "truth": "1989",
+      "category": "dates"
+    },
+    {
+      "context": "year Columbus reached the Americas",
+      "truth": "1492",
+      "category": "dates"
+    },
+    {
+      "context": "year of the Magna Carta",
+      "truth": "1215",
+      "category": "dates"
+    },
+    {
+      "context": "year of the fall of Rome",
+      "truth": "476",
+      "category": "dates"
+    },
+    {
+      "context": "year of the Russian Revolution",
+      "truth": "1917",
+      "category": "dates"
+    },
+    {
+      "context": "year of the Pearl Harbor attack",
+      "truth": "1941",
+      "category": "dates"
+    },
+    {
+      "context": "year of the Hiroshima bombing",
+      "truth": "1945",
+      "category": "dates"
+    },
+    {
+      "context": "year of the Chernobyl disaster",
+      "truth": "1986",
+      "category": "dates"
+    },
+    {
+      "context": "year of September 11",
+      "truth": "2001",
+      "category": "dates"
+    },
+    {
+      "context": "year the COVID pandemic started",
+      "truth": "2020",
+      "category": "dates"
+    },
+    {
+      "context": "chemical symbol for gold",
+      "truth": "Au",
+      "category": "elements"
+    },
+    {
+      "context": "chemical symbol for silver",
+      "truth": "Ag",
+      "category": "elements"
+    },
+    {
+      "context": "chemical symbol for iron",
+      "truth": "Fe",
+      "category": "elements"
+    },
+    {
+      "context": "chemical symbol for copper",
+      "truth": "Cu",
+      "category": "elements"
+    },
+    {
+      "context": "chemical symbol for sodium",
+      "truth": "Na",
+      "category": "elements"
+    },
+    {
+      "context": "chemical symbol for potassium",
+      "truth": "K",
+      "category": "elements"
+    },
+    {
+      "context": "atomic number of hydrogen",
+      "truth": "1",
+      "category": "elements"
+    },
+    {
+      "context": "atomic number of carbon",
+      "truth": "6",
+      "category": "elements"
+    },
+    {
+      "context": "atomic number of oxygen",
+      "truth": "8",
+      "category": "elements"
+    },
+    {
+      "context": "atomic number of nitrogen",
+      "truth": "7",
+      "category": "elements"
+    },
+    {
+      "context": "atomic number of helium",
+      "truth": "2",
+      "category": "elements"
+    },
+    {
+      "context": "largest planet",
+      "truth": "Jupiter",
+      "category": "science",
+      "prompt": "The largest planet is"
+    },
+    {
+      "context": "smallest planet",
+      "truth": "Mercury",
+      "category": "science",
+      "prompt": "The smallest planet is"
+    },
+    {
+      "context": "closest star",
+      "truth": "Proxima Centauri",
+      "category": "science",
+      "prompt": "The closest star to Earth is"
+    },
+    {
+      "context": "largest ocean",
+      "truth": "Pacific",
+      "category": "science",
+      "prompt": "The largest ocean is the"
+    },
+    {
+      "context": "longest river",
+      "truth": "Nile",
+      "category": "science",
+      "prompt": "The longest river is the"
+    },
+    {
+      "context": "tallest mountain",
+      "truth": "Everest",
+      "category": "science",
+      "prompt": "The tallest mountain is"
+    },
+    {
+      "context": "deepest ocean trench",
+      "truth": "Mariana",
+      "category": "science",
+      "prompt": "The deepest ocean trench is the"
+    },
+    {
+      "context": "boiling point of water",
+      "truth": "100",
+      "category": "science"
+    },
+    {
+      "context": "freezing point of water",
+      "truth": "0",
+      "category": "science"
+    },
+    {
+      "context": "discoverers of the DNA double helix",
+      "truth": "Watson and Crick",
+      "category": "science",
+      "prompt": "The DNA double helix was discovered by"
+    },
+    {
+      "context": "proposer of the theory of relativity",
+      "truth": "Einstein",
+      "category": "science",
+      "prompt": "The theory of relativity was proposed by"
+    },
+    {
+      "context": "proposer of the theory of evolution",
+      "truth": "Darwin",
+      "category": "science",
+      "prompt": "The theory of evolution was proposed by"
+    },
+    {
+      "context": "discoverer of penicillin",
+      "truth": "Fleming",
+      "category": "science",
+      "prompt": "Penicillin was discovered by"
+    },
+    {
+      "context": "inventor of the telephone",
+      "truth": "Bell",
+      "category": "science",
+      "prompt": "The telephone was invented by"
+    },
+    {
+      "context": "inventor of the light bulb",
+      "truth": "Edison",
+      "category": "science",
+      "prompt": "The light bulb was invented by"
+    },
+    {
+      "context": "author of Romeo and Juliet",
+      "truth": "Shakespeare",
+      "category": "culture",
+      "prompt": "Romeo and Juliet was written by"
+    },
+    {
+      "context": "painter of the Mona Lisa",
+      "truth": "Leonardo da Vinci",
+      "category": "culture",
+      "prompt": "The Mona Lisa was painted by"
+    },
+    {
+      "context": "composer of the Ninth Symphony",
+      "truth": "Beethoven",
+      "category": "culture",
+      "prompt": "The Ninth Symphony was composed by"
+    },
+    {
+      "context": "author of The Odyssey",
+      "truth": "Homer",
+      "category": "culture",
+      "prompt": "The Odyssey was written by"
+    },
+    {
+      "context": "author of 1984",
+      "truth": "George Orwell",
+      "category": "culture",
+      "prompt": "1984 was written by"
+    },
+    {
+      "context": "painter of Starry Night",
+      "truth": "Van Gogh",
+      "category": "culture",
+      "prompt": "Starry Night was painted by"
+    },
+    {
+      "context": "author of The Republic",
+      "truth": "Plato",
+      "category": "culture",
+      "prompt": "The Republic was written by"
+    },
+    {
+      "context": "author of Don Quixote",
+      "truth": "Cervantes",
+      "category": "culture",
+      "prompt": "Don Quixote was written by"
+    },
+    {
+      "context": "first president of the United States",
+      "truth": "George Washington",
+      "category": "history",
+      "prompt": "The first US president was"
+    },
+    {
+      "context": "16th president of the United States",
+      "truth": "Abraham Lincoln",
+      "category": "history",
+      "prompt": "The 16th US president was"
+    },
+    {
+      "context": "president during World War II",
+      "truth": "Roosevelt",
+      "category": "history",
+      "prompt": "The US president during World War II was"
+    },
+    {
+      "context": "first emperor of China",
+      "truth": "Qin Shi Huang",
+      "category": "history",
+      "prompt": "The first emperor of China was"
+    },
+    {
+      "context": "civilization that built the pyramids",
+      "truth": "Egypt",
+      "category": "history",
+      "prompt": "The pyramids were built by ancient"
+    },
+    {
+      "context": "birthplace of the Renaissance",
+      "truth": "Italy",
+      "category": "history",
+      "prompt": "The Renaissance began in"
+    },
+    {
+      "context": "century of the Industrial Revolution",
+      "truth": "18th century",
+      "category": "history",
+      "prompt": "The Industrial Revolution took place in the"
+    },
+    {
+      "context": "number of continents",
+      "truth": "7",
+      "category": "geography"
+    },
+    {
+      "context": "number of oceans",
+      "truth": "5",
+      "category": "geography"
+    },
+    {
+      "context": "most populous country",
+      "truth": "India",
+      "category": "geography",
+      "prompt": "The most populous country is"
+    },
+    {
+      "context": "largest country by area",
+      "truth": "Russia",
+      "category": "geography",
+      "prompt": "The largest country by area is"
+    },
+    {
+      "context": "smallest country",
+      "truth": "Vatican",
+      "category": "geography"
+    },
+    {
+      "context": "continent of the Sahara Desert",
+      "truth": "Africa",
+      "category": "geography",
+      "prompt": "The Sahara Desert is located in"
+    },
+    {
+      "context": "continent of the Amazon rainforest",
+      "truth": "South America",
+      "category": "geography",
+      "prompt": "The Amazon rainforest is located in"
+    },
+    {
+      "context": "country of the Great Wall of China",
+      "truth": "China",
+      "category": "geography",
+      "prompt": "The Great Wall of China is located in"
+    },
+    {
+      "context": "binary for 10",
+      "truth": "1010",
+      "category": "computing"
+    },
+    {
+      "context": "hexadecimal for 255",
+      "truth": "FF",
+      "category": "computing"
+    },
+    {
+      "context": "HTTP status 404",
+      "truth": "Not Found",
+      "category": "computing",
+      "prompt": "HTTP status code 404 means"
+    },
+    {
+      "context": "HTTP status 200",
+      "truth": "OK",
+      "category": "computing",
+      "prompt": "HTTP status code 200 means"
+    },
+    {
+      "context": "TCP port for HTTP",
+      "truth": "80",
+      "category": "computing"
+    },
+    {
+      "context": "TCP port for HTTPS",
+      "truth": "443",
+      "category": "computing"
+    },
+    {
+      "context": "inventor of the World Wide Web",
+      "truth": "Tim Berners-Lee",
+      "category": "computing",
+      "prompt": "The World Wide Web was invented by"
+    },
+    {
+      "context": "creator of Linux",
+      "truth": "Linus Torvalds",
+      "category": "computing",
+      "prompt": "Linux was created by"
+    },
+    {
+      "context": "creator of Python",
+      "truth": "Guido van Rossum",
+      "category": "computing",
+      "prompt": "Python was created by"
+    },
+    {
+      "context": "founder of Apple",
+      "truth": "Steve Jobs",
+      "category": "computing",
+      "prompt": "Apple was founded by"
+    },
+    {
+      "context": "founder of Microsoft",
+      "truth": "Bill Gates",
+      "category": "computing",
+      "prompt": "Microsoft was founded by"
+    }
   ]
 }

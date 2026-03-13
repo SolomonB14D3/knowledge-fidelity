@@ -1,0 +1,269 @@
+{
+  "domain": "calculus",
+  "truths": [
+    {
+      "context": "derivative of sin(x)",
+      "truth": "cos(x)",
+      "distractors": [
+        "-sin(x)",
+        "-cos(x)",
+        "tan(x)",
+        "sin(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of cos(x)",
+      "truth": "-sin(x)",
+      "distractors": [
+        "sin(x)",
+        "-cos(x)",
+        "cos(x)",
+        "tan(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of e^x",
+      "truth": "e^x",
+      "distractors": [
+        "x*e^x",
+        "e^(x-1)",
+        "ln(x)",
+        "e^(x+1)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of ln(x)",
+      "truth": "1/x",
+      "distractors": [
+        "ln(x)/x",
+        "x*ln(x)",
+        "1/x^2",
+        "e^x"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of x^n",
+      "truth": "n*x^(n-1)",
+      "distractors": [
+        "(n-1)*x^n",
+        "n*x^n",
+        "x^(n+1)/(n+1)",
+        "n*x^(n+1)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of tan(x)",
+      "truth": "sec^2(x)",
+      "distractors": [
+        "cos^2(x)",
+        "1/cos(x)",
+        "-csc^2(x)",
+        "tan^2(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "derivative of arctan(x)",
+      "truth": "1/(1+x^2)",
+      "distractors": [
+        "1/(1-x^2)",
+        "arctan(x)/x",
+        "1/sqrt(1-x^2)",
+        "-1/(1+x^2)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "derivative of arcsin(x)",
+      "truth": "1/sqrt(1-x^2)",
+      "distractors": [
+        "1/sqrt(1+x^2)",
+        "-1/sqrt(1-x^2)",
+        "cos(x)",
+        "1/(1-x^2)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "second derivative of sin(x)",
+      "truth": "-sin(x)",
+      "distractors": [
+        "sin(x)",
+        "cos(x)",
+        "-cos(x)",
+        "0"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of x*ln(x)",
+      "truth": "ln(x)+1",
+      "distractors": [
+        "ln(x)",
+        "1/x+ln(x)",
+        "x/ln(x)",
+        "x+ln(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "integral of cos(x)",
+      "truth": "sin(x)+C",
+      "distractors": [
+        "-sin(x)+C",
+        "cos(x)+C",
+        "tan(x)+C",
+        "sin^2(x)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of sin(x)",
+      "truth": "-cos(x)+C",
+      "distractors": [
+        "cos(x)+C",
+        "-sin(x)+C",
+        "sin^2(x)+C",
+        "sin(x)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of e^x",
+      "truth": "e^x+C",
+      "distractors": [
+        "x*e^x+C",
+        "e^x/x+C",
+        "ln(x)+C",
+        "e^(x+1)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of 1/x",
+      "truth": "ln|x|+C",
+      "distractors": [
+        "1/x^2+C",
+        "x*ln(x)+C",
+        "log(x)+C",
+        "-1/x^2+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of x^n where n!=-1",
+      "truth": "x^(n+1)/(n+1)+C",
+      "distractors": [
+        "n*x^(n-1)+C",
+        "x^n/n+C",
+        "x^(n+1)+C",
+        "(n+1)*x^n+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of sec^2(x)",
+      "truth": "tan(x)+C",
+      "distractors": [
+        "sec(x)*tan(x)+C",
+        "sec^3(x)/3+C",
+        "cot(x)+C",
+        "-cot(x)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "integral of 1/(1+x^2)",
+      "truth": "arctan(x)+C",
+      "distractors": [
+        "arcsin(x)+C",
+        "ln(1+x^2)+C",
+        "1/(2*x^2)+C",
+        "arctan^2(x)/2+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "limit of sin(x)/x as x approaches 0",
+      "truth": "1",
+      "distractors": [
+        "0",
+        "inf",
+        "pi",
+        "undefined"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "limit of (1+1/n)^n as n approaches inf",
+      "truth": "e",
+      "distractors": [
+        "1",
+        "2",
+        "pi",
+        "inf"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "limit of (e^x-1)/x as x approaches 0",
+      "truth": "1",
+      "distractors": [
+        "0",
+        "e",
+        "inf",
+        "1/e"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "fundamental theorem of calculus (derivative of integral)",
+      "truth": "f(x)",
+      "distractors": [
+        "F(x)",
+        "f'(x)",
+        "integral f(x)dx",
+        "F'(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Taylor series first two terms of e^x around 0",
+      "truth": "1+x",
+      "distractors": [
+        "x+x^2",
+        "e+e*x",
+        "1+x+x^2/2",
+        "1-x"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    }
+  ]
+}

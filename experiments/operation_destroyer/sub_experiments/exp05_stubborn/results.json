@@ -1,0 +1,140 @@
+{
+  "config": {
+    "d_inner": 256,
+    "steps": 3000,
+    "lr": 5e-07,
+    "margin": 1.5,
+    "early_stop_at": 4
+  },
+  "n_train": 22,
+  "stopped_early": false,
+  "baseline": {
+    "positivity": {
+      "acc": 0.3,
+      "wins": 3,
+      "n": 10,
+      "mean_margin": -1.3350154876708984
+    },
+    "linearity": {
+      "acc": 0.0,
+      "wins": 0,
+      "n": 10,
+      "mean_margin": -6.280739879608154
+    },
+    "missing_constant": {
+      "acc": 0.2,
+      "wins": 2,
+      "n": 10,
+      "mean_margin": -2.5299524307250976
+    },
+    "truncation": {
+      "acc": 0.3,
+      "wins": 3,
+      "n": 10,
+      "mean_margin": -0.8797079086303711
+    }
+  },
+  "post_train": {
+    "positivity": {
+      "acc": 0.2,
+      "wins": 2,
+      "n": 10,
+      "mean_margin": -13.358351707458496
+    },
+    "linearity": {
+      "acc": 0.0,
+      "wins": 0,
+      "n": 10,
+      "mean_margin": -39.312158203125
+    },
+    "missing_constant": {
+      "acc": 0.7,
+      "wins": 7,
+      "n": 10,
+      "mean_margin": 2.2973201751708983
+    },
+    "truncation": {
+      "acc": 0.2,
+      "wins": 2,
+      "n": 10,
+      "mean_margin": -17.597993469238283
+    }
+  },
+  "step_log": [
+    {
+      "step": 200,
+      "loss": 1.5231552124023438,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 400,
+      "loss": 3.505819320678711,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 600,
+      "loss": 3.0359840393066406,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 800,
+      "loss": 0.0,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 1000,
+      "loss": 0.0,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 1200,
+      "loss": 1.5004043579101562,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 1400,
+      "loss": 1.500680923461914,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 1600,
+      "loss": 1.53814697265625,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 1800,
+      "loss": 1.5006637573242188,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 2000,
+      "loss": 1.5003738403320312,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 2200,
+      "loss": 1.5006790161132812,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 2400,
+      "loss": 1.5003738403320312,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 2600,
+      "loss": 0.0,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 2800,
+      "loss": 1.5006561279296875,
+      "stubborn_fixed": 1
+    },
+    {
+      "step": 3000,
+      "loss": 0.0,
+      "stubborn_fixed": 1
+    }
+  ]
+}

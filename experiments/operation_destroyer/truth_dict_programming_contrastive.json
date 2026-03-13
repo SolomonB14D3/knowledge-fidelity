@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "domain": "programming",
+    "description": "Factual truth anchors for programming domain",
+    "n_entries": 15
+  },
+  "truths": [
+    {
+      "context": "time complexity of binary search",
+      "truth": "O(log n)",
+      "category": "programming",
+      "distractors": [
+        "O(n)",
+        "O(n log n)",
+        "O(1)",
+        "O(n^2)"
+      ]
+    },
+    {
+      "context": "time complexity of bubble sort",
+      "truth": "O(n^2)",
+      "category": "programming",
+      "distractors": [
+        "O(n log n)",
+        "O(n)",
+        "O(log n)",
+        "O(n^3)"
+      ]
+    },
+    {
+      "context": "data structure using LIFO",
+      "truth": "stack",
+      "category": "programming",
+      "distractors": [
+        "queue",
+        "heap",
+        "tree",
+        "graph"
+      ]
+    },
+    {
+      "context": "data structure using FIFO",
+      "truth": "queue",
+      "category": "programming",
+      "distractors": [
+        "stack",
+        "heap",
+        "deque",
+        "list"
+      ]
+    },
+    {
+      "context": "HTTP method for creating resources",
+      "truth": "POST",
+      "category": "programming",
+      "distractors": [
+        "GET",
+        "PUT",
+        "DELETE",
+        "PATCH"
+      ]
+    },
+    {
+      "context": "HTTP method for reading resources",
+      "truth": "GET",
+      "category": "programming",
+      "distractors": [
+        "POST",
+        "PUT",
+        "FETCH",
+        "READ"
+      ]
+    },
+    {
+      "context": "language created by Bjarne Stroustrup",
+      "truth": "C++",
+      "category": "programming",
+      "distractors": [
+        "Java",
+        "C#",
+        "Rust",
+        "Go"
+      ]
+    },
+    {
+      "context": "language created by James Gosling",
+      "truth": "Java",
+      "category": "programming",
+      "distractors": [
+        "C#",
+        "Kotlin",
+        "Scala",
+        "Groovy"
+      ]
+    },
+    {
+      "context": "number of bits in a byte",
+      "truth": "8",
+      "category": "programming",
+      "distractors": [
+        "4",
+        "16",
+        "6",
+        "10"
+      ]
+    },
+    {
+      "context": "base of hexadecimal",
+      "truth": "16",
+      "category": "programming",
+      "distractors": [
+        "8",
+        "2",
+        "10",
+        "12"
+      ]
+    },
+    {
+      "context": "algorithm for shortest path in a graph",
+      "truth": "Dijkstra",
+      "category": "programming",
+      "distractors": [
+        "Bellman-Ford",
+        "Floyd-Warshall",
+        "A-star",
+        "Prim"
+      ]
+    },
+    {
+      "context": "sorting algorithm with O(n log n) worst case",
+      "truth": "merge sort",
+      "category": "programming",
+      "distractors": [
+        "quicksort",
+        "heapsort",
+        "timsort",
+        "introsort"
+      ]
+    },
+    {
+      "context": "design pattern for single instance",
+      "truth": "singleton",
+      "category": "programming",
+      "distractors": [
+        "factory",
+        "observer",
+        "decorator",
+        "proxy"
+      ]
+    },
+    {
+      "context": "version control system created by Torvalds",
+      "truth": "Git",
+      "category": "programming",
+      "distractors": [
+        "SVN",
+        "Mercurial",
+        "CVS",
+        "Perforce"
+      ]
+    },
+    {
+      "context": "RFC that defines HTTP/1.1",
+      "truth": "RFC 2616",
+      "category": "programming",
+      "distractors": [
+        "RFC 791",
+        "RFC 2068",
+        "RFC 7230",
+        "RFC 1945"
+      ]
+    }
+  ]
+}

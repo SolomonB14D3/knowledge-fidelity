@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "domain": "astronomy",
+    "description": "Factual truth anchors for astronomy domain",
+    "n_entries": 15
+  },
+  "truths": [
+    {
+      "context": "planet closest to the Sun",
+      "truth": "Mercury",
+      "category": "astronomy",
+      "distractors": [
+        "Venus",
+        "Mars",
+        "Earth",
+        "Jupiter"
+      ]
+    },
+    {
+      "context": "largest moon of Saturn",
+      "truth": "Titan",
+      "category": "astronomy",
+      "distractors": [
+        "Enceladus",
+        "Rhea",
+        "Iapetus",
+        "Mimas"
+      ]
+    },
+    {
+      "context": "age of the universe in billions of years",
+      "truth": "13.8",
+      "category": "astronomy",
+      "distractors": [
+        "10",
+        "15",
+        "12",
+        "20"
+      ]
+    },
+    {
+      "context": "distance from Earth to Moon in km",
+      "truth": "384400",
+      "category": "astronomy",
+      "distractors": [
+        "150000",
+        "500000",
+        "100000",
+        "1000000"
+      ]
+    },
+    {
+      "context": "galaxy containing our solar system",
+      "truth": "Milky Way",
+      "category": "astronomy",
+      "distractors": [
+        "Andromeda",
+        "Triangulum",
+        "Sombrero",
+        "Whirlpool"
+      ]
+    },
+    {
+      "context": "nearest galaxy to the Milky Way",
+      "truth": "Andromeda",
+      "category": "astronomy",
+      "distractors": [
+        "Triangulum",
+        "Large Magellanic Cloud",
+        "Sombrero",
+        "Pinwheel"
+      ]
+    },
+    {
+      "context": "planet with the most moons",
+      "truth": "Saturn",
+      "category": "astronomy",
+      "distractors": [
+        "Jupiter",
+        "Uranus",
+        "Neptune",
+        "Mars"
+      ]
+    },
+    {
+      "context": "temperature of the Sun's surface in Kelvin",
+      "truth": "5778",
+      "category": "astronomy",
+      "distractors": [
+        "6000",
+        "5000",
+        "10000",
+        "3000"
+      ]
+    },
+    {
+      "context": "speed of light in km per second",
+      "truth": "299792",
+      "category": "astronomy",
+      "distractors": [
+        "300000",
+        "186000",
+        "150000",
+        "250000"
+      ]
+    },
+    {
+      "context": "phenomenon when light bends around mass",
+      "truth": "gravitational lensing",
+      "category": "astronomy",
+      "distractors": [
+        "redshift",
+        "blueshift",
+        "parallax",
+        "aberration"
+      ]
+    },
+    {
+      "context": "type of star our Sun is",
+      "truth": "G-type main sequence",
+      "category": "astronomy",
+      "distractors": [
+        "K-type",
+        "F-type",
+        "M-type",
+        "A-type"
+      ]
+    },
+    {
+      "context": "first person to walk on the Moon",
+      "truth": "Armstrong",
+      "category": "astronomy",
+      "distractors": [
+        "Aldrin",
+        "Glenn",
+        "Shepard",
+        "Collins"
+      ]
+    },
+    {
+      "context": "year of the first Moon landing",
+      "truth": "1969",
+      "category": "astronomy",
+      "distractors": [
+        "1967",
+        "1971",
+        "1965",
+        "1973"
+      ]
+    },
+    {
+      "context": "planet known as the Red Planet",
+      "truth": "Mars",
+      "category": "astronomy",
+      "distractors": [
+        "Venus",
+        "Mercury",
+        "Jupiter",
+        "Saturn"
+      ]
+    },
+    {
+      "context": "Hubble Space Telescope launched in year",
+      "truth": "1990",
+      "category": "astronomy",
+      "distractors": [
+        "1985",
+        "1995",
+        "1988",
+        "2000"
+      ]
+    }
+  ]
+}
