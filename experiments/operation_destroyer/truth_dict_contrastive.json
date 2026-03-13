@@ -1,0 +1,1274 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "description": "Truth anchors with contrastive distractors (sun + black hole)",
+    "n_entries": 115
+  },
+  "truths": [
+    {
+      "context": "capital of France",
+      "truth": "Paris",
+      "category": "capitals",
+      "distractors": [
+        "Ottawa",
+        "Vienna",
+        "Canberra",
+        "Ankara"
+      ]
+    },
+    {
+      "context": "capital of Japan",
+      "truth": "Tokyo",
+      "category": "capitals",
+      "distractors": [
+        "London",
+        "Paris",
+        "Oslo",
+        "Bangkok"
+      ]
+    },
+    {
+      "context": "capital of Germany",
+      "truth": "Berlin",
+      "category": "capitals",
+      "distractors": [
+        "London",
+        "Moscow",
+        "Canberra",
+        "Bern"
+      ]
+    },
+    {
+      "context": "capital of Italy",
+      "truth": "Rome",
+      "category": "capitals",
+      "distractors": [
+        "London",
+        "Moscow",
+        "Oslo",
+        "Madrid"
+      ]
+    },
+    {
+      "context": "capital of Spain",
+      "truth": "Madrid",
+      "category": "capitals",
+      "distractors": [
+        "Vienna",
+        "Bangkok",
+        "London",
+        "Seoul"
+      ]
+    },
+    {
+      "context": "capital of United Kingdom",
+      "truth": "London",
+      "category": "capitals",
+      "distractors": [
+        "Berlin",
+        "Rome",
+        "Paris",
+        "Bangkok"
+      ]
+    },
+    {
+      "context": "capital of China",
+      "truth": "Beijing",
+      "category": "capitals",
+      "distractors": [
+        "Canberra",
+        "Pretoria",
+        "Bangkok",
+        "Berlin"
+      ]
+    },
+    {
+      "context": "capital of Russia",
+      "truth": "Moscow",
+      "category": "capitals",
+      "distractors": [
+        "Berlin",
+        "Vienna",
+        "Ankara",
+        "Canberra"
+      ]
+    },
+    {
+      "context": "capital of Brazil",
+      "truth": "Brasilia",
+      "category": "capitals",
+      "distractors": [
+        "Warsaw",
+        "Vienna",
+        "Oslo",
+        "Seoul"
+      ]
+    },
+    {
+      "context": "capital of Australia",
+      "truth": "Canberra",
+      "category": "capitals",
+      "distractors": [
+        "Bangkok",
+        "Rome",
+        "Oslo",
+        "Abuja"
+      ]
+    },
+    {
+      "context": "capital of Canada",
+      "truth": "Ottawa",
+      "category": "capitals",
+      "distractors": [
+        "Abuja",
+        "Paris",
+        "Ankara",
+        "Bangkok"
+      ]
+    },
+    {
+      "context": "capital of India",
+      "truth": "New Delhi",
+      "category": "capitals",
+      "distractors": [
+        "Oslo",
+        "Cairo",
+        "Berlin",
+        "Mexico City"
+      ]
+    },
+    {
+      "context": "capital of South Korea",
+      "truth": "Seoul",
+      "category": "capitals",
+      "distractors": [
+        "Ottawa",
+        "Madrid",
+        "Canberra",
+        "Vienna"
+      ]
+    },
+    {
+      "context": "capital of Mexico",
+      "truth": "Mexico City",
+      "category": "capitals",
+      "distractors": [
+        "Cairo",
+        "Beijing",
+        "Ottawa",
+        "Buenos Aires"
+      ]
+    },
+    {
+      "context": "capital of Egypt",
+      "truth": "Cairo",
+      "category": "capitals",
+      "distractors": [
+        "Abuja",
+        "Buenos Aires",
+        "Seoul",
+        "Vienna"
+      ]
+    },
+    {
+      "context": "capital of Turkey",
+      "truth": "Ankara",
+      "category": "capitals",
+      "distractors": [
+        "Ottawa",
+        "Beijing",
+        "Madrid",
+        "New Delhi"
+      ]
+    },
+    {
+      "context": "capital of Argentina",
+      "truth": "Buenos Aires",
+      "category": "capitals",
+      "distractors": [
+        "Oslo",
+        "Stockholm",
+        "Pretoria",
+        "London"
+      ]
+    },
+    {
+      "context": "capital of Nigeria",
+      "truth": "Abuja",
+      "category": "capitals",
+      "distractors": [
+        "New Delhi",
+        "Vienna",
+        "Warsaw",
+        "London"
+      ]
+    },
+    {
+      "context": "capital of South Africa",
+      "truth": "Pretoria",
+      "category": "capitals",
+      "distractors": [
+        "Rome",
+        "Buenos Aires",
+        "Mexico City",
+        "New Delhi"
+      ]
+    },
+    {
+      "context": "capital of Thailand",
+      "truth": "Bangkok",
+      "category": "capitals",
+      "distractors": [
+        "Madrid",
+        "Pretoria",
+        "Canberra",
+        "Ottawa"
+      ]
+    },
+    {
+      "context": "capital of Poland",
+      "truth": "Warsaw",
+      "category": "capitals",
+      "distractors": [
+        "Mexico City",
+        "Oslo",
+        "Vienna",
+        "London"
+      ]
+    },
+    {
+      "context": "capital of Sweden",
+      "truth": "Stockholm",
+      "category": "capitals",
+      "distractors": [
+        "Abuja",
+        "Beijing",
+        "Paris",
+        "Seoul"
+      ]
+    },
+    {
+      "context": "capital of Norway",
+      "truth": "Oslo",
+      "category": "capitals",
+      "distractors": [
+        "Stockholm",
+        "Tokyo",
+        "Brasilia",
+        "Cairo"
+      ]
+    },
+    {
+      "context": "capital of Switzerland",
+      "truth": "Bern",
+      "category": "capitals",
+      "distractors": [
+        "Oslo",
+        "Ankara",
+        "Beijing",
+        "Moscow"
+      ]
+    },
+    {
+      "context": "capital of Austria",
+      "truth": "Vienna",
+      "category": "capitals",
+      "distractors": [
+        "Buenos Aires",
+        "Bangkok",
+        "Berlin",
+        "Beijing"
+      ]
+    },
+    {
+      "context": "speed of light",
+      "truth": "299792458",
+      "category": "physics",
+      "distractors": [
+        "186000",
+        "300000",
+        "299792",
+        "3e8"
+      ]
+    },
+    {
+      "context": "gravitational constant",
+      "truth": "6.674",
+      "category": "physics",
+      "distractors": [
+        "6.371",
+        "9.81",
+        "6.022",
+        "1.381"
+      ]
+    },
+    {
+      "context": "Planck constant",
+      "truth": "6.626",
+      "category": "physics",
+      "distractors": [
+        "6.022",
+        "1.381",
+        "1.602",
+        "9.109"
+      ]
+    },
+    {
+      "context": "Boltzmann constant",
+      "truth": "1.381",
+      "category": "physics",
+      "distractors": [
+        "1.602",
+        "6.674",
+        "9.109",
+        "1.673"
+      ]
+    },
+    {
+      "context": "Avogadro",
+      "truth": "6.022",
+      "category": "physics",
+      "distractors": [
+        "6.674",
+        "1.602",
+        "3.14159",
+        "1.381"
+      ]
+    },
+    {
+      "context": "electron mass",
+      "truth": "9.109",
+      "category": "physics",
+      "distractors": [
+        "1.673",
+        "1.602",
+        "6.674",
+        "9.807"
+      ]
+    },
+    {
+      "context": "proton mass",
+      "truth": "1.673",
+      "category": "physics",
+      "distractors": [
+        "9.109",
+        "1.602",
+        "1.381",
+        "6.674"
+      ]
+    },
+    {
+      "context": "elementary charge",
+      "truth": "1.602",
+      "category": "physics",
+      "distractors": [
+        "1.381",
+        "9.109",
+        "6.674",
+        "2.718"
+      ]
+    },
+    {
+      "context": "speed of sound",
+      "truth": "343",
+      "category": "physics",
+      "distractors": [
+        "331",
+        "340",
+        "350",
+        "320"
+      ]
+    },
+    {
+      "context": "absolute zero",
+      "truth": "-273.15",
+      "category": "physics",
+      "distractors": [
+        "-270",
+        "-273",
+        "-271.15",
+        "-260"
+      ]
+    },
+    {
+      "context": "value of pi",
+      "truth": "3.14159",
+      "category": "math",
+      "distractors": [
+        "3.14",
+        "3.14159265",
+        "3.1416",
+        "22/7"
+      ]
+    },
+    {
+      "context": "value of e",
+      "truth": "2.71828",
+      "category": "math",
+      "distractors": [
+        "2.718",
+        "2.72",
+        "2.71",
+        "3.14159"
+      ]
+    },
+    {
+      "context": "golden ratio",
+      "truth": "1.618",
+      "category": "math",
+      "distractors": [
+        "1.414",
+        "1.732",
+        "1.628",
+        "1.618034"
+      ]
+    },
+    {
+      "context": "square root of 2",
+      "truth": "1.414",
+      "category": "math",
+      "distractors": [
+        "1.41",
+        "1.732",
+        "1.618",
+        "1.732"
+      ]
+    },
+    {
+      "context": "Euler-Mascheroni",
+      "truth": "0.5772",
+      "category": "math",
+      "distractors": [
+        "0.618",
+        "0.7071",
+        "0.5",
+        "0.693"
+      ]
+    },
+    {
+      "context": "Moon landing",
+      "truth": "1969",
+      "category": "dates",
+      "distractors": [
+        "1954",
+        "1961",
+        "1976",
+        "1981"
+      ]
+    },
+    {
+      "context": "World War II ended",
+      "truth": "1945",
+      "category": "dates",
+      "distractors": [
+        "1930",
+        "1937",
+        "1952",
+        "1957"
+      ]
+    },
+    {
+      "context": "World War I ended",
+      "truth": "1918",
+      "category": "dates",
+      "distractors": [
+        "1903",
+        "1910",
+        "1925",
+        "1930"
+      ]
+    },
+    {
+      "context": "Declaration of Independence",
+      "truth": "1776",
+      "category": "dates",
+      "distractors": [
+        "1761",
+        "1768",
+        "1783",
+        "1788"
+      ]
+    },
+    {
+      "context": "French Revolution",
+      "truth": "1789",
+      "category": "dates",
+      "distractors": [
+        "1774",
+        "1781",
+        "1796",
+        "1801"
+      ]
+    },
+    {
+      "context": "fall of the Berlin Wall",
+      "truth": "1989",
+      "category": "dates",
+      "distractors": [
+        "1974",
+        "1981",
+        "1996",
+        "2001"
+      ]
+    },
+    {
+      "context": "Columbus reached the Americas",
+      "truth": "1492",
+      "category": "dates",
+      "distractors": [
+        "1477",
+        "1484",
+        "1499",
+        "1504"
+      ]
+    },
+    {
+      "context": "Magna Carta",
+      "truth": "1215",
+      "category": "dates",
+      "distractors": [
+        "1200",
+        "1207",
+        "1222",
+        "1227"
+      ]
+    },
+    {
+      "context": "fall of Rome",
+      "truth": "476",
+      "category": "dates",
+      "distractors": [
+        "461",
+        "468",
+        "483",
+        "488"
+      ]
+    },
+    {
+      "context": "Russian Revolution",
+      "truth": "1917",
+      "category": "dates",
+      "distractors": [
+        "1902",
+        "1909",
+        "1924",
+        "1929"
+      ]
+    },
+    {
+      "context": "Pearl Harbor",
+      "truth": "1941",
+      "category": "dates",
+      "distractors": [
+        "1926",
+        "1933",
+        "1948",
+        "1953"
+      ]
+    },
+    {
+      "context": "Hiroshima",
+      "truth": "1945",
+      "category": "dates",
+      "distractors": [
+        "1930",
+        "1937",
+        "1952",
+        "1957"
+      ]
+    },
+    {
+      "context": "Chernobyl",
+      "truth": "1986",
+      "category": "dates",
+      "distractors": [
+        "1971",
+        "1978",
+        "1993",
+        "1998"
+      ]
+    },
+    {
+      "context": "September 11",
+      "truth": "2001",
+      "category": "dates",
+      "distractors": [
+        "1986",
+        "1993",
+        "2008",
+        "2013"
+      ]
+    },
+    {
+      "context": "COVID pandemic",
+      "truth": "2020",
+      "category": "dates",
+      "distractors": [
+        "2005",
+        "2012",
+        "2027",
+        "2032"
+      ]
+    },
+    {
+      "context": "chemical symbol for gold",
+      "truth": "Au",
+      "category": "elements",
+      "distractors": [
+        "Go",
+        "Gd",
+        "Ag",
+        "Gl"
+      ]
+    },
+    {
+      "context": "chemical symbol for silver",
+      "truth": "Ag",
+      "category": "elements",
+      "distractors": [
+        "Si",
+        "Sr",
+        "Sv",
+        "Sl"
+      ]
+    },
+    {
+      "context": "chemical symbol for iron",
+      "truth": "Fe",
+      "category": "elements",
+      "distractors": [
+        "Ir",
+        "In",
+        "Fr",
+        "Fo"
+      ]
+    },
+    {
+      "context": "chemical symbol for copper",
+      "truth": "Cu",
+      "category": "elements",
+      "distractors": [
+        "Co",
+        "Cp",
+        "Cr",
+        "Cm"
+      ]
+    },
+    {
+      "context": "chemical symbol for sodium",
+      "truth": "Na",
+      "category": "elements",
+      "distractors": [
+        "So",
+        "Sd",
+        "Sn",
+        "Nm"
+      ]
+    },
+    {
+      "context": "chemical symbol for potassium",
+      "truth": "K",
+      "category": "elements",
+      "distractors": [
+        "Po",
+        "Pt",
+        "Pm",
+        "Ks"
+      ]
+    },
+    {
+      "context": "atomic number of hydrogen",
+      "truth": "1",
+      "category": "elements",
+      "distractors": [
+        "2",
+        "3",
+        "0",
+        "4"
+      ]
+    },
+    {
+      "context": "atomic number of carbon",
+      "truth": "6",
+      "category": "elements",
+      "distractors": [
+        "7",
+        "5",
+        "8",
+        "4"
+      ]
+    },
+    {
+      "context": "atomic number of oxygen",
+      "truth": "8",
+      "category": "elements",
+      "distractors": [
+        "6",
+        "9",
+        "7",
+        "10"
+      ]
+    },
+    {
+      "context": "atomic number of nitrogen",
+      "truth": "7",
+      "category": "elements",
+      "distractors": [
+        "6",
+        "8",
+        "5",
+        "9"
+      ]
+    },
+    {
+      "context": "atomic number of helium",
+      "truth": "2",
+      "category": "elements",
+      "distractors": [
+        "1",
+        "3",
+        "4",
+        "0"
+      ]
+    },
+    {
+      "context": "largest planet",
+      "truth": "Jupiter",
+      "category": "science",
+      "distractors": [
+        "Saturn",
+        "Neptune",
+        "Uranus",
+        "Mars"
+      ]
+    },
+    {
+      "context": "smallest planet",
+      "truth": "Mercury",
+      "category": "science",
+      "distractors": [
+        "Mars",
+        "Pluto",
+        "Venus",
+        "Earth"
+      ]
+    },
+    {
+      "context": "closest star",
+      "truth": "Proxima Centauri",
+      "category": "science",
+      "distractors": [
+        "Alpha Centauri",
+        "Sirius",
+        "Betelgeuse",
+        "Vega"
+      ]
+    },
+    {
+      "context": "largest ocean",
+      "truth": "Pacific",
+      "category": "science",
+      "distractors": [
+        "Atlantic",
+        "Indian",
+        "Arctic",
+        "Southern"
+      ]
+    },
+    {
+      "context": "longest river",
+      "truth": "Nile",
+      "category": "science",
+      "distractors": [
+        "Amazon",
+        "Mississippi",
+        "Yangtze",
+        "Congo"
+      ]
+    },
+    {
+      "context": "tallest mountain",
+      "truth": "Everest",
+      "category": "science",
+      "distractors": [
+        "K2",
+        "Kangchenjunga",
+        "Lhotse",
+        "Makalu"
+      ]
+    },
+    {
+      "context": "deepest ocean trench",
+      "truth": "Mariana",
+      "category": "science",
+      "distractors": [
+        "Puerto Rico",
+        "Tonga",
+        "Philippine",
+        "Java"
+      ]
+    },
+    {
+      "context": "boiling point of water",
+      "truth": "100",
+      "category": "science",
+      "distractors": [
+        "98",
+        "99",
+        "212",
+        "101"
+      ]
+    },
+    {
+      "context": "freezing point of water",
+      "truth": "0",
+      "category": "science",
+      "distractors": [
+        "32",
+        "-1",
+        "1",
+        "-0.5"
+      ]
+    },
+    {
+      "context": "DNA double helix",
+      "truth": "Watson and Crick",
+      "category": "science",
+      "distractors": [
+        "Mendel and Darwin",
+        "Curie and Bohr",
+        "Einstein and Planck",
+        "Franklin and Wilkins"
+      ]
+    },
+    {
+      "context": "theory of relativity",
+      "truth": "Einstein",
+      "category": "science",
+      "distractors": [
+        "Newton",
+        "Bohr",
+        "Planck",
+        "Heisenberg"
+      ]
+    },
+    {
+      "context": "theory of evolution",
+      "truth": "Darwin",
+      "category": "science",
+      "distractors": [
+        "Lamarck",
+        "Mendel",
+        "Wallace",
+        "Huxley"
+      ]
+    },
+    {
+      "context": "discovered penicillin",
+      "truth": "Fleming",
+      "category": "science",
+      "distractors": [
+        "Pasteur",
+        "Koch",
+        "Lister",
+        "Jenner"
+      ]
+    },
+    {
+      "context": "invented telephone",
+      "truth": "Bell",
+      "category": "science",
+      "distractors": [
+        "Edison",
+        "Morse",
+        "Marconi",
+        "Tesla"
+      ]
+    },
+    {
+      "context": "invented light bulb",
+      "truth": "Edison",
+      "category": "science",
+      "distractors": [
+        "Tesla",
+        "Bell",
+        "Morse",
+        "Swan"
+      ]
+    },
+    {
+      "context": "wrote Romeo and Juliet",
+      "truth": "Shakespeare",
+      "category": "culture",
+      "distractors": [
+        "Marlowe",
+        "Chaucer",
+        "Milton",
+        "Dickens"
+      ]
+    },
+    {
+      "context": "painted the Mona Lisa",
+      "truth": "Leonardo da Vinci",
+      "category": "culture",
+      "distractors": [
+        "Michelangelo",
+        "Raphael",
+        "Botticelli",
+        "Titian"
+      ]
+    },
+    {
+      "context": "composed the Ninth Symphony",
+      "truth": "Beethoven",
+      "category": "culture",
+      "distractors": [
+        "Mozart",
+        "Bach",
+        "Brahms",
+        "Tchaikovsky"
+      ]
+    },
+    {
+      "context": "wrote The Odyssey",
+      "truth": "Homer",
+      "category": "culture",
+      "distractors": [
+        "Virgil",
+        "Sophocles",
+        "Euripides",
+        "Plato"
+      ]
+    },
+    {
+      "context": "wrote 1984",
+      "truth": "George Orwell",
+      "category": "culture",
+      "distractors": [
+        "Aldous Huxley",
+        "H.G. Wells",
+        "Ray Bradbury",
+        "Arthur Koestler"
+      ]
+    },
+    {
+      "context": "painted Starry Night",
+      "truth": "Van Gogh",
+      "category": "culture",
+      "distractors": [
+        "Monet",
+        "Gauguin",
+        "Cezanne",
+        "Matisse"
+      ]
+    },
+    {
+      "context": "wrote The Republic",
+      "truth": "Plato",
+      "category": "culture",
+      "distractors": [
+        "Aristotle",
+        "Socrates",
+        "Cicero",
+        "Seneca"
+      ]
+    },
+    {
+      "context": "wrote Don Quixote",
+      "truth": "Cervantes",
+      "category": "culture",
+      "distractors": [
+        "Lope de Vega",
+        "Calderon",
+        "Quevedo",
+        "Tirso"
+      ]
+    },
+    {
+      "context": "first president of the United States",
+      "truth": "George Washington",
+      "category": "history",
+      "distractors": [
+        "John Adams",
+        "Thomas Jefferson",
+        "Benjamin Franklin",
+        "James Madison"
+      ]
+    },
+    {
+      "context": "16th president of the United States",
+      "truth": "Abraham Lincoln",
+      "category": "history",
+      "distractors": [
+        "Ulysses Grant",
+        "Andrew Jackson",
+        "James Buchanan",
+        "Andrew Johnson"
+      ]
+    },
+    {
+      "context": "president during World War II",
+      "truth": "Roosevelt",
+      "category": "history",
+      "distractors": [
+        "Wilson",
+        "Truman",
+        "Hoover",
+        "Taft"
+      ]
+    },
+    {
+      "context": "first emperor of China",
+      "truth": "Qin Shi Huang",
+      "category": "history",
+      "distractors": [
+        "Han Gaozu",
+        "Emperor Wu",
+        "Liu Bang",
+        "Sun Yat-sen"
+      ]
+    },
+    {
+      "context": "built the pyramids",
+      "truth": "Egypt",
+      "category": "history",
+      "distractors": [
+        "Rome",
+        "Greece",
+        "Mesopotamia",
+        "Nubia"
+      ]
+    },
+    {
+      "context": "Renaissance began",
+      "truth": "Italy",
+      "category": "history",
+      "distractors": [
+        "France",
+        "Germany",
+        "Spain",
+        "Greece"
+      ]
+    },
+    {
+      "context": "Industrial Revolution",
+      "truth": "18th century",
+      "category": "history",
+      "distractors": [
+        "17th century",
+        "19th century",
+        "16th century",
+        "20th century"
+      ]
+    },
+    {
+      "context": "number of continents",
+      "truth": "7",
+      "category": "geography",
+      "distractors": [
+        "6",
+        "8",
+        "5",
+        "9"
+      ]
+    },
+    {
+      "context": "number of oceans",
+      "truth": "5",
+      "category": "geography",
+      "distractors": [
+        "4",
+        "6",
+        "3",
+        "7"
+      ]
+    },
+    {
+      "context": "most populous country",
+      "truth": "India",
+      "category": "geography",
+      "distractors": [
+        "China",
+        "United States",
+        "Indonesia",
+        "Pakistan"
+      ]
+    },
+    {
+      "context": "largest country by area",
+      "truth": "Russia",
+      "category": "geography",
+      "distractors": [
+        "Canada",
+        "China",
+        "United States",
+        "Brazil"
+      ]
+    },
+    {
+      "context": "smallest country",
+      "truth": "Vatican",
+      "category": "geography",
+      "distractors": [
+        "Monaco",
+        "San Marino",
+        "Liechtenstein",
+        "Nauru"
+      ]
+    },
+    {
+      "context": "Sahara Desert located",
+      "truth": "Africa",
+      "category": "geography",
+      "distractors": [
+        "Asia",
+        "Middle East",
+        "South America",
+        "Australia"
+      ]
+    },
+    {
+      "context": "Amazon rainforest",
+      "truth": "South America",
+      "category": "geography",
+      "distractors": [
+        "Africa",
+        "Central America",
+        "Southeast Asia",
+        "North America"
+      ]
+    },
+    {
+      "context": "Great Wall of China",
+      "truth": "China",
+      "category": "geography",
+      "distractors": [
+        "Mongolia",
+        "Japan",
+        "Korea",
+        "Tibet"
+      ]
+    },
+    {
+      "context": "binary for 10",
+      "truth": "1010",
+      "category": "computing",
+      "distractors": [
+        "1001",
+        "1100",
+        "0110",
+        "1011"
+      ]
+    },
+    {
+      "context": "hexadecimal for 255",
+      "truth": "FF",
+      "category": "computing",
+      "distractors": [
+        "FE",
+        "EF",
+        "F0",
+        "0F"
+      ]
+    },
+    {
+      "context": "HTTP status 404",
+      "truth": "Not Found",
+      "category": "computing",
+      "distractors": [
+        "Forbidden",
+        "Unauthorized",
+        "Bad Request",
+        "Server Error"
+      ]
+    },
+    {
+      "context": "HTTP status 200",
+      "truth": "OK",
+      "category": "computing",
+      "distractors": [
+        "Created",
+        "Accepted",
+        "No Content",
+        "Found"
+      ]
+    },
+    {
+      "context": "TCP port for HTTP",
+      "truth": "80",
+      "category": "computing",
+      "distractors": [
+        "8080",
+        "443",
+        "8000",
+        "21"
+      ]
+    },
+    {
+      "context": "TCP port for HTTPS",
+      "truth": "443",
+      "category": "computing",
+      "distractors": [
+        "80",
+        "8443",
+        "8080",
+        "22"
+      ]
+    },
+    {
+      "context": "invented the World Wide Web",
+      "truth": "Tim Berners-Lee",
+      "category": "computing",
+      "distractors": [
+        "Bill Gates",
+        "Steve Jobs",
+        "Vint Cerf",
+        "Alan Turing"
+      ]
+    },
+    {
+      "context": "created Linux",
+      "truth": "Linus Torvalds",
+      "category": "computing",
+      "distractors": [
+        "Richard Stallman",
+        "Dennis Ritchie",
+        "Ken Thompson",
+        "Andrew Tanenbaum"
+      ]
+    },
+    {
+      "context": "created Python",
+      "truth": "Guido van Rossum",
+      "category": "computing",
+      "distractors": [
+        "James Gosling",
+        "Bjarne Stroustrup",
+        "Larry Wall",
+        "Yukihiro Matsumoto"
+      ]
+    },
+    {
+      "context": "founded Apple",
+      "truth": "Steve Jobs",
+      "category": "computing",
+      "distractors": [
+        "Bill Gates",
+        "Steve Wozniak",
+        "Jony Ive",
+        "Tim Cook"
+      ]
+    },
+    {
+      "context": "founded Microsoft",
+      "truth": "Bill Gates",
+      "category": "computing",
+      "distractors": [
+        "Steve Jobs",
+        "Larry Ellison",
+        "Mark Zuckerberg",
+        "Jeff Bezos"
+      ]
+    }
+  ]
+}
