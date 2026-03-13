@@ -1,0 +1,9 @@
+{
+  "name": "c10_e2_repair",
+  "description": "Repair pass target: C10 — second elementary symmetric polynomial of pairwise distances. Oracle FAIL + Checker PASS candidate from Phase 2 batch 2. Baseline margin = -1.67. Goal: flip to positive margin with mixed adapter while preserving checker PASS.",
+  "model": "Qwen/Qwen3-4B-Base",
+  "oracle": "stem_margin",
+  "pass_threshold": 1.0,
+  "verification_set": "c10_repair_facts.json",
+  "notes": "Single-candidate repair run. Adapter target: missing-constant + truncation bias (model prefers simpler algebraic distractors over the full quadratic symmetric polynomial). Mixed adapter from exp03_correction is the first attempt."
+}

@@ -114,7 +114,7 @@ one dimension and grew; Snap-On started with one mode. Monitors will follow the 
 | File | Monitor name (yaml) | Discovery | Status |
 |------|--------------------|-----------|-|
 | `monitors/sum_pairwise_distances.py` | `sum_pairwise_distances_variance` | r12+r13+r23 on figure-8 (C01) | ✓ Live |
-| *(next)* | `e2_symmetric_poly_variance` | r12·r13+r12·r23+r13·r23 (C10) | pending file |
+| `monitors/e2_symmetric_poly.py` | `e2_symmetric_poly_variance` | r12·r13+r12·r23+r13·r23 (C10, knowledge gap) | ✓ Live |
 | *(next)* | `rms_pairwise_variance` | sqrt((r12²+r13²+r23²)/3) (C09) | pending file |
 
 **When to promote to registry.py:** when ≥3 monitors share a common structure (e.g., all are

@@ -1,0 +1,70 @@
+{
+  "description": "Repair verification set for C10 (e2 second symmetric polynomial). Includes C10 itself plus supporting Z3-family and related algebra facts to test whether the adapter generalises or overfits to one candidate.",
+  "facts": [
+    {
+      "context": "second elementary symmetric polynomial of pairwise distances in equal-mass 3-body figure-8",
+      "truth": "Sigma2 = r12*r13 + r12*r23 + r13*r23",
+      "distractors": [
+        "Sigma2 = r12^2 + r13^2 + r23^2",
+        "Sigma2 = r12*r13*r23",
+        "Sigma2 = (r12 + r13)*(r13 + r23)",
+        "Sigma2 = r12*r13 + r23^2"
+      ],
+      "domain": "3body_figure8",
+      "bias_pattern": "truncation + missing_constant",
+      "notes": "Primary target. Baseline margin = -1.67. Best distractor at baseline: r12^2+r13^2+r23^2 (truncation: drops cross-product terms)."
+    },
+    {
+      "context": "sum of pairwise distances in equal-mass 3-body figure-8 orbit",
+      "truth": "S = r12 + r13 + r23",
+      "distractors": [
+        "S = r12 + r13",
+        "S = r12",
+        "S = r12^2 + r13^2 + r23^2",
+        "S = (r12 + r13 + r23)/3"
+      ],
+      "domain": "3body_figure8",
+      "bias_pattern": "truncation",
+      "notes": "Positive control (C01/e1). Baseline margin = +4.50. Should remain positive after repair."
+    },
+    {
+      "context": "first elementary symmetric polynomial of three variables a, b, c",
+      "truth": "e1 = a + b + c",
+      "distractors": [
+        "e1 = a + b",
+        "e1 = abc",
+        "e1 = a^2 + b^2 + c^2",
+        "e1 = (a+b+c)/3"
+      ],
+      "domain": "algebra",
+      "bias_pattern": "truncation",
+      "notes": "Algebra anchor: does the adapter hurt on a clean algebraic fact the model should know."
+    },
+    {
+      "context": "second elementary symmetric polynomial of three variables a, b, c",
+      "truth": "e2 = ab + ac + bc",
+      "distractors": [
+        "e2 = a^2 + b^2 + c^2",
+        "e2 = abc",
+        "e2 = ab + c",
+        "e2 = (ab + ac + bc)/3"
+      ],
+      "domain": "algebra",
+      "bias_pattern": "truncation + missing_constant",
+      "notes": "Same structure as C10 but in pure algebra. If oracle fails here at baseline, adapter target is confirmed as domain-specific not algebra-general."
+    },
+    {
+      "context": "Newton's identity relating power sum p2 to elementary symmetric polynomials e1, e2",
+      "truth": "p2 = e1^2 - 2*e2",
+      "distractors": [
+        "p2 = e1^2 - e2",
+        "p2 = e1^2 + 2*e2",
+        "p2 = 2*e1 - e2",
+        "p2 = e1^2 - 2"
+      ],
+      "domain": "algebra",
+      "bias_pattern": "missing_constant + positivity",
+      "notes": "Newton's identity: relates to the same Z3 family. Tests whether the adapter generalises to adjacent algebra."
+    }
+  ]
+}
