@@ -9,6 +9,7 @@
 [![Paper: Expression Bottleneck](https://zenodo.org/badge/DOI/10.5281/zenodo.18895248.svg)](https://doi.org/10.5281/zenodo.18895248)
 [![Paper: Snap-On](https://zenodo.org/badge/DOI/10.5281/zenodo.18902617.svg)](https://doi.org/10.5281/zenodo.18902617)
 [![Paper: CF90](https://zenodo.org/badge/DOI/10.5281/zenodo.18718545.svg)](https://doi.org/10.5281/zenodo.18718545)
+[![Paper: STEM Truth Oracle](https://zenodo.org/badge/DOI/10.5281/zenodo.19005729.svg)](https://doi.org/10.5281/zenodo.19005729)
 [![Tests](https://img.shields.io/badge/tests-213%20passed-brightgreen)](tests/)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-Demo-blue)](https://huggingface.co/spaces/bsanch52/knowledge-fidelity-demo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -213,6 +214,7 @@ Full experimental details, tables, and statistical analysis are in the papers be
 6. **Contrastive Pretraining Teaches Format Generation, Not Behavioral Knowledge** — [DOI: 10.5281/zenodo.18870555](https://doi.org/10.5281/zenodo.18870555)
 7. **Small Language Models Already Know More Than They Can Say** — [DOI: 10.5281/zenodo.18895248](https://doi.org/10.5281/zenodo.18895248)
 8. **Snap-On Communication Modules: Instruction-Following Adapters That Preserve Base Model Knowledge** — [DOI: 10.5281/zenodo.18902617](https://doi.org/10.5281/zenodo.18902617)
+9. **STEM Truth Oracle: Log-Probability Ranking Reveals and Corrects Scale-Invariant Factual Biases in Language Models** — [DOI: 10.5281/zenodo.19005729](https://doi.org/10.5281/zenodo.19005729)
 
 ## Citation
 
@@ -286,6 +288,15 @@ Full experimental details, tables, and statistical analysis are in the papers be
   year = {2026},
   doi = {10.5281/zenodo.18902617},
   url = {https://doi.org/10.5281/zenodo.18902617}
+}
+
+@article{sanchez2026stem,
+  author = {Sanchez, Bryan},
+  title = {STEM Truth Oracle: Log-Probability Ranking Reveals and Corrects
+           Scale-Invariant Factual Biases in Language Models},
+  year = {2026},
+  doi = {10.5281/zenodo.19005729},
+  url = {https://doi.org/10.5281/zenodo.19005729}
 }
 
 @software{sanchez2026rhoeval,
