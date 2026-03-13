@@ -120,6 +120,27 @@ one dimension and grew; Snap-On started with one mode. Monitors will follow the 
 **When to promote to registry.py:** when ≥3 monitors share a common structure (e.g., all are
 "fractional variance of a symmetric function of pairwise distances"), factor out the pattern.
 
+### Diagnostic Quadrants
+
+The dual-filter pipeline (oracle + checker) plus the repair pass produce four distinct
+outcomes. This is the core decision logic of the solver:
+
+| # | Oracle | Checker | Adapter | Diagnosis | Action |
+|---|--------|---------|---------|-----------|--------|
+| 1 | PASS | PASS | — | Known conserved quantity | Archive, add to verification set |
+| 2 | FAIL | PASS | improves | Fixable bias (Paper 9 style) | Apply targeted adapter, re-verify |
+| 3 | FAIL | PASS | worsens | **Genuine knowledge gap** | Document, needs training data |
+| 4 | — | FAIL | — | Numerical artifact | Discard |
+
+**Empirical examples (Phase 2, 2026-03-13):**
+- Quadrant 1: e₁ = r12+r13+r23 (oracle +4.50, frac_var = 5.54e-04)
+- Quadrant 3: e₂ = r12·r13+r12·r23+r13·r23 (oracle -1.67 → -32.3 after adapter, frac_var = 2.69e-03)
+- Quadrant 4: e₃ = r12·r13·r23 (frac_var = 1.85e-02, above 1e-2 threshold)
+
+Quadrant 2 not yet observed in this domain. Expected for a case where the oracle fails due
+to a recognisable bias pattern (e.g., a near-invariant where the model drops a constant
+factor — the same failure mode that the mixed adapter was trained to correct).
+
 ---
 
 ## Phase 3: Scale to Real Unsolved Problems
