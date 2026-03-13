@@ -24,11 +24,17 @@ problem:
   pass_threshold: 0.8
 
   # Additional monitors beyond margin sign
+  # Full list: see monitors/__init__.py — one file per discovery.
+  # Evolution rule: new monitors are manual files until 3-5 discoveries
+  # accumulate a common pattern, then get auto-registered in monitors/registry.py.
   monitors:
-    - margin_sign          # always required
-    # - sympy_simplify     # run SymPy simplification check on candidate
-    # - energy_violation   # check energy conservation on PINN trajectories
-    # - rho_expression     # check rho-unlock expression gap
+    - margin_sign                        # always required (oracle log-prob filter)
+    # - sum_pairwise_distances_variance  # r12+r13+r23 near-conservation (figure-8 Z3)
+    # - e2_symmetric_poly_variance       # r12*r13+r12*r23+r13*r23 (figure-8, C10)
+    # - rms_pairwise_variance            # sqrt((r12^2+r13^2+r23^2)/3) (figure-8, C09)
+    # - energy_violation                 # |E(t)-E(0)|/|E(0)| — integrator sanity
+    # - rho_expression_unlock            # expression gap from rho-unlock tool
+    # - sympy_simplify                   # SymPy equivalence check
 
   # Adapter for repair pass (leave null to use default mixed adapter)
   adapter: null            # or path to custom .npz

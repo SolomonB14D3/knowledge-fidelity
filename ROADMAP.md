@@ -99,6 +99,29 @@ For each:
 
 ---
 
+## Monitor Evolution Rule (2026-03-13)
+
+New monitors start manual — one Python file in `monitors/`, one line in your problem yaml.
+After 3–5 discoveries we turn the common patterns into an auto-registry (`monitors/registry.py`).
+Until then: manual addition = maximum flexibility and speed. Takes <10 minutes per new monitor.
+Forces the loop to stay grounded in real physics/math signals instead of guessing in advance.
+
+This is exactly how every good research tool in this codebase evolved: rho-eval started with
+one dimension and grew; Snap-On started with one mode. Monitors will follow the same arc.
+
+**Current manual monitors** (`monitors/`):
+
+| File | Monitor name (yaml) | Discovery | Status |
+|------|--------------------|-----------|-|
+| `monitors/sum_pairwise_distances.py` | `sum_pairwise_distances_variance` | r12+r13+r23 on figure-8 (C01) | ✓ Live |
+| *(next)* | `e2_symmetric_poly_variance` | r12·r13+r12·r23+r13·r23 (C10) | pending file |
+| *(next)* | `rms_pairwise_variance` | sqrt((r12²+r13²+r23²)/3) (C09) | pending file |
+
+**When to promote to registry.py:** when ≥3 monitors share a common structure (e.g., all are
+"fractional variance of a symmetric function of pairwise distances"), factor out the pattern.
+
+---
+
 ## Phase 3: Scale to Real Unsolved Problems
 
 Once the loop works on toys:
