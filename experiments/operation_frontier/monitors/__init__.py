@@ -13,20 +13,24 @@
 #
 # Current monitors:
 #   margin_sign                    — oracle log-prob margin (always required)
-#   sum_pairwise_distances_variance — r12+r13+r23 near-conservation (figure-8 Z3)
+#   sum_pairwise_distances_variance — r12+r13+r23 near-conservation (figure-8 Z3, C01)
+#   e2_symmetric_poly_variance      — r12*r13+r12*r23+r13*r23 (figure-8 Z3, C10) ← KNOWLEDGE GAP confirmed
 
 from .sum_pairwise_distances import compute_vectorised as sum_pairwise_distances_variance
+from .e2_symmetric_poly import compute_e2_symmetric_poly_variance as e2_symmetric_poly_variance
 
 MONITORS = {
     # Always required — language model oracle filter
     "margin_sign": None,  # implemented in oracle_wrapper.py
 
     # Formal checker monitors — numerical integration
+    # C01: oracle PASS + checker PASS (known to model)
     "sum_pairwise_distances_variance": sum_pairwise_distances_variance,
+    # C10: oracle FAIL + checker PASS (knowledge gap — not fixable by bias adapter)
+    "e2_symmetric_poly_variance": e2_symmetric_poly_variance,
 
     # Stubs for future monitors (add imports above when files exist):
-    # "e2_symmetric_poly_variance": None,   # r12*r13 + r12*r23 + r13*r23
-    # "rms_pairwise_variance": None,        # sqrt((r12^2+r13^2+r23^2)/3)
+    # "rms_pairwise_variance": None,        # sqrt((r12^2+r13^2+r23^2)/3), C09
     # "energy_violation": None,             # |E(t) - E(0)| / |E(0)|
     # "rho_expression_unlock": None,        # expression gap from rho-unlock
 }
