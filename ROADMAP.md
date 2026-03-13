@@ -27,7 +27,7 @@ This runs on a laptop (MLX + Apple Silicon) and scales with more GPUs.
 ## Phase 0: Ship the Foundation
 
 1. ~~Polish the paper (title/abstract tweaks, fix self-references, add GitHub link).~~ ✓ Done (v1.1)
-2. Upload to arXiv.
+2. ~~Publish on Zenodo.~~ ✓ Done (v1.1 — DOI: 10.5281/zenodo.19010629)
 3. Create a new repo: `SolomonB14D3/stem-truth-oracle` (or add to existing).
    - Include: benchmark.json, trained adapters, eval scripts, margin-oracle.py.
 4. Tweet thread (use Fig 4 + "negative margin = 100% wrong, zero exceptions" as the hook).
@@ -129,7 +129,7 @@ Once the loop works on toys:
 
 ## Success Criteria
 
-- **Phase 0:** Paper + repo live, arXiv submitted.
+- **Phase 0:** Paper + repo live, published on Zenodo. ✓ Done
 - **Phase 1:** Oracle wrapper closes the loop on a known fact.
 - **Phase 2:** First toy discovery (positive margin + generalizes to held-out set).
 - **Phase 3:** First real unsolved-problem candidate that survives formal checks.
@@ -162,4 +162,4 @@ Once the loop works on toys:
 
 The hard parts are done: mechanism works, oracle is perfect, adapter repairs biases. The rest is wiring and running.
 
-**Next action:** arXiv submission + `oracle_wrapper.py` pilot.
+**Next action:** `oracle_wrapper.py` pilot (Phase 1) + stem-truth-oracle repo spinout (Phase 0).
