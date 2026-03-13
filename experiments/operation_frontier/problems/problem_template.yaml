@@ -1,0 +1,46 @@
+# Operation Frontier — Problem Template
+# Copy this file, fill in the fields, and run:
+#   python oracle_wrapper.py --problem problems/your_problem.yaml --repair
+
+problem:
+  name: "describe_what_youre_looking_for"   # e.g. "3body_conservation_law"
+  description: |
+    One paragraph: what unsolved or partially-solved structure you're hunting.
+    What would a correct answer look like? What domain does it live in?
+
+  # Model to use as the oracle base
+  model: "Qwen/Qwen3-4B-Base"              # or Qwen2.5-1.5B for faster iteration
+
+  # Oracle method (always stem_margin for now)
+  oracle: "stem_margin"
+
+  # Path to verification set JSON (relative to this file)
+  # Format: {"facts": [{"context": ..., "truth": ..., "distractors": [...]}]}
+  verification_set: "your_problem_facts.json"
+
+  # Fraction of verification facts that must have positive margin to pass
+  # 1.0 = all facts must pass (strict)
+  # 0.8 = 80% must pass (allows a few boundary cases)
+  pass_threshold: 0.8
+
+  # Additional monitors beyond margin sign
+  monitors:
+    - margin_sign          # always required
+    # - sympy_simplify     # run SymPy simplification check on candidate
+    # - energy_violation   # check energy conservation on PINN trajectories
+    # - rho_expression     # check rho-unlock expression gap
+
+  # Adapter for repair pass (leave null to use default mixed adapter)
+  adapter: null            # or path to custom .npz
+
+  # Compute budget for any autoresearch loop attached to this problem
+  budget: "500 steps or 1M tokens"
+
+  # Whether to allow hypotheses that break known cases temporarily
+  destructive_mode: true
+
+  # Notes for Claude's program.md context
+  notes: |
+    Add any domain knowledge here that Claude should use when proposing
+    hypotheses. What structure do you suspect is missing? What analogs
+    exist in nearby solved problems?

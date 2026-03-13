@@ -1,0 +1,75 @@
+{
+  "description": "Classical mechanics verification set for the pilot oracle run. 10 facts, all well-established. Distractors match the four bias patterns from Paper 9 so failures are interpretable.",
+  "facts": [
+    {
+      "context": "kinetic energy of a mass m moving at speed v",
+      "truth": "(1/2)mv²",
+      "distractors": ["mv²", "mv", "(1/2)mv", "2mv²"],
+      "bias_pattern": "linearity + missing_constant",
+      "notes": "The pilot fact. Model should prefer (1/2)mv² over mv."
+    },
+    {
+      "context": "derivative of cos(x)",
+      "truth": "-sin(x)",
+      "distractors": ["sin(x)", "-cos(x)", "cos(x)", "tan(x)"],
+      "bias_pattern": "positivity",
+      "notes": "Classic positivity bias case."
+    },
+    {
+      "context": "Coulomb's law: force between charges q1 and q2 separated by distance r",
+      "truth": "kq1q2/r²",
+      "distractors": ["q1q2/r²", "kq1q2/r", "q1q2/r", "k/r²"],
+      "bias_pattern": "missing_constant",
+      "notes": "Missing-constant bias: model drops k."
+    },
+    {
+      "context": "gravitational potential energy of mass m at height h",
+      "truth": "mgh",
+      "distractors": ["mg", "mh", "gh", "m²gh"],
+      "bias_pattern": "truncation",
+      "notes": "Should be unambiguous: mgh is standard."
+    },
+    {
+      "context": "period of a simple pendulum of length L",
+      "truth": "2π√(L/g)",
+      "distractors": ["√(L/g)", "2π√L", "π√(L/g)", "2√(L/g)"],
+      "bias_pattern": "missing_constant + truncation",
+      "notes": "Tests whether 2π survives against truncated form."
+    },
+    {
+      "context": "work done by force F over displacement d",
+      "truth": "Fd cos(θ)",
+      "distractors": ["Fd", "Fd sin(θ)", "F/d", "Fd cos²(θ)"],
+      "bias_pattern": "truncation",
+      "notes": "Truncation: model may drop the cos(θ) factor."
+    },
+    {
+      "context": "electric field due to a point charge q at distance r",
+      "truth": "kq/r²",
+      "distractors": ["q/r²", "kq/r", "q/r", "k/r"],
+      "bias_pattern": "missing_constant",
+      "notes": "Same missing-k pattern as Coulomb."
+    },
+    {
+      "context": "momentum of a particle with mass m and velocity v",
+      "truth": "mv",
+      "distractors": ["m+v", "m/v", "mv²", "v/m"],
+      "bias_pattern": "linearity",
+      "notes": "Straightforward: mv is unambiguous."
+    },
+    {
+      "context": "Newton's second law: net force equals",
+      "truth": "ma",
+      "distractors": ["m+a", "m/a", "m²a", "a/m"],
+      "bias_pattern": "linearity",
+      "notes": "Should be easy; confirms oracle is working at all."
+    },
+    {
+      "context": "escape velocity from a planet of mass M and radius R",
+      "truth": "√(2GM/R)",
+      "distractors": ["√(GM/R)", "2GM/R", "√(GM/2R)", "GM/R"],
+      "bias_pattern": "missing_constant + truncation",
+      "notes": "Tests whether the factor of 2 survives under the radical."
+    }
+  ]
+}

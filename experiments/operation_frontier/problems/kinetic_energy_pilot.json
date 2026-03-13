@@ -1,0 +1,9 @@
+{
+  "name": "kinetic_energy_pilot",
+  "description": "Pilot run: verify the oracle rediscovers known classical mechanics facts. All truths are correct; distractors match the four bias patterns. A PASS confirms the oracle loop is working before running on unknown problems.",
+  "model": "Qwen/Qwen3-4B-Base",
+  "oracle": "stem_margin",
+  "pass_threshold": 0.8,
+  "verification_set": "kinetic_energy_pilot_facts.json",
+  "notes": "Start here. If pass_threshold=0.8 is met on baseline, the oracle is ready for Phase 2."
+}
