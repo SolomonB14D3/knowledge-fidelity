@@ -18,7 +18,7 @@ This runs on a laptop (MLX + Apple Silicon) and scales with more GPUs.
 
 ## Current State
 
-- STEM Truth Oracle paper written and published (13 pages, perfect binary margin oracle proven, mixed adapter recovers 80%). DOI: [10.5281/zenodo.19005729](https://doi.org/10.5281/zenodo.19005729)
+- STEM Truth Oracle paper written and published — perfect binary margin oracle + mixed adapter. DOI: [10.5281/zenodo.19005729](https://doi.org/10.5281/zenodo.19005729)
 - Benchmark, adapters, eval code, and autoresearch wrapper (yaml + program.md) all in place.
 - Operation Destroyer proved the destructive-discovery loop works.
 
@@ -30,7 +30,7 @@ This runs on a laptop (MLX + Apple Silicon) and scales with more GPUs.
 2. ~~Publish on Zenodo.~~ ✓ Done (v1.1 — DOI: 10.5281/zenodo.19010629)
 3. Create a new repo: `SolomonB14D3/stem-truth-oracle` (or add to existing).
    - Include: benchmark.json, trained adapters, eval scripts, margin-oracle.py.
-4. Tweet thread (use Fig 4 + "negative margin = 100% wrong, zero exceptions" as the hook).
+4. Tweet thread (hook: the margin oracle result from Fig 4 in the paper).
 5. Add a "Code & Data" section at the end of the paper linking to the repo.
 
 **Milestone:** Paper live + repo public. This alone opens doors — people start using the oracle.
