@@ -37,8 +37,10 @@ from experiments.operation_destroyer.train_v3 import (
     get_lm_head_fn, ALPACA_TEMPLATE, apply_adapter, load_all_data,
 )
 import experiments.operation_destroyer.train_v3 as t3
+from experiments.operation_destroyer.eval_mc import score_fact_mc
 
 RESULTS_DIR = "/Volumes/4TB SD/ClaudeCode/knowledge-fidelity/results/operation_destroyer/autoresearch"
+MC_TRUTH_DICT = "/Volumes/4TB SD/ClaudeCode/knowledge-fidelity/experiments/operation_destroyer/truth_dict_contrastive.json"
 
 
 # ============================================================================
@@ -232,6 +234,24 @@ def run_trial(model, tokenizer, lm_head, train_examples, val_examples,
 
     avg_val_loss = sum(val_losses) / len(val_losses)
 
+    # MC factual accuracy (truth_dict_contrastive.json, 115 facts, ~6s)
+    mc_wins = 0
+    mc_total = 0
+    try:
+        with open(MC_TRUTH_DICT) as _f:
+            mc_facts = json.load(_f)["truths"]
+        for fact in mc_facts:
+            win, _, _, _ = score_fact_mc(
+                model, tokenizer,
+                fact["context"], fact["truth"], fact["distractors"],
+                adapter=adapter, lm_head=lm_head,
+            )
+            mc_wins += int(win)
+            mc_total += 1
+    except Exception as _e:
+        print(f"  MC eval failed: {_e}")
+    mc_acc = mc_wins / max(mc_total, 1)
+
     # Quick MMLU (50 questions for speed)
     mmlu_correct = 0
     mmlu_total = 0
@@ -284,6 +304,9 @@ def run_trial(model, tokenizer, lm_head, train_examples, val_examples,
         "train_time_s": train_time,
         "avg_train_loss": sum(train_losses[-100:]) / min(len(train_losses), 100),
         "avg_val_loss": avg_val_loss,
+        "mc_acc": mc_acc,
+        "mc_wins": mc_wins,
+        "mc_total": mc_total,
         "mmlu_acc": mmlu_acc,
         "mmlu_n": mmlu_total,
     }
@@ -404,6 +427,21 @@ def main():
     base_mmlu_acc = base_mmlu_correct / 50
     print(f"  Base MMLU: {base_mmlu_acc:.1%} ({base_mmlu_correct}/50)\n")
 
+    # Base MC factual accuracy (no adapter)
+    print("Computing base MC factual accuracy (115 facts)...")
+    base_mc_wins = 0
+    try:
+        with open(MC_TRUTH_DICT) as _f:
+            mc_facts_base = json.load(_f)["truths"]
+        for fact in mc_facts_base:
+            win, _, _, _ = score_fact_mc(model, tokenizer, fact["context"], fact["truth"], fact["distractors"])
+            base_mc_wins += int(win)
+        base_mc_acc = base_mc_wins / len(mc_facts_base)
+    except Exception as _e:
+        print(f"  Base MC eval failed: {_e}")
+        base_mc_acc = 0.0
+    print(f"  Base MC: {base_mc_acc:.1%} ({base_mc_wins}/{len(mc_facts_base)})\n")
+
     # Run autoresearch - initialize or resume
     start_trial = 0
     if args.resume:
@@ -414,15 +452,17 @@ def main():
         best_config = copy.deepcopy(resume_data["config"])
         best_val_loss = resume_data["best_val_loss"]
         best_mmlu_acc = resume_data["best_mmlu_acc"]
+        best_mc_acc = resume_data.get("best_mc_acc", 0.0)
         improvements = resume_data.get("improvements", 0)
         start_trial = resume_data.get("trials_completed", 0)
         print(f"  Starting from trial {start_trial + 1}")
-        print(f"  Best val_loss: {best_val_loss:.4f}, MMLU: {best_mmlu_acc:.1%}")
+        print(f"  Best val_loss: {best_val_loss:.4f}, MMLU: {best_mmlu_acc:.1%}, MC: {best_mc_acc:.1%}")
         print()
     else:
         current_config = copy.deepcopy(DEFAULT_CONFIG)
         best_val_loss = float("inf")
         best_mmlu_acc = 0.0
+        best_mc_acc = base_mc_acc  # Start threshold at actual base model performance
         best_config = copy.deepcopy(current_config)
         improvements = 0
     total_time_start = time.time()
@@ -470,18 +510,24 @@ def main():
             continue
 
         # Decide: keep or revert
-        # Primary metric: val loss (lower is better)
-        # Secondary: MMLU accuracy (higher is better)
+        # Primary: MC factual accuracy (higher is better, directly measures truth recall)
+        # Secondary: val loss (lower is better, prevents capability regression)
+        # Tertiary: MMLU accuracy (higher is better)
         improved = False
         reason = ""
 
-        if metrics["avg_val_loss"] < best_val_loss - 0.001:
-            # Clear val loss improvement
+        if metrics["mc_acc"] > best_mc_acc + 0.01 and metrics["avg_val_loss"] < best_val_loss + 0.02:
+            # MC accuracy improved without significant val loss regression
+            improved = True
+            reason = f"mc_acc {best_mc_acc:.1%} → {metrics['mc_acc']:.1%}"
+        elif metrics["avg_val_loss"] < best_val_loss - 0.001 and metrics["mc_acc"] >= best_mc_acc - 0.02:
+            # Val loss improved without MC regression
             improved = True
             reason = f"val_loss {best_val_loss:.4f} → {metrics['avg_val_loss']:.4f}"
         elif (metrics["mmlu_acc"] > best_mmlu_acc + 0.02 and
-              metrics["avg_val_loss"] < best_val_loss + 0.01):
-            # MMLU improvement without val loss degradation
+              metrics["avg_val_loss"] < best_val_loss + 0.01 and
+              metrics["mc_acc"] >= best_mc_acc - 0.02):
+            # MMLU improvement without regressions
             improved = True
             reason = f"mmlu {best_mmlu_acc:.1%} → {metrics['mmlu_acc']:.1%}"
 
@@ -489,17 +535,20 @@ def main():
             improvements += 1
             best_val_loss = metrics["avg_val_loss"]
             best_mmlu_acc = max(best_mmlu_acc, metrics["mmlu_acc"])
+            best_mc_acc = max(best_mc_acc, metrics["mc_acc"])
             current_config = copy.deepcopy(trial_config)
             best_config = copy.deepcopy(trial_config)
             status = f"✓ KEEP ({reason})"
         else:
-            status = f"✗ REVERT (val={metrics['avg_val_loss']:.4f}, mmlu={metrics['mmlu_acc']:.1%})"
+            status = (f"✗ REVERT (val={metrics['avg_val_loss']:.4f}, "
+                      f"mc={metrics['mc_acc']:.1%}, mmlu={metrics['mmlu_acc']:.1%})")
 
         iter_time = time.time() - iter_start
         total_time = time.time() - total_time_start
 
         print(f"  {status}")
-        print(f"  val_loss={metrics['avg_val_loss']:.4f} | "
+        print(f"  mc={metrics['mc_acc']:.1%} ({metrics['mc_wins']}/{metrics['mc_total']}) | "
+              f"val_loss={metrics['avg_val_loss']:.4f} | "
               f"mmlu={metrics['mmlu_acc']:.1%} | "
               f"train_loss={metrics['avg_train_loss']:.4f} | "
               f"time={iter_time:.0f}s | "
@@ -534,8 +583,10 @@ def main():
                 "config": best_config,
                 "best_val_loss": best_val_loss,
                 "best_mmlu_acc": best_mmlu_acc,
+                "best_mc_acc": best_mc_acc,
                 "base_val_loss": base_val_loss,
                 "base_mmlu_acc": base_mmlu_acc,
+                "base_mc_acc": base_mc_acc,
                 "improvements": improvements,
                 "trials_completed": iteration + 1,
                 "total_time_s": total_time,
@@ -552,7 +603,9 @@ def main():
     print(f"  Total trials:   {total_iterations} ({args.iterations} this run)")
     print(f"  Improvements:   {improvements}")
     print(f"  Total time:     {total_time/3600:.1f}h")
-    print(f"\n  Base val loss:  {base_val_loss:.4f}")
+    print(f"\n  Base MC acc:    {base_mc_acc:.1%} ({base_mc_wins}/{len(mc_facts_base)})")
+    print(f"  Best MC acc:    {best_mc_acc:.1%}")
+    print(f"  Base val loss:  {base_val_loss:.4f}")
     print(f"  Best val loss:  {best_val_loss:.4f}")
     print(f"  Base MMLU:      {base_mmlu_acc:.1%}")
     print(f"  Best MMLU:      {best_mmlu_acc:.1%}")

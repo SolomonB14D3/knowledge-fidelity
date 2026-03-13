@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "domain": "chemistry",
+    "description": "Factual truth anchors for chemistry domain",
+    "n_entries": 15
+  },
+  "truths": [
+    {
+      "context": "most abundant element in the universe",
+      "truth": "hydrogen",
+      "category": "chemistry",
+      "distractors": [
+        "helium",
+        "oxygen",
+        "carbon",
+        "nitrogen"
+      ]
+    },
+    {
+      "context": "most abundant element in Earth's crust",
+      "truth": "oxygen",
+      "category": "chemistry",
+      "distractors": [
+        "silicon",
+        "aluminum",
+        "iron",
+        "calcium"
+      ]
+    },
+    {
+      "context": "pH of pure water",
+      "truth": "7",
+      "category": "chemistry",
+      "distractors": [
+        "6",
+        "8",
+        "5",
+        "9"
+      ]
+    },
+    {
+      "context": "number of electrons in a neutral carbon atom",
+      "truth": "6",
+      "category": "chemistry",
+      "distractors": [
+        "4",
+        "8",
+        "12",
+        "14"
+      ]
+    },
+    {
+      "context": "melting point of iron in Celsius",
+      "truth": "1538",
+      "category": "chemistry",
+      "distractors": [
+        "1200",
+        "900",
+        "2000",
+        "1100"
+      ]
+    },
+    {
+      "context": "chemical formula for table salt",
+      "truth": "NaCl",
+      "category": "chemistry",
+      "distractors": [
+        "KCl",
+        "MgCl2",
+        "CaCl2",
+        "NaBr"
+      ]
+    },
+    {
+      "context": "chemical formula for water",
+      "truth": "H2O",
+      "category": "chemistry",
+      "distractors": [
+        "H2O2",
+        "HO",
+        "H3O",
+        "H2S"
+      ]
+    },
+    {
+      "context": "number of elements in the periodic table",
+      "truth": "118",
+      "category": "chemistry",
+      "distractors": [
+        "108",
+        "112",
+        "120",
+        "116"
+      ]
+    },
+    {
+      "context": "lightest noble gas",
+      "truth": "helium",
+      "category": "chemistry",
+      "distractors": [
+        "neon",
+        "argon",
+        "krypton",
+        "radon"
+      ]
+    },
+    {
+      "context": "element with highest electronegativity",
+      "truth": "fluorine",
+      "category": "chemistry",
+      "distractors": [
+        "oxygen",
+        "nitrogen",
+        "chlorine",
+        "bromine"
+      ]
+    },
+    {
+      "context": "type of bond in NaCl",
+      "truth": "ionic",
+      "category": "chemistry",
+      "distractors": [
+        "covalent",
+        "metallic",
+        "hydrogen",
+        "van der Waals"
+      ]
+    },
+    {
+      "context": "number of protons in a gold atom",
+      "truth": "79",
+      "category": "chemistry",
+      "distractors": [
+        "78",
+        "80",
+        "76",
+        "82"
+      ]
+    },
+    {
+      "context": "gas produced in cellular respiration",
+      "truth": "CO2",
+      "category": "chemistry",
+      "distractors": [
+        "O2",
+        "N2",
+        "H2",
+        "CH4"
+      ]
+    },
+    {
+      "context": "inventor of the periodic table",
+      "truth": "Mendeleev",
+      "category": "chemistry",
+      "distractors": [
+        "Bohr",
+        "Dalton",
+        "Lavoisier",
+        "Curie"
+      ]
+    },
+    {
+      "context": "state of matter with no definite shape or volume",
+      "truth": "gas",
+      "category": "chemistry",
+      "distractors": [
+        "liquid",
+        "solid",
+        "plasma",
+        "gel"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "domain": "biology",
+    "description": "Factual truth anchors for biology domain",
+    "n_entries": 15
+  },
+  "truths": [
+    {
+      "context": "number of chromosomes in a human cell",
+      "truth": "46",
+      "category": "biology",
+      "distractors": [
+        "44",
+        "48",
+        "23",
+        "92"
+      ]
+    },
+    {
+      "context": "molecule that carries genetic information",
+      "truth": "DNA",
+      "category": "biology",
+      "distractors": [
+        "RNA",
+        "ATP",
+        "protein",
+        "lipid"
+      ]
+    },
+    {
+      "context": "powerhouse of the cell",
+      "truth": "mitochondria",
+      "category": "biology",
+      "distractors": [
+        "nucleus",
+        "ribosome",
+        "lysosome",
+        "Golgi"
+      ]
+    },
+    {
+      "context": "process by which plants make food",
+      "truth": "photosynthesis",
+      "category": "biology",
+      "distractors": [
+        "respiration",
+        "fermentation",
+        "osmosis",
+        "transpiration"
+      ]
+    },
+    {
+      "context": "building blocks of proteins",
+      "truth": "amino acids",
+      "category": "biology",
+      "distractors": [
+        "nucleotides",
+        "fatty acids",
+        "sugars",
+        "glycerol"
+      ]
+    },
+    {
+      "context": "organ that produces insulin",
+      "truth": "pancreas",
+      "category": "biology",
+      "distractors": [
+        "liver",
+        "kidney",
+        "spleen",
+        "thyroid"
+      ]
+    },
+    {
+      "context": "discoverer of the cell",
+      "truth": "Hooke",
+      "category": "biology",
+      "distractors": [
+        "Pasteur",
+        "Leeuwenhoek",
+        "Darwin",
+        "Mendel"
+      ]
+    },
+    {
+      "context": "father of genetics",
+      "truth": "Mendel",
+      "category": "biology",
+      "distractors": [
+        "Darwin",
+        "Watson",
+        "Crick",
+        "Morgan"
+      ]
+    },
+    {
+      "context": "number of base pairs in the human genome",
+      "truth": "3 billion",
+      "category": "biology",
+      "distractors": [
+        "3 million",
+        "300 million",
+        "30 billion",
+        "3 trillion"
+      ]
+    },
+    {
+      "context": "type of bond holding DNA strands together",
+      "truth": "hydrogen",
+      "category": "biology",
+      "distractors": [
+        "covalent",
+        "ionic",
+        "peptide",
+        "disulfide"
+      ]
+    },
+    {
+      "context": "phase of mitosis where chromosomes align",
+      "truth": "metaphase",
+      "category": "biology",
+      "distractors": [
+        "prophase",
+        "anaphase",
+        "telophase",
+        "interphase"
+      ]
+    },
+    {
+      "context": "molecule that carries amino acids to ribosome",
+      "truth": "tRNA",
+      "category": "biology",
+      "distractors": [
+        "mRNA",
+        "rRNA",
+        "DNA",
+        "siRNA"
+      ]
+    },
+    {
+      "context": "process converting glucose to ATP anaerobically",
+      "truth": "glycolysis",
+      "category": "biology",
+      "distractors": [
+        "Krebs cycle",
+        "oxidative phosphorylation",
+        "beta oxidation",
+        "gluconeogenesis"
+      ]
+    },
+    {
+      "context": "scientist who proposed natural selection",
+      "truth": "Darwin",
+      "category": "biology",
+      "distractors": [
+        "Lamarck",
+        "Mendel",
+        "Wallace",
+        "Huxley"
+      ]
+    },
+    {
+      "context": "longest cell in the human body",
+      "truth": "neuron",
+      "category": "biology",
+      "distractors": [
+        "muscle fiber",
+        "osteocyte",
+        "hepatocyte",
+        "red blood cell"
+      ]
+    }
+  ]
+}

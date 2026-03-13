@@ -1,0 +1,197 @@
+{
+  "domain": "chemistry",
+  "truths": [
+    {
+      "context": "atomic number of hydrogen",
+      "truth": "1",
+      "distractors": [
+        "2",
+        "0",
+        "4",
+        "3"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "atomic number of carbon",
+      "truth": "6",
+      "distractors": [
+        "4",
+        "8",
+        "12",
+        "14"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "atomic number of oxygen",
+      "truth": "8",
+      "distractors": [
+        "6",
+        "10",
+        "16",
+        "12"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "atomic number of gold",
+      "truth": "79",
+      "distractors": [
+        "78",
+        "80",
+        "47",
+        "82"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "most electronegative element",
+      "truth": "fluorine",
+      "distractors": [
+        "oxygen",
+        "chlorine",
+        "nitrogen",
+        "neon"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "noble gas in period 2",
+      "truth": "neon",
+      "distractors": [
+        "argon",
+        "helium",
+        "krypton",
+        "xenon"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "number of electrons in a full p subshell",
+      "truth": "6",
+      "distractors": [
+        "2",
+        "3",
+        "8",
+        "10"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "Gibbs free energy formula",
+      "truth": "G=H-T*S",
+      "distractors": [
+        "G=H+T*S",
+        "G=H*T*S",
+        "G=T*S-H",
+        "G=H/(T*S)"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Arrhenius equation for rate constant",
+      "truth": "k=A*e^(-Ea/(R*T))",
+      "distractors": [
+        "k=A*e^(Ea/(R*T))",
+        "k=Ea/(R*T)",
+        "k=A/e^(Ea/(R*T))",
+        "k=R*T/Ea"
+      ],
+      "domain": "chemistry",
+      "difficulty": "hard"
+    },
+    {
+      "context": "Henderson-Hasselbalch equation",
+      "truth": "pH=pKa+log([A-]/[HA])",
+      "distractors": [
+        "pH=pKa-log([A-]/[HA])",
+        "pH=pKa+log([HA]/[A-])",
+        "pH=Ka+log([A-]/[HA])",
+        "pH=pKa*log([A-]/[HA])"
+      ],
+      "domain": "chemistry",
+      "difficulty": "hard"
+    },
+    {
+      "context": "Avogadro's number",
+      "truth": "6.022e23",
+      "distractors": [
+        "6.022e22",
+        "6.022e24",
+        "3.011e23",
+        "6.022e19"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "molarity definition",
+      "truth": "moles per liter",
+      "distractors": [
+        "grams per liter",
+        "moles per kilogram",
+        "moles per milliliter",
+        "molecules per liter"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "functional group of alcohols",
+      "truth": "hydroxyl",
+      "distractors": [
+        "carbonyl",
+        "carboxyl",
+        "amino",
+        "ester"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "functional group of carboxylic acids",
+      "truth": "carboxyl",
+      "distractors": [
+        "hydroxyl",
+        "carbonyl",
+        "ester",
+        "aldehyde"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "hybridization of carbon in methane",
+      "truth": "sp3",
+      "distractors": [
+        "sp2",
+        "sp",
+        "sp3d",
+        "sp2d"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "hybridization of carbon in ethylene",
+      "truth": "sp2",
+      "distractors": [
+        "sp3",
+        "sp",
+        "sp3d",
+        "sp2d"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    }
+  ]
+}

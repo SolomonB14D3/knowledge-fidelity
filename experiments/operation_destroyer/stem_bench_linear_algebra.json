@@ -1,0 +1,149 @@
+{
+  "domain": "linear_algebra",
+  "truths": [
+    {
+      "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+      "truth": "a*d-b*c",
+      "distractors": [
+        "a*b-c*d",
+        "a*d+b*c",
+        "a*c-b*d",
+        "a*b+c*d"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "rank of identity matrix In",
+      "truth": "n",
+      "distractors": [
+        "n-1",
+        "n^2",
+        "1",
+        "0"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "trace of a matrix (definition)",
+      "truth": "sum of diagonal entries",
+      "distractors": [
+        "sum of all entries",
+        "product of eigenvalues",
+        "sum of off-diagonal entries",
+        "determinant"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "eigenvalue equation",
+      "truth": "A*v=lambda*v",
+      "distractors": [
+        "A*v=lambda",
+        "A=lambda*v",
+        "A*v=v/lambda",
+        "A*lambda=v"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "dot product of orthogonal vectors",
+      "truth": "0",
+      "distractors": [
+        "1",
+        "-1",
+        "|u|*|v|",
+        "undefined"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "number of linearly independent columns (definition)",
+      "truth": "rank",
+      "distractors": [
+        "nullity",
+        "dimension",
+        "trace",
+        "determinant"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "rank-nullity theorem",
+      "truth": "rank+nullity=n",
+      "distractors": [
+        "rank*nullity=n",
+        "rank-nullity=n",
+        "rank+nullity=n^2",
+        "rank=nullity"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+      "truth": "1/(a*d-b*c)",
+      "distractors": [
+        "1/(a*d+b*c)",
+        "a*d-b*c",
+        "1/(a*b-c*d)",
+        "(a*d-b*c)"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Cauchy-Schwarz inequality",
+      "truth": "|u*v| <= |u|*|v|",
+      "distractors": [
+        "|u*v| >= |u|*|v|",
+        "|u*v| = |u|*|v|",
+        "|u*v| < |u|+|v|",
+        "|u*v| <= |u|+|v|"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "characteristic polynomial (definition)",
+      "truth": "det(A-lambda*I)",
+      "distractors": [
+        "det(A+lambda*I)",
+        "tr(A-lambda*I)",
+        "det(A)-lambda",
+        "det(lambda*I-A)"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "spectral theorem applies to",
+      "truth": "symmetric matrices",
+      "distractors": [
+        "invertible matrices",
+        "diagonal matrices",
+        "upper triangular matrices",
+        "square matrices"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "hard"
+    },
+    {
+      "context": "matrix multiplication is",
+      "truth": "associative",
+      "distractors": [
+        "commutative",
+        "distributive only",
+        "neither associative nor commutative",
+        "always invertible"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    }
+  ]
+}

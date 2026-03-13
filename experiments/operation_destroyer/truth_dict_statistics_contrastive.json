@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "domain": "statistics",
+    "description": "Factual truth anchors for statistics domain",
+    "n_entries": 15
+  },
+  "truths": [
+    {
+      "context": "mean of a standard normal distribution",
+      "truth": "0",
+      "category": "statistics",
+      "distractors": [
+        "1",
+        "-1",
+        "0.5",
+        "undefined"
+      ]
+    },
+    {
+      "context": "standard deviation of a standard normal",
+      "truth": "1",
+      "category": "statistics",
+      "distractors": [
+        "0",
+        "2",
+        "0.5",
+        "sqrt(2)"
+      ]
+    },
+    {
+      "context": "probability of any event",
+      "truth": "between 0 and 1",
+      "category": "statistics",
+      "distractors": [
+        "between -1 and 1",
+        "between 0 and 100",
+        "greater than 0",
+        "between 0 and 2"
+      ]
+    },
+    {
+      "context": "theorem relating sample mean to normal dist",
+      "truth": "Central Limit Theorem",
+      "category": "statistics",
+      "distractors": [
+        "Bayes Theorem",
+        "Law of Large Numbers",
+        "Chebyshev's inequality",
+        "Berry-Esseen theorem"
+      ]
+    },
+    {
+      "context": "expected value of a fair six-sided die",
+      "truth": "3.5",
+      "category": "statistics",
+      "distractors": [
+        "3",
+        "4",
+        "3.4",
+        "3.6"
+      ]
+    },
+    {
+      "context": "correlation coefficient range",
+      "truth": "-1 to 1",
+      "category": "statistics",
+      "distractors": [
+        "0 to 1",
+        "-infinity to infinity",
+        "-2 to 2",
+        "0 to 100"
+      ]
+    },
+    {
+      "context": "number of parameters in a normal distribution",
+      "truth": "2",
+      "category": "statistics",
+      "distractors": [
+        "1",
+        "3",
+        "4",
+        "2.5"
+      ]
+    },
+    {
+      "context": "statistical test for comparing two means",
+      "truth": "t-test",
+      "category": "statistics",
+      "distractors": [
+        "chi-squared test",
+        "ANOVA",
+        "F-test",
+        "z-test"
+      ]
+    },
+    {
+      "context": "distribution of count data",
+      "truth": "Poisson",
+      "category": "statistics",
+      "distractors": [
+        "Gaussian",
+        "Binomial",
+        "Exponential",
+        "Uniform"
+      ]
+    },
+    {
+      "context": "measure of spread around the mean",
+      "truth": "variance",
+      "category": "statistics",
+      "distractors": [
+        "median",
+        "mode",
+        "range",
+        "skewness"
+      ]
+    },
+    {
+      "context": "p-value threshold for statistical significance",
+      "truth": "0.05",
+      "category": "statistics",
+      "distractors": [
+        "0.01",
+        "0.1",
+        "0.5",
+        "0.001"
+      ]
+    },
+    {
+      "context": "type of error rejecting a true null hypothesis",
+      "truth": "Type I",
+      "category": "statistics",
+      "distractors": [
+        "Type II",
+        "Type III",
+        "alpha error",
+        "beta error"
+      ]
+    },
+    {
+      "context": "Bayes theorem relates",
+      "truth": "prior and posterior probability",
+      "category": "statistics",
+      "distractors": [
+        "mean and variance",
+        "correlation and causation",
+        "samples and populations",
+        "type I and type II error"
+      ]
+    },
+    {
+      "context": "distribution of sum of squared standard normals",
+      "truth": "chi-squared",
+      "category": "statistics",
+      "distractors": [
+        "t-distribution",
+        "F-distribution",
+        "beta",
+        "Poisson"
+      ]
+    },
+    {
+      "context": "estimator that minimizes mean squared error",
+      "truth": "minimum variance unbiased estimator",
+      "category": "statistics",
+      "distractors": [
+        "maximum likelihood estimator",
+        "method of moments",
+        "Bayesian estimator",
+        "robust estimator"
+      ]
+    }
+  ]
+}

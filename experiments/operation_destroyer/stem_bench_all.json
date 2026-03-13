@@ -1,0 +1,1169 @@
+{
+  "domain": "all",
+  "truths": [
+    {
+      "context": "derivative of sin(x)",
+      "truth": "cos(x)",
+      "distractors": [
+        "-sin(x)",
+        "-cos(x)",
+        "tan(x)",
+        "sin(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of cos(x)",
+      "truth": "-sin(x)",
+      "distractors": [
+        "sin(x)",
+        "-cos(x)",
+        "cos(x)",
+        "tan(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of e^x",
+      "truth": "e^x",
+      "distractors": [
+        "x*e^x",
+        "e^(x-1)",
+        "ln(x)",
+        "e^(x+1)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of ln(x)",
+      "truth": "1/x",
+      "distractors": [
+        "ln(x)/x",
+        "x*ln(x)",
+        "1/x^2",
+        "e^x"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of x^n",
+      "truth": "n*x^(n-1)",
+      "distractors": [
+        "(n-1)*x^n",
+        "n*x^n",
+        "x^(n+1)/(n+1)",
+        "n*x^(n+1)"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of tan(x)",
+      "truth": "sec^2(x)",
+      "distractors": [
+        "cos^2(x)",
+        "1/cos(x)",
+        "-csc^2(x)",
+        "tan^2(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "derivative of arctan(x)",
+      "truth": "1/(1+x^2)",
+      "distractors": [
+        "1/(1-x^2)",
+        "arctan(x)/x",
+        "1/sqrt(1-x^2)",
+        "-1/(1+x^2)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "derivative of arcsin(x)",
+      "truth": "1/sqrt(1-x^2)",
+      "distractors": [
+        "1/sqrt(1+x^2)",
+        "-1/sqrt(1-x^2)",
+        "cos(x)",
+        "1/(1-x^2)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "second derivative of sin(x)",
+      "truth": "-sin(x)",
+      "distractors": [
+        "sin(x)",
+        "cos(x)",
+        "-cos(x)",
+        "0"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "derivative of x*ln(x)",
+      "truth": "ln(x)+1",
+      "distractors": [
+        "ln(x)",
+        "1/x+ln(x)",
+        "x/ln(x)",
+        "x+ln(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "integral of cos(x)",
+      "truth": "sin(x)+C",
+      "distractors": [
+        "-sin(x)+C",
+        "cos(x)+C",
+        "tan(x)+C",
+        "sin^2(x)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of sin(x)",
+      "truth": "-cos(x)+C",
+      "distractors": [
+        "cos(x)+C",
+        "-sin(x)+C",
+        "sin^2(x)+C",
+        "sin(x)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of e^x",
+      "truth": "e^x+C",
+      "distractors": [
+        "x*e^x+C",
+        "e^x/x+C",
+        "ln(x)+C",
+        "e^(x+1)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of 1/x",
+      "truth": "ln|x|+C",
+      "distractors": [
+        "1/x^2+C",
+        "x*ln(x)+C",
+        "log(x)+C",
+        "-1/x^2+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of x^n where n!=-1",
+      "truth": "x^(n+1)/(n+1)+C",
+      "distractors": [
+        "n*x^(n-1)+C",
+        "x^n/n+C",
+        "x^(n+1)+C",
+        "(n+1)*x^n+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "easy"
+    },
+    {
+      "context": "integral of sec^2(x)",
+      "truth": "tan(x)+C",
+      "distractors": [
+        "sec(x)*tan(x)+C",
+        "sec^3(x)/3+C",
+        "cot(x)+C",
+        "-cot(x)+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "integral of 1/(1+x^2)",
+      "truth": "arctan(x)+C",
+      "distractors": [
+        "arcsin(x)+C",
+        "ln(1+x^2)+C",
+        "1/(2*x^2)+C",
+        "arctan^2(x)/2+C"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "limit of sin(x)/x as x approaches 0",
+      "truth": "1",
+      "distractors": [
+        "0",
+        "inf",
+        "pi",
+        "undefined"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "limit of (1+1/n)^n as n approaches inf",
+      "truth": "e",
+      "distractors": [
+        "1",
+        "2",
+        "pi",
+        "inf"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "limit of (e^x-1)/x as x approaches 0",
+      "truth": "1",
+      "distractors": [
+        "0",
+        "e",
+        "inf",
+        "1/e"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "fundamental theorem of calculus (derivative of integral)",
+      "truth": "f(x)",
+      "distractors": [
+        "F(x)",
+        "f'(x)",
+        "integral f(x)dx",
+        "F'(x)"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Taylor series first two terms of e^x around 0",
+      "truth": "1+x",
+      "distractors": [
+        "x+x^2",
+        "e+e*x",
+        "1+x+x^2/2",
+        "1-x"
+      ],
+      "domain": "calculus",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Newton's second law (force)",
+      "truth": "F=m*a",
+      "distractors": [
+        "F=m*v",
+        "F=m*v^2",
+        "F=m/a",
+        "F=m*a^2"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "kinetic energy formula",
+      "truth": "(1/2)*m*v^2",
+      "distractors": [
+        "m*v^2",
+        "m*v",
+        "(1/2)*m*v",
+        "2*m*v^2"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "gravitational potential energy",
+      "truth": "m*g*h",
+      "distractors": [
+        "m*g/h",
+        "(1/2)*m*g*h",
+        "m*g*h^2",
+        "m^2*g*h"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "momentum formula",
+      "truth": "m*v",
+      "distractors": [
+        "m*v^2",
+        "(1/2)*m*v^2",
+        "m*a",
+        "m/v"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "work-energy theorem",
+      "truth": "W=delta(KE)",
+      "distractors": [
+        "W=delta(PE)",
+        "W=F*t",
+        "W=m*a*t",
+        "W=F/d"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "centripetal acceleration",
+      "truth": "v^2/r",
+      "distractors": [
+        "v*r",
+        "v/r",
+        "v^2*r",
+        "2*v/r"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "period of a simple pendulum",
+      "truth": "2*pi*sqrt(L/g)",
+      "distractors": [
+        "2*pi*sqrt(g/L)",
+        "2*pi*L/g",
+        "pi*sqrt(L/g)",
+        "2*pi*sqrt(m/k)"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "escape velocity formula",
+      "truth": "sqrt(2*G*M/r)",
+      "distractors": [
+        "sqrt(G*M/r)",
+        "2*G*M/r^2",
+        "sqrt(G*M/(2*r))",
+        "G*M/r^2"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "Coulomb's law force",
+      "truth": "k*q1*q2/r^2",
+      "distractors": [
+        "k*q1*q2/r",
+        "k*q1*q2*r^2",
+        "q1*q2/r^2",
+        "k/(q1*q2*r^2)"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Ohm's law",
+      "truth": "V=I*R",
+      "distractors": [
+        "V=I/R",
+        "V=I*R^2",
+        "V=I+R",
+        "I=V*R"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "electric power formula",
+      "truth": "P=I*V",
+      "distractors": [
+        "P=I^2/V",
+        "P=V/I",
+        "P=I+V",
+        "P=I*V^2"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "capacitance definition",
+      "truth": "Q/V",
+      "distractors": [
+        "V/Q",
+        "Q*V",
+        "Q/V^2",
+        "Q^2/V"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "energy stored in capacitor",
+      "truth": "(1/2)*C*V^2",
+      "distractors": [
+        "C*V^2",
+        "(1/2)*Q*V^2",
+        "C*V^2/(2*Q)",
+        "Q^2/(2*C)"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "first law of thermodynamics",
+      "truth": "delta(U)=Q-W",
+      "distractors": [
+        "delta(U)=Q+W",
+        "delta(U)=W-Q",
+        "Q=delta(U)+W",
+        "delta(U)=Q*W"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "ideal gas law",
+      "truth": "P*V=n*R*T",
+      "distractors": [
+        "P*V=R*T",
+        "P*V=N*k*T",
+        "P=n*R*T/V",
+        "P*V=n*k*T"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "entropy change (reversible)",
+      "truth": "delta(S)=Q/T",
+      "distractors": [
+        "delta(S)=Q*T",
+        "delta(S)=Q*T^2",
+        "delta(S)=T/Q",
+        "delta(S)=Q/T^2"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "wave speed formula",
+      "truth": "v=f*lambda",
+      "distractors": [
+        "v=f/lambda",
+        "v=f+lambda",
+        "v=lambda/f",
+        "v=f^2*lambda"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "photon energy formula",
+      "truth": "E=h*f",
+      "distractors": [
+        "E=h*lambda",
+        "E=h/f",
+        "E=h*f^2",
+        "E=f/h"
+      ],
+      "domain": "physics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "de Broglie wavelength",
+      "truth": "h/(m*v)",
+      "distractors": [
+        "m*v/h",
+        "h*m*v",
+        "h/(m^2*v)",
+        "m*v/h^2"
+      ],
+      "domain": "physics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "relativistic rest energy formula",
+      "truth": "m*c^2",
+      "distractors": [
+        "m*v^2",
+        "(1/2)*m*c^2",
+        "m*c^2/2",
+        "2*m*c^2"
+      ],
+      "domain": "physics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "atomic number of hydrogen",
+      "truth": "1",
+      "distractors": [
+        "2",
+        "0",
+        "4",
+        "3"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "atomic number of carbon",
+      "truth": "6",
+      "distractors": [
+        "4",
+        "8",
+        "12",
+        "14"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "atomic number of oxygen",
+      "truth": "8",
+      "distractors": [
+        "6",
+        "10",
+        "16",
+        "12"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "atomic number of gold",
+      "truth": "79",
+      "distractors": [
+        "78",
+        "80",
+        "47",
+        "82"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "most electronegative element",
+      "truth": "fluorine",
+      "distractors": [
+        "oxygen",
+        "chlorine",
+        "nitrogen",
+        "neon"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "noble gas in period 2",
+      "truth": "neon",
+      "distractors": [
+        "argon",
+        "helium",
+        "krypton",
+        "xenon"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "number of electrons in a full p subshell",
+      "truth": "6",
+      "distractors": [
+        "2",
+        "3",
+        "8",
+        "10"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "Gibbs free energy formula",
+      "truth": "G=H-T*S",
+      "distractors": [
+        "G=H+T*S",
+        "G=H*T*S",
+        "G=T*S-H",
+        "G=H/(T*S)"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Arrhenius equation for rate constant",
+      "truth": "k=A*e^(-Ea/(R*T))",
+      "distractors": [
+        "k=A*e^(Ea/(R*T))",
+        "k=Ea/(R*T)",
+        "k=A/e^(Ea/(R*T))",
+        "k=R*T/Ea"
+      ],
+      "domain": "chemistry",
+      "difficulty": "hard"
+    },
+    {
+      "context": "Henderson-Hasselbalch equation",
+      "truth": "pH=pKa+log([A-]/[HA])",
+      "distractors": [
+        "pH=pKa-log([A-]/[HA])",
+        "pH=pKa+log([HA]/[A-])",
+        "pH=Ka+log([A-]/[HA])",
+        "pH=pKa*log([A-]/[HA])"
+      ],
+      "domain": "chemistry",
+      "difficulty": "hard"
+    },
+    {
+      "context": "Avogadro's number",
+      "truth": "6.022e23",
+      "distractors": [
+        "6.022e22",
+        "6.022e24",
+        "3.011e23",
+        "6.022e19"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "molarity definition",
+      "truth": "moles per liter",
+      "distractors": [
+        "grams per liter",
+        "moles per kilogram",
+        "moles per milliliter",
+        "molecules per liter"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "functional group of alcohols",
+      "truth": "hydroxyl",
+      "distractors": [
+        "carbonyl",
+        "carboxyl",
+        "amino",
+        "ester"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "functional group of carboxylic acids",
+      "truth": "carboxyl",
+      "distractors": [
+        "hydroxyl",
+        "carbonyl",
+        "ester",
+        "aldehyde"
+      ],
+      "domain": "chemistry",
+      "difficulty": "easy"
+    },
+    {
+      "context": "hybridization of carbon in methane",
+      "truth": "sp3",
+      "distractors": [
+        "sp2",
+        "sp",
+        "sp3d",
+        "sp2d"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "hybridization of carbon in ethylene",
+      "truth": "sp2",
+      "distractors": [
+        "sp3",
+        "sp",
+        "sp3d",
+        "sp2d"
+      ],
+      "domain": "chemistry",
+      "difficulty": "medium"
+    },
+    {
+      "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+      "truth": "a*d-b*c",
+      "distractors": [
+        "a*b-c*d",
+        "a*d+b*c",
+        "a*c-b*d",
+        "a*b+c*d"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "rank of identity matrix In",
+      "truth": "n",
+      "distractors": [
+        "n-1",
+        "n^2",
+        "1",
+        "0"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "trace of a matrix (definition)",
+      "truth": "sum of diagonal entries",
+      "distractors": [
+        "sum of all entries",
+        "product of eigenvalues",
+        "sum of off-diagonal entries",
+        "determinant"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "eigenvalue equation",
+      "truth": "A*v=lambda*v",
+      "distractors": [
+        "A*v=lambda",
+        "A=lambda*v",
+        "A*v=v/lambda",
+        "A*lambda=v"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "dot product of orthogonal vectors",
+      "truth": "0",
+      "distractors": [
+        "1",
+        "-1",
+        "|u|*|v|",
+        "undefined"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "easy"
+    },
+    {
+      "context": "number of linearly independent columns (definition)",
+      "truth": "rank",
+      "distractors": [
+        "nullity",
+        "dimension",
+        "trace",
+        "determinant"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "rank-nullity theorem",
+      "truth": "rank+nullity=n",
+      "distractors": [
+        "rank*nullity=n",
+        "rank-nullity=n",
+        "rank+nullity=n^2",
+        "rank=nullity"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+      "truth": "1/(a*d-b*c)",
+      "distractors": [
+        "1/(a*d+b*c)",
+        "a*d-b*c",
+        "1/(a*b-c*d)",
+        "(a*d-b*c)"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Cauchy-Schwarz inequality",
+      "truth": "|u*v| <= |u|*|v|",
+      "distractors": [
+        "|u*v| >= |u|*|v|",
+        "|u*v| = |u|*|v|",
+        "|u*v| < |u|+|v|",
+        "|u*v| <= |u|+|v|"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "characteristic polynomial (definition)",
+      "truth": "det(A-lambda*I)",
+      "distractors": [
+        "det(A+lambda*I)",
+        "tr(A-lambda*I)",
+        "det(A)-lambda",
+        "det(lambda*I-A)"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "spectral theorem applies to",
+      "truth": "symmetric matrices",
+      "distractors": [
+        "invertible matrices",
+        "diagonal matrices",
+        "upper triangular matrices",
+        "square matrices"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "hard"
+    },
+    {
+      "context": "matrix multiplication is",
+      "truth": "associative",
+      "distractors": [
+        "commutative",
+        "distributive only",
+        "neither associative nor commutative",
+        "always invertible"
+      ],
+      "domain": "linear_algebra",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Bayes theorem formula",
+      "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+      "distractors": [
+        "P(A|B)=P(A)*P(B|A)",
+        "P(A|B)=P(B|A)/P(A)",
+        "P(A|B)=P(A and B)/P(A)",
+        "P(A|B)=P(B|A)*P(B)/P(A)"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "mean of normal distribution N(mu,sigma^2)",
+      "truth": "mu",
+      "distractors": [
+        "sigma^2",
+        "sigma",
+        "mu+sigma",
+        "0"
+      ],
+      "domain": "statistics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "variance of normal distribution N(mu,sigma^2)",
+      "truth": "sigma^2",
+      "distractors": [
+        "sigma",
+        "mu",
+        "mu^2",
+        "sqrt(sigma)"
+      ],
+      "domain": "statistics",
+      "difficulty": "easy"
+    },
+    {
+      "context": "central limit theorem result",
+      "truth": "sample mean is approximately normal",
+      "distractors": [
+        "population is normal",
+        "sample variance equals sigma^2/n",
+        "all samples are identical",
+        "sample median equals mean"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "law of large numbers result",
+      "truth": "sample mean converges to population mean",
+      "distractors": [
+        "sample variance goes to 0",
+        "all samples become equal",
+        "standard deviation increases",
+        "mean equals median"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "standard error of the mean",
+      "truth": "sigma/sqrt(n)",
+      "distractors": [
+        "sigma/n",
+        "sigma^2/n",
+        "sigma*sqrt(n)",
+        "sigma/n^2"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "chi-squared distribution is used for",
+      "truth": "testing categorical data independence",
+      "distractors": [
+        "comparing two means",
+        "linear regression slope",
+        "testing normality only",
+        "confidence intervals for means"
+      ],
+      "domain": "statistics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "p-value definition",
+      "truth": "probability of observing result if null hypothesis is true",
+      "distractors": [
+        "probability the null hypothesis is true",
+        "probability of type I error",
+        "probability the alternative is true",
+        "confidence level"
+      ],
+      "domain": "statistics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "maximum likelihood estimation finds",
+      "truth": "parameter that maximizes P(data|parameter)",
+      "distractors": [
+        "parameter closest to prior mean",
+        "parameter with minimum variance",
+        "parameter that minimizes MSE",
+        "posterior mode"
+      ],
+      "domain": "statistics",
+      "difficulty": "hard"
+    },
+    {
+      "context": "covariance of independent variables",
+      "truth": "0",
+      "distractors": [
+        "1",
+        "sigma1*sigma2",
+        "undefined",
+        "-1"
+      ],
+      "domain": "statistics",
+      "difficulty": "medium"
+    },
+    {
+      "context": "value of pi (first 5 digits)",
+      "truth": "3.14159",
+      "distractors": [
+        "3.14259",
+        "3.14152",
+        "3.14169",
+        "3.14195"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "Euler's number e (first 5 digits)",
+      "truth": "2.71828",
+      "distractors": [
+        "2.71823",
+        "2.71818",
+        "2.71829",
+        "2.71726"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "golden ratio phi (first 5 digits)",
+      "truth": "1.61803",
+      "distractors": [
+        "1.61813",
+        "1.61903",
+        "1.61808",
+        "1.61703"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+      "truth": "0.5772",
+      "distractors": [
+        "0.5182",
+        "0.6772",
+        "0.5872",
+        "0.5072"
+      ],
+      "domain": "constants",
+      "difficulty": "hard"
+    },
+    {
+      "context": "sqrt(2) first 5 digits",
+      "truth": "1.41421",
+      "distractors": [
+        "1.41412",
+        "1.41521",
+        "1.41431",
+        "1.41321"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "sqrt(3) first 4 digits",
+      "truth": "1.7320",
+      "distractors": [
+        "1.7230",
+        "1.7420",
+        "1.7310",
+        "1.7730"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "Euler's identity e^(i*pi)+1 equals",
+      "truth": "0",
+      "distractors": [
+        "i",
+        "-1",
+        "1",
+        "2*pi*i"
+      ],
+      "domain": "constants",
+      "difficulty": "medium"
+    },
+    {
+      "context": "sin(pi/6)",
+      "truth": "1/2",
+      "distractors": [
+        "sqrt(3)/2",
+        "sqrt(2)/2",
+        "1/sqrt(3)",
+        "sqrt(3)/3"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "cos(pi/3)",
+      "truth": "1/2",
+      "distractors": [
+        "sqrt(3)/2",
+        "sqrt(2)/2",
+        "1",
+        "0"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "sin(pi/4)",
+      "truth": "sqrt(2)/2",
+      "distractors": [
+        "1/2",
+        "sqrt(3)/2",
+        "1",
+        "1/sqrt(2)"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "cos(pi/6)",
+      "truth": "sqrt(3)/2",
+      "distractors": [
+        "1/2",
+        "sqrt(2)/2",
+        "sqrt(3)/3",
+        "1"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "tan(pi/4)",
+      "truth": "1",
+      "distractors": [
+        "sqrt(3)",
+        "1/sqrt(3)",
+        "0",
+        "sqrt(2)"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "ln(1)",
+      "truth": "0",
+      "distractors": [
+        "1",
+        "e",
+        "-1",
+        "undefined"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "ln(e)",
+      "truth": "1",
+      "distractors": [
+        "e",
+        "0",
+        "2",
+        "1/e"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "log base 10 of 1000",
+      "truth": "3",
+      "distractors": [
+        "2",
+        "4",
+        "10",
+        "100"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "sum of angles in a triangle (degrees)",
+      "truth": "180",
+      "distractors": [
+        "360",
+        "90",
+        "270",
+        "120"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    },
+    {
+      "context": "Pythagorean theorem",
+      "truth": "a^2+b^2=c^2",
+      "distractors": [
+        "a+b=c",
+        "a^2+b=c^2",
+        "a^2*b^2=c^2",
+        "a^2-b^2=c^2"
+      ],
+      "domain": "constants",
+      "difficulty": "easy"
+    }
+  ]
+}

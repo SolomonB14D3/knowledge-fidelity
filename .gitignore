@@ -28,6 +28,7 @@ Thumbs.db
 *.gguf
 *.pt
 *.pth
+*.npz
 
 # Data outputs (keep probes, ignore generated results)
 data/results/*.jsonl
@@ -58,6 +59,15 @@ paper/*.blg
 paper/*.fdb_latexmk
 paper/*.fls
 paper/*.synctex.gz
+
+# Operation Destroyer — paper, figures, auto-generated outputs, planning docs
+experiments/operation_destroyer/paper/
+experiments/operation_destroyer/sub_experiments/figures/
+experiments/operation_destroyer/sub_experiments/exp04_confidence/figures/
+experiments/operation_destroyer/autoresearch_results.tsv
+experiments/operation_destroyer/autoresearch_summary.md
+experiments/operation_destroyer/program.md
+experiments/operation_destroyer/PLAN.md
 
 # One-shot runner scripts (machine/date-specific, not reusable)
 experiments/overnight_mar*.sh

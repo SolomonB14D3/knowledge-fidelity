@@ -90,6 +90,7 @@ rho-leaderboard = "rho_eval.cli.rho_leaderboard:main"
 rho-surgery = "rho_eval.cli.rho_surgery:main"
 rho-benchmark = "rho_eval.cli.rho_benchmark:main"
 rho-unlock = "rho_eval.cli.rho_unlock:main"
+rho-mc-eval = "rho_eval.cli.rho_mc_eval:main"
 snap-on = "rho_eval.cli.snap_on:main"
 
 [project.urls]

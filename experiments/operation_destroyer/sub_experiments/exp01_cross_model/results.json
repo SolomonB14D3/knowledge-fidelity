@@ -1,0 +1,5612 @@
+{
+  "domains": [
+    "calculus",
+    "physics",
+    "chemistry",
+    "linear_algebra",
+    "statistics",
+    "constants"
+  ],
+  "difficulty": null,
+  "n_facts": 97,
+  "models": [
+    {
+      "model_name": "GPT-2-124M",
+      "model_id": "openai-community/gpt2",
+      "total_wins": 15,
+      "total_n": 97,
+      "total_acc": 0.15463917525773196,
+      "avg_margin": -4.92778894827538,
+      "elapsed_s": 6.261929988861084,
+      "domain_breakdown": {
+        "calculus": {
+          "wins": 4,
+          "n": 22,
+          "avg_margin": -4.821065122430975
+        },
+        "physics": {
+          "wins": 3,
+          "n": 20,
+          "avg_margin": -4.244610404968261
+        },
+        "chemistry": {
+          "wins": 3,
+          "n": 16,
+          "avg_margin": -3.377751350402832
+        },
+        "linear_algebra": {
+          "wins": 0,
+          "n": 12,
+          "avg_margin": -5.226891318957011
+        },
+        "statistics": {
+          "wins": 0,
+          "n": 10,
+          "avg_margin": -13.343376851081848
+        },
+        "constants": {
+          "wins": 5,
+          "n": 17,
+          "avg_margin": -2.167023602653952
+        }
+      },
+      "difficulty_breakdown": {
+        "easy": {
+          "wins": 11,
+          "n": 48,
+          "acc": 0.22916666666666666
+        },
+        "medium": {
+          "wins": 4,
+          "n": 38,
+          "acc": 0.10526315789473684
+        },
+        "hard": {
+          "wins": 0,
+          "n": 11,
+          "acc": 0.0
+        }
+      },
+      "per_fact": [
+        {
+          "context": "derivative of sin(x)",
+          "truth": "cos(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.2870635986328125,
+          "truth_lp": -9.87527084350586
+        },
+        {
+          "context": "derivative of cos(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -9.312976837158203,
+          "truth_lp": -12.221237182617188
+        },
+        {
+          "context": "derivative of e^x",
+          "truth": "e^x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 11.238330841064453,
+          "truth_lp": -5.296714782714844
+        },
+        {
+          "context": "derivative of ln(x)",
+          "truth": "1/x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.1561431884765625,
+          "truth_lp": -12.834930419921875
+        },
+        {
+          "context": "derivative of x^n",
+          "truth": "n*x^(n-1)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -9.587387084960938,
+          "truth_lp": -25.20604705810547
+        },
+        {
+          "context": "derivative of tan(x)",
+          "truth": "sec^2(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -8.184638977050781,
+          "truth_lp": -20.802326202392578
+        },
+        {
+          "context": "derivative of arctan(x)",
+          "truth": "1/(1+x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -10.462194442749023,
+          "truth_lp": -22.788745880126953
+        },
+        {
+          "context": "derivative of arcsin(x)",
+          "truth": "1/sqrt(1-x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -18.58770751953125,
+          "truth_lp": -26.70263671875
+        },
+        {
+          "context": "second derivative of sin(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.081333160400391,
+          "truth_lp": -8.790294647216797
+        },
+        {
+          "context": "derivative of x*ln(x)",
+          "truth": "ln(x)+1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -5.580345153808594,
+          "truth_lp": -14.230201721191406
+        },
+        {
+          "context": "integral of cos(x)",
+          "truth": "sin(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.670162200927734,
+          "truth_lp": -18.042423248291016
+        },
+        {
+          "context": "integral of sin(x)",
+          "truth": "-cos(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -8.798194885253906,
+          "truth_lp": -24.693626403808594
+        },
+        {
+          "context": "integral of e^x",
+          "truth": "e^x+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 7.556617736816406,
+          "truth_lp": -16.977005004882812
+        },
+        {
+          "context": "integral of 1/x",
+          "truth": "ln|x|+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -12.90499496459961,
+          "truth_lp": -38.012115478515625
+        },
+        {
+          "context": "integral of x^n where n!=-1",
+          "truth": "x^(n+1)/(n+1)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -7.993961334228516,
+          "truth_lp": -31.841758728027344
+        },
+        {
+          "context": "integral of sec^2(x)",
+          "truth": "tan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.3037033081054688,
+          "truth_lp": -22.75843048095703
+        },
+        {
+          "context": "integral of 1/(1+x^2)",
+          "truth": "arctan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -14.203990936279297,
+          "truth_lp": -34.113746643066406
+        },
+        {
+          "context": "limit of sin(x)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.45690155029296875,
+          "truth_lp": -5.193901062011719
+        },
+        {
+          "context": "limit of (1+1/n)^n as n approaches inf",
+          "truth": "e",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.3246917724609375,
+          "truth_lp": -6.5330810546875
+        },
+        {
+          "context": "limit of (e^x-1)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.5921783447265625,
+          "truth_lp": -5.243316650390625
+        },
+        {
+          "context": "fundamental theorem of calculus (derivative of integral)",
+          "truth": "f(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.2709808349609375,
+          "truth_lp": -10.164192199707031
+        },
+        {
+          "context": "Taylor series first two terms of e^x around 0",
+          "truth": "1+x",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.248199462890625,
+          "truth_lp": -13.485458374023438
+        },
+        {
+          "context": "Newton's second law (force)",
+          "truth": "F=m*a",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.4125213623046875,
+          "truth_lp": -29.72179412841797
+        },
+        {
+          "context": "kinetic energy formula",
+          "truth": "(1/2)*m*v^2",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -13.51986312866211,
+          "truth_lp": -30.839611053466797
+        },
+        {
+          "context": "gravitational potential energy",
+          "truth": "m*g*h",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.2503890991210938,
+          "truth_lp": -27.588481903076172
+        },
+        {
+          "context": "momentum formula",
+          "truth": "m*v",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.2559738159179688,
+          "truth_lp": -17.2569580078125
+        },
+        {
+          "context": "work-energy theorem",
+          "truth": "W=delta(KE)",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -13.926040649414062,
+          "truth_lp": -40.30548858642578
+        },
+        {
+          "context": "centripetal acceleration",
+          "truth": "v^2/r",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -6.700347900390625,
+          "truth_lp": -21.78858184814453
+        },
+        {
+          "context": "period of a simple pendulum",
+          "truth": "2*pi*sqrt(L/g)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -6.244636535644531,
+          "truth_lp": -42.18605041503906
+        },
+        {
+          "context": "escape velocity formula",
+          "truth": "sqrt(2*G*M/r)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -8.62154769897461,
+          "truth_lp": -36.55027389526367
+        },
+        {
+          "context": "Coulomb's law force",
+          "truth": "k*q1*q2/r^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -7.753944396972656,
+          "truth_lp": -54.83030700683594
+        },
+        {
+          "context": "Ohm's law",
+          "truth": "V=I*R",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.0602874755859375,
+          "truth_lp": -30.592247009277344
+        },
+        {
+          "context": "electric power formula",
+          "truth": "P=I*V",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.457366943359375,
+          "truth_lp": -23.431350708007812
+        },
+        {
+          "context": "capacitance definition",
+          "truth": "Q/V",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.3391571044921875,
+          "truth_lp": -20.128883361816406
+        },
+        {
+          "context": "energy stored in capacitor",
+          "truth": "(1/2)*C*V^2",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -11.99664306640625,
+          "truth_lp": -34.58570861816406
+        },
+        {
+          "context": "first law of thermodynamics",
+          "truth": "delta(U)=Q-W",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.6006698608398438,
+          "truth_lp": -38.67333984375
+        },
+        {
+          "context": "ideal gas law",
+          "truth": "P*V=n*R*T",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -8.367961883544922,
+          "truth_lp": -46.92033004760742
+        },
+        {
+          "context": "entropy change (reversible)",
+          "truth": "delta(S)=Q/T",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.10645294189453125,
+          "truth_lp": -37.316490173339844
+        },
+        {
+          "context": "wave speed formula",
+          "truth": "v=f*lambda",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.7667007446289062,
+          "truth_lp": -28.900955200195312
+        },
+        {
+          "context": "photon energy formula",
+          "truth": "E=h*f",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.02315521240234375,
+          "truth_lp": -21.258804321289062
+        },
+        {
+          "context": "de Broglie wavelength",
+          "truth": "h/(m*v)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -3.309539794921875,
+          "truth_lp": -29.451698303222656
+        },
+        {
+          "context": "relativistic rest energy formula",
+          "truth": "m*c^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.0382308959960938,
+          "truth_lp": -21.719039916992188
+        },
+        {
+          "context": "atomic number of hydrogen",
+          "truth": "1",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.291717529296875,
+          "truth_lp": -2.3539581298828125
+        },
+        {
+          "context": "atomic number of carbon",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.2384796142578125,
+          "truth_lp": -4.436119079589844
+        },
+        {
+          "context": "atomic number of oxygen",
+          "truth": "8",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.6211700439453125,
+          "truth_lp": -4.561561584472656
+        },
+        {
+          "context": "atomic number of gold",
+          "truth": "79",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.7909317016601562,
+          "truth_lp": -7.2766876220703125
+        },
+        {
+          "context": "most electronegative element",
+          "truth": "fluorine",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.488555908203125,
+          "truth_lp": -8.89105224609375
+        },
+        {
+          "context": "noble gas in period 2",
+          "truth": "neon",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.598114013671875,
+          "truth_lp": -10.464988708496094
+        },
+        {
+          "context": "number of electrons in a full p subshell",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.160003662109375,
+          "truth_lp": -5.578224182128906
+        },
+        {
+          "context": "Gibbs free energy formula",
+          "truth": "G=H-T*S",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -3.9402313232421875,
+          "truth_lp": -33.55965805053711
+        },
+        {
+          "context": "Arrhenius equation for rate constant",
+          "truth": "k=A*e^(-Ea/(R*T))",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -21.433509826660156,
+          "truth_lp": -60.53752136230469
+        },
+        {
+          "context": "Henderson-Hasselbalch equation",
+          "truth": "pH=pKa+log([A-]/[HA])",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -3.3428611755371094,
+          "truth_lp": -82.54124069213867
+        },
+        {
+          "context": "Avogadro's number",
+          "truth": "6.022e23",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.09296417236328125,
+          "truth_lp": -29.568016052246094
+        },
+        {
+          "context": "molarity definition",
+          "truth": "moles per liter",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.5627212524414062,
+          "truth_lp": -19.34436798095703
+        },
+        {
+          "context": "functional group of alcohols",
+          "truth": "hydroxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.9586944580078125,
+          "truth_lp": -12.0745849609375
+        },
+        {
+          "context": "functional group of carboxylic acids",
+          "truth": "carboxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.2686271667480469,
+          "truth_lp": -7.283542633056641
+        },
+        {
+          "context": "hybridization of carbon in methane",
+          "truth": "sp3",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -8.259971618652344,
+          "truth_lp": -18.14855194091797
+        },
+        {
+          "context": "hybridization of carbon in ethylene",
+          "truth": "sp2",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -7.302085876464844,
+          "truth_lp": -16.775062561035156
+        },
+        {
+          "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "a*d-b*c",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -10.82274580001831,
+          "truth_lp": -28.157209396362305
+        },
+        {
+          "context": "rank of identity matrix In",
+          "truth": "n",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.8235931396484375,
+          "truth_lp": -6.612556457519531
+        },
+        {
+          "context": "trace of a matrix (definition)",
+          "truth": "sum of diagonal entries",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -9.585079193115234,
+          "truth_lp": -22.250335693359375
+        },
+        {
+          "context": "eigenvalue equation",
+          "truth": "A*v=lambda*v",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -8.131202697753906,
+          "truth_lp": -35.735816955566406
+        },
+        {
+          "context": "dot product of orthogonal vectors",
+          "truth": "0",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.47296905517578125,
+          "truth_lp": -5.516029357910156
+        },
+        {
+          "context": "number of linearly independent columns (definition)",
+          "truth": "rank",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.531463623046875,
+          "truth_lp": -10.748100280761719
+        },
+        {
+          "context": "rank-nullity theorem",
+          "truth": "rank+nullity=n",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -7.706605911254883,
+          "truth_lp": -25.70018196105957
+        },
+        {
+          "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "1/(a*d-b*c)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -5.79060173034668,
+          "truth_lp": -29.036216735839844
+        },
+        {
+          "context": "Cauchy-Schwarz inequality",
+          "truth": "|u*v| <= |u|*|v|",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -4.603174209594727,
+          "truth_lp": -69.6109447479248
+        },
+        {
+          "context": "characteristic polynomial (definition)",
+          "truth": "det(A-lambda*I)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -13.434577941894531,
+          "truth_lp": -48.447532653808594
+        },
+        {
+          "context": "spectral theorem applies to",
+          "truth": "symmetric matrices",
+          "domain": "linear_algebra",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -0.7499923706054688,
+          "truth_lp": -15.836936950683594
+        },
+        {
+          "context": "matrix multiplication is",
+          "truth": "associative",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.07069015502929688,
+          "truth_lp": -11.40743637084961
+        },
+        {
+          "context": "Bayes theorem formula",
+          "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -5.1311562061309814,
+          "truth_lp": -40.08130192756653
+        },
+        {
+          "context": "mean of normal distribution N(mu,sigma^2)",
+          "truth": "mu",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.6500930786132812,
+          "truth_lp": -5.8862457275390625
+        },
+        {
+          "context": "variance of normal distribution N(mu,sigma^2)",
+          "truth": "sigma^2",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.6573944091796875,
+          "truth_lp": -8.757125854492188
+        },
+        {
+          "context": "central limit theorem result",
+          "truth": "sample mean is approximately normal",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -13.031631469726562,
+          "truth_lp": -33.66218566894531
+        },
+        {
+          "context": "law of large numbers result",
+          "truth": "sample mean converges to population mean",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -23.249557495117188,
+          "truth_lp": -41.275115966796875
+        },
+        {
+          "context": "standard error of the mean",
+          "truth": "sigma/sqrt(n)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -6.007148742675781,
+          "truth_lp": -26.507797241210938
+        },
+        {
+          "context": "chi-squared distribution is used for",
+          "truth": "testing categorical data independence",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -15.807697296142578,
+          "truth_lp": -31.806453704833984
+        },
+        {
+          "context": "p-value definition",
+          "truth": "probability of observing result if null hypothesis is true",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -30.9002685546875,
+          "truth_lp": -48.08757781982422
+        },
+        {
+          "context": "maximum likelihood estimation finds",
+          "truth": "parameter that maximizes P(data|parameter)",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -32.505619049072266,
+          "truth_lp": -53.07683181762695
+        },
+        {
+          "context": "covariance of independent variables",
+          "truth": "0",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.49320220947265625,
+          "truth_lp": -5.6932830810546875
+        },
+        {
+          "context": "value of pi (first 5 digits)",
+          "truth": "3.14159",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.55712890625,
+          "truth_lp": -12.311752319335938
+        },
+        {
+          "context": "Euler's number e (first 5 digits)",
+          "truth": "2.71828",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.19195556640625,
+          "truth_lp": -14.871742248535156
+        },
+        {
+          "context": "golden ratio phi (first 5 digits)",
+          "truth": "1.61803",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.703277587890625,
+          "truth_lp": -16.401161193847656
+        },
+        {
+          "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+          "truth": "0.5772",
+          "domain": "constants",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -2.5373077392578125,
+          "truth_lp": -17.714012145996094
+        },
+        {
+          "context": "sqrt(2) first 5 digits",
+          "truth": "1.41421",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.5790481567382812,
+          "truth_lp": -17.563316345214844
+        },
+        {
+          "context": "sqrt(3) first 4 digits",
+          "truth": "1.7320",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.07007598876953125,
+          "truth_lp": -17.80681610107422
+        },
+        {
+          "context": "Euler's identity e^(i*pi)+1 equals",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.9330291748046875,
+          "truth_lp": -4.930747985839844
+        },
+        {
+          "context": "sin(pi/6)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.4795379638671875,
+          "truth_lp": -10.837940216064453
+        },
+        {
+          "context": "cos(pi/3)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -7.094612121582031,
+          "truth_lp": -10.303695678710938
+        },
+        {
+          "context": "sin(pi/4)",
+          "truth": "sqrt(2)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -11.513118743896484,
+          "truth_lp": -15.840221405029297
+        },
+        {
+          "context": "cos(pi/6)",
+          "truth": "sqrt(3)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -12.715087890625,
+          "truth_lp": -17.163414001464844
+        },
+        {
+          "context": "tan(pi/4)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.0942459106445312,
+          "truth_lp": -4.146209716796875
+        },
+        {
+          "context": "ln(1)",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.1474380493164062,
+          "truth_lp": -4.084747314453125
+        },
+        {
+          "context": "ln(e)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.5805740356445312,
+          "truth_lp": -5.8923492431640625
+        },
+        {
+          "context": "log base 10 of 1000",
+          "truth": "3",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.7005233764648438,
+          "truth_lp": -5.4521331787109375
+        },
+        {
+          "context": "sum of angles in a triangle (degrees)",
+          "truth": "180",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.124176025390625,
+          "truth_lp": -6.768852233886719
+        },
+        {
+          "context": "Pythagorean theorem",
+          "truth": "a^2+b^2=c^2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -9.71053695678711,
+          "truth_lp": -26.521656036376953
+        }
+      ]
+    },
+    {
+      "model_name": "SmolLM2-360M",
+      "model_id": "HuggingFaceTB/SmolLM2-360M",
+      "total_wins": 60,
+      "total_n": 97,
+      "total_acc": 0.6185567010309279,
+      "avg_margin": 0.6256008787253469,
+      "elapsed_s": 12.219157934188843,
+      "domain_breakdown": {
+        "calculus": {
+          "wins": 13,
+          "n": 22,
+          "avg_margin": -0.013313120061700994
+        },
+        "physics": {
+          "wins": 15,
+          "n": 20,
+          "avg_margin": 1.6734669923782348
+        },
+        "chemistry": {
+          "wins": 11,
+          "n": 16,
+          "avg_margin": 1.8432003259658813
+        },
+        "linear_algebra": {
+          "wins": 5,
+          "n": 12,
+          "avg_margin": -0.44760600725809735
+        },
+        "statistics": {
+          "wins": 5,
+          "n": 10,
+          "avg_margin": -3.6374159812927247
+        },
+        "constants": {
+          "wins": 11,
+          "n": 17,
+          "avg_margin": 2.338885924395393
+        }
+      },
+      "difficulty_breakdown": {
+        "easy": {
+          "wins": 29,
+          "n": 48,
+          "acc": 0.6041666666666666
+        },
+        "medium": {
+          "wins": 26,
+          "n": 38,
+          "acc": 0.6842105263157895
+        },
+        "hard": {
+          "wins": 5,
+          "n": 11,
+          "acc": 0.45454545454545453
+        }
+      },
+      "per_fact": [
+        {
+          "context": "derivative of sin(x)",
+          "truth": "cos(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.6218662261962891,
+          "truth_lp": -3.782684326171875
+        },
+        {
+          "context": "derivative of cos(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.6013259887695312,
+          "truth_lp": -4.421817779541016
+        },
+        {
+          "context": "derivative of e^x",
+          "truth": "e^x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.237613677978516,
+          "truth_lp": -2.16835880279541
+        },
+        {
+          "context": "derivative of ln(x)",
+          "truth": "1/x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.3249025344848633,
+          "truth_lp": -4.210993766784668
+        },
+        {
+          "context": "derivative of x^n",
+          "truth": "n*x^(n-1)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.39107322692871094,
+          "truth_lp": -8.67514419555664
+        },
+        {
+          "context": "derivative of tan(x)",
+          "truth": "sec^2(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.6436309814453125,
+          "truth_lp": -5.574885368347168
+        },
+        {
+          "context": "derivative of arctan(x)",
+          "truth": "1/(1+x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.23572349548339844,
+          "truth_lp": -7.201936721801758
+        },
+        {
+          "context": "derivative of arcsin(x)",
+          "truth": "1/sqrt(1-x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.192744255065918,
+          "truth_lp": -6.98641300201416
+        },
+        {
+          "context": "second derivative of sin(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.687885284423828,
+          "truth_lp": -8.590723037719727
+        },
+        {
+          "context": "derivative of x*ln(x)",
+          "truth": "ln(x)+1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -4.150320053100586,
+          "truth_lp": -10.452364921569824
+        },
+        {
+          "context": "integral of cos(x)",
+          "truth": "sin(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.7680568695068359,
+          "truth_lp": -10.2277250289917
+        },
+        {
+          "context": "integral of sin(x)",
+          "truth": "-cos(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.028794288635254,
+          "truth_lp": -9.013360977172852
+        },
+        {
+          "context": "integral of e^x",
+          "truth": "e^x+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.843719482421875,
+          "truth_lp": -8.703835487365723
+        },
+        {
+          "context": "integral of 1/x",
+          "truth": "ln|x|+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.00033664703369140625,
+          "truth_lp": -11.455032348632812
+        },
+        {
+          "context": "integral of x^n where n!=-1",
+          "truth": "x^(n+1)/(n+1)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.7110023498535156,
+          "truth_lp": -21.859110832214355
+        },
+        {
+          "context": "integral of sec^2(x)",
+          "truth": "tan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.8032283782958984,
+          "truth_lp": -11.143627166748047
+        },
+        {
+          "context": "integral of 1/(1+x^2)",
+          "truth": "arctan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.1315603256225586,
+          "truth_lp": -12.974560737609863
+        },
+        {
+          "context": "limit of sin(x)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.375,
+          "truth_lp": -3.553163528442383
+        },
+        {
+          "context": "limit of (1+1/n)^n as n approaches inf",
+          "truth": "e",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -3.250843048095703,
+          "truth_lp": -5.432455062866211
+        },
+        {
+          "context": "limit of (e^x-1)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.10873603820800781,
+          "truth_lp": -2.8764877319335938
+        },
+        {
+          "context": "fundamental theorem of calculus (derivative of integral)",
+          "truth": "f(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.2485971450805664,
+          "truth_lp": -5.860507011413574
+        },
+        {
+          "context": "Taylor series first two terms of e^x around 0",
+          "truth": "1+x",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.2926521301269531,
+          "truth_lp": -5.331281661987305
+        },
+        {
+          "context": "Newton's second law (force)",
+          "truth": "F=m*a",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.6875009536743164,
+          "truth_lp": -6.674599647521973
+        },
+        {
+          "context": "kinetic energy formula",
+          "truth": "(1/2)*m*v^2",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.0009584426879883,
+          "truth_lp": -12.18418025970459
+        },
+        {
+          "context": "gravitational potential energy",
+          "truth": "m*g*h",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.513960838317871,
+          "truth_lp": -10.4154691696167
+        },
+        {
+          "context": "momentum formula",
+          "truth": "m*v",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.6154556274414062,
+          "truth_lp": -8.080820083618164
+        },
+        {
+          "context": "work-energy theorem",
+          "truth": "W=delta(KE)",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.5853400230407715,
+          "truth_lp": -18.563231945037842
+        },
+        {
+          "context": "centripetal acceleration",
+          "truth": "v^2/r",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.8901691436767578,
+          "truth_lp": -7.171566963195801
+        },
+        {
+          "context": "period of a simple pendulum",
+          "truth": "2*pi*sqrt(L/g)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.8306493759155273,
+          "truth_lp": -12.253339767456055
+        },
+        {
+          "context": "escape velocity formula",
+          "truth": "sqrt(2*G*M/r)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -3.030144691467285,
+          "truth_lp": -17.886136054992676
+        },
+        {
+          "context": "Coulomb's law force",
+          "truth": "k*q1*q2/r^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.9322404861450195,
+          "truth_lp": -12.612004280090332
+        },
+        {
+          "context": "Ohm's law",
+          "truth": "V=I*R",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.8438005447387695,
+          "truth_lp": -5.934220314025879
+        },
+        {
+          "context": "electric power formula",
+          "truth": "P=I*V",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.115487098693848,
+          "truth_lp": -8.216561317443848
+        },
+        {
+          "context": "capacitance definition",
+          "truth": "Q/V",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.8579597473144531,
+          "truth_lp": -11.013347625732422
+        },
+        {
+          "context": "energy stored in capacitor",
+          "truth": "(1/2)*C*V^2",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -5.114519119262695,
+          "truth_lp": -14.19641399383545
+        },
+        {
+          "context": "first law of thermodynamics",
+          "truth": "delta(U)=Q-W",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.6520204544067383,
+          "truth_lp": -16.93442153930664
+        },
+        {
+          "context": "ideal gas law",
+          "truth": "P*V=n*R*T",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.122344970703125,
+          "truth_lp": -10.345548629760742
+        },
+        {
+          "context": "entropy change (reversible)",
+          "truth": "delta(S)=Q/T",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 6.828483581542969,
+          "truth_lp": -16.14050817489624
+        },
+        {
+          "context": "wave speed formula",
+          "truth": "v=f*lambda",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.7176408767700195,
+          "truth_lp": -13.695974349975586
+        },
+        {
+          "context": "photon energy formula",
+          "truth": "E=h*f",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.11446475982666,
+          "truth_lp": -7.841175079345703
+        },
+        {
+          "context": "de Broglie wavelength",
+          "truth": "h/(m*v)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.3336000442504883,
+          "truth_lp": -13.031598091125488
+        },
+        {
+          "context": "relativistic rest energy formula",
+          "truth": "m*c^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.009004592895508,
+          "truth_lp": -9.704164505004883
+        },
+        {
+          "context": "atomic number of hydrogen",
+          "truth": "1",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.125,
+          "truth_lp": -0.5207996368408203
+        },
+        {
+          "context": "atomic number of carbon",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.943767547607422,
+          "truth_lp": -0.39333343505859375
+        },
+        {
+          "context": "atomic number of oxygen",
+          "truth": "8",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.25,
+          "truth_lp": -0.7350254058837891
+        },
+        {
+          "context": "atomic number of gold",
+          "truth": "79",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 7.875,
+          "truth_lp": -0.47078895568847656
+        },
+        {
+          "context": "most electronegative element",
+          "truth": "fluorine",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.4464244842529297,
+          "truth_lp": -3.8694400787353516
+        },
+        {
+          "context": "noble gas in period 2",
+          "truth": "neon",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.75,
+          "truth_lp": -5.112955093383789
+        },
+        {
+          "context": "number of electrons in a full p subshell",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.5,
+          "truth_lp": -3.1571884155273438
+        },
+        {
+          "context": "Gibbs free energy formula",
+          "truth": "G=H-T*S",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.984956741333008,
+          "truth_lp": -9.773037910461426
+        },
+        {
+          "context": "Arrhenius equation for rate constant",
+          "truth": "k=A*e^(-Ea/(R*T))",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -1.3277091979980469,
+          "truth_lp": -16.946824073791504
+        },
+        {
+          "context": "Henderson-Hasselbalch equation",
+          "truth": "pH=pKa+log([A-]/[HA])",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 4.403301239013672,
+          "truth_lp": -11.25245189666748
+        },
+        {
+          "context": "Avogadro's number",
+          "truth": "6.022e23",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 6.75,
+          "truth_lp": -6.895851135253906
+        },
+        {
+          "context": "molarity definition",
+          "truth": "moles per liter",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.9694328308105469,
+          "truth_lp": -9.683575630187988
+        },
+        {
+          "context": "functional group of alcohols",
+          "truth": "hydroxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.9657993316650391,
+          "truth_lp": -6.201904296875
+        },
+        {
+          "context": "functional group of carboxylic acids",
+          "truth": "carboxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.6344852447509766,
+          "truth_lp": -5.746223449707031
+        },
+        {
+          "context": "hybridization of carbon in methane",
+          "truth": "sp3",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.5424156188964844,
+          "truth_lp": -10.279217720031738
+        },
+        {
+          "context": "hybridization of carbon in ethylene",
+          "truth": "sp2",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.7368373870849609,
+          "truth_lp": -8.661048889160156
+        },
+        {
+          "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "a*d-b*c",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.7148399353027344,
+          "truth_lp": -7.979269027709961
+        },
+        {
+          "context": "rank of identity matrix In",
+          "truth": "n",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.3559226989746094,
+          "truth_lp": -6.527533531188965
+        },
+        {
+          "context": "trace of a matrix (definition)",
+          "truth": "sum of diagonal entries",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.42542839050293,
+          "truth_lp": -14.372350692749023
+        },
+        {
+          "context": "eigenvalue equation",
+          "truth": "A*v=lambda*v",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.13038253784179688,
+          "truth_lp": -11.70595932006836
+        },
+        {
+          "context": "dot product of orthogonal vectors",
+          "truth": "0",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.6875,
+          "truth_lp": -6.877678871154785
+        },
+        {
+          "context": "number of linearly independent columns (definition)",
+          "truth": "rank",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.0,
+          "truth_lp": -5.773299217224121
+        },
+        {
+          "context": "rank-nullity theorem",
+          "truth": "rank+nullity=n",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.937744140625,
+          "truth_lp": -12.257015228271484
+        },
+        {
+          "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "1/(a*d-b*c)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.126805305480957,
+          "truth_lp": -10.823884963989258
+        },
+        {
+          "context": "Cauchy-Schwarz inequality",
+          "truth": "|u*v| <= |u|*|v|",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.2738075256347656,
+          "truth_lp": -18.26660919189453
+        },
+        {
+          "context": "characteristic polynomial (definition)",
+          "truth": "det(A-lambda*I)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.1899547576904297,
+          "truth_lp": -17.308592796325684
+        },
+        {
+          "context": "spectral theorem applies to",
+          "truth": "symmetric matrices",
+          "domain": "linear_algebra",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.4782333374023438,
+          "truth_lp": -8.743663787841797
+        },
+        {
+          "context": "matrix multiplication is",
+          "truth": "associative",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.36432456970214844,
+          "truth_lp": -10.292658805847168
+        },
+        {
+          "context": "Bayes theorem formula",
+          "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 4.1708984375,
+          "truth_lp": -9.186906814575195
+        },
+        {
+          "context": "mean of normal distribution N(mu,sigma^2)",
+          "truth": "mu",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.2526130676269531,
+          "truth_lp": -4.067586898803711
+        },
+        {
+          "context": "variance of normal distribution N(mu,sigma^2)",
+          "truth": "sigma^2",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.5570697784423828,
+          "truth_lp": -5.226993560791016
+        },
+        {
+          "context": "central limit theorem result",
+          "truth": "sample mean is approximately normal",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.27826595306396484,
+          "truth_lp": -15.507017135620117
+        },
+        {
+          "context": "law of large numbers result",
+          "truth": "sample mean converges to population mean",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.3824748992919922,
+          "truth_lp": -16.567070960998535
+        },
+        {
+          "context": "standard error of the mean",
+          "truth": "sigma/sqrt(n)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.1830310821533203,
+          "truth_lp": -10.971367835998535
+        },
+        {
+          "context": "chi-squared distribution is used for",
+          "truth": "testing categorical data independence",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -12.497990608215332,
+          "truth_lp": -23.72997760772705
+        },
+        {
+          "context": "p-value definition",
+          "truth": "probability of observing result if null hypothesis is true",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -12.210099220275879,
+          "truth_lp": -21.19951343536377
+        },
+        {
+          "context": "maximum likelihood estimation finds",
+          "truth": "parameter that maximizes P(data|parameter)",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -15.861333847045898,
+          "truth_lp": -28.261788368225098
+        },
+        {
+          "context": "covariance of independent variables",
+          "truth": "0",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.25,
+          "truth_lp": -5.183992385864258
+        },
+        {
+          "context": "value of pi (first 5 digits)",
+          "truth": "3.14159",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 6.062500953674316,
+          "truth_lp": -1.5865535736083984
+        },
+        {
+          "context": "Euler's number e (first 5 digits)",
+          "truth": "2.71828",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 8.402778625488281,
+          "truth_lp": -0.7434520721435547
+        },
+        {
+          "context": "golden ratio phi (first 5 digits)",
+          "truth": "1.61803",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 7.9375,
+          "truth_lp": -1.8955307006835938
+        },
+        {
+          "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+          "truth": "0.5772",
+          "domain": "constants",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 14.64301586151123,
+          "truth_lp": -1.5804405212402344
+        },
+        {
+          "context": "sqrt(2) first 5 digits",
+          "truth": "1.41421",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 7.474063873291016,
+          "truth_lp": -5.048224449157715
+        },
+        {
+          "context": "sqrt(3) first 4 digits",
+          "truth": "1.7320",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 4.47811222076416,
+          "truth_lp": -6.721688270568848
+        },
+        {
+          "context": "Euler's identity e^(i*pi)+1 equals",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.875,
+          "truth_lp": -2.4420413970947266
+        },
+        {
+          "context": "sin(pi/6)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.8153553009033203,
+          "truth_lp": -6.431357383728027
+        },
+        {
+          "context": "cos(pi/3)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.298341751098633,
+          "truth_lp": -6.490846633911133
+        },
+        {
+          "context": "sin(pi/4)",
+          "truth": "sqrt(2)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.816356658935547,
+          "truth_lp": -8.931056022644043
+        },
+        {
+          "context": "cos(pi/6)",
+          "truth": "sqrt(3)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.657766342163086,
+          "truth_lp": -8.83604907989502
+        },
+        {
+          "context": "tan(pi/4)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.25,
+          "truth_lp": -3.482149124145508
+        },
+        {
+          "context": "ln(1)",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.0,
+          "truth_lp": -5.022591590881348
+        },
+        {
+          "context": "ln(e)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.8614511489868164,
+          "truth_lp": -6.493704795837402
+        },
+        {
+          "context": "log base 10 of 1000",
+          "truth": "3",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.8637237548828125,
+          "truth_lp": -4.177640914916992
+        },
+        {
+          "context": "sum of angles in a triangle (degrees)",
+          "truth": "180",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.3559627532958984,
+          "truth_lp": -1.8922576904296875
+        },
+        {
+          "context": "Pythagorean theorem",
+          "truth": "a^2+b^2=c^2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.9644107818603516,
+          "truth_lp": -5.707502365112305
+        }
+      ]
+    },
+    {
+      "model_name": "Qwen2.5-0.5B",
+      "model_id": "Qwen/Qwen2.5-0.5B",
+      "total_wins": 53,
+      "total_n": 97,
+      "total_acc": 0.5463917525773195,
+      "avg_margin": -0.06608819961547852,
+      "elapsed_s": 11.802297115325928,
+      "domain_breakdown": {
+        "calculus": {
+          "wins": 11,
+          "n": 22,
+          "avg_margin": -0.31452525745738635
+        },
+        "physics": {
+          "wins": 11,
+          "n": 20,
+          "avg_margin": -0.0976412057876587
+        },
+        "chemistry": {
+          "wins": 10,
+          "n": 16,
+          "avg_margin": 0.9298138618469238
+        },
+        "linear_algebra": {
+          "wins": 6,
+          "n": 12,
+          "avg_margin": -1.542543888092041
+        },
+        "statistics": {
+          "wins": 4,
+          "n": 10,
+          "avg_margin": -3.410517692565918
+        },
+        "constants": {
+          "wins": 11,
+          "n": 17,
+          "avg_margin": 2.364735659431009
+        }
+      },
+      "difficulty_breakdown": {
+        "easy": {
+          "wins": 24,
+          "n": 48,
+          "acc": 0.5
+        },
+        "medium": {
+          "wins": 24,
+          "n": 38,
+          "acc": 0.631578947368421
+        },
+        "hard": {
+          "wins": 5,
+          "n": 11,
+          "acc": 0.45454545454545453
+        }
+      },
+      "per_fact": [
+        {
+          "context": "derivative of sin(x)",
+          "truth": "cos(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.6197738647460938,
+          "truth_lp": -6.632244110107422
+        },
+        {
+          "context": "derivative of cos(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.378328323364258,
+          "truth_lp": -11.499493598937988
+        },
+        {
+          "context": "derivative of e^x",
+          "truth": "e^x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.20561408996582,
+          "truth_lp": -3.785238265991211
+        },
+        {
+          "context": "derivative of ln(x)",
+          "truth": "1/x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.020824432373047,
+          "truth_lp": -3.5953540802001953
+        },
+        {
+          "context": "derivative of x^n",
+          "truth": "n*x^(n-1)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.4378280639648438,
+          "truth_lp": -9.43001937866211
+        },
+        {
+          "context": "derivative of tan(x)",
+          "truth": "sec^2(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.4150161743164062,
+          "truth_lp": -8.945169448852539
+        },
+        {
+          "context": "derivative of arctan(x)",
+          "truth": "1/(1+x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.6558170318603516,
+          "truth_lp": -6.287372589111328
+        },
+        {
+          "context": "derivative of arcsin(x)",
+          "truth": "1/sqrt(1-x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.323833465576172,
+          "truth_lp": -6.180865287780762
+        },
+        {
+          "context": "second derivative of sin(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -7.577698707580566,
+          "truth_lp": -13.213998794555664
+        },
+        {
+          "context": "derivative of x*ln(x)",
+          "truth": "ln(x)+1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.3073577880859375,
+          "truth_lp": -9.539554595947266
+        },
+        {
+          "context": "integral of cos(x)",
+          "truth": "sin(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.47884559631347656,
+          "truth_lp": -13.575135231018066
+        },
+        {
+          "context": "integral of sin(x)",
+          "truth": "-cos(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.566628456115723,
+          "truth_lp": -17.98211097717285
+        },
+        {
+          "context": "integral of e^x",
+          "truth": "e^x+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.5006551742553711,
+          "truth_lp": -11.476492881774902
+        },
+        {
+          "context": "integral of 1/x",
+          "truth": "ln|x|+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.8748350143432617,
+          "truth_lp": -11.729681015014648
+        },
+        {
+          "context": "integral of x^n where n!=-1",
+          "truth": "x^(n+1)/(n+1)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.524921417236328,
+          "truth_lp": -16.305480003356934
+        },
+        {
+          "context": "integral of sec^2(x)",
+          "truth": "tan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.7855987548828125,
+          "truth_lp": -15.748239517211914
+        },
+        {
+          "context": "integral of 1/(1+x^2)",
+          "truth": "arctan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.9484691619873047,
+          "truth_lp": -11.667491912841797
+        },
+        {
+          "context": "limit of sin(x)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.25,
+          "truth_lp": -3.8233814239501953
+        },
+        {
+          "context": "limit of (1+1/n)^n as n approaches inf",
+          "truth": "e",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.244171142578125,
+          "truth_lp": -4.752989768981934
+        },
+        {
+          "context": "limit of (e^x-1)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.28752708435058594,
+          "truth_lp": -3.7164430618286133
+        },
+        {
+          "context": "fundamental theorem of calculus (derivative of integral)",
+          "truth": "f(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.6922149658203125,
+          "truth_lp": -7.804737091064453
+        },
+        {
+          "context": "Taylor series first two terms of e^x around 0",
+          "truth": "1+x",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.9609489440917969,
+          "truth_lp": -5.34226131439209
+        },
+        {
+          "context": "Newton's second law (force)",
+          "truth": "F=m*a",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.5,
+          "truth_lp": -9.303536415100098
+        },
+        {
+          "context": "kinetic energy formula",
+          "truth": "(1/2)*m*v^2",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.3155298233032227,
+          "truth_lp": -11.911709785461426
+        },
+        {
+          "context": "gravitational potential energy",
+          "truth": "m*g*h",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.2044787406921387,
+          "truth_lp": -12.474560737609863
+        },
+        {
+          "context": "momentum formula",
+          "truth": "m*v",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.5962190628051758,
+          "truth_lp": -8.999736785888672
+        },
+        {
+          "context": "work-energy theorem",
+          "truth": "W=delta(KE)",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -6.463222503662109,
+          "truth_lp": -21.677597999572754
+        },
+        {
+          "context": "centripetal acceleration",
+          "truth": "v^2/r",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.6297025680541992,
+          "truth_lp": -9.485112190246582
+        },
+        {
+          "context": "period of a simple pendulum",
+          "truth": "2*pi*sqrt(L/g)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.906062126159668,
+          "truth_lp": -10.918971061706543
+        },
+        {
+          "context": "escape velocity formula",
+          "truth": "sqrt(2*G*M/r)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -0.8643903732299805,
+          "truth_lp": -18.065808296203613
+        },
+        {
+          "context": "Coulomb's law force",
+          "truth": "k*q1*q2/r^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.46958160400390625,
+          "truth_lp": -16.767074584960938
+        },
+        {
+          "context": "Ohm's law",
+          "truth": "V=I*R",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.125,
+          "truth_lp": -8.617711067199707
+        },
+        {
+          "context": "electric power formula",
+          "truth": "P=I*V",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.2286796569824219,
+          "truth_lp": -10.605820655822754
+        },
+        {
+          "context": "capacitance definition",
+          "truth": "Q/V",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.303666114807129,
+          "truth_lp": -14.999528884887695
+        },
+        {
+          "context": "energy stored in capacitor",
+          "truth": "(1/2)*C*V^2",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -7.329767227172852,
+          "truth_lp": -20.712048530578613
+        },
+        {
+          "context": "first law of thermodynamics",
+          "truth": "delta(U)=Q-W",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.75,
+          "truth_lp": -22.86199378967285
+        },
+        {
+          "context": "ideal gas law",
+          "truth": "P*V=n*R*T",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.5607776641845703,
+          "truth_lp": -13.798553466796875
+        },
+        {
+          "context": "entropy change (reversible)",
+          "truth": "delta(S)=Q/T",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.125,
+          "truth_lp": -21.454410552978516
+        },
+        {
+          "context": "wave speed formula",
+          "truth": "v=f*lambda",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.09188079833984375,
+          "truth_lp": -13.115684509277344
+        },
+        {
+          "context": "photon energy formula",
+          "truth": "E=h*f",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.0,
+          "truth_lp": -10.50968074798584
+        },
+        {
+          "context": "de Broglie wavelength",
+          "truth": "h/(m*v)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.234668731689453,
+          "truth_lp": -14.603360176086426
+        },
+        {
+          "context": "relativistic rest energy formula",
+          "truth": "m*c^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.4091358184814453,
+          "truth_lp": -11.219427108764648
+        },
+        {
+          "context": "atomic number of hydrogen",
+          "truth": "1",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.625,
+          "truth_lp": -0.7676277160644531
+        },
+        {
+          "context": "atomic number of carbon",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.559835433959961,
+          "truth_lp": -0.91790771484375
+        },
+        {
+          "context": "atomic number of oxygen",
+          "truth": "8",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.1408329010009766,
+          "truth_lp": -0.9804306030273438
+        },
+        {
+          "context": "atomic number of gold",
+          "truth": "79",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.875,
+          "truth_lp": -0.6480712890625
+        },
+        {
+          "context": "most electronegative element",
+          "truth": "fluorine",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.0630989074707031,
+          "truth_lp": -5.410493850708008
+        },
+        {
+          "context": "noble gas in period 2",
+          "truth": "neon",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.0625,
+          "truth_lp": -3.0901451110839844
+        },
+        {
+          "context": "number of electrons in a full p subshell",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.75,
+          "truth_lp": -4.115548133850098
+        },
+        {
+          "context": "Gibbs free energy formula",
+          "truth": "G=H-T*S",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.340078353881836,
+          "truth_lp": -13.964449882507324
+        },
+        {
+          "context": "Arrhenius equation for rate constant",
+          "truth": "k=A*e^(-Ea/(R*T))",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -2.991715431213379,
+          "truth_lp": -22.63868999481201
+        },
+        {
+          "context": "Henderson-Hasselbalch equation",
+          "truth": "pH=pKa+log([A-]/[HA])",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.5953788757324219,
+          "truth_lp": -16.72875690460205
+        },
+        {
+          "context": "Avogadro's number",
+          "truth": "6.022e23",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.875,
+          "truth_lp": -9.364521980285645
+        },
+        {
+          "context": "molarity definition",
+          "truth": "moles per liter",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.18465042114257812,
+          "truth_lp": -8.7605562210083
+        },
+        {
+          "context": "functional group of alcohols",
+          "truth": "hydroxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.080240249633789,
+          "truth_lp": -5.327913284301758
+        },
+        {
+          "context": "functional group of carboxylic acids",
+          "truth": "carboxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.46535301208496094,
+          "truth_lp": -6.095663070678711
+        },
+        {
+          "context": "hybridization of carbon in methane",
+          "truth": "sp3",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.9529800415039062,
+          "truth_lp": -9.171160697937012
+        },
+        {
+          "context": "hybridization of carbon in ethylene",
+          "truth": "sp2",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.238347053527832,
+          "truth_lp": -9.498570442199707
+        },
+        {
+          "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "a*d-b*c",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.5625324249267578,
+          "truth_lp": -4.70474910736084
+        },
+        {
+          "context": "rank of identity matrix In",
+          "truth": "n",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.816204071044922,
+          "truth_lp": -8.065096855163574
+        },
+        {
+          "context": "trace of a matrix (definition)",
+          "truth": "sum of diagonal entries",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -6.944663047790527,
+          "truth_lp": -12.120290756225586
+        },
+        {
+          "context": "eigenvalue equation",
+          "truth": "A*v=lambda*v",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.006777763366699,
+          "truth_lp": -25.64489459991455
+        },
+        {
+          "context": "dot product of orthogonal vectors",
+          "truth": "0",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.125,
+          "truth_lp": -7.433531761169434
+        },
+        {
+          "context": "number of linearly independent columns (definition)",
+          "truth": "rank",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.0,
+          "truth_lp": -5.226341247558594
+        },
+        {
+          "context": "rank-nullity theorem",
+          "truth": "rank+nullity=n",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.508021354675293,
+          "truth_lp": -12.883475303649902
+        },
+        {
+          "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "1/(a*d-b*c)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -4.708998680114746,
+          "truth_lp": -9.95317268371582
+        },
+        {
+          "context": "Cauchy-Schwarz inequality",
+          "truth": "|u*v| <= |u|*|v|",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.6777114868164062,
+          "truth_lp": -24.187602996826172
+        },
+        {
+          "context": "characteristic polynomial (definition)",
+          "truth": "det(A-lambda*I)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.07622528076171875,
+          "truth_lp": -22.561893463134766
+        },
+        {
+          "context": "spectral theorem applies to",
+          "truth": "symmetric matrices",
+          "domain": "linear_algebra",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 0.6535224914550781,
+          "truth_lp": -8.703592300415039
+        },
+        {
+          "context": "matrix multiplication is",
+          "truth": "associative",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -4.386896133422852,
+          "truth_lp": -11.937840461730957
+        },
+        {
+          "context": "Bayes theorem formula",
+          "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.190458297729492,
+          "truth_lp": -10.64590835571289
+        },
+        {
+          "context": "mean of normal distribution N(mu,sigma^2)",
+          "truth": "mu",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.5,
+          "truth_lp": -7.691949844360352
+        },
+        {
+          "context": "variance of normal distribution N(mu,sigma^2)",
+          "truth": "sigma^2",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.3076801300048828,
+          "truth_lp": -7.326871871948242
+        },
+        {
+          "context": "central limit theorem result",
+          "truth": "sample mean is approximately normal",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.8294334411621094,
+          "truth_lp": -10.846023559570312
+        },
+        {
+          "context": "law of large numbers result",
+          "truth": "sample mean converges to population mean",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.0933055877685547,
+          "truth_lp": -11.501704216003418
+        },
+        {
+          "context": "standard error of the mean",
+          "truth": "sigma/sqrt(n)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.069784164428711,
+          "truth_lp": -11.162128448486328
+        },
+        {
+          "context": "chi-squared distribution is used for",
+          "truth": "testing categorical data independence",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -9.764976501464844,
+          "truth_lp": -24.490123748779297
+        },
+        {
+          "context": "p-value definition",
+          "truth": "probability of observing result if null hypothesis is true",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -7.472779273986816,
+          "truth_lp": -15.953863143920898
+        },
+        {
+          "context": "maximum likelihood estimation finds",
+          "truth": "parameter that maximizes P(data|parameter)",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -20.617722511291504,
+          "truth_lp": -35.668259620666504
+        },
+        {
+          "context": "covariance of independent variables",
+          "truth": "0",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.625,
+          "truth_lp": -6.6729230880737305
+        },
+        {
+          "context": "value of pi (first 5 digits)",
+          "truth": "3.14159",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.312500953674316,
+          "truth_lp": -1.046895980834961
+        },
+        {
+          "context": "Euler's number e (first 5 digits)",
+          "truth": "2.71828",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 6.04105281829834,
+          "truth_lp": -1.05572509765625
+        },
+        {
+          "context": "golden ratio phi (first 5 digits)",
+          "truth": "1.61803",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 8.196150779724121,
+          "truth_lp": -1.6953487396240234
+        },
+        {
+          "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+          "truth": "0.5772",
+          "domain": "constants",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 10.809318542480469,
+          "truth_lp": -2.3187313079833984
+        },
+        {
+          "context": "sqrt(2) first 5 digits",
+          "truth": "1.41421",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 7.56666374206543,
+          "truth_lp": -4.4844207763671875
+        },
+        {
+          "context": "sqrt(3) first 4 digits",
+          "truth": "1.7320",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 6.1114301681518555,
+          "truth_lp": -6.637855529785156
+        },
+        {
+          "context": "Euler's identity e^(i*pi)+1 equals",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.125,
+          "truth_lp": -3.170334815979004
+        },
+        {
+          "context": "sin(pi/6)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.1459121704101562,
+          "truth_lp": -4.981539726257324
+        },
+        {
+          "context": "cos(pi/3)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.3121156692504883,
+          "truth_lp": -5.5050859451293945
+        },
+        {
+          "context": "sin(pi/4)",
+          "truth": "sqrt(2)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.659146308898926,
+          "truth_lp": -7.710216522216797
+        },
+        {
+          "context": "cos(pi/6)",
+          "truth": "sqrt(3)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.141334533691406,
+          "truth_lp": -7.488643646240234
+        },
+        {
+          "context": "tan(pi/4)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.0,
+          "truth_lp": -3.477084159851074
+        },
+        {
+          "context": "ln(1)",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.625,
+          "truth_lp": -3.0577239990234375
+        },
+        {
+          "context": "ln(e)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.14839553833007812,
+          "truth_lp": -3.599334716796875
+        },
+        {
+          "context": "log base 10 of 1000",
+          "truth": "3",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.2532482147216797,
+          "truth_lp": -4.889440536499023
+        },
+        {
+          "context": "sum of angles in a triangle (degrees)",
+          "truth": "180",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.4208908081054688,
+          "truth_lp": -2.3058900833129883
+        },
+        {
+          "context": "Pythagorean theorem",
+          "truth": "a^2+b^2=c^2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.61082649230957,
+          "truth_lp": -6.040081024169922
+        }
+      ]
+    },
+    {
+      "model_name": "Llama-3.2-1B",
+      "model_id": "meta-llama/Llama-3.2-1B",
+      "total_wins": 46,
+      "total_n": 97,
+      "total_acc": 0.4742268041237113,
+      "avg_margin": 0.1775583876776941,
+      "elapsed_s": 16.834606885910034,
+      "domain_breakdown": {
+        "calculus": {
+          "wins": 9,
+          "n": 22,
+          "avg_margin": -0.6654767123135653
+        },
+        "physics": {
+          "wins": 13,
+          "n": 20,
+          "avg_margin": 0.47910103797912595
+        },
+        "chemistry": {
+          "wins": 10,
+          "n": 16,
+          "avg_margin": 1.9955087304115295
+        },
+        "linear_algebra": {
+          "wins": 3,
+          "n": 12,
+          "avg_margin": -1.602588176727295
+        },
+        "statistics": {
+          "wins": 2,
+          "n": 10,
+          "avg_margin": -2.5420154571533202
+        },
+        "constants": {
+          "wins": 9,
+          "n": 17,
+          "avg_margin": 2.059100207160501
+        }
+      },
+      "difficulty_breakdown": {
+        "easy": {
+          "wins": 21,
+          "n": 48,
+          "acc": 0.4375
+        },
+        "medium": {
+          "wins": 19,
+          "n": 38,
+          "acc": 0.5
+        },
+        "hard": {
+          "wins": 6,
+          "n": 11,
+          "acc": 0.5454545454545454
+        }
+      },
+      "per_fact": [
+        {
+          "context": "derivative of sin(x)",
+          "truth": "cos(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.4437408447265625,
+          "truth_lp": -5.406038284301758
+        },
+        {
+          "context": "derivative of cos(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -5.522359848022461,
+          "truth_lp": -9.439704895019531
+        },
+        {
+          "context": "derivative of e^x",
+          "truth": "e^x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.162500381469727,
+          "truth_lp": -3.2999963760375977
+        },
+        {
+          "context": "derivative of ln(x)",
+          "truth": "1/x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.958566665649414,
+          "truth_lp": -4.896154403686523
+        },
+        {
+          "context": "derivative of x^n",
+          "truth": "n*x^(n-1)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.20109176635742188,
+          "truth_lp": -10.254061698913574
+        },
+        {
+          "context": "derivative of tan(x)",
+          "truth": "sec^2(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.0081348419189453,
+          "truth_lp": -9.031784057617188
+        },
+        {
+          "context": "derivative of arctan(x)",
+          "truth": "1/(1+x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.5837898254394531,
+          "truth_lp": -7.224941253662109
+        },
+        {
+          "context": "derivative of arcsin(x)",
+          "truth": "1/sqrt(1-x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.6813030242919922,
+          "truth_lp": -8.60666561126709
+        },
+        {
+          "context": "second derivative of sin(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.6165962219238281,
+          "truth_lp": -6.98451042175293
+        },
+        {
+          "context": "derivative of x*ln(x)",
+          "truth": "ln(x)+1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -3.7556190490722656,
+          "truth_lp": -9.572860717773438
+        },
+        {
+          "context": "integral of cos(x)",
+          "truth": "sin(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.9689903259277344,
+          "truth_lp": -14.130216598510742
+        },
+        {
+          "context": "integral of sin(x)",
+          "truth": "-cos(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.017363548278809,
+          "truth_lp": -15.753482818603516
+        },
+        {
+          "context": "integral of e^x",
+          "truth": "e^x+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.3261280059814453,
+          "truth_lp": -11.65207290649414
+        },
+        {
+          "context": "integral of 1/x",
+          "truth": "ln|x|+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.4973392486572266,
+          "truth_lp": -15.310722351074219
+        },
+        {
+          "context": "integral of x^n where n!=-1",
+          "truth": "x^(n+1)/(n+1)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.927021026611328,
+          "truth_lp": -17.05234432220459
+        },
+        {
+          "context": "integral of sec^2(x)",
+          "truth": "tan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.40541648864746094,
+          "truth_lp": -17.456643104553223
+        },
+        {
+          "context": "integral of 1/(1+x^2)",
+          "truth": "arctan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.422515869140625,
+          "truth_lp": -12.071088790893555
+        },
+        {
+          "context": "limit of sin(x)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.5,
+          "truth_lp": -4.086536407470703
+        },
+        {
+          "context": "limit of (1+1/n)^n as n approaches inf",
+          "truth": "e",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -3.4385623931884766,
+          "truth_lp": -7.307677268981934
+        },
+        {
+          "context": "limit of (e^x-1)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.5,
+          "truth_lp": -3.923788070678711
+        },
+        {
+          "context": "fundamental theorem of calculus (derivative of integral)",
+          "truth": "f(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.6712818145751953,
+          "truth_lp": -9.157798767089844
+        },
+        {
+          "context": "Taylor series first two terms of e^x around 0",
+          "truth": "1+x",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.2499990463256836,
+          "truth_lp": -5.48375129699707
+        },
+        {
+          "context": "Newton's second law (force)",
+          "truth": "F=m*a",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.9999990463256836,
+          "truth_lp": -7.905484199523926
+        },
+        {
+          "context": "kinetic energy formula",
+          "truth": "(1/2)*m*v^2",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.0402326583862305,
+          "truth_lp": -11.151203155517578
+        },
+        {
+          "context": "gravitational potential energy",
+          "truth": "m*g*h",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.427927017211914,
+          "truth_lp": -11.076757431030273
+        },
+        {
+          "context": "momentum formula",
+          "truth": "m*v",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.75,
+          "truth_lp": -9.100769996643066
+        },
+        {
+          "context": "work-energy theorem",
+          "truth": "W=delta(KE)",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -3.77640438079834,
+          "truth_lp": -23.84739398956299
+        },
+        {
+          "context": "centripetal acceleration",
+          "truth": "v^2/r",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 4.182767868041992,
+          "truth_lp": -9.299633979797363
+        },
+        {
+          "context": "period of a simple pendulum",
+          "truth": "2*pi*sqrt(L/g)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.0160388946533203,
+          "truth_lp": -15.26298713684082
+        },
+        {
+          "context": "escape velocity formula",
+          "truth": "sqrt(2*G*M/r)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -3.19193172454834,
+          "truth_lp": -17.676087379455566
+        },
+        {
+          "context": "Coulomb's law force",
+          "truth": "k*q1*q2/r^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -8.524142265319824,
+          "truth_lp": -20.121360778808594
+        },
+        {
+          "context": "Ohm's law",
+          "truth": "V=I*R",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.625,
+          "truth_lp": -9.097427368164062
+        },
+        {
+          "context": "electric power formula",
+          "truth": "P=I*V",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.0453147888183594,
+          "truth_lp": -11.299764633178711
+        },
+        {
+          "context": "capacitance definition",
+          "truth": "Q/V",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -3.3431758880615234,
+          "truth_lp": -21.092860221862793
+        },
+        {
+          "context": "energy stored in capacitor",
+          "truth": "(1/2)*C*V^2",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -1.8646421432495117,
+          "truth_lp": -16.177468299865723
+        },
+        {
+          "context": "first law of thermodynamics",
+          "truth": "delta(U)=Q-W",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.75,
+          "truth_lp": -19.206210136413574
+        },
+        {
+          "context": "ideal gas law",
+          "truth": "P*V=n*R*T",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.7289800643920898,
+          "truth_lp": -14.65429401397705
+        },
+        {
+          "context": "entropy change (reversible)",
+          "truth": "delta(S)=Q/T",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 8.9375,
+          "truth_lp": -14.529775619506836
+        },
+        {
+          "context": "wave speed formula",
+          "truth": "v=f*lambda",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.947275161743164,
+          "truth_lp": -17.723769187927246
+        },
+        {
+          "context": "photon energy formula",
+          "truth": "E=h*f",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.7499990463256836,
+          "truth_lp": -10.192867279052734
+        },
+        {
+          "context": "de Broglie wavelength",
+          "truth": "h/(m*v)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 0.5889425277709961,
+          "truth_lp": -18.07210350036621
+        },
+        {
+          "context": "relativistic rest energy formula",
+          "truth": "m*c^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.467355728149414,
+          "truth_lp": -12.104681015014648
+        },
+        {
+          "context": "atomic number of hydrogen",
+          "truth": "1",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.25,
+          "truth_lp": -0.4972972869873047
+        },
+        {
+          "context": "atomic number of carbon",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.5,
+          "truth_lp": -0.4863452911376953
+        },
+        {
+          "context": "atomic number of oxygen",
+          "truth": "8",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.625,
+          "truth_lp": -0.40918922424316406
+        },
+        {
+          "context": "atomic number of gold",
+          "truth": "79",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 6.125,
+          "truth_lp": -0.5576839447021484
+        },
+        {
+          "context": "most electronegative element",
+          "truth": "fluorine",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.0075206756591796875,
+          "truth_lp": -4.764549255371094
+        },
+        {
+          "context": "noble gas in period 2",
+          "truth": "neon",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.4375,
+          "truth_lp": -4.410837173461914
+        },
+        {
+          "context": "number of electrons in a full p subshell",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.75,
+          "truth_lp": -3.7629947662353516
+        },
+        {
+          "context": "Gibbs free energy formula",
+          "truth": "G=H-T*S",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 6.257584571838379,
+          "truth_lp": -14.137016296386719
+        },
+        {
+          "context": "Arrhenius equation for rate constant",
+          "truth": "k=A*e^(-Ea/(R*T))",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.5880279541015625,
+          "truth_lp": -17.694015502929688
+        },
+        {
+          "context": "Henderson-Hasselbalch equation",
+          "truth": "pH=pKa+log([A-]/[HA])",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.4823246002197266,
+          "truth_lp": -17.74987030029297
+        },
+        {
+          "context": "Avogadro's number",
+          "truth": "6.022e23",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.875,
+          "truth_lp": -6.164593696594238
+        },
+        {
+          "context": "molarity definition",
+          "truth": "moles per liter",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.27518272399902344,
+          "truth_lp": -12.864529609680176
+        },
+        {
+          "context": "functional group of alcohols",
+          "truth": "hydroxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.414886474609375,
+          "truth_lp": -5.539769172668457
+        },
+        {
+          "context": "functional group of carboxylic acids",
+          "truth": "carboxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.7293338775634766,
+          "truth_lp": -3.7054996490478516
+        },
+        {
+          "context": "hybridization of carbon in methane",
+          "truth": "sp3",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.3967399597167969,
+          "truth_lp": -6.305608749389648
+        },
+        {
+          "context": "hybridization of carbon in ethylene",
+          "truth": "sp2",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.0520744323730469,
+          "truth_lp": -6.202526092529297
+        },
+        {
+          "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "a*d-b*c",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.6627101898193359,
+          "truth_lp": -8.946624755859375
+        },
+        {
+          "context": "rank of identity matrix In",
+          "truth": "n",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.33638858795166016,
+          "truth_lp": -7.060596466064453
+        },
+        {
+          "context": "trace of a matrix (definition)",
+          "truth": "sum of diagonal entries",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.811155319213867,
+          "truth_lp": -10.915075302124023
+        },
+        {
+          "context": "eigenvalue equation",
+          "truth": "A*v=lambda*v",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.079165458679199,
+          "truth_lp": -25.187225341796875
+        },
+        {
+          "context": "dot product of orthogonal vectors",
+          "truth": "0",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.875,
+          "truth_lp": -6.569582939147949
+        },
+        {
+          "context": "number of linearly independent columns (definition)",
+          "truth": "rank",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.9375,
+          "truth_lp": -7.788294792175293
+        },
+        {
+          "context": "rank-nullity theorem",
+          "truth": "rank+nullity=n",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.9844598770141602,
+          "truth_lp": -13.850203514099121
+        },
+        {
+          "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "1/(a*d-b*c)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.676025390625,
+          "truth_lp": -11.630934715270996
+        },
+        {
+          "context": "Cauchy-Schwarz inequality",
+          "truth": "|u*v| <= |u|*|v|",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.4790706634521484,
+          "truth_lp": -21.656484603881836
+        },
+        {
+          "context": "characteristic polynomial (definition)",
+          "truth": "det(A-lambda*I)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -5.599085807800293,
+          "truth_lp": -20.673233032226562
+        },
+        {
+          "context": "spectral theorem applies to",
+          "truth": "symmetric matrices",
+          "domain": "linear_algebra",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 0.3805427551269531,
+          "truth_lp": -9.498419761657715
+        },
+        {
+          "context": "matrix multiplication is",
+          "truth": "associative",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.004180908203125,
+          "truth_lp": -10.965421676635742
+        },
+        {
+          "context": "Bayes theorem formula",
+          "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.4222412109375,
+          "truth_lp": -13.61170768737793
+        },
+        {
+          "context": "mean of normal distribution N(mu,sigma^2)",
+          "truth": "mu",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.0625,
+          "truth_lp": -4.983970642089844
+        },
+        {
+          "context": "variance of normal distribution N(mu,sigma^2)",
+          "truth": "sigma^2",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.228231430053711,
+          "truth_lp": -6.242020606994629
+        },
+        {
+          "context": "central limit theorem result",
+          "truth": "sample mean is approximately normal",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.0066823959350586,
+          "truth_lp": -10.719693183898926
+        },
+        {
+          "context": "law of large numbers result",
+          "truth": "sample mean converges to population mean",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.8781814575195312,
+          "truth_lp": -10.974802017211914
+        },
+        {
+          "context": "standard error of the mean",
+          "truth": "sigma/sqrt(n)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.6486167907714844,
+          "truth_lp": -12.412500381469727
+        },
+        {
+          "context": "chi-squared distribution is used for",
+          "truth": "testing categorical data independence",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -7.186300277709961,
+          "truth_lp": -18.999550819396973
+        },
+        {
+          "context": "p-value definition",
+          "truth": "probability of observing result if null hypothesis is true",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -5.640621185302734,
+          "truth_lp": -19.329715728759766
+        },
+        {
+          "context": "maximum likelihood estimation finds",
+          "truth": "parameter that maximizes P(data|parameter)",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -14.991507530212402,
+          "truth_lp": -26.520398139953613
+        },
+        {
+          "context": "covariance of independent variables",
+          "truth": "0",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.125,
+          "truth_lp": -5.546084403991699
+        },
+        {
+          "context": "value of pi (first 5 digits)",
+          "truth": "3.14159",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.374999046325684,
+          "truth_lp": -2.038278579711914
+        },
+        {
+          "context": "Euler's number e (first 5 digits)",
+          "truth": "2.71828",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 6.5625,
+          "truth_lp": -2.100309371948242
+        },
+        {
+          "context": "golden ratio phi (first 5 digits)",
+          "truth": "1.61803",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 5.5625,
+          "truth_lp": -3.964658737182617
+        },
+        {
+          "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+          "truth": "0.5772",
+          "domain": "constants",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 10.74935245513916,
+          "truth_lp": -3.8740100860595703
+        },
+        {
+          "context": "sqrt(2) first 5 digits",
+          "truth": "1.41421",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 7.874999046325684,
+          "truth_lp": -3.046855926513672
+        },
+        {
+          "context": "sqrt(3) first 4 digits",
+          "truth": "1.7320",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 5.973343849182129,
+          "truth_lp": -6.587162017822266
+        },
+        {
+          "context": "Euler's identity e^(i*pi)+1 equals",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.75,
+          "truth_lp": -3.9800806045532227
+        },
+        {
+          "context": "sin(pi/6)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.8453941345214844,
+          "truth_lp": -5.485301971435547
+        },
+        {
+          "context": "cos(pi/3)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.439517021179199,
+          "truth_lp": -5.3660383224487305
+        },
+        {
+          "context": "sin(pi/4)",
+          "truth": "sqrt(2)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.814109802246094,
+          "truth_lp": -7.964756011962891
+        },
+        {
+          "context": "cos(pi/6)",
+          "truth": "sqrt(3)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -4.198064804077148,
+          "truth_lp": -7.491411209106445
+        },
+        {
+          "context": "tan(pi/4)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.5,
+          "truth_lp": -3.771099090576172
+        },
+        {
+          "context": "ln(1)",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.375,
+          "truth_lp": -5.512223243713379
+        },
+        {
+          "context": "ln(e)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.7468776702880859,
+          "truth_lp": -5.947710990905762
+        },
+        {
+          "context": "log base 10 of 1000",
+          "truth": "3",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.875,
+          "truth_lp": -3.3475494384765625
+        },
+        {
+          "context": "sum of angles in a triangle (degrees)",
+          "truth": "180",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.75,
+          "truth_lp": -1.7897968292236328
+        },
+        {
+          "context": "Pythagorean theorem",
+          "truth": "a^2+b^2=c^2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.0101842880249023,
+          "truth_lp": -8.31601619720459
+        }
+      ]
+    },
+    {
+      "model_name": "Qwen2.5-1.5B",
+      "model_id": "Qwen/Qwen2.5-1.5B",
+      "total_wins": 62,
+      "total_n": 97,
+      "total_acc": 0.6391752577319587,
+      "avg_margin": 1.1264689533980852,
+      "elapsed_s": 20.150350093841553,
+      "domain_breakdown": {
+        "calculus": {
+          "wins": 14,
+          "n": 22,
+          "avg_margin": 0.7292613116177645
+        },
+        "physics": {
+          "wins": 14,
+          "n": 20,
+          "avg_margin": 1.4824177742004394
+        },
+        "chemistry": {
+          "wins": 12,
+          "n": 16,
+          "avg_margin": 1.9970598816871643
+        },
+        "linear_algebra": {
+          "wins": 6,
+          "n": 12,
+          "avg_margin": 0.42743396759033203
+        },
+        "statistics": {
+          "wins": 4,
+          "n": 10,
+          "avg_margin": -2.001711845397949
+        },
+        "constants": {
+          "wins": 12,
+          "n": 17,
+          "avg_margin": 2.7359021691715015
+        }
+      },
+      "difficulty_breakdown": {
+        "easy": {
+          "wins": 32,
+          "n": 48,
+          "acc": 0.6666666666666666
+        },
+        "medium": {
+          "wins": 24,
+          "n": 38,
+          "acc": 0.631578947368421
+        },
+        "hard": {
+          "wins": 6,
+          "n": 11,
+          "acc": 0.5454545454545454
+        }
+      },
+      "per_fact": [
+        {
+          "context": "derivative of sin(x)",
+          "truth": "cos(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.1042232513427734,
+          "truth_lp": -5.964996337890625
+        },
+        {
+          "context": "derivative of cos(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.017242431640625,
+          "truth_lp": -5.850771903991699
+        },
+        {
+          "context": "derivative of e^x",
+          "truth": "e^x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.727285385131836,
+          "truth_lp": -3.807188034057617
+        },
+        {
+          "context": "derivative of ln(x)",
+          "truth": "1/x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.118358612060547,
+          "truth_lp": -3.511837959289551
+        },
+        {
+          "context": "derivative of x^n",
+          "truth": "n*x^(n-1)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.28216552734375,
+          "truth_lp": -4.141813278198242
+        },
+        {
+          "context": "derivative of tan(x)",
+          "truth": "sec^2(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.21850967407226562,
+          "truth_lp": -8.244762420654297
+        },
+        {
+          "context": "derivative of arctan(x)",
+          "truth": "1/(1+x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.902711868286133,
+          "truth_lp": -5.095699310302734
+        },
+        {
+          "context": "derivative of arcsin(x)",
+          "truth": "1/sqrt(1-x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.2370643615722656,
+          "truth_lp": -6.093697547912598
+        },
+        {
+          "context": "second derivative of sin(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.1394805908203125,
+          "truth_lp": -5.447275161743164
+        },
+        {
+          "context": "derivative of x*ln(x)",
+          "truth": "ln(x)+1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.6662311553955078,
+          "truth_lp": -4.707475662231445
+        },
+        {
+          "context": "integral of cos(x)",
+          "truth": "sin(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.11232948303222656,
+          "truth_lp": -10.013705253601074
+        },
+        {
+          "context": "integral of sin(x)",
+          "truth": "-cos(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.5431156158447266,
+          "truth_lp": -10.647884368896484
+        },
+        {
+          "context": "integral of e^x",
+          "truth": "e^x+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.4987611770629883,
+          "truth_lp": -11.446587562561035
+        },
+        {
+          "context": "integral of 1/x",
+          "truth": "ln|x|+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.10972785949707031,
+          "truth_lp": -12.54631233215332
+        },
+        {
+          "context": "integral of x^n where n!=-1",
+          "truth": "x^(n+1)/(n+1)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.906909942626953,
+          "truth_lp": -11.723007202148438
+        },
+        {
+          "context": "integral of sec^2(x)",
+          "truth": "tan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.9614620208740234,
+          "truth_lp": -9.599035263061523
+        },
+        {
+          "context": "integral of 1/(1+x^2)",
+          "truth": "arctan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.4151020050048828,
+          "truth_lp": -11.512974739074707
+        },
+        {
+          "context": "limit of sin(x)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.625,
+          "truth_lp": -4.713072776794434
+        },
+        {
+          "context": "limit of (1+1/n)^n as n approaches inf",
+          "truth": "e",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.9874229431152344,
+          "truth_lp": -5.527247428894043
+        },
+        {
+          "context": "limit of (e^x-1)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.8274335861206055,
+          "truth_lp": -3.085988998413086
+        },
+        {
+          "context": "fundamental theorem of calculus (derivative of integral)",
+          "truth": "f(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.6715869903564453,
+          "truth_lp": -5.484437942504883
+        },
+        {
+          "context": "Taylor series first two terms of e^x around 0",
+          "truth": "1+x",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.4853668212890625,
+          "truth_lp": -3.9787731170654297
+        },
+        {
+          "context": "Newton's second law (force)",
+          "truth": "F=m*a",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.687499046325684,
+          "truth_lp": -6.772605895996094
+        },
+        {
+          "context": "kinetic energy formula",
+          "truth": "(1/2)*m*v^2",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.2852039337158203,
+          "truth_lp": -8.592628479003906
+        },
+        {
+          "context": "gravitational potential energy",
+          "truth": "m*g*h",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.1589794158935547,
+          "truth_lp": -10.905460357666016
+        },
+        {
+          "context": "momentum formula",
+          "truth": "m*v",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.5,
+          "truth_lp": -6.506739616394043
+        },
+        {
+          "context": "work-energy theorem",
+          "truth": "W=delta(KE)",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.988804817199707,
+          "truth_lp": -17.967714309692383
+        },
+        {
+          "context": "centripetal acceleration",
+          "truth": "v^2/r",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.055771827697754,
+          "truth_lp": -7.581652641296387
+        },
+        {
+          "context": "period of a simple pendulum",
+          "truth": "2*pi*sqrt(L/g)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.6615610122680664,
+          "truth_lp": -12.446033477783203
+        },
+        {
+          "context": "escape velocity formula",
+          "truth": "sqrt(2*G*M/r)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -0.20736408233642578,
+          "truth_lp": -17.1279935836792
+        },
+        {
+          "context": "Coulomb's law force",
+          "truth": "k*q1*q2/r^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.2048530578613281,
+          "truth_lp": -13.263237953186035
+        },
+        {
+          "context": "Ohm's law",
+          "truth": "V=I*R",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.875,
+          "truth_lp": -7.666172027587891
+        },
+        {
+          "context": "electric power formula",
+          "truth": "P=I*V",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.06377887725830078,
+          "truth_lp": -10.546053886413574
+        },
+        {
+          "context": "capacitance definition",
+          "truth": "Q/V",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -4.404059410095215,
+          "truth_lp": -20.256702423095703
+        },
+        {
+          "context": "energy stored in capacitor",
+          "truth": "(1/2)*C*V^2",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -2.0166006088256836,
+          "truth_lp": -11.882369995117188
+        },
+        {
+          "context": "first law of thermodynamics",
+          "truth": "delta(U)=Q-W",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.5,
+          "truth_lp": -15.462194442749023
+        },
+        {
+          "context": "ideal gas law",
+          "truth": "P*V=n*R*T",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.505277633666992,
+          "truth_lp": -8.671451568603516
+        },
+        {
+          "context": "entropy change (reversible)",
+          "truth": "delta(S)=Q/T",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 8.260674476623535,
+          "truth_lp": -17.471863746643066
+        },
+        {
+          "context": "wave speed formula",
+          "truth": "v=f*lambda",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.1837873458862305,
+          "truth_lp": -13.057245254516602
+        },
+        {
+          "context": "photon energy formula",
+          "truth": "E=h*f",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.25,
+          "truth_lp": -7.508459091186523
+        },
+        {
+          "context": "de Broglie wavelength",
+          "truth": "h/(m*v)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.970036506652832,
+          "truth_lp": -14.215669631958008
+        },
+        {
+          "context": "relativistic rest energy formula",
+          "truth": "m*c^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.0828752517700195,
+          "truth_lp": -10.18653392791748
+        },
+        {
+          "context": "atomic number of hydrogen",
+          "truth": "1",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.0,
+          "truth_lp": -0.6286697387695312
+        },
+        {
+          "context": "atomic number of carbon",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.056624412536621,
+          "truth_lp": -0.5479907989501953
+        },
+        {
+          "context": "atomic number of oxygen",
+          "truth": "8",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.625,
+          "truth_lp": -0.6966972351074219
+        },
+        {
+          "context": "atomic number of gold",
+          "truth": "79",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.375,
+          "truth_lp": -0.4238739013671875
+        },
+        {
+          "context": "most electronegative element",
+          "truth": "fluorine",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.9931268692016602,
+          "truth_lp": -3.3701953887939453
+        },
+        {
+          "context": "noble gas in period 2",
+          "truth": "neon",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.9375,
+          "truth_lp": -5.824825286865234
+        },
+        {
+          "context": "number of electrons in a full p subshell",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.125,
+          "truth_lp": -2.5182647705078125
+        },
+        {
+          "context": "Gibbs free energy formula",
+          "truth": "G=H-T*S",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 4.706840515136719,
+          "truth_lp": -11.29477310180664
+        },
+        {
+          "context": "Arrhenius equation for rate constant",
+          "truth": "k=A*e^(-Ea/(R*T))",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 0.5564050674438477,
+          "truth_lp": -13.912704467773438
+        },
+        {
+          "context": "Henderson-Hasselbalch equation",
+          "truth": "pH=pKa+log([A-]/[HA])",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.8558025360107422,
+          "truth_lp": -11.410375595092773
+        },
+        {
+          "context": "Avogadro's number",
+          "truth": "6.022e23",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 6.478513717651367,
+          "truth_lp": -12.734965324401855
+        },
+        {
+          "context": "molarity definition",
+          "truth": "moles per liter",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.3585968017578125,
+          "truth_lp": -12.914459228515625
+        },
+        {
+          "context": "functional group of alcohols",
+          "truth": "hydroxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.2671642303466797,
+          "truth_lp": -4.704815864562988
+        },
+        {
+          "context": "functional group of carboxylic acids",
+          "truth": "carboxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.9318313598632812,
+          "truth_lp": -3.136988639831543
+        },
+        {
+          "context": "hybridization of carbon in methane",
+          "truth": "sp3",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.8303031921386719,
+          "truth_lp": -2.8734283447265625
+        },
+        {
+          "context": "hybridization of carbon in ethylene",
+          "truth": "sp2",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.3591442108154297,
+          "truth_lp": -2.148103713989258
+        },
+        {
+          "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "a*d-b*c",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.812177658081055,
+          "truth_lp": -3.1007919311523438
+        },
+        {
+          "context": "rank of identity matrix In",
+          "truth": "n",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.0034532546997070312,
+          "truth_lp": -5.547966957092285
+        },
+        {
+          "context": "trace of a matrix (definition)",
+          "truth": "sum of diagonal entries",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.741255760192871,
+          "truth_lp": -9.429167747497559
+        },
+        {
+          "context": "eigenvalue equation",
+          "truth": "A*v=lambda*v",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.3220081329345703,
+          "truth_lp": -16.896671295166016
+        },
+        {
+          "context": "dot product of orthogonal vectors",
+          "truth": "0",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.25,
+          "truth_lp": -5.421557426452637
+        },
+        {
+          "context": "number of linearly independent columns (definition)",
+          "truth": "rank",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.375,
+          "truth_lp": -7.694706916809082
+        },
+        {
+          "context": "rank-nullity theorem",
+          "truth": "rank+nullity=n",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.3168115615844727,
+          "truth_lp": -10.535041809082031
+        },
+        {
+          "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "1/(a*d-b*c)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.786966323852539,
+          "truth_lp": -8.660245895385742
+        },
+        {
+          "context": "Cauchy-Schwarz inequality",
+          "truth": "|u*v| <= |u|*|v|",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.7384815216064453,
+          "truth_lp": -19.144715309143066
+        },
+        {
+          "context": "characteristic polynomial (definition)",
+          "truth": "det(A-lambda*I)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.2796630859375,
+          "truth_lp": -18.845059394836426
+        },
+        {
+          "context": "spectral theorem applies to",
+          "truth": "symmetric matrices",
+          "domain": "linear_algebra",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.1337833404541016,
+          "truth_lp": -5.78148078918457
+        },
+        {
+          "context": "matrix multiplication is",
+          "truth": "associative",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.8706064224243164,
+          "truth_lp": -12.244743347167969
+        },
+        {
+          "context": "Bayes theorem formula",
+          "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 4.640844345092773,
+          "truth_lp": -11.40285587310791
+        },
+        {
+          "context": "mean of normal distribution N(mu,sigma^2)",
+          "truth": "mu",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.8953838348388672,
+          "truth_lp": -5.831264495849609
+        },
+        {
+          "context": "variance of normal distribution N(mu,sigma^2)",
+          "truth": "sigma^2",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.5199031829833984,
+          "truth_lp": -5.201812744140625
+        },
+        {
+          "context": "central limit theorem result",
+          "truth": "sample mean is approximately normal",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.8856430053710938,
+          "truth_lp": -11.679428100585938
+        },
+        {
+          "context": "law of large numbers result",
+          "truth": "sample mean converges to population mean",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 4.802338600158691,
+          "truth_lp": -8.63509464263916
+        },
+        {
+          "context": "standard error of the mean",
+          "truth": "sigma/sqrt(n)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.5267562866210938,
+          "truth_lp": -10.700926780700684
+        },
+        {
+          "context": "chi-squared distribution is used for",
+          "truth": "testing categorical data independence",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -9.232869148254395,
+          "truth_lp": -23.68649387359619
+        },
+        {
+          "context": "p-value definition",
+          "truth": "probability of observing result if null hypothesis is true",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -9.67140007019043,
+          "truth_lp": -21.03107452392578
+        },
+        {
+          "context": "maximum likelihood estimation finds",
+          "truth": "parameter that maximizes P(data|parameter)",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -10.428144454956055,
+          "truth_lp": -21.94713306427002
+        },
+        {
+          "context": "covariance of independent variables",
+          "truth": "0",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.125,
+          "truth_lp": -6.513919830322266
+        },
+        {
+          "context": "value of pi (first 5 digits)",
+          "truth": "3.14159",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.875,
+          "truth_lp": -1.8914203643798828
+        },
+        {
+          "context": "Euler's number e (first 5 digits)",
+          "truth": "2.71828",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 4.562499046325684,
+          "truth_lp": -1.3692512512207031
+        },
+        {
+          "context": "golden ratio phi (first 5 digits)",
+          "truth": "1.61803",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 5.4375,
+          "truth_lp": -1.1101093292236328
+        },
+        {
+          "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+          "truth": "0.5772",
+          "domain": "constants",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 11.48823356628418,
+          "truth_lp": -1.2946853637695312
+        },
+        {
+          "context": "sqrt(2) first 5 digits",
+          "truth": "1.41421",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 8.32708740234375,
+          "truth_lp": -2.1397438049316406
+        },
+        {
+          "context": "sqrt(3) first 4 digits",
+          "truth": "1.7320",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 7.7791595458984375,
+          "truth_lp": -1.7205696105957031
+        },
+        {
+          "context": "Euler's identity e^(i*pi)+1 equals",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.75,
+          "truth_lp": -3.1865100860595703
+        },
+        {
+          "context": "sin(pi/6)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.5323944091796875,
+          "truth_lp": -4.449954986572266
+        },
+        {
+          "context": "cos(pi/3)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.6663951873779297,
+          "truth_lp": -4.429426193237305
+        },
+        {
+          "context": "sin(pi/4)",
+          "truth": "sqrt(2)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.596639633178711,
+          "truth_lp": -6.737255096435547
+        },
+        {
+          "context": "cos(pi/6)",
+          "truth": "sqrt(3)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -3.0285825729370117,
+          "truth_lp": -5.962431907653809
+        },
+        {
+          "context": "tan(pi/4)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.625,
+          "truth_lp": -2.769833564758301
+        },
+        {
+          "context": "ln(1)",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.75,
+          "truth_lp": -3.3128223419189453
+        },
+        {
+          "context": "ln(e)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.07829856872558594,
+          "truth_lp": -3.6188859939575195
+        },
+        {
+          "context": "log base 10 of 1000",
+          "truth": "3",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.0,
+          "truth_lp": -1.7938117980957031
+        },
+        {
+          "context": "sum of angles in a triangle (degrees)",
+          "truth": "180",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.6895790100097656,
+          "truth_lp": -1.3735218048095703
+        },
+        {
+          "context": "Pythagorean theorem",
+          "truth": "a^2+b^2=c^2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.90720272064209,
+          "truth_lp": -6.132917404174805
+        }
+      ]
+    },
+    {
+      "model_name": "Qwen3-4B",
+      "model_id": "Qwen/Qwen3-4B-Base",
+      "total_wins": 74,
+      "total_n": 97,
+      "total_acc": 0.7628865979381443,
+      "avg_margin": 1.8623018658038266,
+      "elapsed_s": 45.514487981796265,
+      "domain_breakdown": {
+        "calculus": {
+          "wins": 18,
+          "n": 22,
+          "avg_margin": 1.5536308288574219
+        },
+        "physics": {
+          "wins": 17,
+          "n": 20,
+          "avg_margin": 2.7223391056060793
+        },
+        "chemistry": {
+          "wins": 13,
+          "n": 16,
+          "avg_margin": 2.7457268238067627
+        },
+        "linear_algebra": {
+          "wins": 7,
+          "n": 12,
+          "avg_margin": 0.4916650454203288
+        },
+        "statistics": {
+          "wins": 6,
+          "n": 10,
+          "avg_margin": -1.1506216049194335
+        },
+        "constants": {
+          "wins": 13,
+          "n": 17,
+          "avg_margin": 3.158307468189913
+        }
+      },
+      "difficulty_breakdown": {
+        "easy": {
+          "wins": 36,
+          "n": 48,
+          "acc": 0.75
+        },
+        "medium": {
+          "wins": 31,
+          "n": 38,
+          "acc": 0.8157894736842105
+        },
+        "hard": {
+          "wins": 7,
+          "n": 11,
+          "acc": 0.6363636363636364
+        }
+      },
+      "per_fact": [
+        {
+          "context": "derivative of sin(x)",
+          "truth": "cos(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.9543190002441406,
+          "truth_lp": -5.59942626953125
+        },
+        {
+          "context": "derivative of cos(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.7136573791503906,
+          "truth_lp": -6.727148056030273
+        },
+        {
+          "context": "derivative of e^x",
+          "truth": "e^x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.351551055908203,
+          "truth_lp": -3.3867530822753906
+        },
+        {
+          "context": "derivative of ln(x)",
+          "truth": "1/x",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.437429428100586,
+          "truth_lp": -3.9046707153320312
+        },
+        {
+          "context": "derivative of x^n",
+          "truth": "n*x^(n-1)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.7636337280273438,
+          "truth_lp": -9.793365478515625
+        },
+        {
+          "context": "derivative of tan(x)",
+          "truth": "sec^2(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.44143104553222656,
+          "truth_lp": -8.757925033569336
+        },
+        {
+          "context": "derivative of arctan(x)",
+          "truth": "1/(1+x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.3655624389648438,
+          "truth_lp": -6.807319641113281
+        },
+        {
+          "context": "derivative of arcsin(x)",
+          "truth": "1/sqrt(1-x^2)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.616546630859375,
+          "truth_lp": -7.858757019042969
+        },
+        {
+          "context": "second derivative of sin(x)",
+          "truth": "-sin(x)",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.48681068420410156,
+          "truth_lp": -4.2405853271484375
+        },
+        {
+          "context": "derivative of x*ln(x)",
+          "truth": "ln(x)+1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -3.9413185119628906,
+          "truth_lp": -8.943363189697266
+        },
+        {
+          "context": "integral of cos(x)",
+          "truth": "sin(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.8058815002441406,
+          "truth_lp": -6.763040542602539
+        },
+        {
+          "context": "integral of sin(x)",
+          "truth": "-cos(x)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.4097175598144531,
+          "truth_lp": -6.666988372802734
+        },
+        {
+          "context": "integral of e^x",
+          "truth": "e^x+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.9126129150390625,
+          "truth_lp": -9.124429702758789
+        },
+        {
+          "context": "integral of 1/x",
+          "truth": "ln|x|+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.2568607330322266,
+          "truth_lp": -7.147296905517578
+        },
+        {
+          "context": "integral of x^n where n!=-1",
+          "truth": "x^(n+1)/(n+1)+C",
+          "domain": "calculus",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 6.923740386962891,
+          "truth_lp": -5.803728103637695
+        },
+        {
+          "context": "integral of sec^2(x)",
+          "truth": "tan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.948495864868164,
+          "truth_lp": -7.769725799560547
+        },
+        {
+          "context": "integral of 1/(1+x^2)",
+          "truth": "arctan(x)+C",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.7849254608154297,
+          "truth_lp": -9.462800979614258
+        },
+        {
+          "context": "limit of sin(x)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.75,
+          "truth_lp": -3.278003692626953
+        },
+        {
+          "context": "limit of (1+1/n)^n as n approaches inf",
+          "truth": "e",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.21753692626953125,
+          "truth_lp": -4.423826217651367
+        },
+        {
+          "context": "limit of (e^x-1)/x as x approaches 0",
+          "truth": "1",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.9689159393310547,
+          "truth_lp": -3.5964431762695312
+        },
+        {
+          "context": "fundamental theorem of calculus (derivative of integral)",
+          "truth": "f(x)",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.4160594940185547,
+          "truth_lp": -5.210416793823242
+        },
+        {
+          "context": "Taylor series first two terms of e^x around 0",
+          "truth": "1+x",
+          "domain": "calculus",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.9050827026367188,
+          "truth_lp": -2.617645263671875
+        },
+        {
+          "context": "Newton's second law (force)",
+          "truth": "F=m*a",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.625,
+          "truth_lp": -6.240253448486328
+        },
+        {
+          "context": "kinetic energy formula",
+          "truth": "(1/2)*m*v^2",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.3719768524169922,
+          "truth_lp": -8.466453552246094
+        },
+        {
+          "context": "gravitational potential energy",
+          "truth": "m*g*h",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 7.263923645019531,
+          "truth_lp": -8.220098495483398
+        },
+        {
+          "context": "momentum formula",
+          "truth": "m*v",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.625,
+          "truth_lp": -6.520977020263672
+        },
+        {
+          "context": "work-energy theorem",
+          "truth": "W=delta(KE)",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.4068870544433594,
+          "truth_lp": -14.619245529174805
+        },
+        {
+          "context": "centripetal acceleration",
+          "truth": "v^2/r",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.5704288482666016,
+          "truth_lp": -5.007083892822266
+        },
+        {
+          "context": "period of a simple pendulum",
+          "truth": "2*pi*sqrt(L/g)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 2.649529457092285,
+          "truth_lp": -10.720373153686523
+        },
+        {
+          "context": "escape velocity formula",
+          "truth": "sqrt(2*G*M/r)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.7879924774169922,
+          "truth_lp": -11.833740234375
+        },
+        {
+          "context": "Coulomb's law force",
+          "truth": "k*q1*q2/r^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.7538547515869141,
+          "truth_lp": -10.250946044921875
+        },
+        {
+          "context": "Ohm's law",
+          "truth": "V=I*R",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.25,
+          "truth_lp": -5.937627792358398
+        },
+        {
+          "context": "electric power formula",
+          "truth": "P=I*V",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.8405208587646484,
+          "truth_lp": -7.963354110717773
+        },
+        {
+          "context": "capacitance definition",
+          "truth": "Q/V",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.0734291076660156,
+          "truth_lp": -10.296792984008789
+        },
+        {
+          "context": "energy stored in capacitor",
+          "truth": "(1/2)*C*V^2",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -2.2605533599853516,
+          "truth_lp": -9.241418838500977
+        },
+        {
+          "context": "first law of thermodynamics",
+          "truth": "delta(U)=Q-W",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.75,
+          "truth_lp": -12.906625747680664
+        },
+        {
+          "context": "ideal gas law",
+          "truth": "P*V=n*R*T",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.380598068237305,
+          "truth_lp": -6.25389289855957
+        },
+        {
+          "context": "entropy change (reversible)",
+          "truth": "delta(S)=Q/T",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 7.875,
+          "truth_lp": -12.987140655517578
+        },
+        {
+          "context": "wave speed formula",
+          "truth": "v=f*lambda",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.952392578125,
+          "truth_lp": -7.530269622802734
+        },
+        {
+          "context": "photon energy formula",
+          "truth": "E=h*f",
+          "domain": "physics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.25,
+          "truth_lp": -8.519926071166992
+        },
+        {
+          "context": "de Broglie wavelength",
+          "truth": "h/(m*v)",
+          "domain": "physics",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.6410579681396484,
+          "truth_lp": -12.631681442260742
+        },
+        {
+          "context": "relativistic rest energy formula",
+          "truth": "m*c^2",
+          "domain": "physics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.891407012939453,
+          "truth_lp": -8.041746139526367
+        },
+        {
+          "context": "atomic number of hydrogen",
+          "truth": "1",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.875,
+          "truth_lp": -0.6287899017333984
+        },
+        {
+          "context": "atomic number of carbon",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.859527587890625,
+          "truth_lp": -0.8867759704589844
+        },
+        {
+          "context": "atomic number of oxygen",
+          "truth": "8",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.370759963989258,
+          "truth_lp": -0.8168926239013672
+        },
+        {
+          "context": "atomic number of gold",
+          "truth": "79",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 5.4772491455078125,
+          "truth_lp": -0.8106632232666016
+        },
+        {
+          "context": "most electronegative element",
+          "truth": "fluorine",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.9051990509033203,
+          "truth_lp": -2.701223373413086
+        },
+        {
+          "context": "noble gas in period 2",
+          "truth": "neon",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.5,
+          "truth_lp": -4.156030654907227
+        },
+        {
+          "context": "number of electrons in a full p subshell",
+          "truth": "6",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.625,
+          "truth_lp": -1.8248558044433594
+        },
+        {
+          "context": "Gibbs free energy formula",
+          "truth": "G=H-T*S",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 6.643424987792969,
+          "truth_lp": -7.863702774047852
+        },
+        {
+          "context": "Arrhenius equation for rate constant",
+          "truth": "k=A*e^(-Ea/(R*T))",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 1.240631103515625,
+          "truth_lp": -14.289226531982422
+        },
+        {
+          "context": "Henderson-Hasselbalch equation",
+          "truth": "pH=pKa+log([A-]/[HA])",
+          "domain": "chemistry",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 3.7401161193847656,
+          "truth_lp": -7.555900573730469
+        },
+        {
+          "context": "Avogadro's number",
+          "truth": "6.022e23",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 6.5,
+          "truth_lp": -7.969476699829102
+        },
+        {
+          "context": "molarity definition",
+          "truth": "moles per liter",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.3131237030029297,
+          "truth_lp": -9.219545364379883
+        },
+        {
+          "context": "functional group of alcohols",
+          "truth": "hydroxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.3533382415771484,
+          "truth_lp": -3.794544219970703
+        },
+        {
+          "context": "functional group of carboxylic acids",
+          "truth": "carboxyl",
+          "domain": "chemistry",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.1800041198730469,
+          "truth_lp": -4.763309478759766
+        },
+        {
+          "context": "hybridization of carbon in methane",
+          "truth": "sp3",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.19630050659179688,
+          "truth_lp": -1.5225505828857422
+        },
+        {
+          "context": "hybridization of carbon in ethylene",
+          "truth": "sp2",
+          "domain": "chemistry",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -0.4554443359375,
+          "truth_lp": -2.025981903076172
+        },
+        {
+          "context": "determinant of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "a*d-b*c",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.8209190368652344,
+          "truth_lp": -2.742979049682617
+        },
+        {
+          "context": "rank of identity matrix In",
+          "truth": "n",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.3369312286376953,
+          "truth_lp": -6.3601837158203125
+        },
+        {
+          "context": "trace of a matrix (definition)",
+          "truth": "sum of diagonal entries",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 0.8883018493652344,
+          "truth_lp": -6.221717834472656
+        },
+        {
+          "context": "eigenvalue equation",
+          "truth": "A*v=lambda*v",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.497537612915039,
+          "truth_lp": -16.715810775756836
+        },
+        {
+          "context": "dot product of orthogonal vectors",
+          "truth": "0",
+          "domain": "linear_algebra",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.1575794219970703,
+          "truth_lp": -2.1536731719970703
+        },
+        {
+          "context": "number of linearly independent columns (definition)",
+          "truth": "rank",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.625,
+          "truth_lp": -5.624977111816406
+        },
+        {
+          "context": "rank-nullity theorem",
+          "truth": "rank+nullity=n",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 3.1542816162109375,
+          "truth_lp": -9.090520858764648
+        },
+        {
+          "context": "scalar factor in inverse of 2x2 matrix [[a,b],[c,d]]",
+          "truth": "1/(a*d-b*c)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -2.0160140991210938,
+          "truth_lp": -5.350963592529297
+        },
+        {
+          "context": "Cauchy-Schwarz inequality",
+          "truth": "|u*v| <= |u|*|v|",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.9774227142333984,
+          "truth_lp": -15.382553100585938
+        },
+        {
+          "context": "characteristic polynomial (definition)",
+          "truth": "det(A-lambda*I)",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.550872802734375,
+          "truth_lp": -13.363540649414062
+        },
+        {
+          "context": "spectral theorem applies to",
+          "truth": "symmetric matrices",
+          "domain": "linear_algebra",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 0.6081371307373047,
+          "truth_lp": -5.228700637817383
+        },
+        {
+          "context": "matrix multiplication is",
+          "truth": "associative",
+          "domain": "linear_algebra",
+          "difficulty": "medium",
+          "win": false,
+          "margin": -1.9303054809570312,
+          "truth_lp": -9.364683151245117
+        },
+        {
+          "context": "Bayes theorem formula",
+          "truth": "P(A|B)=P(B|A)*P(A)/P(B)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.7797298431396484,
+          "truth_lp": -8.171562194824219
+        },
+        {
+          "context": "mean of normal distribution N(mu,sigma^2)",
+          "truth": "mu",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.625,
+          "truth_lp": -2.760772705078125
+        },
+        {
+          "context": "variance of normal distribution N(mu,sigma^2)",
+          "truth": "sigma^2",
+          "domain": "statistics",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.3151741027832031,
+          "truth_lp": -4.548395156860352
+        },
+        {
+          "context": "central limit theorem result",
+          "truth": "sample mean is approximately normal",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.2982406616210938,
+          "truth_lp": -9.469514846801758
+        },
+        {
+          "context": "law of large numbers result",
+          "truth": "sample mean converges to population mean",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 2.541543960571289,
+          "truth_lp": -10.497705459594727
+        },
+        {
+          "context": "standard error of the mean",
+          "truth": "sigma/sqrt(n)",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.8501987457275391,
+          "truth_lp": -10.563358306884766
+        },
+        {
+          "context": "chi-squared distribution is used for",
+          "truth": "testing categorical data independence",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -7.002174377441406,
+          "truth_lp": -19.888254165649414
+        },
+        {
+          "context": "p-value definition",
+          "truth": "probability of observing result if null hypothesis is true",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -7.053077697753906,
+          "truth_lp": -16.706491470336914
+        },
+        {
+          "context": "maximum likelihood estimation finds",
+          "truth": "parameter that maximizes P(data|parameter)",
+          "domain": "statistics",
+          "difficulty": "hard",
+          "win": false,
+          "margin": -8.85550308227539,
+          "truth_lp": -19.981796264648438
+        },
+        {
+          "context": "covariance of independent variables",
+          "truth": "0",
+          "domain": "statistics",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 1.625,
+          "truth_lp": -3.4808177947998047
+        },
+        {
+          "context": "value of pi (first 5 digits)",
+          "truth": "3.14159",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 5.625,
+          "truth_lp": -1.786081314086914
+        },
+        {
+          "context": "Euler's number e (first 5 digits)",
+          "truth": "2.71828",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 5.125,
+          "truth_lp": -1.6069755554199219
+        },
+        {
+          "context": "golden ratio phi (first 5 digits)",
+          "truth": "1.61803",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 7.0,
+          "truth_lp": -1.6277313232421875
+        },
+        {
+          "context": "Euler-Mascheroni constant gamma (first 4 digits)",
+          "truth": "0.5772",
+          "domain": "constants",
+          "difficulty": "hard",
+          "win": true,
+          "margin": 9.190385818481445,
+          "truth_lp": -1.033895492553711
+        },
+        {
+          "context": "sqrt(2) first 5 digits",
+          "truth": "1.41421",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 7.9167633056640625,
+          "truth_lp": -1.3343219757080078
+        },
+        {
+          "context": "sqrt(3) first 4 digits",
+          "truth": "1.7320",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 8.029048919677734,
+          "truth_lp": -1.4817008972167969
+        },
+        {
+          "context": "Euler's identity e^(i*pi)+1 equals",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "medium",
+          "win": true,
+          "margin": 0.12831497192382812,
+          "truth_lp": -2.1466293334960938
+        },
+        {
+          "context": "sin(pi/6)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.698965072631836,
+          "truth_lp": -4.481306076049805
+        },
+        {
+          "context": "cos(pi/3)",
+          "truth": "1/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.7149791717529297,
+          "truth_lp": -4.551303863525391
+        },
+        {
+          "context": "sin(pi/4)",
+          "truth": "sqrt(2)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -1.029378890991211,
+          "truth_lp": -5.3302001953125
+        },
+        {
+          "context": "cos(pi/6)",
+          "truth": "sqrt(3)/2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -2.2460803985595703,
+          "truth_lp": -6.37115478515625
+        },
+        {
+          "context": "tan(pi/4)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.625,
+          "truth_lp": -3.3280467987060547
+        },
+        {
+          "context": "ln(1)",
+          "truth": "0",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": false,
+          "margin": -0.375,
+          "truth_lp": -4.212665557861328
+        },
+        {
+          "context": "ln(e)",
+          "truth": "1",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 1.2930488586425781,
+          "truth_lp": -2.690868377685547
+        },
+        {
+          "context": "log base 10 of 1000",
+          "truth": "3",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 2.1070499420166016,
+          "truth_lp": -3.472930908203125
+        },
+        {
+          "context": "sum of angles in a triangle (degrees)",
+          "truth": "180",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 4.43853759765625,
+          "truth_lp": -0.8802299499511719
+        },
+        {
+          "context": "Pythagorean theorem",
+          "truth": "a^2+b^2=c^2",
+          "domain": "constants",
+          "difficulty": "easy",
+          "win": true,
+          "margin": 3.8795509338378906,
+          "truth_lp": -5.431577682495117
+        }
+      ]
+    }
+  ]
+}

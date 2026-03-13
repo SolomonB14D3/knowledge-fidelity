@@ -33,9 +33,11 @@ import experiments.operation_destroyer.train_v3 as t3
 TRUTH_DICT_PATH = "/Volumes/4TB SD/ClaudeCode/knowledge-fidelity/experiments/operation_destroyer/truth_dict.json"
 
 
-def score_fact(model, tokenizer, lm_head, adapter, context, truth, softcap=30.0, completion_style=True):
+def score_fact(model, tokenizer, lm_head, adapter, context, truth, softcap=30.0, completion_style=True, prompt_override=None):
     """Score one fact. Returns (truth_in_top5, logit_gap, truth_rank)."""
-    if completion_style:
+    if prompt_override is not None:
+        prompt = prompt_override
+    elif completion_style:
         # Simple completion: "The capital of France is" → "Paris"
         prompt = f"The {context} is"
     else:
@@ -135,7 +137,8 @@ def main():
     print("=" * 60)
     base_results = []
     for fact in facts:
-        hit, gap, rank = score_fact(model, tokenizer, lm_head, None, fact["context"], fact["truth"])
+        hit, gap, rank = score_fact(model, tokenizer, lm_head, None, fact["context"], fact["truth"],
+                                    prompt_override=fact.get("prompt"))
         base_results.append({"context": fact["context"], "truth": fact["truth"],
                               "category": fact["category"], "hit": hit, "gap": gap, "rank": rank})
 
@@ -161,7 +164,8 @@ def main():
     print("=" * 60)
     adapter_results = []
     for fact in facts:
-        hit, gap, rank = score_fact(model, tokenizer, lm_head, adapter, fact["context"], fact["truth"])
+        hit, gap, rank = score_fact(model, tokenizer, lm_head, adapter, fact["context"], fact["truth"],
+                                    prompt_override=fact.get("prompt"))
         adapter_results.append({"context": fact["context"], "truth": fact["truth"],
                                  "category": fact["category"], "hit": hit, "gap": gap, "rank": rank})
 
