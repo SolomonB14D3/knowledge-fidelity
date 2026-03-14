@@ -39,6 +39,17 @@ problem:
   # Adapter for repair pass (leave null to use default mixed adapter)
   adapter: null            # or path to custom .npz
 
+  # Reward function configuration
+  # Controls how oracle_wrapper.py scores candidates and triggers special modes.
+  reward:
+    primary: margin_after_repair       # optimise this signal
+    secondary: frac_var                # minimise this (formal checker quality)
+    knowledge_gap_trigger: -5.0        # if margin_delta < this after repair → knowledge_gap_mode
+    # knowledge_gap_mode options (uncomment one when triggered):
+    #   generate_data: true            # scaffold fine-tune data generation
+    #   next_problem: true             # skip to batch 3 / new domain
+    #   train_domain_adapter: true     # train choreography-specific adapter
+
   # Compute budget for any autoresearch loop attached to this problem
   budget: "500 steps or 1M tokens"
 
