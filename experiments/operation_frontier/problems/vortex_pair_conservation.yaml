@@ -1,16 +1,15 @@
-# Operation Frontier — Problem: 2D Point-Vortex Conservation
-# Domain: classical fluid mechanics (Kirchhoff 1876)
-# Target: hunt for approximate near-invariants beyond the known exact ones
+# Operation Frontier — Problem: Reduced Navier-Stokes / Point-Vortex Conservation
+# Domain: 2D point-vortex (Kirchhoff 1876) — simplest reduced fluid model
+# Target: any approximate conserved quantity with frac_var < 5e-3 not recognized by base model
 
 problem:
-  name: "vortex_pair_conservation"
+  name: "reduced_navier_stokes_vortex_conservation"
   description: |
     2D point-vortex system — simplest reduced fluid model with exact conservation laws.
     Exact conserved: H (Hamiltonian), Lz (angular impulse), Px/Py (linear impulse), Xcm (centroid when Γ_tot≠0).
-    Known special case: r₁₂ = const for any 2-vortex system (follows from H + integrability).
-    Hunt target: approximate near-invariants for near-equal-circulation vortex merging,
-    or for the restricted 3-vortex problem (2 strong + 1 weak test vortex).
-    Analog to figure-8: does Z₃ choreographic structure appear in 3-vortex symmetric IC?
+    Hunt target: find any approximate conserved quantity (geometric, symmetric, or Fourier-based)
+    with frac_var < 5e-3 on vortex-pair flows that the base model does not recognize.
+    Priority ICs: restricted 3-vortex (2 strong + 1 weak test vortex), perturbed equilateral.
 
   model: "Qwen/Qwen3-4B-Base"
   oracle: "stem_margin"
@@ -18,10 +17,10 @@ problem:
   pass_threshold: 0.8
 
   monitors:
-    - margin_sign                        # always required
-    # - energy_violation                 # |H(t)-H(0)|/|H(0)| — integrator sanity
-    # - sum_pairwise_distances_variance  # r12+r13+r23 (three_symmetric IC)
-    # - e2_symmetric_poly_variance       # r12*r13+r12*r23+r13*r23 (three_symmetric IC)
+    - margin_sign                  # always required (oracle log-prob filter)
+    - rho_expression_unlock        # expression gap — catches oracle misses via CD
+    - energy_violation             # |H(t)-H(0)|/|H(0)| — integrator sanity check
+    - e2_symmetric_poly            # r12*r13+r12*r23+r13*r23 — re-use figure-8 monitor
 
   # Checker: vortex_checker.py
   # Usage:
@@ -30,62 +29,56 @@ problem:
   #   python vortex_checker.py --ic three_symmetric --expr "s['r12']+s['r13']+s['r23']"
   #   python vortex_checker.py --ic restricted --expr "s['r12']**2 + s['r13']**2"
   #
-  # Known results:
+  # Known results (threshold=1e-3):
   #   equal_pair:      H PASS, Lz PASS, Px PASS, Py PASS, r12 PASS
-  #   unequal_pair:    H PASS, Lz PASS, r12 PASS (always constant for N=2)
+  #   unequal_pair:    H PASS, Lz PASS, r12 PASS (N=2 always integrable)
   #   opposite_pair:   H PASS, r12 PASS (translates at const velocity)
-  #   three_symmetric: H PASS, Lz PASS, Px PASS, r12 PASS (rigid rotation)
+  #   three_symmetric: H PASS, Lz PASS, Px PASS, r12 PASS (rigid rotation — equilateral is RE for any Γ)
   #   three_random:    H PASS, Lz PASS, r12 FAIL (chaotic separation)
-  #   restricted:      H PASS, Lz PASS, r12 FAIL (test vortex perturbed)
-  #
-  # Interesting ICs for hunting:
-  #   - three_symmetric (equal equilateral): r12+r13+r23 = const (Z₃ rigid rotation → exact)
-  #   - restricted: Jacobi-like approximate integral for test vortex?
-  #   - unequal_pair: anything beyond H, Lz for the drifting center?
+  #   restricted:      H PASS, Lz PASS, r12 frac_var=1.7e-3 (strong pair nearly undisturbed)
 
-  adapter: null
+  adapter: "adapters/adapter_choreography.npz"   # start with the Z3 choreography adapter
 
   reward:
     primary: margin_after_repair
     secondary: frac_var
     knowledge_gap_trigger: -5.0
+    # knowledge_gap_mode options:
+    #   train_domain_adapter: true   # train vortex-specific adapter if knowledge gap hit
 
-  budget: "500 steps or 1M tokens"
+  budget: "5000 steps or 8M tokens"
   destructive_mode: true
 
   notes: |
     Domain analogs:
     - 2-body vortex ↔ Kepler 2-body (both integrable, both have distance conservation)
-    - 3-body vortex (symmetric) ↔ figure-8 choreography (Z₃ symmetry)
+    - 3-body vortex (symmetric) ↔ figure-8 choreography (Z₃ symmetry — equilateral is RE)
     - Restricted 3-vortex ↔ restricted 3-body (Jacobi integral analog)
 
-    Key difference from figure-8:
-    - For 3-vortex THREE_SYMMETRIC IC, r12=r13=r23=const EXACTLY (rigid rotation).
-      So r12+r13+r23 is trivially conserved, not an interesting near-invariant.
-    - Interesting target: 3-vortex NEAR-symmetric — does r12+r13+r23 persist approximately?
-    - For RESTRICTED IC: does any simple expression of (r13, r23, r12) approximate an integral?
+    Key physics (from checker sweep, 2026-03-13):
+    - Equilateral triangle = relative equilibrium for ANY circulation values (all rᵢⱼ=const exactly).
+      Needs perturbation or unequal ICs to escape trivial conservation.
+    - H - ω*Lz on restricted IC passes (frac_var=8.5e-12) but trivially — linear combo of H and Lz.
+      NOT a Jacobi integral analog (Jacobi requires H alone to NOT be conserved).
+    - Perturbed near-symmetric equilateral (Γ=[1,0.9,0.8], δ=[0.1,0.05]):
+        e1=r12+r13+r23 frac_var=1.1e-3 (borderline, just above threshold)
+        e2 frac_var=2.2e-3 — interesting near-invariant territory.
 
-    Checked candidates (vortex_checker.py, threshold=1e-3):
-    C-V01: e1=r12+r13+r23 on three_symmetric IC → PASS frac_var=2.5e-12 (trivially exact — rigid rotation)
-    C-V02: e1=r12+r13+r23 on three_random IC   → FAIL frac_var=2.8e-02
-    C-V03: r12²+r13²+r23² on restricted IC     → FAIL frac_var=1.1e-01
-    C-V04: r13²+r23² on restricted IC           → FAIL frac_var=1.6e-01
-    C-V05: r13/r23 on restricted IC             → FAIL frac_var=8.4e-02
-    C-V06: r12*r13*r23 on three_symmetric IC    → PASS frac_var=7.4e-12 (trivially exact)
-    H - ω*Lz on restricted (ω=Γ/πd²)          → PASS frac_var=8.5e-12 (trivially: linear combo of H, Lz)
-
-    Key physics finding: equilateral triangle is relative equilibrium for ANY circulation values
-    (rigid rotation, all rᵢⱼ=const exactly). Needs perturbation to escape trivial conservation.
-    Perturbed near-symmetric (Γ=[1,0.9,0.8], pos0[0]+=[0.1,0.05], t=2000):
-      e1 frac_var=1.1e-03 (just above threshold), e2=2.2e-03 — interesting near-invariant territory.
+    Checked candidates:
+    C-V01: e1=r12+r13+r23 on three_symmetric   → PASS frac_var=2.5e-12 (trivially exact)
+    C-V02: e1=r12+r13+r23 on three_random       → FAIL frac_var=2.8e-02
+    C-V03: r12²+r13²+r23² on restricted         → FAIL frac_var=1.1e-01
+    C-V04: r13²+r23² on restricted               → FAIL frac_var=1.6e-01
+    C-V05: r13/r23 on restricted                 → FAIL frac_var=8.4e-02
+    C-V06: r12*r13*r23 on three_symmetric        → PASS frac_var=7.4e-12 (trivially exact)
 
     Next interesting targets:
     C-V07: e1 on perturbed equilateral with unequal Γ (near-invariant: frac_var~1e-3)
-    C-V08: adiabatic invariant J = ∮ Γ₃ dθ for restricted (test vortex action variable)
-    C-V09: r12+r13+r23 on 4-vortex system with Z₄ symmetry?
-    C-V10: ratio r12/(r13+r23) on restricted (test vortex position relative to strong pair)
+    C-V08: adiabatic invariant J ≈ ∮ p dq for restricted test vortex (KAM-type near-constant)
+    C-V09: r12+r13+r23 on 4-vortex Z₄-symmetric IC
+    C-V10: Fourier amplitude at ω₀ of r13(t) for restricted (slow modulation — adiabatic?)
 
     On Oracle format:
-    Use compact symbolic notation. Verbose prose fails (confirmed from pilot + repair runs).
-    Best context style: "2D point-vortex system, [brief setup]. Which quantity is [conserved/constant]?"
-    Best truth style: "Q = <compact expression> = const" or "Q = <formula>"
+    Compact symbolic notation required. Verbose prose fails (confirmed in pilot + e2 repair runs).
+    Best context: "2D point-vortex system, [brief setup]. Which quantity is conserved?"
+    Best truth: "Q = <compact expression> = const" or "Q = <formula>"
