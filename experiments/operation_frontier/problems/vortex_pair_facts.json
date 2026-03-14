@@ -1,0 +1,106 @@
+{
+  "problem": "vortex_pair_conservation",
+  "description": "Known conservation laws for the 2D point-vortex system (Kirchhoff 1876). Verification set for the oracle. All facts use compact symbolic notation.",
+  "facts": [
+    {
+      "id": "vp01_hamiltonian",
+      "context": "2D point-vortex system, N vortices at positions (xᵢ,yᵢ) with circulations Γᵢ, Kirchhoff equations. Which quantity is exactly conserved?",
+      "truth": "H = -1/(4π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ²)",
+      "distractors": [
+        "H = 1/(4π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ²)",
+        "H = -1/(2π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ)",
+        "H = Σᵢ<ⱼ ΓᵢΓⱼ / rᵢⱼ²"
+      ]
+    },
+    {
+      "id": "vp02_angular_momentum",
+      "context": "2D point-vortex system with circulations Γᵢ at positions (xᵢ,yᵢ). Angular impulse (Kirchhoff 1876). Which quantity is exactly conserved?",
+      "truth": "Lz = Σᵢ Γᵢ (xᵢ² + yᵢ²)",
+      "distractors": [
+        "Lz = Σᵢ (xᵢ² + yᵢ²)",
+        "Lz = Σᵢ Γᵢ² (xᵢ² + yᵢ²)",
+        "Lz = Σᵢ Γᵢ (xᵢ·dyᵢ/dt - yᵢ·dxᵢ/dt)"
+      ]
+    },
+    {
+      "id": "vp03_linear_impulse_x",
+      "context": "2D point-vortex system, Kirchhoff equations. Linear impulse components. Which is exactly conserved?",
+      "truth": "Px = Σᵢ Γᵢ yᵢ",
+      "distractors": [
+        "Px = Σᵢ Γᵢ xᵢ",
+        "Px = Σᵢ Γᵢ dxᵢ/dt",
+        "Px = Σᵢ Γᵢ (xᵢ + yᵢ)"
+      ]
+    },
+    {
+      "id": "vp04_linear_impulse_y",
+      "context": "2D point-vortex system, Kirchhoff equations. Linear impulse y-component. Which is exactly conserved?",
+      "truth": "Py = -Σᵢ Γᵢ xᵢ",
+      "distractors": [
+        "Py = Σᵢ Γᵢ yᵢ",
+        "Py = Σᵢ Γᵢ dyᵢ/dt",
+        "Py = -Σᵢ Γᵢ (xᵢ + yᵢ)"
+      ]
+    },
+    {
+      "id": "vp05_equal_pair_r12",
+      "context": "Two point vortices with equal circulations Γ₁=Γ₂. Kirchhoff equations. What is constant throughout the motion?",
+      "truth": "r₁₂ = |x₁-x₂|² + |y₁-y₂|²)^(1/2) = const",
+      "distractors": [
+        "r₁₂ increases monotonically",
+        "θ₁₂ = arctan((y₁-y₂)/(x₁-x₂)) = const",
+        "r₁₂ oscillates with period T = 2πr₁₂²/Γ"
+      ]
+    },
+    {
+      "id": "vp06_centroid",
+      "context": "N point vortices with total circulation Γ_tot = Σ Γᵢ ≠ 0. Kirchhoff equations. What is conserved?",
+      "truth": "Xcm = Σᵢ Γᵢ xᵢ / Γ_tot = const,  Ycm = Σᵢ Γᵢ yᵢ / Γ_tot = const",
+      "distractors": [
+        "Xcm = Σᵢ xᵢ / N = const",
+        "Xcm = Σᵢ Γᵢ xᵢ = const",
+        "Xcm drifts at velocity V = Γ_tot / (2π)"
+      ]
+    },
+    {
+      "id": "vp07_opposite_pair_velocity",
+      "context": "Two point vortices with opposite circulations Γ₁=-Γ₂=Γ, separation d. Kirchhoff equations. Translational velocity of the pair?",
+      "truth": "V = Γ / (2πd)",
+      "distractors": [
+        "V = Γ / (πd²)",
+        "V = 2Γ / (πd)",
+        "V = Γ² / (2πd)"
+      ]
+    },
+    {
+      "id": "vp08_rotation_rate",
+      "context": "Two equal co-rotating point vortices, each with circulation Γ, separated by distance d. Angular velocity of co-rotation?",
+      "truth": "ω = Γ / (πd²)",
+      "distractors": [
+        "ω = Γ / (2πd²)",
+        "ω = 2Γ / (πd²)",
+        "ω = Γ / (πd)"
+      ]
+    },
+    {
+      "id": "vp09_kirchhoff_hamiltonian_structure",
+      "context": "Point-vortex equations in Hamiltonian form. The canonical coordinates are (qᵢ, pᵢ) = ?",
+      "truth": "(qᵢ, pᵢ) = (xᵢ, Γᵢ yᵢ)",
+      "distractors": [
+        "(qᵢ, pᵢ) = (xᵢ, yᵢ)",
+        "(qᵢ, pᵢ) = (Γᵢ xᵢ, Γᵢ yᵢ)",
+        "(qᵢ, pᵢ) = (xᵢ + yᵢ, xᵢ - yᵢ)"
+      ]
+    },
+    {
+      "id": "vp10_three_vortex_integrability",
+      "context": "3-vortex point-vortex system. Is the system integrable (solvable in closed form)?",
+      "truth": "Yes: 3-vortex system is integrable (Aref 1979); conserved quantities H, Lz, Px, Py reduce it to quadratures",
+      "distractors": [
+        "No: 3-vortex system is chaotic for generic initial conditions",
+        "Yes: only for equal circulations Γ₁=Γ₂=Γ₃",
+        "No: only 2-vortex systems are integrable"
+      ]
+    }
+  ]
+}
