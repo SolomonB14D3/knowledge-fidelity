@@ -2,83 +2,82 @@
 # Domain: 2D point-vortex (Kirchhoff 1876) — simplest reduced fluid model
 # Target: any approximate conserved quantity with frac_var < 5e-3 not recognized by base model
 
-problem:
-  name: "reduced_navier_stokes_vortex_conservation"
-  description: |
-    2D point-vortex system — simplest reduced fluid model with exact conservation laws.
-    Exact conserved: H (Hamiltonian), Lz (angular impulse), Px/Py (linear impulse), Xcm (centroid when Γ_tot≠0).
-    Hunt target: find any approximate conserved quantity (geometric, symmetric, or Fourier-based)
-    with frac_var < 5e-3 on vortex-pair flows that the base model does not recognize.
-    Priority ICs: restricted 3-vortex (2 strong + 1 weak test vortex), perturbed equilateral.
+name: "reduced_navier_stokes_vortex_conservation"
+description: |
+  2D point-vortex system — simplest reduced fluid model with exact conservation laws.
+  Exact conserved: H (Hamiltonian), Lz (angular impulse), Px/Py (linear impulse), Xcm (centroid when Γ_tot≠0).
+  Hunt target: find any approximate conserved quantity (geometric, symmetric, or Fourier-based)
+  with frac_var < 5e-3 on vortex-pair flows that the base model does not recognize.
+  Priority ICs: restricted 3-vortex (2 strong + 1 weak test vortex), perturbed equilateral.
 
-  model: "Qwen/Qwen3-4B-Base"
-  oracle: "stem_margin"
-  verification_set: "vortex_pair_facts.json"
-  pass_threshold: 0.8
+model: "Qwen/Qwen3-4B-Base"
+oracle: "stem_margin"
+verification_set: "vortex_pair_facts.json"
+pass_threshold: 0.8
 
-  monitors:
-    - margin_sign                  # always required (oracle log-prob filter)
-    - rho_expression_unlock        # expression gap — catches oracle misses via CD
-    - energy_violation             # |H(t)-H(0)|/|H(0)| — integrator sanity check
-    - e2_symmetric_poly            # r12*r13+r12*r23+r13*r23 — re-use figure-8 monitor
+monitors:
+  - margin_sign                  # always required (oracle log-prob filter)
+  - rho_expression_unlock        # expression gap — catches oracle misses via CD
+  - energy_violation             # |H(t)-H(0)|/|H(0)| — integrator sanity check
+  - e2_symmetric_poly            # r12*r13+r12*r23+r13*r23 — re-use figure-8 monitor
 
-  # Checker: vortex_checker.py
-  # Usage:
-  #   python vortex_checker.py --all               # all ICs, all candidates
-  #   python vortex_checker.py --ic equal_pair --check H
-  #   python vortex_checker.py --ic three_symmetric --expr "s['r12']+s['r13']+s['r23']"
-  #   python vortex_checker.py --ic restricted --expr "s['r12']**2 + s['r13']**2"
-  #
-  # Known results (threshold=1e-3):
-  #   equal_pair:      H PASS, Lz PASS, Px PASS, Py PASS, r12 PASS
-  #   unequal_pair:    H PASS, Lz PASS, r12 PASS (N=2 always integrable)
-  #   opposite_pair:   H PASS, r12 PASS (translates at const velocity)
-  #   three_symmetric: H PASS, Lz PASS, Px PASS, r12 PASS (rigid rotation — equilateral is RE for any Γ)
-  #   three_random:    H PASS, Lz PASS, r12 FAIL (chaotic separation)
-  #   restricted:      H PASS, Lz PASS, r12 frac_var=1.7e-3 (strong pair nearly undisturbed)
+# Checker: vortex_checker.py
+# Usage:
+#   python vortex_checker.py --all               # all ICs, all candidates
+#   python vortex_checker.py --ic equal_pair --check H
+#   python vortex_checker.py --ic three_symmetric --expr "s['r12']+s['r13']+s['r23']"
+#   python vortex_checker.py --ic restricted --expr "s['r12']**2 + s['r13']**2"
+#
+# Known results (threshold=1e-3):
+#   equal_pair:      H PASS, Lz PASS, Px PASS, Py PASS, r12 PASS
+#   unequal_pair:    H PASS, Lz PASS, r12 PASS (N=2 always integrable)
+#   opposite_pair:   H PASS, r12 PASS (translates at const velocity)
+#   three_symmetric: H PASS, Lz PASS, Px PASS, r12 PASS (rigid rotation — equilateral is RE for any Γ)
+#   three_random:    H PASS, Lz PASS, r12 FAIL (chaotic separation)
+#   restricted:      H PASS, Lz PASS, r12 frac_var=1.7e-3 (strong pair nearly undisturbed)
 
-  adapter: "adapters/adapter_choreography.npz"   # start with the Z3 choreography adapter
+adapter: "adapters/vortex_q_adapter_v4.npz"   # trained vortex-specific adapter (8/11 pass)
 
-  reward:
-    primary: margin_after_repair
-    secondary: frac_var
-    knowledge_gap_trigger: -5.0
-    # knowledge_gap_mode options:
-    #   train_domain_adapter: true   # train vortex-specific adapter if knowledge gap hit
+reward:
+  primary: margin_after_repair
+  secondary: frac_var
+  knowledge_gap_trigger: -5.0
+  # knowledge_gap_mode options:
+  #   train_domain_adapter: true   # train vortex-specific adapter if knowledge gap hit
 
-  budget: "5000 steps or 8M tokens"
-  destructive_mode: true
+budget: "5000 steps or 8M tokens"
+destructive_mode: true
 
-  notes: |
-    Domain analogs:
-    - 2-body vortex ↔ Kepler 2-body (both integrable, both have distance conservation)
-    - 3-body vortex (symmetric) ↔ figure-8 choreography (Z₃ symmetry — equilateral is RE)
-    - Restricted 3-vortex ↔ restricted 3-body (Jacobi integral analog)
+notes: |
+  Domain analogs:
+  - 2-body vortex ↔ Kepler 2-body (both integrable, both have distance conservation)
+  - 3-body vortex (symmetric) ↔ figure-8 choreography (Z₃ symmetry — equilateral is RE)
+  - Restricted 3-vortex ↔ restricted 3-body (Jacobi integral analog)
 
-    Key physics (from checker sweep, 2026-03-13):
-    - Equilateral triangle = relative equilibrium for ANY circulation values (all rᵢⱼ=const exactly).
-      Needs perturbation or unequal ICs to escape trivial conservation.
-    - H - ω*Lz on restricted IC passes (frac_var=8.5e-12) but trivially — linear combo of H and Lz.
-      NOT a Jacobi integral analog (Jacobi requires H alone to NOT be conserved).
-    - Perturbed near-symmetric equilateral (Γ=[1,0.9,0.8], δ=[0.1,0.05]):
-        e1=r12+r13+r23 frac_var=1.1e-3 (borderline, just above threshold)
-        e2 frac_var=2.2e-3 — interesting near-invariant territory.
+  Key physics (from checker sweep, 2026-03-13):
+  - Equilateral triangle = relative equilibrium for ANY circulation values (all rᵢⱼ=const exactly).
+    Needs perturbation or unequal ICs to escape trivial conservation.
+  - H - ω*Lz on restricted IC passes (frac_var=8.5e-12) but trivially — linear combo of H and Lz.
+    NOT a Jacobi integral analog (Jacobi requires H alone to NOT be conserved).
+  - Perturbed near-symmetric equilateral (Γ=[1,0.9,0.8], δ=[0.1,0.05]):
+      e1=r12+r13+r23 frac_var=1.1e-3 (borderline, just above threshold)
+      e2 frac_var=2.2e-3 — interesting near-invariant territory.
 
-    Checked candidates:
-    C-V01: e1=r12+r13+r23 on three_symmetric   → PASS frac_var=2.5e-12 (trivially exact)
-    C-V02: e1=r12+r13+r23 on three_random       → FAIL frac_var=2.8e-02
-    C-V03: r12²+r13²+r23² on restricted         → FAIL frac_var=1.1e-01
-    C-V04: r13²+r23² on restricted               → FAIL frac_var=1.6e-01
-    C-V05: r13/r23 on restricted                 → FAIL frac_var=8.4e-02
-    C-V06: r12*r13*r23 on three_symmetric        → PASS frac_var=7.4e-12 (trivially exact)
+  Checked candidates:
+  C-V01: e1=r12+r13+r23 on three_symmetric   → PASS frac_var=2.5e-12 (trivially exact)
+  C-V02: e1=r12+r13+r23 on three_random       → FAIL frac_var=2.8e-02
+  C-V03: r12²+r13²+r23² on restricted         → FAIL frac_var=1.1e-01
+  C-V04: r13²+r23² on restricted               → FAIL frac_var=1.6e-01
+  C-V05: r13/r23 on restricted                 → FAIL frac_var=8.4e-02
+  C-V06: r12*r13*r23 on three_symmetric        → PASS frac_var=7.4e-12 (trivially exact)
 
-    Next interesting targets:
-    C-V07: e1 on perturbed equilateral with unequal Γ (near-invariant: frac_var~1e-3)
-    C-V08: adiabatic invariant J ≈ ∮ p dq for restricted test vortex (KAM-type near-constant)
-    C-V09: r12+r13+r23 on 4-vortex Z₄-symmetric IC
-    C-V10: Fourier amplitude at ω₀ of r13(t) for restricted (slow modulation — adiabatic?)
+  Next interesting targets:
+  C-V07: e1 on perturbed equilateral with unequal Γ (near-invariant: frac_var~1e-3)
+  C-V08: adiabatic invariant J ≈ ∮ p dq for restricted test vortex (KAM-type near-constant)
+  C-V09: r12+r13+r23 on 4-vortex Z₄-symmetric IC
+  C-V10: Fourier amplitude at ω₀ of r13(t) for restricted (slow modulation — adiabatic?)
 
-    On Oracle format:
-    Compact symbolic notation required. Verbose prose fails (confirmed in pilot + e2 repair runs).
-    Best context: "2D point-vortex system, [brief setup]. Which quantity is conserved?"
-    Best truth: "Q = <compact expression> = const" or "Q = <formula>"
+  On Oracle format:
+  Compact symbolic notation required. Verbose prose fails (confirmed in pilot + e2 repair runs).
+  Best context: "2D point-vortex system, [brief setup]. Which quantity is conserved?"
+  Best truth: "Q = <compact expression> = const" or "Q = <formula>"

@@ -42,14 +42,9 @@ RESULTS_DIR = "/Volumes/4TB SD/ClaudeCode/knowledge-fidelity/results/operation_d
 def build_examples(tokenizer, facts):
     """Build training examples: one per (fact, prompt_template) combination.
 
-    Uses completion-style prompts since base model already knows facts in this format.
+    Uses the fact's custom 'prompt' field when available, otherwise
+    falls back to completion-style templates.
     """
-    # Completion-style templates (no instruction format)
-    templates = [
-        "The {context} is",
-        "The {context}:",
-        "{context}:",
-    ]
     examples = []
     for fact in facts:
         ctx = fact["context"]
@@ -71,10 +66,18 @@ def build_examples(tokenizer, facts):
         if not distractor_toks:
             continue
 
-        for tmpl in templates:
-            prompt = tmpl.format(context=ctx)
-            tokens = tokenizer.encode(prompt)
+        # Use custom prompt if available, otherwise use default templates
+        if "prompt" in fact:
+            prompts = [fact["prompt"]]
+        else:
+            prompts = [
+                f"The {ctx} is",
+                f"The {ctx}:",
+                f"{ctx}:",
+            ]
 
+        for prompt in prompts:
+            tokens = tokenizer.encode(prompt)
             examples.append({
                 "tokens": tokens,
                 "truth_tok": truth_tok,
@@ -230,7 +233,7 @@ def main():
         def score(use_adapter):
             hits, gaps, ranks = 0, [], []
             for fact in eval_facts:
-                prompt = f"The {fact['context']} is"  # Completion style
+                prompt = fact.get("prompt", f"The {fact['context']} is")
                 tokens = mx.array(tokenizer.encode(prompt))[None, :]
                 h = model.model(tokens)
                 mx.eval(h)

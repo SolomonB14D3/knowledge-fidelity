@@ -101,6 +101,19 @@
         "Yes: only for equal circulations Γ₁=Γ₂=Γ₃",
         "No: only 2-vortex systems are integrable"
       ]
+    },
+    {
+      "id": "vp11_restricted_near_invariant",
+      "context": "Restricted 3-vortex: two strong vortices Γ₁=Γ₂=1, one weak test vortex Γ₃=ε≪1. Which geometric quantity is approximately conserved?",
+      "truth": "Q = r₁₂ + ε(r₁₃ + r₂₃) ≈ const (weighted perimeter)",
+      "distractors": [
+        "r₁₂ + r₁₃ + r₂₃ = const (equal weights)",
+        "r₁₂ = const exactly",
+        "r₁₂ · r₁₃ · r₂₃ = const"
+      ],
+      "checker_verified": true,
+      "frac_var": 5.36e-6,
+      "notes": "Discovered 2026-03-13. Coefficient ε=Γ₃ gives optimal conservation. Analogous to restricted 3-body Jacobi-like invariant."
     }
   ]
 }
