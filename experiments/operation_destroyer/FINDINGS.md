@@ -138,3 +138,4 @@ Model produces a simplified or incomplete version of a symbolic expression.
 | 2026-03-13 | E1 rerun (ASCII) | Qwen3-4B: 76.3% | 100% misses now meaningful, not artifacts |
 | 2026-03-13 | E2 failure analysis | 10 facts, 4 patterns | All directional, all models agree |
 | 2026-03-13 | General factual MC (115 facts) | Qwen3-4B: 91.3% | Baseline for adapter training |
+| 2026-03-13 | Spectral monitoring added | sv1, eff_dim, decon | Tracking adapter weight dynamics |

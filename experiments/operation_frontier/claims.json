@@ -1,0 +1,6 @@
+{
+  "_schema": "operation-frontier-claims/v1",
+  "_description": "Active problem claims. Check this before starting a hunt to avoid duplicate work. Claim expires after 4 hours of inactivity.",
+  "_protocol": "THINK → CLAIM → RUN → PUBLISH. See CONTRIBUTING.md.",
+  "active_claims": []
+}

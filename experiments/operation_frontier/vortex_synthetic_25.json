@@ -1,0 +1,105 @@
+{
+  "description": "Synthetic training data for vortex-specific adapter. Focus on restricted 3-vortex dynamics and weighted perimeter invariant Q.",
+  "examples": [
+    {
+      "context": "Restricted 3-vortex system: two strong vortices Γ₁=Γ₂=1, one weak test vortex Γ₃=ε≪1. Which geometric quantity is approximately conserved?",
+      "completion": "Q = r₁₂ + ε(r₁₃ + r₂₃) ≈ const. The weighted perimeter with coefficient equal to the weak circulation."
+    },
+    {
+      "context": "In the restricted three-vortex problem, the strong pair has circulation Γ=1 each, the test vortex has Γ₃=0.01. What is the near-invariant?",
+      "completion": "Q = r₁₂ + 0.01(r₁₃ + r₂₃). The test vortex distances are weighted by its relative circulation."
+    },
+    {
+      "context": "Two strong point vortices orbit each other while a weak test vortex (Γ₃≪1) follows. What quantity remains approximately constant?",
+      "completion": "The weighted perimeter Q = r₁₂ + Γ₃(r₁₃ + r₂₃) is a near-invariant. The strong pair distance r₁₂ dominates."
+    },
+    {
+      "context": "Point-vortex restricted problem: Γ₁=Γ₂=1, Γ₃=ε. The unweighted sum r₁₂+r₁₃+r₂₃ is NOT conserved. What IS approximately conserved?",
+      "completion": "Q = r₁₂ + ε(r₁₃+r₂₃). Weight the test vortex distances by ε to get the near-invariant."
+    },
+    {
+      "context": "Restricted 3-vortex with Γ₃=0.01. The quantity r₁₂ alone has frac_var=1.7e-3 (borderline). How to improve conservation?",
+      "completion": "Add weighted test-vortex distances: Q = r₁₂ + 0.01(r₁₃+r₂₃) achieves frac_var=5e-6, much better."
+    },
+    {
+      "context": "2D point-vortex system. Kirchhoff equations. N vortices. Which quantity is exactly conserved?",
+      "completion": "H = -1/(4π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ²). The Hamiltonian (point-vortex energy)."
+    },
+    {
+      "context": "Point-vortex system. Angular impulse (angular momentum analog). Which is conserved?",
+      "completion": "Lz = Σᵢ Γᵢ (xᵢ² + yᵢ²). The circulation-weighted second moment."
+    },
+    {
+      "context": "Point-vortex system. Linear impulse x-component. What is conserved?",
+      "completion": "Px = Σᵢ Γᵢ yᵢ. Note: Px depends on y-coordinates, not x."
+    },
+    {
+      "context": "Point-vortex system. Linear impulse y-component. What is conserved?",
+      "completion": "Py = -Σᵢ Γᵢ xᵢ. Note the minus sign; Py depends on x-coordinates."
+    },
+    {
+      "context": "Two equal point vortices Γ₁=Γ₂. What geometric quantity is exactly conserved?",
+      "completion": "r₁₂ = const. The separation distance is exactly conserved for equal co-rotating vortices."
+    },
+    {
+      "context": "Two equal co-rotating vortices, circulation Γ each, separation d. Angular velocity of rotation?",
+      "completion": "ω = Γ/(πd²). They orbit their midpoint at this angular frequency."
+    },
+    {
+      "context": "Two opposite vortices Γ₁=-Γ₂=Γ, separation d. Translational velocity?",
+      "completion": "V = Γ/(2πd). The pair translates perpendicular to the line joining them."
+    },
+    {
+      "context": "N point vortices with total circulation Γ_tot ≠ 0. Which point is fixed?",
+      "completion": "The vorticity centroid (Xcm, Ycm) = (Σᵢ Γᵢxᵢ, Σᵢ Γᵢyᵢ)/Γ_tot is conserved."
+    },
+    {
+      "context": "Point-vortex equations in Hamiltonian form. What are the canonical coordinates?",
+      "completion": "(qᵢ, pᵢ) = (xᵢ, Γᵢ yᵢ). The momentum conjugate to x is Γy."
+    },
+    {
+      "context": "Is the 3-vortex point-vortex system integrable?",
+      "completion": "Yes. The 3-vortex system is integrable (Aref 1979). Four conserved quantities (H, Lz, Px, Py) reduce it to quadratures."
+    },
+    {
+      "context": "Is the 4-vortex point-vortex system integrable?",
+      "completion": "No. The 4-vortex system is generally non-integrable and can exhibit chaotic dynamics."
+    },
+    {
+      "context": "Restricted 3-vortex: strong pair Γ₁=Γ₂=1, weak vortex Γ₃=0.02. Approximate invariant?",
+      "completion": "Q = r₁₂ + 0.02(r₁₃ + r₂₃). The coefficient matches the weak circulation."
+    },
+    {
+      "context": "Restricted 3-vortex: strong pair Γ₁=Γ₂=1, weak vortex Γ₃=0.05. Approximate invariant?",
+      "completion": "Q = r₁₂ + 0.05(r₁₃ + r₂₃). Scale the test-vortex distances by its circulation."
+    },
+    {
+      "context": "Why does Q = r₁₂ + ε(r₁₃+r₂₃) work in the restricted problem?",
+      "completion": "The strong pair dynamics dominate. The weak vortex perturbs distances r₁₃, r₂₃ but with amplitude ~ε, so weighting by ε cancels the perturbation to leading order."
+    },
+    {
+      "context": "Analogy: restricted 3-body problem has Jacobi integral. What is the vortex analog?",
+      "completion": "Q = r₁₂ + Γ₃(r₁₃+r₂₃). A weighted geometric invariant where the test particle's influence is scaled by its strength."
+    },
+    {
+      "context": "Three symmetric vortices Γ₁=Γ₂=Γ₃ in equilateral triangle. What happens?",
+      "completion": "Relative equilibrium: the triangle rotates rigidly. All rᵢⱼ are exactly constant (trivially conserved)."
+    },
+    {
+      "context": "Three random-strength vortices. Is r₁₂+r₁₃+r₂₃ conserved?",
+      "completion": "No. The unweighted perimeter is not conserved for generic circulations. Only works for symmetric ICs."
+    },
+    {
+      "context": "Restricted problem: why isn't r₁₂ alone exactly conserved?",
+      "completion": "The weak test vortex causes small perturbations to the strong pair. r₁₂ drifts slightly (frac_var~1e-3)."
+    },
+    {
+      "context": "Restricted problem: what coefficient α minimizes variance of r₁₂ + α(r₁₃+r₂₃)?",
+      "completion": "α = Γ₃ (the test vortex circulation). This is the optimal weight for the near-invariant Q."
+    },
+    {
+      "context": "Point-vortex Hamiltonian structure: Poisson bracket {xᵢ, yⱼ} = ?",
+      "completion": "{xᵢ, yⱼ} = δᵢⱼ/Γᵢ. The non-canonical Poisson structure with circulation in denominator."
+    }
+  ]
+}

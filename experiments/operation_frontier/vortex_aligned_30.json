@@ -1,0 +1,275 @@
+{
+  "description": "Aligned training data for vortex adapter. Format matches vortex_pair_facts.json exactly.",
+  "examples": [
+    {
+      "context": "Restricted 3-vortex: two strong vortices Γ₁=Γ₂=1, one weak test vortex Γ₃=ε≪1. Which geometric quantity is approximately conserved?",
+      "truth": "Q = r₁₂ + ε(r₁₃ + r₂₃) ≈ const (weighted perimeter)",
+      "distractors": [
+        "r₁₂ + r₁₃ + r₂₃ = const (equal weights)",
+        "r₁₂ = const exactly",
+        "r₁₂ · r₁₃ · r₂₃ = const"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex with Γ₃=0.01. What is the near-invariant quantity?",
+      "truth": "Q = r₁₂ + 0.01(r₁₃ + r₂₃) ≈ const",
+      "distractors": [
+        "r₁₂ = const",
+        "r₁₃ + r₂₃ = const",
+        "r₁₂ + r₁₃ + r₂₃ = const"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex with Γ₃=0.02. What is the approximate conserved quantity?",
+      "truth": "Q = r₁₂ + 0.02(r₁₃ + r₂₃) ≈ const",
+      "distractors": [
+        "r₁₂ = const exactly",
+        "r₁₂ + r₁₃ = const",
+        "H - ω·Lz = const"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex with weak test vortex Γ₃=0.05. Near-invariant?",
+      "truth": "Q = r₁₂ + 0.05(r₁₃ + r₂₃) ≈ const",
+      "distractors": [
+        "r₁₂ = const",
+        "r₁₂·r₁₃·r₂₃ = const",
+        "r₁₃/r₂₃ = const"
+      ]
+    },
+    {
+      "context": "2D point-vortex system, N vortices at positions (xᵢ,yᵢ) with circulations Γᵢ, Kirchhoff equations. Which quantity is exactly conserved?",
+      "truth": "H = -1/(4π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ²)",
+      "distractors": [
+        "H = 1/(4π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ²)",
+        "H = -1/(2π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ)",
+        "H = Σᵢ<ⱼ ΓᵢΓⱼ / rᵢⱼ²"
+      ]
+    },
+    {
+      "context": "Point-vortex Hamiltonian. N vortices. What is exactly conserved?",
+      "truth": "H = -1/(4π) Σᵢ<ⱼ ΓᵢΓⱼ ln(rᵢⱼ²)",
+      "distractors": [
+        "H = Σᵢ Γᵢ²/2",
+        "H = -Σᵢ<ⱼ ΓᵢΓⱼ/rᵢⱼ",
+        "H = Σᵢ<ⱼ ln(rᵢⱼ)"
+      ]
+    },
+    {
+      "context": "2D point-vortex system with circulations Γᵢ at positions (xᵢ,yᵢ). Angular impulse (Kirchhoff 1876). Which quantity is exactly conserved?",
+      "truth": "Lz = Σᵢ Γᵢ (xᵢ² + yᵢ²)",
+      "distractors": [
+        "Lz = Σᵢ (xᵢ² + yᵢ²)",
+        "Lz = Σᵢ Γᵢ² (xᵢ² + yᵢ²)",
+        "Lz = Σᵢ Γᵢ (xᵢ·dyᵢ/dt - yᵢ·dxᵢ/dt)"
+      ]
+    },
+    {
+      "context": "Point-vortex angular impulse. What is conserved?",
+      "truth": "Lz = Σᵢ Γᵢ (xᵢ² + yᵢ²)",
+      "distractors": [
+        "Lz = Σᵢ xᵢ² + yᵢ²",
+        "Lz = Σᵢ Γᵢ xᵢ yᵢ",
+        "Lz = Σᵢ Γᵢ (xᵢ - yᵢ)²"
+      ]
+    },
+    {
+      "context": "2D point-vortex system, Kirchhoff equations. Linear impulse components. Which is exactly conserved?",
+      "truth": "Px = Σᵢ Γᵢ yᵢ",
+      "distractors": [
+        "Px = Σᵢ Γᵢ xᵢ",
+        "Px = Σᵢ Γᵢ dxᵢ/dt",
+        "Px = Σᵢ Γᵢ (xᵢ + yᵢ)"
+      ]
+    },
+    {
+      "context": "Point-vortex linear impulse x-component. Conserved quantity?",
+      "truth": "Px = Σᵢ Γᵢ yᵢ",
+      "distractors": [
+        "Px = Σᵢ Γᵢ xᵢ",
+        "Px = Σᵢ yᵢ",
+        "Px = Σᵢ Γᵢ² yᵢ"
+      ]
+    },
+    {
+      "context": "2D point-vortex system, Kirchhoff equations. Linear impulse y-component. Which is exactly conserved?",
+      "truth": "Py = -Σᵢ Γᵢ xᵢ",
+      "distractors": [
+        "Py = Σᵢ Γᵢ yᵢ",
+        "Py = Σᵢ Γᵢ dyᵢ/dt",
+        "Py = -Σᵢ Γᵢ (xᵢ + yᵢ)"
+      ]
+    },
+    {
+      "context": "Point-vortex linear impulse y-component. What is conserved?",
+      "truth": "Py = -Σᵢ Γᵢ xᵢ",
+      "distractors": [
+        "Py = Σᵢ Γᵢ xᵢ",
+        "Py = -Σᵢ xᵢ",
+        "Py = Σᵢ Γᵢ yᵢ"
+      ]
+    },
+    {
+      "context": "Two point vortices with equal circulations Γ₁=Γ₂. Kirchhoff equations. What is constant throughout the motion?",
+      "truth": "r₁₂ = (|x₁-x₂|² + |y₁-y₂|²)^(1/2) = const",
+      "distractors": [
+        "r₁₂ increases monotonically",
+        "θ₁₂ = arctan((y₁-y₂)/(x₁-x₂)) = const",
+        "r₁₂ oscillates with period T = 2πr₁₂²/Γ"
+      ]
+    },
+    {
+      "context": "Equal-circulation vortex pair. What geometric quantity is conserved?",
+      "truth": "r₁₂ = const (separation distance)",
+      "distractors": [
+        "r₁₂ oscillates",
+        "θ₁₂ = const",
+        "r₁₂ decreases"
+      ]
+    },
+    {
+      "context": "N point vortices with total circulation Γ_tot = Σ Γᵢ ≠ 0. Kirchhoff equations. What is conserved?",
+      "truth": "Xcm = Σᵢ Γᵢ xᵢ / Γ_tot = const,  Ycm = Σᵢ Γᵢ yᵢ / Γ_tot = const",
+      "distractors": [
+        "Xcm = Σᵢ xᵢ / N = const",
+        "Xcm = Σᵢ Γᵢ xᵢ = const",
+        "Xcm drifts at velocity V = Γ_tot / (2π)"
+      ]
+    },
+    {
+      "context": "Point-vortex centroid. Γ_tot ≠ 0. What is conserved?",
+      "truth": "Xcm = Σᵢ Γᵢ xᵢ / Γ_tot = const",
+      "distractors": [
+        "Xcm = Σᵢ xᵢ / N = const",
+        "Xcm = Σᵢ Γᵢ² xᵢ / Γ_tot = const",
+        "Xcm moves at constant velocity"
+      ]
+    },
+    {
+      "context": "Two point vortices with opposite circulations Γ₁=-Γ₂=Γ, separation d. Kirchhoff equations. Translational velocity of the pair?",
+      "truth": "V = Γ / (2πd)",
+      "distractors": [
+        "V = Γ / (πd²)",
+        "V = 2Γ / (πd)",
+        "V = Γ² / (2πd)"
+      ]
+    },
+    {
+      "context": "Opposite-circulation vortex pair. Translation velocity?",
+      "truth": "V = Γ / (2πd)",
+      "distractors": [
+        "V = Γ / (πd)",
+        "V = 2Γ / (πd)",
+        "V = Γd / (2π)"
+      ]
+    },
+    {
+      "context": "Two equal co-rotating point vortices, each with circulation Γ, separated by distance d. Angular velocity of co-rotation?",
+      "truth": "ω = Γ / (πd²)",
+      "distractors": [
+        "ω = Γ / (2πd²)",
+        "ω = 2Γ / (πd²)",
+        "ω = Γ / (πd)"
+      ]
+    },
+    {
+      "context": "Equal co-rotating vortex pair. Angular velocity?",
+      "truth": "ω = Γ / (πd²)",
+      "distractors": [
+        "ω = Γ / (2πd)",
+        "ω = Γd / π",
+        "ω = 2πΓ / d²"
+      ]
+    },
+    {
+      "context": "Point-vortex equations in Hamiltonian form. The canonical coordinates are (qᵢ, pᵢ) = ?",
+      "truth": "(qᵢ, pᵢ) = (xᵢ, Γᵢ yᵢ)",
+      "distractors": [
+        "(qᵢ, pᵢ) = (xᵢ, yᵢ)",
+        "(qᵢ, pᵢ) = (Γᵢ xᵢ, Γᵢ yᵢ)",
+        "(qᵢ, pᵢ) = (xᵢ + yᵢ, xᵢ - yᵢ)"
+      ]
+    },
+    {
+      "context": "Kirchhoff Hamiltonian structure. Canonical coordinates?",
+      "truth": "(qᵢ, pᵢ) = (xᵢ, Γᵢ yᵢ)",
+      "distractors": [
+        "(qᵢ, pᵢ) = (xᵢ, yᵢ)",
+        "(qᵢ, pᵢ) = (Γᵢ xᵢ, yᵢ)",
+        "(qᵢ, pᵢ) = (xᵢ/Γᵢ, yᵢ)"
+      ]
+    },
+    {
+      "context": "3-vortex point-vortex system. Is the system integrable (solvable in closed form)?",
+      "truth": "Yes: 3-vortex system is integrable (Aref 1979); conserved quantities H, Lz, Px, Py reduce it to quadratures",
+      "distractors": [
+        "No: 3-vortex system is chaotic for generic initial conditions",
+        "Yes: only for equal circulations Γ₁=Γ₂=Γ₃",
+        "No: only 2-vortex systems are integrable"
+      ]
+    },
+    {
+      "context": "Is the 3-vortex system integrable?",
+      "truth": "Yes: integrable (Aref 1979). H, Lz, Px, Py are conserved.",
+      "distractors": [
+        "No: chaotic",
+        "Only for equal Γ",
+        "No: only 2-body is integrable"
+      ]
+    },
+    {
+      "context": "4-vortex point-vortex system. Integrability?",
+      "truth": "No: 4-vortex is generally non-integrable, can be chaotic",
+      "distractors": [
+        "Yes: always integrable",
+        "Yes: for equal circulations",
+        "Integrable if symmetric"
+      ]
+    },
+    {
+      "context": "Why is Q = r₁₂ + ε(r₁₃+r₂₃) a near-invariant in restricted 3-vortex?",
+      "truth": "The strong pair dominates. Weak vortex perturbs r₁₃, r₂₃ with amplitude ~ε, so weighting by ε cancels perturbation to leading order.",
+      "distractors": [
+        "It's exactly conserved by Noether's theorem",
+        "The sum r₁₃+r₂₃ is constant",
+        "All linear combinations of rᵢⱼ are conserved"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex: what coefficient α minimizes variance of r₁₂ + α(r₁₃+r₂₃)?",
+      "truth": "α = Γ₃ (the weak vortex circulation)",
+      "distractors": [
+        "α = 1 (equal weights)",
+        "α = 0 (ignore weak vortex)",
+        "α = Γ₁ + Γ₂"
+      ]
+    },
+    {
+      "context": "Analogy: restricted 3-body has Jacobi integral. What is the vortex analog?",
+      "truth": "Q = r₁₂ + Γ₃(r₁₃+r₂₃). Weighted geometric invariant scaling test particle influence.",
+      "distractors": [
+        "H - ωLz (Jacobi integral directly)",
+        "r₁₂ alone",
+        "No analog exists"
+      ]
+    },
+    {
+      "context": "Three symmetric vortices Γ₁=Γ₂=Γ₃ in equilateral triangle. Dynamics?",
+      "truth": "Relative equilibrium: triangle rotates rigidly, all rᵢⱼ exactly constant.",
+      "distractors": [
+        "Chaotic motion",
+        "Collapse to point",
+        "rᵢⱼ oscillate"
+      ]
+    },
+    {
+      "context": "Equilateral 3-vortex configuration. What happens?",
+      "truth": "Relative equilibrium: rigid rotation, rᵢⱼ = const exactly.",
+      "distractors": [
+        "Vortices spiral inward",
+        "Triangle deforms",
+        "Only stable for equal Γ"
+      ]
+    }
+  ]
+}

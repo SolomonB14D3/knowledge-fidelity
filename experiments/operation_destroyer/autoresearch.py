@@ -26,10 +26,115 @@ import argparse
 import traceback
 from datetime import datetime
 
+import numpy as np
 import mlx.core as mx
 import mlx.nn as nn
 import mlx.optimizers as optim
 import mlx_lm
+
+
+# ============================================================================
+# Spectral monitoring (numpy only, no new deps)
+# ============================================================================
+
+SPECTRAL_REG = 0.0  # Spectral regularization weight (0 = monitoring only)
+SPECTRAL_LOG_INTERVAL = 100  # Log spectral stats every N steps (0 = only at end)
+
+
+def compute_spectral_stats(W: np.ndarray) -> dict:
+    """Compute spectral statistics of weight matrix W.
+
+    Returns dict with:
+      - sv1: largest singular value
+      - eff_dim: effective dimensionality = exp(entropy of normalized sv^2)
+      - spectral_entropy: entropy of normalized sv^2 distribution
+      - decon_score: 1 - (sv1 / sum(svs)), higher = more deconcentrated
+    """
+    W = W.astype(np.float32)
+    try:
+        # Full SVD for small matrices, truncated approximation for large
+        if min(W.shape) > 1000:
+            # Use randomized SVD approximation for large matrices
+            k = min(100, min(W.shape) - 1)
+            U, s, Vt = np.linalg.svd(W, full_matrices=False)
+            s = s[:k]
+        else:
+            _, s, _ = np.linalg.svd(W, full_matrices=False)
+    except np.linalg.LinAlgError:
+        return {"sv1": 0.0, "eff_dim": 0.0, "spectral_entropy": 0.0, "decon_score": 0.0}
+
+    sv1 = float(s[0])
+    total_sv = float(s.sum())
+
+    # Normalized squared singular values (probability distribution)
+    s2 = s ** 2
+    s2_sum = s2.sum()
+    if s2_sum < 1e-10:
+        return {"sv1": sv1, "eff_dim": 0.0, "spectral_entropy": 0.0, "decon_score": 0.0}
+
+    p = s2 / s2_sum
+
+    # Entropy of the distribution
+    p_nonzero = p[p > 1e-10]
+    spectral_entropy = float(-np.sum(p_nonzero * np.log(p_nonzero)))
+
+    # Effective dimensionality = exp(entropy)
+    eff_dim = float(np.exp(spectral_entropy))
+
+    # Deconcentration score: 1 - concentration
+    decon_score = 1.0 - (sv1 / total_sv) if total_sv > 0 else 0.0
+
+    return {
+        "sv1": sv1,
+        "eff_dim": eff_dim,
+        "spectral_entropy": spectral_entropy,
+        "decon_score": decon_score,
+    }
+
+
+def compute_grassmann_angle(W_before: np.ndarray, W_after: np.ndarray) -> float:
+    """Compute cosine of principal angle between column spaces of W_before and W_after.
+
+    Returns value in [0, 1] where 1 = identical subspaces, 0 = orthogonal.
+    """
+    W_before = W_before.astype(np.float32)
+    W_after = W_after.astype(np.float32)
+
+    try:
+        # Get orthonormal bases for column spaces
+        k = min(10, min(W_before.shape) - 1, min(W_after.shape) - 1)
+        if k < 1:
+            return 1.0
+
+        U1, _, _ = np.linalg.svd(W_before, full_matrices=False)
+        U2, _, _ = np.linalg.svd(W_after, full_matrices=False)
+
+        U1 = U1[:, :k]
+        U2 = U2[:, :k]
+
+        # Principal angles via SVD of U1.T @ U2
+        _, s, _ = np.linalg.svd(U1.T @ U2, full_matrices=False)
+
+        # Cosine of smallest principal angle (largest singular value)
+        return float(np.clip(s[0], 0.0, 1.0))
+    except (np.linalg.LinAlgError, ValueError):
+        return 1.0
+
+
+def approx_spectral_concentration(W: np.ndarray) -> float:
+    """Fast approximation of spectral concentration: sv1 / sum(svs).
+
+    Returns value in (0, 1] where higher = more concentrated.
+    """
+    W = W.astype(np.float32)
+    try:
+        _, s, _ = np.linalg.svd(W, full_matrices=False)
+        total = s.sum()
+        if total < 1e-10:
+            return 1.0
+        return float(s[0] / total)
+    except np.linalg.LinAlgError:
+        return 1.0
 
 # Import training infrastructure
 from experiments.snap_on.module import SnapOnConfig, create_adapter
@@ -213,6 +318,20 @@ def run_trial(model, tokenizer, lm_head, train_examples, val_examples,
 
     train_time = time.time() - t0
 
+    # Spectral monitoring on adapter weights
+    spectral_stats = {}
+    try:
+        from mlx.utils import tree_flatten
+        adapter_params = dict(tree_flatten(adapter.parameters()))
+        # Use the down_proj weight (output projection) for spectral analysis
+        if "down_proj.weight" in adapter_params:
+            W = np.array(adapter_params["down_proj.weight"])
+            spectral_stats = compute_spectral_stats(W)
+            print(f"  [SPECTRAL] step={steps} sv1={spectral_stats['sv1']:.4f} "
+                  f"eff_dim={spectral_stats['eff_dim']:.2f} decon={spectral_stats['decon_score']:.4f}")
+    except Exception as e:
+        print(f"  [SPECTRAL] failed: {e}")
+
     # Eval on val set
     val_losses = []
     for ex in val_examples[:100]:
@@ -309,6 +428,7 @@ def run_trial(model, tokenizer, lm_head, train_examples, val_examples,
         "mc_total": mc_total,
         "mmlu_acc": mmlu_acc,
         "mmlu_n": mmlu_total,
+        "spectral": spectral_stats,
     }
 
 
