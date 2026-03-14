@@ -1,0 +1,113 @@
+{
+  "description": "Training data for H-Lz linear combination invariant in point-vortex systems.",
+  "examples": [
+    {
+      "context": "2D point-vortex system with N vortices. H and Lz are both conserved. Which linear combination is also conserved?",
+      "truth": "H - Lz = const (any linear combination of conserved quantities is conserved)",
+      "distractors": [
+        "H - Lz oscillates",
+        "Only H and Lz individually are conserved",
+        "H · Lz = const"
+      ]
+    },
+    {
+      "context": "Point-vortex Hamiltonian H and angular impulse Lz are exact integrals. What about H - Lz?",
+      "truth": "H - Lz = const exactly (linear combination of integrals)",
+      "distractors": [
+        "H - Lz is not conserved",
+        "H - Lz = 0",
+        "H - Lz varies slowly"
+      ]
+    },
+    {
+      "context": "Kirchhoff vortex equations. H = -1/(4π) Σ ΓᵢΓⱼ ln(rᵢⱼ²), Lz = Σ Γᵢ(xᵢ²+yᵢ²). Is H - Lz conserved?",
+      "truth": "Yes: H - Lz = const (both terms are exact integrals of motion)",
+      "distractors": [
+        "No: H and Lz have different units",
+        "Only for equal circulations",
+        "H - Lz diverges"
+      ]
+    },
+    {
+      "context": "Point-vortex system. Given conserved H and conserved Lz, which is also conserved?",
+      "truth": "H - Lz, H + Lz, αH + βLz for any constants α, β",
+      "distractors": [
+        "Only H and Lz themselves",
+        "H/Lz only",
+        "H·Lz only"
+      ]
+    },
+    {
+      "context": "2D vortex dynamics. The Hamiltonian H and angular momentum Lz are integrals. What linear combination is conserved?",
+      "truth": "H - Lz = const (any linear combination of integrals is an integral)",
+      "distractors": [
+        "No linear combination works",
+        "H - Lz = H + Lz",
+        "H - Lz grows linearly"
+      ]
+    },
+    {
+      "context": "Point-vortex conserved quantities. If dH/dt = 0 and dLz/dt = 0, what about d(H-Lz)/dt?",
+      "truth": "d(H-Lz)/dt = 0 (derivative of difference is difference of derivatives)",
+      "distractors": [
+        "d(H-Lz)/dt ≠ 0",
+        "Cannot determine without solving equations",
+        "d(H-Lz)/dt = dH/dt - dLz/dt ≠ 0"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex problem. H and Lz are both conserved. What about the combination H - Lz?",
+      "truth": "H - Lz = const exactly",
+      "distractors": [
+        "H - Lz varies with test vortex position",
+        "Only H - ωLz is conserved (Jacobi-like)",
+        "H - Lz is approximate only"
+      ]
+    },
+    {
+      "context": "N point vortices. Conserved: H, Lz, Px, Py. Which combination is also exactly conserved?",
+      "truth": "H - Lz = const, H + αLz + βPx + γPy for any constants",
+      "distractors": [
+        "No combinations are conserved",
+        "H - Lz - Px - Py only",
+        "Only products like H·Lz"
+      ]
+    },
+    {
+      "context": "2D point-vortex system. The energy H and angular impulse Lz are independent integrals. New conserved quantity?",
+      "truth": "H - Lz is conserved (trivially, as linear combination of integrals)",
+      "distractors": [
+        "H - Lz is not independent so not useful",
+        "H - Lz diverges at vortex collision",
+        "No new quantities exist"
+      ]
+    },
+    {
+      "context": "Vortex pair: H and Lz conserved. What is the value of H - Lz throughout the motion?",
+      "truth": "H - Lz = H(0) - Lz(0) = const (initial value preserved)",
+      "distractors": [
+        "H - Lz = 0 always",
+        "H - Lz oscillates around initial value",
+        "H - Lz increases monotonically"
+      ]
+    },
+    {
+      "context": "Integrable 3-vortex system. Four conserved quantities: H, Lz, Px, Py. Is H - Lz also conserved?",
+      "truth": "Yes: H - Lz = const (linear combination)",
+      "distractors": [
+        "No: too many constraints would overdetermine the system",
+        "Only for symmetric initial conditions",
+        "H - Lz is the same as the Jacobi integral"
+      ]
+    },
+    {
+      "context": "Point-vortex dynamics: if Q₁ and Q₂ are both constants of motion, what about Q₁ - Q₂?",
+      "truth": "Q₁ - Q₂ = const (difference of constants is constant)",
+      "distractors": [
+        "Q₁ - Q₂ is not necessarily constant",
+        "Only if Q₁ and Q₂ are in involution",
+        "Q₁ - Q₂ = 0 always"
+      ]
+    }
+  ]
+}
