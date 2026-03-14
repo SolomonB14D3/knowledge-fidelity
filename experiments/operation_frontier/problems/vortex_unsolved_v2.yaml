@@ -1,0 +1,39 @@
+name: "reduced_navier_stokes_vortex_conservation_unsolved_v2"
+model: "Qwen/Qwen3-4B-Base"
+oracle: "stem_margin"
+verification_set: "vortex_pair_facts.json"
+pass_threshold: 0.8
+
+monitors:
+  - margin_sign
+  - rho_expression_unlock
+  - energy_violation
+  - e2_symmetric_poly
+  - vortex_q_perimeter
+  - h_minus_lz
+
+adapter: "../adapters/multi_domain_v2.npz"
+destructive_mode: true
+budget: "10000 steps"
+
+objective: |
+  Discover any new approximate conserved quantity in reduced 2D Navier-Stokes
+  vortex flows that survives formal energy check and flips positive margin.
+
+hunt_config:
+  mode: "knowledge_gap"
+  numerical_threshold: 0.005
+  margin_threshold: 0.0
+  ic_priority:
+    - restricted
+  expression_templates:
+    - "s['r12'] + {alpha}*(s['r13'] + s['r23'])"
+    - "s['r12']**2 + {alpha}*(s['r13']**2 + s['r23']**2)"
+    - "s['r12']*s['r13'] + {beta}*s['r12']*s['r23'] + {gamma}*s['r13']*s['r23']"
+    - "s['H'] + {alpha}*s['Lz']"
+    - "s['H'] - {alpha}*s['Lz']"
+    - "(s['r13'] - s['r23'])**2"
+    - "s['r12']/(s['r13'] + s['r23'])"
+    - "s['H']*s['r12'] + {alpha}*s['Lz']"
+    - "(s['r13']**2 - s['r23']**2)/(s['r13']**2 + s['r23']**2 + 1e-10)"
+  alpha_range: [0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0]

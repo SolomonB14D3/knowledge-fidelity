@@ -286,3 +286,9 @@ Download Qwen3-4B-Base, check vocab size, run diagnostics. Everything depends on
 | vp11 margin | -29.959 | +3.987 ✓ |
 
 **Training**: lr=5e-7, 1000 steps, d_inner=64, vortex_aligned_30.json (30 examples)
+
+### Discovery 5 — H-Lz Exact Invariant Repair (2026-03-13)
+- Found numerically exact invariant (frac_var = exact)
+- Oracle: -19.64 → +26.05 after 800-step targeted adapter
+- Now have multi_domain_v2.npz (merged choreography + vortex + H-Lz)
+- Workflow officially validated across 3 physics domains
