@@ -123,6 +123,52 @@ def load_adapter_for_model(model, adapter_path: str, d_inner: int = 64):
 
 
 # --------------------------------------------------------------------------
+# Diagnostic quadrants
+# --------------------------------------------------------------------------
+
+# Thresholds for the knowledge-gap diagnostic (from repair pass on C10, 2026-03-13)
+KNOWLEDGE_GAP_DELTA_THRESHOLD = -5.0   # margin_delta < this → knowledge gap mode
+
+
+def diagnose_quadrant(baseline_margin: float, repaired_margin: float | None,
+                      checker_passed: bool | None = None) -> str:
+    """
+    Classify a candidate into one of four diagnostic quadrants:
+
+    1. Oracle PASS + Checker PASS               → "known_conserved"
+    2. Oracle FAIL + Checker PASS + adapter ↑   → "fixable_bias"
+    3. Oracle FAIL + Checker PASS + adapter ↓   → "knowledge_gap"   ← key quadrant
+    4. Checker FAIL (regardless of oracle)      → "numerical_artifact"
+
+    Returns one of: "known_conserved", "fixable_bias", "knowledge_gap",
+                    "numerical_artifact", "oracle_fail_unchecked"
+    """
+    if checker_passed is False:
+        return "numerical_artifact"
+    if baseline_margin > 0 and checker_passed:
+        return "known_conserved"
+    if baseline_margin <= 0 and repaired_margin is not None:
+        delta = repaired_margin - baseline_margin
+        if delta < KNOWLEDGE_GAP_DELTA_THRESHOLD:
+            return "knowledge_gap"
+        if repaired_margin > baseline_margin:
+            return "fixable_bias"
+    return "oracle_fail_unchecked"
+
+
+QUADRANT_ACTIONS = {
+    "known_conserved":      "Archive. Add to verification set as positive control.",
+    "fixable_bias":         "Apply targeted adapter. Re-verify. Check which bias pattern.",
+    "knowledge_gap":        "KNOWLEDGE GAP MODE — model hasn't seen this structure.\n"
+                            "  Options: (a) generate domain-specific fine-tune data,\n"
+                            "           (b) train choreography adapter (d_inner=64, 20+ examples),\n"
+                            "           (c) proceed to batch 3 (new problem domain).",
+    "numerical_artifact":   "Discard. Checker frac_var above threshold on all IC types.",
+    "oracle_fail_unchecked": "Run repair pass to diagnose. Or run checker first.",
+}
+
+
+# --------------------------------------------------------------------------
 # Report
 # --------------------------------------------------------------------------
 
@@ -144,6 +190,32 @@ def print_report(label: str, summary: dict, threshold: float):
     return passed
 
 
+def print_quadrant_diagnosis(baseline: dict, repaired: dict | None,
+                              checker_passed: bool | None = None):
+    """Print diagnostic quadrant and recommended action after repair pass."""
+    b_margin = baseline["mean_margin"]
+    r_margin  = repaired["mean_margin"] if repaired else None
+    quadrant  = diagnose_quadrant(b_margin, r_margin, checker_passed)
+    delta_str = f"{r_margin - b_margin:+.2f}" if r_margin is not None else "n/a"
+
+    print(f"\n{'─'*60}")
+    print(f"  Diagnostic Quadrant: {quadrant.upper()}")
+    r_margin_str = f"{r_margin:+.3f}" if r_margin is not None else "n/a"
+    print(f"  Margin baseline → repaired: {b_margin:+.3f} → {r_margin_str}  (Δ={delta_str})")
+    print(f"\n  Recommended action:")
+    for line in QUADRANT_ACTIONS[quadrant].splitlines():
+        print(f"    {line}")
+    print(f"{'─'*60}")
+
+    if quadrant == "knowledge_gap":
+        print("\n  ⚠  KNOWLEDGE GAP MODE triggered.")
+        print(f"     Margin delta = {delta_str} (threshold: < {KNOWLEDGE_GAP_DELTA_THRESHOLD:+.1f})")
+        print("     The mixed STEM adapter makes this fact worse, not better.")
+        print("     This structure is absent from training data — not a correctable bias.")
+
+    return quadrant
+
+
 # --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
@@ -156,6 +228,11 @@ def main():
                         help="Path to .npz adapter (overrides problem.yaml)")
     parser.add_argument("--repair", action="store_true",
                         help="If baseline fails, apply mixed adapter and recheck")
+    parser.add_argument("--diagnose", action="store_true",
+                        help="After repair pass, print diagnostic quadrant and recommended action")
+    parser.add_argument("--checker-passed", type=lambda x: x.lower() in ("true", "1", "yes"),
+                        default=None, dest="checker_passed",
+                        help="Pass formal checker result (true/false) for quadrant diagnosis")
     parser.add_argument("--d-inner", type=int, default=64)
     args = parser.parse_args()
 
@@ -164,6 +241,11 @@ def main():
     facts = load_verification_set(problem, problem_dir)
     model_name = problem.get("model", "Qwen/Qwen3-4B-Base")
     threshold = float(problem.get("pass_threshold", 1.0))
+
+    # Reward config from problem yaml (optional)
+    reward_cfg  = problem.get("reward", {})
+    gap_trigger = float(reward_cfg.get("knowledge_gap_trigger", KNOWLEDGE_GAP_DELTA_THRESHOLD))
+
     mixed_adapter_path = os.path.join(
         DESTROYER_DIR,
         "sub_experiments/exp03_correction/adapter_mixed.npz"
@@ -173,6 +255,9 @@ def main():
     print(f"Model:    {model_name}")
     print(f"Facts:    {len(facts)}")
     print(f"Threshold: {threshold:.0%}")
+    if reward_cfg:
+        print(f"Reward:   primary={reward_cfg.get('primary', 'margin_after_repair')}  "
+              f"gap_trigger={gap_trigger:+.1f}")
 
     # Load model
     t0 = time.time()
@@ -185,6 +270,7 @@ def main():
     print("\nRunning baseline oracle...")
     baseline = run_oracle(model, tokenizer, facts)
     baseline_pass = print_report("Baseline (no adapter)", baseline, threshold)
+    repaired_summary = None
 
     # --- Repair pass (if requested and baseline failed) ---
     if not baseline_pass and args.repair:
@@ -194,15 +280,19 @@ def main():
         else:
             print(f"\nApplying adapter: {adapter_path}")
             adapter, lm_head = load_adapter_for_model(model, adapter_path, args.d_inner)
-            repaired = run_oracle(model, tokenizer, facts, adapter=adapter, lm_head=lm_head)
-            print_report("After adapter repair", repaired, threshold)
+            repaired_summary = run_oracle(model, tokenizer, facts, adapter=adapter, lm_head=lm_head)
+            print_report("After adapter repair", repaired_summary, threshold)
 
     # --- Explicit adapter pass ---
     elif args.adapter and args.adapter != "none":
         print(f"\nApplying adapter: {args.adapter}")
         adapter, lm_head = load_adapter_for_model(model, args.adapter, args.d_inner)
-        adapted = run_oracle(model, tokenizer, facts, adapter=adapter, lm_head=lm_head)
-        print_report("With adapter", adapted, threshold)
+        repaired_summary = run_oracle(model, tokenizer, facts, adapter=adapter, lm_head=lm_head)
+        print_report("With adapter", repaired_summary, threshold)
+
+    # --- Diagnostic quadrant (always print if repair was run, or if --diagnose) ---
+    if repaired_summary is not None or args.diagnose:
+        print_quadrant_diagnosis(baseline, repaired_summary, args.checker_passed)
 
     print()
 
