@@ -1,0 +1,383 @@
+{
+  "description": "Combined vortex + H-Lz training data",
+  "examples": [
+    {
+      "context": "Restricted 3-vortex: two strong vortices \u0393\u2081=\u0393\u2082=1, one weak test vortex \u0393\u2083=\u03b5\u226a1. Which geometric quantity is approximately conserved?",
+      "truth": "Q = r\u2081\u2082 + \u03b5(r\u2081\u2083 + r\u2082\u2083) \u2248 const (weighted perimeter)",
+      "distractors": [
+        "r\u2081\u2082 + r\u2081\u2083 + r\u2082\u2083 = const (equal weights)",
+        "r\u2081\u2082 = const exactly",
+        "r\u2081\u2082 \u00b7 r\u2081\u2083 \u00b7 r\u2082\u2083 = const"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex with \u0393\u2083=0.01. What is the near-invariant quantity?",
+      "truth": "Q = r\u2081\u2082 + 0.01(r\u2081\u2083 + r\u2082\u2083) \u2248 const",
+      "distractors": [
+        "r\u2081\u2082 = const",
+        "r\u2081\u2083 + r\u2082\u2083 = const",
+        "r\u2081\u2082 + r\u2081\u2083 + r\u2082\u2083 = const"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex with \u0393\u2083=0.02. What is the approximate conserved quantity?",
+      "truth": "Q = r\u2081\u2082 + 0.02(r\u2081\u2083 + r\u2082\u2083) \u2248 const",
+      "distractors": [
+        "r\u2081\u2082 = const exactly",
+        "r\u2081\u2082 + r\u2081\u2083 = const",
+        "H - \u03c9\u00b7Lz = const"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex with weak test vortex \u0393\u2083=0.05. Near-invariant?",
+      "truth": "Q = r\u2081\u2082 + 0.05(r\u2081\u2083 + r\u2082\u2083) \u2248 const",
+      "distractors": [
+        "r\u2081\u2082 = const",
+        "r\u2081\u2082\u00b7r\u2081\u2083\u00b7r\u2082\u2083 = const",
+        "r\u2081\u2083/r\u2082\u2083 = const"
+      ]
+    },
+    {
+      "context": "2D point-vortex system, N vortices at positions (x\u1d62,y\u1d62) with circulations \u0393\u1d62, Kirchhoff equations. Which quantity is exactly conserved?",
+      "truth": "H = -1/(4\u03c0) \u03a3\u1d62<\u2c7c \u0393\u1d62\u0393\u2c7c ln(r\u1d62\u2c7c\u00b2)",
+      "distractors": [
+        "H = 1/(4\u03c0) \u03a3\u1d62<\u2c7c \u0393\u1d62\u0393\u2c7c ln(r\u1d62\u2c7c\u00b2)",
+        "H = -1/(2\u03c0) \u03a3\u1d62<\u2c7c \u0393\u1d62\u0393\u2c7c ln(r\u1d62\u2c7c)",
+        "H = \u03a3\u1d62<\u2c7c \u0393\u1d62\u0393\u2c7c / r\u1d62\u2c7c\u00b2"
+      ]
+    },
+    {
+      "context": "Point-vortex Hamiltonian. N vortices. What is exactly conserved?",
+      "truth": "H = -1/(4\u03c0) \u03a3\u1d62<\u2c7c \u0393\u1d62\u0393\u2c7c ln(r\u1d62\u2c7c\u00b2)",
+      "distractors": [
+        "H = \u03a3\u1d62 \u0393\u1d62\u00b2/2",
+        "H = -\u03a3\u1d62<\u2c7c \u0393\u1d62\u0393\u2c7c/r\u1d62\u2c7c",
+        "H = \u03a3\u1d62<\u2c7c ln(r\u1d62\u2c7c)"
+      ]
+    },
+    {
+      "context": "2D point-vortex system with circulations \u0393\u1d62 at positions (x\u1d62,y\u1d62). Angular impulse (Kirchhoff 1876). Which quantity is exactly conserved?",
+      "truth": "Lz = \u03a3\u1d62 \u0393\u1d62 (x\u1d62\u00b2 + y\u1d62\u00b2)",
+      "distractors": [
+        "Lz = \u03a3\u1d62 (x\u1d62\u00b2 + y\u1d62\u00b2)",
+        "Lz = \u03a3\u1d62 \u0393\u1d62\u00b2 (x\u1d62\u00b2 + y\u1d62\u00b2)",
+        "Lz = \u03a3\u1d62 \u0393\u1d62 (x\u1d62\u00b7dy\u1d62/dt - y\u1d62\u00b7dx\u1d62/dt)"
+      ]
+    },
+    {
+      "context": "Point-vortex angular impulse. What is conserved?",
+      "truth": "Lz = \u03a3\u1d62 \u0393\u1d62 (x\u1d62\u00b2 + y\u1d62\u00b2)",
+      "distractors": [
+        "Lz = \u03a3\u1d62 x\u1d62\u00b2 + y\u1d62\u00b2",
+        "Lz = \u03a3\u1d62 \u0393\u1d62 x\u1d62 y\u1d62",
+        "Lz = \u03a3\u1d62 \u0393\u1d62 (x\u1d62 - y\u1d62)\u00b2"
+      ]
+    },
+    {
+      "context": "2D point-vortex system, Kirchhoff equations. Linear impulse components. Which is exactly conserved?",
+      "truth": "Px = \u03a3\u1d62 \u0393\u1d62 y\u1d62",
+      "distractors": [
+        "Px = \u03a3\u1d62 \u0393\u1d62 x\u1d62",
+        "Px = \u03a3\u1d62 \u0393\u1d62 dx\u1d62/dt",
+        "Px = \u03a3\u1d62 \u0393\u1d62 (x\u1d62 + y\u1d62)"
+      ]
+    },
+    {
+      "context": "Point-vortex linear impulse x-component. Conserved quantity?",
+      "truth": "Px = \u03a3\u1d62 \u0393\u1d62 y\u1d62",
+      "distractors": [
+        "Px = \u03a3\u1d62 \u0393\u1d62 x\u1d62",
+        "Px = \u03a3\u1d62 y\u1d62",
+        "Px = \u03a3\u1d62 \u0393\u1d62\u00b2 y\u1d62"
+      ]
+    },
+    {
+      "context": "2D point-vortex system, Kirchhoff equations. Linear impulse y-component. Which is exactly conserved?",
+      "truth": "Py = -\u03a3\u1d62 \u0393\u1d62 x\u1d62",
+      "distractors": [
+        "Py = \u03a3\u1d62 \u0393\u1d62 y\u1d62",
+        "Py = \u03a3\u1d62 \u0393\u1d62 dy\u1d62/dt",
+        "Py = -\u03a3\u1d62 \u0393\u1d62 (x\u1d62 + y\u1d62)"
+      ]
+    },
+    {
+      "context": "Point-vortex linear impulse y-component. What is conserved?",
+      "truth": "Py = -\u03a3\u1d62 \u0393\u1d62 x\u1d62",
+      "distractors": [
+        "Py = \u03a3\u1d62 \u0393\u1d62 x\u1d62",
+        "Py = -\u03a3\u1d62 x\u1d62",
+        "Py = \u03a3\u1d62 \u0393\u1d62 y\u1d62"
+      ]
+    },
+    {
+      "context": "Two point vortices with equal circulations \u0393\u2081=\u0393\u2082. Kirchhoff equations. What is constant throughout the motion?",
+      "truth": "r\u2081\u2082 = (|x\u2081-x\u2082|\u00b2 + |y\u2081-y\u2082|\u00b2)^(1/2) = const",
+      "distractors": [
+        "r\u2081\u2082 increases monotonically",
+        "\u03b8\u2081\u2082 = arctan((y\u2081-y\u2082)/(x\u2081-x\u2082)) = const",
+        "r\u2081\u2082 oscillates with period T = 2\u03c0r\u2081\u2082\u00b2/\u0393"
+      ]
+    },
+    {
+      "context": "Equal-circulation vortex pair. What geometric quantity is conserved?",
+      "truth": "r\u2081\u2082 = const (separation distance)",
+      "distractors": [
+        "r\u2081\u2082 oscillates",
+        "\u03b8\u2081\u2082 = const",
+        "r\u2081\u2082 decreases"
+      ]
+    },
+    {
+      "context": "N point vortices with total circulation \u0393_tot = \u03a3 \u0393\u1d62 \u2260 0. Kirchhoff equations. What is conserved?",
+      "truth": "Xcm = \u03a3\u1d62 \u0393\u1d62 x\u1d62 / \u0393_tot = const,  Ycm = \u03a3\u1d62 \u0393\u1d62 y\u1d62 / \u0393_tot = const",
+      "distractors": [
+        "Xcm = \u03a3\u1d62 x\u1d62 / N = const",
+        "Xcm = \u03a3\u1d62 \u0393\u1d62 x\u1d62 = const",
+        "Xcm drifts at velocity V = \u0393_tot / (2\u03c0)"
+      ]
+    },
+    {
+      "context": "Point-vortex centroid. \u0393_tot \u2260 0. What is conserved?",
+      "truth": "Xcm = \u03a3\u1d62 \u0393\u1d62 x\u1d62 / \u0393_tot = const",
+      "distractors": [
+        "Xcm = \u03a3\u1d62 x\u1d62 / N = const",
+        "Xcm = \u03a3\u1d62 \u0393\u1d62\u00b2 x\u1d62 / \u0393_tot = const",
+        "Xcm moves at constant velocity"
+      ]
+    },
+    {
+      "context": "Two point vortices with opposite circulations \u0393\u2081=-\u0393\u2082=\u0393, separation d. Kirchhoff equations. Translational velocity of the pair?",
+      "truth": "V = \u0393 / (2\u03c0d)",
+      "distractors": [
+        "V = \u0393 / (\u03c0d\u00b2)",
+        "V = 2\u0393 / (\u03c0d)",
+        "V = \u0393\u00b2 / (2\u03c0d)"
+      ]
+    },
+    {
+      "context": "Opposite-circulation vortex pair. Translation velocity?",
+      "truth": "V = \u0393 / (2\u03c0d)",
+      "distractors": [
+        "V = \u0393 / (\u03c0d)",
+        "V = 2\u0393 / (\u03c0d)",
+        "V = \u0393d / (2\u03c0)"
+      ]
+    },
+    {
+      "context": "Two equal co-rotating point vortices, each with circulation \u0393, separated by distance d. Angular velocity of co-rotation?",
+      "truth": "\u03c9 = \u0393 / (\u03c0d\u00b2)",
+      "distractors": [
+        "\u03c9 = \u0393 / (2\u03c0d\u00b2)",
+        "\u03c9 = 2\u0393 / (\u03c0d\u00b2)",
+        "\u03c9 = \u0393 / (\u03c0d)"
+      ]
+    },
+    {
+      "context": "Equal co-rotating vortex pair. Angular velocity?",
+      "truth": "\u03c9 = \u0393 / (\u03c0d\u00b2)",
+      "distractors": [
+        "\u03c9 = \u0393 / (2\u03c0d)",
+        "\u03c9 = \u0393d / \u03c0",
+        "\u03c9 = 2\u03c0\u0393 / d\u00b2"
+      ]
+    },
+    {
+      "context": "Point-vortex equations in Hamiltonian form. The canonical coordinates are (q\u1d62, p\u1d62) = ?",
+      "truth": "(q\u1d62, p\u1d62) = (x\u1d62, \u0393\u1d62 y\u1d62)",
+      "distractors": [
+        "(q\u1d62, p\u1d62) = (x\u1d62, y\u1d62)",
+        "(q\u1d62, p\u1d62) = (\u0393\u1d62 x\u1d62, \u0393\u1d62 y\u1d62)",
+        "(q\u1d62, p\u1d62) = (x\u1d62 + y\u1d62, x\u1d62 - y\u1d62)"
+      ]
+    },
+    {
+      "context": "Kirchhoff Hamiltonian structure. Canonical coordinates?",
+      "truth": "(q\u1d62, p\u1d62) = (x\u1d62, \u0393\u1d62 y\u1d62)",
+      "distractors": [
+        "(q\u1d62, p\u1d62) = (x\u1d62, y\u1d62)",
+        "(q\u1d62, p\u1d62) = (\u0393\u1d62 x\u1d62, y\u1d62)",
+        "(q\u1d62, p\u1d62) = (x\u1d62/\u0393\u1d62, y\u1d62)"
+      ]
+    },
+    {
+      "context": "3-vortex point-vortex system. Is the system integrable (solvable in closed form)?",
+      "truth": "Yes: 3-vortex system is integrable (Aref 1979); conserved quantities H, Lz, Px, Py reduce it to quadratures",
+      "distractors": [
+        "No: 3-vortex system is chaotic for generic initial conditions",
+        "Yes: only for equal circulations \u0393\u2081=\u0393\u2082=\u0393\u2083",
+        "No: only 2-vortex systems are integrable"
+      ]
+    },
+    {
+      "context": "Is the 3-vortex system integrable?",
+      "truth": "Yes: integrable (Aref 1979). H, Lz, Px, Py are conserved.",
+      "distractors": [
+        "No: chaotic",
+        "Only for equal \u0393",
+        "No: only 2-body is integrable"
+      ]
+    },
+    {
+      "context": "4-vortex point-vortex system. Integrability?",
+      "truth": "No: 4-vortex is generally non-integrable, can be chaotic",
+      "distractors": [
+        "Yes: always integrable",
+        "Yes: for equal circulations",
+        "Integrable if symmetric"
+      ]
+    },
+    {
+      "context": "Why is Q = r\u2081\u2082 + \u03b5(r\u2081\u2083+r\u2082\u2083) a near-invariant in restricted 3-vortex?",
+      "truth": "The strong pair dominates. Weak vortex perturbs r\u2081\u2083, r\u2082\u2083 with amplitude ~\u03b5, so weighting by \u03b5 cancels perturbation to leading order.",
+      "distractors": [
+        "It's exactly conserved by Noether's theorem",
+        "The sum r\u2081\u2083+r\u2082\u2083 is constant",
+        "All linear combinations of r\u1d62\u2c7c are conserved"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex: what coefficient \u03b1 minimizes variance of r\u2081\u2082 + \u03b1(r\u2081\u2083+r\u2082\u2083)?",
+      "truth": "\u03b1 = \u0393\u2083 (the weak vortex circulation)",
+      "distractors": [
+        "\u03b1 = 1 (equal weights)",
+        "\u03b1 = 0 (ignore weak vortex)",
+        "\u03b1 = \u0393\u2081 + \u0393\u2082"
+      ]
+    },
+    {
+      "context": "Analogy: restricted 3-body has Jacobi integral. What is the vortex analog?",
+      "truth": "Q = r\u2081\u2082 + \u0393\u2083(r\u2081\u2083+r\u2082\u2083). Weighted geometric invariant scaling test particle influence.",
+      "distractors": [
+        "H - \u03c9Lz (Jacobi integral directly)",
+        "r\u2081\u2082 alone",
+        "No analog exists"
+      ]
+    },
+    {
+      "context": "Three symmetric vortices \u0393\u2081=\u0393\u2082=\u0393\u2083 in equilateral triangle. Dynamics?",
+      "truth": "Relative equilibrium: triangle rotates rigidly, all r\u1d62\u2c7c exactly constant.",
+      "distractors": [
+        "Chaotic motion",
+        "Collapse to point",
+        "r\u1d62\u2c7c oscillate"
+      ]
+    },
+    {
+      "context": "Equilateral 3-vortex configuration. What happens?",
+      "truth": "Relative equilibrium: rigid rotation, r\u1d62\u2c7c = const exactly.",
+      "distractors": [
+        "Vortices spiral inward",
+        "Triangle deforms",
+        "Only stable for equal \u0393"
+      ]
+    },
+    {
+      "context": "2D point-vortex system with N vortices. H and Lz are both conserved. Which linear combination is also conserved?",
+      "truth": "H - Lz = const (any linear combination of conserved quantities is conserved)",
+      "distractors": [
+        "H - Lz oscillates",
+        "Only H and Lz individually are conserved",
+        "H \u00b7 Lz = const"
+      ]
+    },
+    {
+      "context": "Point-vortex Hamiltonian H and angular impulse Lz are exact integrals. What about H - Lz?",
+      "truth": "H - Lz = const exactly (linear combination of integrals)",
+      "distractors": [
+        "H - Lz is not conserved",
+        "H - Lz = 0",
+        "H - Lz varies slowly"
+      ]
+    },
+    {
+      "context": "Kirchhoff vortex equations. H = -1/(4\u03c0) \u03a3 \u0393\u1d62\u0393\u2c7c ln(r\u1d62\u2c7c\u00b2), Lz = \u03a3 \u0393\u1d62(x\u1d62\u00b2+y\u1d62\u00b2). Is H - Lz conserved?",
+      "truth": "Yes: H - Lz = const (both terms are exact integrals of motion)",
+      "distractors": [
+        "No: H and Lz have different units",
+        "Only for equal circulations",
+        "H - Lz diverges"
+      ]
+    },
+    {
+      "context": "Point-vortex system. Given conserved H and conserved Lz, which is also conserved?",
+      "truth": "H - Lz, H + Lz, \u03b1H + \u03b2Lz for any constants \u03b1, \u03b2",
+      "distractors": [
+        "Only H and Lz themselves",
+        "H/Lz only",
+        "H\u00b7Lz only"
+      ]
+    },
+    {
+      "context": "2D vortex dynamics. The Hamiltonian H and angular momentum Lz are integrals. What linear combination is conserved?",
+      "truth": "H - Lz = const (any linear combination of integrals is an integral)",
+      "distractors": [
+        "No linear combination works",
+        "H - Lz = H + Lz",
+        "H - Lz grows linearly"
+      ]
+    },
+    {
+      "context": "Point-vortex conserved quantities. If dH/dt = 0 and dLz/dt = 0, what about d(H-Lz)/dt?",
+      "truth": "d(H-Lz)/dt = 0 (derivative of difference is difference of derivatives)",
+      "distractors": [
+        "d(H-Lz)/dt \u2260 0",
+        "Cannot determine without solving equations",
+        "d(H-Lz)/dt = dH/dt - dLz/dt \u2260 0"
+      ]
+    },
+    {
+      "context": "Restricted 3-vortex problem. H and Lz are both conserved. What about the combination H - Lz?",
+      "truth": "H - Lz = const exactly",
+      "distractors": [
+        "H - Lz varies with test vortex position",
+        "Only H - \u03c9Lz is conserved (Jacobi-like)",
+        "H - Lz is approximate only"
+      ]
+    },
+    {
+      "context": "N point vortices. Conserved: H, Lz, Px, Py. Which combination is also exactly conserved?",
+      "truth": "H - Lz = const, H + \u03b1Lz + \u03b2Px + \u03b3Py for any constants",
+      "distractors": [
+        "No combinations are conserved",
+        "H - Lz - Px - Py only",
+        "Only products like H\u00b7Lz"
+      ]
+    },
+    {
+      "context": "2D point-vortex system. The energy H and angular impulse Lz are independent integrals. New conserved quantity?",
+      "truth": "H - Lz is conserved (trivially, as linear combination of integrals)",
+      "distractors": [
+        "H - Lz is not independent so not useful",
+        "H - Lz diverges at vortex collision",
+        "No new quantities exist"
+      ]
+    },
+    {
+      "context": "Vortex pair: H and Lz conserved. What is the value of H - Lz throughout the motion?",
+      "truth": "H - Lz = H(0) - Lz(0) = const (initial value preserved)",
+      "distractors": [
+        "H - Lz = 0 always",
+        "H - Lz oscillates around initial value",
+        "H - Lz increases monotonically"
+      ]
+    },
+    {
+      "context": "Integrable 3-vortex system. Four conserved quantities: H, Lz, Px, Py. Is H - Lz also conserved?",
+      "truth": "Yes: H - Lz = const (linear combination)",
+      "distractors": [
+        "No: too many constraints would overdetermine the system",
+        "Only for symmetric initial conditions",
+        "H - Lz is the same as the Jacobi integral"
+      ]
+    },
+    {
+      "context": "Point-vortex dynamics: if Q\u2081 and Q\u2082 are both constants of motion, what about Q\u2081 - Q\u2082?",
+      "truth": "Q\u2081 - Q\u2082 = const (difference of constants is constant)",
+      "distractors": [
+        "Q\u2081 - Q\u2082 is not necessarily constant",
+        "Only if Q\u2081 and Q\u2082 are in involution",
+        "Q\u2081 - Q\u2082 = 0 always"
+      ]
+    }
+  ]
+}
