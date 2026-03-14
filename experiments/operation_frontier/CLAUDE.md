@@ -17,11 +17,41 @@ cat results/candidates.tsv
 # 2. See what's currently being hunted
 python claim.py list
 
-# 3. See the current state of all discoveries
+# 3. See the open questions queue (AI-generated hypotheses + user problems)
+python autonomy_loop.py show-queue
+
+# 4. See the current state of all discoveries
 python dashboard.py --open
 ```
 
 Then read `README.md` for the architecture and `CONTRIBUTING.md` for the full protocol.
+
+---
+
+## Ask the User First
+
+**At the start of every session, ask:**
+
+> "Do you have an unsolved physics problem you'd like to investigate, or should I
+> pick from the open questions queue?"
+
+If the user has their own problem:
+```bash
+python autonomy_loop.py propose-problem
+# (prompts interactively) or:
+python autonomy_loop.py propose-problem --text "Your question here"
+```
+This calls Claude API (adaptive thinking) to:
+1. Generate a complete problem YAML with expression templates
+2. Suggest a verification facts file to create
+3. Add the direction to the open questions queue
+
+If the user wants to pick from the queue:
+```bash
+python autonomy_loop.py show-queue
+# Pick a high-priority expression or direction
+# Run: python autonomy_loop.py --problem problems/<relevant>.yaml
+```
 
 ---
 
@@ -56,7 +86,38 @@ Hypothesis (expression)
 
 ---
 
-## Running an Experiment — Step by Step
+## Fully Autonomous Run (Recommended)
+
+Once a problem YAML exists, the full loop runs without human babysitting:
+
+```bash
+# Full autonomous run — sweeps, oracles, trains adapters, publishes
+python autonomy_loop.py --problem problems/vortex_pair_conservation.yaml
+
+# Also generate new hypotheses for the next session
+python autonomy_loop.py --problem problems/vortex_pair_conservation.yaml \
+    --generate-problems
+
+# Dry run — just numerical sweep, no model load needed
+python autonomy_loop.py --problem problems/vortex_pair_conservation.yaml --dry-run
+
+# Oracle without training (no ANTHROPIC_API_KEY needed)
+python autonomy_loop.py --problem problems/vortex_pair_conservation.yaml \
+    --skip-training
+```
+
+The loop does everything: expand templates → check numerically → generate oracle
+question via Claude API → run oracle → if fails, generate training data → train
+adapter → re-evaluate → publish to candidates.tsv → generate new hypotheses.
+
+**What `--generate-problems` does:**
+After the main loop, calls Claude (adaptive thinking) to propose 8-12 new
+expression hypotheses based on what was found. These go into
+`results/open_questions.jsonl` and are automatically injected into the next run.
+
+---
+
+## Running an Experiment — Step by Step (Manual)
 
 ### Step 1: Claim your hypothesis (prevents duplicate work)
 ```bash
@@ -115,6 +176,29 @@ Add a row to `results/candidates.tsv` and open a PR. If DUAL-PASS or FLIPPED, ad
 
 ---
 
+## Open Questions Queue
+
+The `results/open_questions.jsonl` file accumulates AI-generated hypotheses and
+user-proposed research directions across sessions. It's how the system "remembers"
+what to try next.
+
+**Check it before starting:**
+```bash
+python autonomy_loop.py show-queue
+```
+
+**Two types of entries:**
+- `type: expression` — specific Python expression ready to numerically check
+- `type: direction` — broader research question needing a new problem YAML
+
+**Entries are auto-injected** into the next `autonomy_loop.py` run for the
+matching domain. You can also manually pick one and run it.
+
+**Marking a question done:**  Edit `results/open_questions.jsonl` and set
+`"status": "done"`. Or it's automatically closed when added to candidates.tsv.
+
+---
+
 ## Finding Open Problems — Read the Live Sources
 
 **Never rely on static lists in this file — they go stale.** Always query the live sources:
@@ -125,6 +209,9 @@ cat results/candidates.tsv
 
 # What's actively being hunted right now? (in-flight claims)
 python claim.py list
+
+# What's in the open questions queue? (AI-generated + user proposals)
+python autonomy_loop.py show-queue
 
 # What's still open in each domain? (suggested next targets from domain experts)
 grep -A 20 "Next interesting targets" problems/vortex_pair_conservation.yaml

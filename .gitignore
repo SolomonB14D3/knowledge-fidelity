@@ -63,6 +63,10 @@ paper/*.synctex.gz
 # Operation Frontier / NoetherSolve — generated outputs (dashboard + charts regenerate from tsv)
 experiments/operation_frontier/results/dashboard.html
 experiments/operation_frontier/results/charts/
+experiments/operation_frontier/results/hunt_results.json
+# Open questions queue — local state, regenerates from autonomy_loop.py
+# (commit if you want to share with collaborators; gitignore if personal)
+# experiments/operation_frontier/results/open_questions.jsonl
 # Adapter weights (large, local only — referenced by YAML but not committed)
 experiments/operation_frontier/adapters/
 
