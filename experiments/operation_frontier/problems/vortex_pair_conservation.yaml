@@ -70,12 +70,20 @@ notes: |
   C-V04: r13²+r23² on restricted               → FAIL frac_var=1.6e-01
   C-V05: r13/r23 on restricted                 → FAIL frac_var=8.4e-02
   C-V06: r12*r13*r23 on three_symmetric        → PASS frac_var=7.4e-12 (trivially exact)
+  C-V11: Q=r12+ε(r13+r23) on restricted       → PASS frac_var=5.36e-06 (FLIPPED, vortex_q_adapter_v4)
+  C-V12: H - Lz on restricted → FLIPPED oracle -19.64→+26.05 (unified_vortex_v1); h_minus_lz_adapter: +11.85
+    Physically trivial (linear combo of exact integrals, frac_var~1e-12) but reveals oracle bias:
+    model does not recognize αH+βLz is conserved even though H and Lz individually are.
+    Key finding: adapter averaging (multi_domain_v2) degrades specialist performance.
+    Each domain needs dedicated adapter; do not merge adapters naively.
+  C-V13: H·r12 + α·Lz (8 variants) on restricted → numerical PASS, oracle not yet run (OPEN)
 
   Next interesting targets:
   C-V07: e1 on perturbed equilateral with unequal Γ (near-invariant: frac_var~1e-3)
   C-V08: adiabatic invariant J ≈ ∮ p dq for restricted test vortex (KAM-type near-constant)
   C-V09: r12+r13+r23 on 4-vortex Z₄-symmetric IC
   C-V10: Fourier amplitude at ω₀ of r13(t) for restricted (slow modulation — adiabatic?)
+  C-V13: H·r12 + α·Lz — run oracle on the 8 numerical passes from 2026-03-13 sweep
 
   On Oracle format:
   Compact symbolic notation required. Verbose prose fails (confirmed in pilot + e2 repair runs).

@@ -40,6 +40,9 @@ tells you exactly which one and what to do next.
 ## Quick Start
 
 ```bash
+# Install core deps
+pip install -r requirements.txt
+
 # 1. Run the checker on a hypothesis
 python vortex_checker.py --ic restricted --expr "s['r12'] + 0.01*(s['r13']+s['r23'])"
 
@@ -55,7 +58,18 @@ python claim.py claim \
     --problem vortex_pair_conservation \
     --expr "r12 + eps*(r13+r23)" \
     --handle your_handle
+
+# 5. View results dashboard (rebuilds from results/candidates.tsv)
+python dashboard.py --open
 ```
+
+> **Linux / CUDA users:** use `noethersolve_torch.py` as a drop-in backend that requires only PyTorch + HuggingFace — no MLX needed.
+> ```bash
+> python noethersolve_torch.py train-adapter --data my_training_data.json \
+>     --model Qwen/Qwen3-4B-Base --out adapters/my_adapter.npz
+> python noethersolve_torch.py eval-oracle --problem problems/vortex_pair_conservation.yaml \
+>     --adapter adapters/my_adapter.npz --diagnose
+> ```
 
 ---
 
