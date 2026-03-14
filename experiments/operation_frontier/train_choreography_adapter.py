@@ -24,8 +24,13 @@ Output: adapters/adapter_choreography.npz
 """
 
 import argparse, json, os, sys, time
-sys.path.insert(0, "/Volumes/4TB SD/ClaudeCode/knowledge-fidelity")
-sys.path.insert(0, "/Volumes/4TB SD/ClaudeCode/knowledge-fidelity/experiments/snap_on")
+
+# Resolve knowledge-fidelity root relative to this file's location
+# (works regardless of where the repo is cloned)
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_ROOT = os.path.abspath(os.path.join(_HERE, "..", ".."))   # knowledge-fidelity/
+sys.path.insert(0, _ROOT)
+sys.path.insert(0, os.path.join(_ROOT, "experiments", "snap_on"))
 
 import mlx.core as mx
 import mlx.nn as nn

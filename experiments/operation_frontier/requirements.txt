@@ -1,0 +1,31 @@
+# NoetherSolve — Python dependencies
+# Install: pip install -r requirements.txt
+#
+# Two backends are supported (choose one based on your hardware):
+#   Apple Silicon (M1/M2/M3/M4):  use MLX stack (Section A)
+#   Linux/NVIDIA GPU or CPU:       use PyTorch stack (Section B)
+
+# ─── Core (required on all platforms) ───────────────────────────────────────
+numpy>=1.24
+scipy>=1.11          # RK45 integrator (vortex_checker.py, conservation_checker.py)
+pyyaml>=6.0          # problem YAML loading
+matplotlib>=3.7      # results dashboard
+# ─── Checker / visualization only (no ML) ───────────────────────────────────
+# The numerical checkers (vortex_checker.py, conservation_checker.py) and
+# the dashboard (dashboard.py) work with only the core deps above.
+
+# ─── Section A: Apple Silicon / MLX backend ─────────────────────────────────
+# Uncomment if running on Apple Silicon (M-series chip):
+# mlx>=0.16
+# mlx-lm>=0.16
+
+# ─── Section B: PyTorch / CUDA backend (Linux, Windows, Intel Mac) ──────────
+# Uncomment for CUDA or CPU usage with noethersolve_torch.py:
+# torch>=2.2
+# transformers>=4.40
+# accelerate>=0.28
+# safetensors>=0.4
+
+# ─── Oracle wrapper (needs one of A or B above) ─────────────────────────────
+# oracle_wrapper.py auto-detects available backend at import time.
+# claim.py has no ML dependencies.

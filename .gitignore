@@ -60,6 +60,12 @@ paper/*.fdb_latexmk
 paper/*.fls
 paper/*.synctex.gz
 
+# Operation Frontier / NoetherSolve — generated outputs (dashboard + charts regenerate from tsv)
+experiments/operation_frontier/results/dashboard.html
+experiments/operation_frontier/results/charts/
+# Adapter weights (large, local only — referenced by YAML but not committed)
+experiments/operation_frontier/adapters/
+
 # Operation Destroyer — paper, figures, auto-generated outputs, planning docs
 experiments/operation_destroyer/paper/
 experiments/operation_destroyer/sub_experiments/figures/

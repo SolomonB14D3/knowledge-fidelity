@@ -6,3 +6,5 @@ timestamp	hypothesis	margin_mean	n_pass	verdict	classification
 2026-03-13	r12*r13*r23 on figure-8 (e3)	pending	0/1	CHECKER-FAIL	frac_var=1.85e-02_marginal
 2026-03-13	pilot: kinetic energy (1/2)mv^2	baseline	3/10	ORACLE-FAIL	format_sensitivity_confirmed
 2026-03-13	Q=r12+Γ₃(r13+r23) on restricted 3-vortex (vp11)	-29.959→+3.987	1/1	QUADRANT3→FLIPPED	margin_flipped by vortex_q_adapter_v4; KNOWLEDGE_GAP→FIXABLE_BIAS; frac_var=5.36e-06 all eps 0.001-0.5; exact at eps=0 and eps=1 limits; 300x better than r12 alone
+2026-03-13	H - Lz on restricted 3-vortex	-19.64→+26.05	1/1	QUADRANT3→FLIPPED	margin_flipped by unified_vortex_v1; h_minus_lz_adapter alone: +11.85; physically trivial (linear combo of exact integrals) but oracle bias confirmed: model does not recognize that αH+βLz is conserved; frac_var~1e-12
+2026-03-13	H·r12 + α·Lz (8 variants) on restricted	pending	8/8	ORACLE-FAIL+CHECKER-PASS	numerical PASS (frac_var not recorded); oracle not run yet; interesting non-trivial family; next: run oracle + diagnose
