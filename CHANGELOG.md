@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.0] - 2026-03-08
+
+### Added
+
+- **Snap-On v2 adapter** — cross-scale logit-space adapters with vocabulary-aware transfer
+  - Phase 4: v1 adapter (29M params, trained on Qwen2.5-1.5B) transfers to 3B-Instruct with zero MMLU degradation
+  - Cross-architecture transfer: Qwen→Llama-3.1-8B with -0.2% MMLU delta via vocab truncation
+  - Phase 3: style adapters (code/eli5/formal) — null style result, perfect MMLU preservation
+- **Paper 9 — STEM Truth Oracle** (DOI: 10.5281/zenodo.19005729) — log-probability MC ranking reveals and corrects scale-invariant factual biases
+- **Operation Destroyer** — logit-space adapter experiments for factual amplification
+  - Margin oracle: positive margin → 100% correct (0 FP), negative → 0% (0 FN)
+  - 4 bias patterns identified: positivity, linearity, missing-constant, truncation
+  - Mixed adapter required for cross-pattern robustness
+- **Operation Frontier** — autonomous oracle wrapper + conservation law discovery pipeline
+- NoetherSolve autonomy loop with problem generation
+
+### Removed
+
+- **Leaderboard stubs** — removed unimplemented `rho-leaderboard` CLI, `leaderboard.py`, and `probe_registry.py` (all were `NotImplementedError` scaffolding)
+
+### Fixed
+
+- Tied word embeddings handling in snap-on adapters (v2.5.1)
+- Synced `__version__` with pyproject.toml
+
+## [2.5.0] - 2026-03-07
+
+### Added
+
+- **`snap-on` CLI tool** — train and apply frozen logit-space adapters on any base model
+  - `snap-on train --model MODEL --mode logit` — train a modular adapter (zero knowledge damage)
+  - `snap-on apply --model MODEL --adapter PATH` — apply adapter at inference
+  - v1 architecture: `d_inner=64`, trained on 5K examples, 29M params for 1.5B model
+- Papers 7-9 added to README and CITATION.cff
+
 ## [2.4.0] - 2026-03-06
 
 ### Added
